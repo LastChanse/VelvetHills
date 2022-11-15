@@ -50,6 +50,7 @@ public class SceneUtils {
                 FXMLLoader loader = new FXMLLoader(new URL(Config.resourcesPath+fxmlFile));
                 root = loader.load();
                 LoginController lc = loader.getController();
+                lc.getSelfController(lc);
                 lc.lock(true, Config.timeLockAuthAfterSession);
             } catch (IOException e) {
                 e.printStackTrace();

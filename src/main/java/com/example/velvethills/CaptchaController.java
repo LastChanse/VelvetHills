@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class CaptchaController {
-    LoginController root;
+    LoginController root = new LoginController();
 
     @FXML
     private Canvas canvas;

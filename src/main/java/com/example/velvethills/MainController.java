@@ -108,14 +108,11 @@ public class MainController {
     }
 
     public void setUser(User user) {
-        avatar.setImage(new Image(Config.resourcesPath+"drawables/"+user.getFio().split(" ")[0]+".jpeg"));
+        String avaPath = Config.resourcesPath+"drawables/"+user.getFio().split(" ")[0]+".jpeg";
+        Image avaImage = new Image(avaPath);
+        avatar.setImage(avaImage);
         userInfo.setText(user.getFio()+"\nДолжность: "+user.getStatus());
         SessionUtils.startSession(sessionInfo);
-    }
-
-    @FXML
-    private void logOut() {
-        new SceneUtils().changeScene(exitBtn.getScene(), "login-view.fxml", null);
     }
 
     @FXML

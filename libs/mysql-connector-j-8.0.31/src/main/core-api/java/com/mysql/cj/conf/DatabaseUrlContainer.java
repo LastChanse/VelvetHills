@@ -35,7 +35,7 @@ package com.mysql.cj.conf;
 public interface DatabaseUrlContainer {
     /**
      * Returns the original database URL that produced this connection string.
-     * 
+     *
      * @return the original database URL
      */
     String getDatabaseUrl();

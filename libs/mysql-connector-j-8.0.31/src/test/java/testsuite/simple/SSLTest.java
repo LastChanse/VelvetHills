@@ -49,7 +49,7 @@ public class SSLTest extends BaseTestCase {
 
     /**
      * Tests SSL Connection
-     * 
+     *
      * @throws Exception
      */
     @Test

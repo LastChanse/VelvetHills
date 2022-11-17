@@ -9,7 +9,7 @@ public class Config {
     // App
     public static String appName = "Панель управления для сотрудников точки «Бархатные холмы»";
     public static String appIconPath = "drawables/icon.png";
-    public static Image appIcon = new Image(resourcesPath+appIconPath);
+    public static Image appIcon = new Image(resourcesPath + appIconPath);
     public static int draggedYZone = 50; // SceneUtils
     // Database
     public static String DBUrl = "jdbc:mysql://localhost:3306/session1";
@@ -29,6 +29,6 @@ public class Config {
     public static String invisiblePath = "drawables/hidden-eye.png";
     public static String visiblePath = "drawables/eye.png";
     // +constructor Show&hide image views
-    public static ImageView invisible = new ImageView(new Image(resourcesPath+invisiblePath, 30, 30, true, true));
-    public static ImageView visible = new ImageView(new Image(resourcesPath+visiblePath, 30, 30, true, true));
+    public static ImageView invisible = new ImageView(new Image(resourcesPath + invisiblePath, 30, 30, true, true));
+    public static ImageView visible = new ImageView(new Image(resourcesPath + visiblePath, 30, 30, true, true));
 }

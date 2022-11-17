@@ -40,7 +40,9 @@ import com.mysql.cj.conf.PropertyDefinitions;
 import com.mysql.cj.xdevapi.Collection;
 
 public class BaseCollectionTestCase extends DevApiBaseTestCase {
-    /** Collection for testing. */
+    /**
+     * Collection for testing.
+     */
     protected Collection collection;
     protected String collectionName;
 

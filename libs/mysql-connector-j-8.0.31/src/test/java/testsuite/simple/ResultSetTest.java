@@ -273,7 +273,7 @@ public class ResultSetTest extends BaseTestCase {
 
     /**
      * Date and time retrieval tests with and without ssps.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -331,7 +331,7 @@ public class ResultSetTest extends BaseTestCase {
 
     /**
      * Test for ResultSet.updateObject(), non-updatable ResultSet behavior.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -400,7 +400,7 @@ public class ResultSetTest extends BaseTestCase {
     /**
      * Test for (Updatable)ResultSet.[update|get]Object().
      * Note: ResultSet.getObject() is covered in methods TestJDBC42Statemet.validateTestData[Local|Offset]DTTypes.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -714,7 +714,7 @@ public class ResultSetTest extends BaseTestCase {
 
     /**
      * Test for (Updatable)ResultSet.updateObject(), unsupported SQL types TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
-     * 
+     *
      * @throws SQLException
      */
     @Test
@@ -820,7 +820,7 @@ public class ResultSetTest extends BaseTestCase {
 
     /**
      * Test exceptions thrown when trying to update a read-only result set.
-     * 
+     *
      * @throws SQLException
      */
     @Test
@@ -1023,14 +1023,14 @@ public class ResultSetTest extends BaseTestCase {
         assertThrows(NotUpdatable.class, null, new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                rsTmp.updateBytes(1, new byte[] {});
+                rsTmp.updateBytes(1, new byte[]{});
                 return null;
             }
         });
         assertThrows(NotUpdatable.class, null, new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                rsTmp.updateBytes("f1", new byte[] {});
+                rsTmp.updateBytes("f1", new byte[]{});
                 return null;
             }
         });

@@ -73,49 +73,71 @@ import com.mysql.cj.util.StringUtils;
  * A result set that is updatable.
  */
 public class UpdatableResultSet extends ResultSetImpl {
-    /** Marker for 'stream' data when doing INSERT rows */
+    /**
+     * Marker for 'stream' data when doing INSERT rows
+     */
     final static byte[] STREAM_DATA_MARKER = StringUtils.getBytes("** STREAM DATA **");
 
     private String charEncoding;
 
-    /** What is the default value for the column? */
+    /**
+     * What is the default value for the column?
+     */
     private byte[][] defaultColumnValue;
 
-    /** PreparedStatement used to delete data */
+    /**
+     * PreparedStatement used to delete data
+     */
     private ClientPreparedStatement deleter = null;
 
     private String deleteSQL = null;
 
-    /** PreparedStatement used to insert data */
+    /**
+     * PreparedStatement used to insert data
+     */
     protected ClientPreparedStatement inserter = null;
 
     private String insertSQL = null;
 
-    /** Is this result set updatable? */
+    /**
+     * Is this result set updatable?
+     */
     private boolean isUpdatable = false;
 
-    /** Reason the result set is not updatable */
+    /**
+     * Reason the result set is not updatable
+     */
     private String notUpdatableReason = null;
 
-    /** List of primary keys */
+    /**
+     * List of primary keys
+     */
     private List<Integer> primaryKeyIndicies = null;
 
     private String qualifiedAndQuotedTableName;
 
     private String quotedIdChar = null;
 
-    /** PreparedStatement used to refresh data */
+    /**
+     * PreparedStatement used to refresh data
+     */
     private ClientPreparedStatement refresher;
 
     private String refreshSQL = null;
 
-    /** The binary data for the 'current' row */
+    /**
+     * The binary data for the 'current' row
+     */
     private Row savedCurrentRow;
 
-    /** PreparedStatement used to delete data */
+    /**
+     * PreparedStatement used to delete data
+     */
     protected ClientPreparedStatement updater = null;
 
-    /** SQL for in-place modifcation */
+    /**
+     * SQL for in-place modifcation
+     */
     private String updateSQL = null;
 
     private boolean populateInserterWithDefaultValues = false;
@@ -125,24 +147,23 @@ public class UpdatableResultSet extends ResultSetImpl {
 
     private Map<String, Map<String, Map<String, Integer>>> databasesUsedToTablesUsed = null;
 
-    /** Are we on the insert row? */
+    /**
+     * Are we on the insert row?
+     */
     private boolean onInsertRow = false;
 
-    /** Are we in the middle of doing updates to the current row? */
+    /**
+     * Are we in the middle of doing updates to the current row?
+     */
     protected boolean doingUpdates = false;
 
     /**
      * Creates a new ResultSet object.
-     * 
-     * @param tuples
-     *            actual row data
-     * @param conn
-     *            the Connection that created us.
-     * @param creatorStmt
-     *            statement owning this result set
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param tuples      actual row data
+     * @param conn        the Connection that created us.
+     * @param creatorStmt statement owning this result set
+     * @throws SQLException if an error occurs
      */
     public UpdatableResultSet(ResultsetRows tuples, JdbcConnection conn, StatementImpl creatorStmt) throws SQLException {
         super(tuples, conn, creatorStmt);
@@ -206,9 +227,8 @@ public class UpdatableResultSet extends ResultSetImpl {
 
     /**
      * Is this ResultSet updatable?
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @throws SQLException if an error occurs
      */
     public void checkUpdatability() throws SQLException {
         try {
@@ -353,7 +373,7 @@ public class UpdatableResultSet extends ResultSetImpl {
                                 if (primaryKeyNames.remove(originalName.toUpperCase()) == null) {
                                     // we don't know about this key, so give up :(
                                     this.isUpdatable = false;
-                                    this.notUpdatableReason = Messages.getString("NotUpdatableReason.6", new Object[] { originalName });
+                                    this.notUpdatableReason = Messages.getString("NotUpdatableReason.6", new Object[]{originalName});
 
                                     return;
                                 }
@@ -556,11 +576,9 @@ public class UpdatableResultSet extends ResultSetImpl {
     /**
      * Figure out whether or not this ResultSet is updatable, and if so,
      * generate the PreparedStatements to support updates.
-     * 
-     * @throws SQLException
-     *             if an error occurs
-     * @throws NotUpdatable
-     *             if result set was marked as not updatable
+     *
+     * @throws SQLException if an error occurs
+     * @throws NotUpdatable if result set was marked as not updatable
      */
     protected void generateStatements() throws SQLException {
         if (!this.isUpdatable) {
@@ -1117,9 +1135,8 @@ public class UpdatableResultSet extends ResultSetImpl {
     /**
      * Reset UPDATE prepared statement to value in current row. This_Row MUST
      * point to current, valid row.
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @throws SQLException if an error occurs
      */
     protected void syncUpdate() throws SQLException {
         if (this.updater == null) {
@@ -1537,17 +1554,12 @@ public class UpdatableResultSet extends ResultSetImpl {
     /**
      * Internal setObject implementation. Although targetType is not part of default ResultSet methods signatures, it is used for type conversions from
      * JDBC42UpdatableResultSet new JDBC 4.2 updateObject() methods.
-     * 
-     * @param columnIndex
-     *            column index
-     * @param x
-     *            value
-     * @param targetType
-     *            target type
-     * @param scaleOrLength
-     *            scale or length, depending on target type
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param columnIndex   column index
+     * @param x             value
+     * @param targetType    target type
+     * @param scaleOrLength scale or length, depending on target type
+     * @throws SQLException if an error occurs
      */
     protected void updateObjectInternal(int columnIndex, Object x, Integer targetType, int scaleOrLength) throws SQLException {
         try {
@@ -1562,17 +1574,12 @@ public class UpdatableResultSet extends ResultSetImpl {
 
     /**
      * Internal setObject implementation.
-     * 
-     * @param columnIndex
-     *            column index
-     * @param x
-     *            value
-     * @param targetType
-     *            target type
-     * @param scaleOrLength
-     *            scale or length, depending on target type
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param columnIndex   column index
+     * @param x             value
+     * @param targetType    target type
+     * @param scaleOrLength scale or length, depending on target type
+     * @throws SQLException if an error occurs
      */
     protected void updateObjectInternal(int columnIndex, Object x, SQLType targetType, int scaleOrLength) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {

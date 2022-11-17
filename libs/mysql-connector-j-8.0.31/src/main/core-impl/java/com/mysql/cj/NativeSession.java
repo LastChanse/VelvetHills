@@ -85,18 +85,26 @@ public class NativeSession extends CoreSession implements Serializable {
 
     private CacheAdapter<String, Map<String, String>> serverConfigCache;
 
-    /** When did the last query finish? */
+    /**
+     * When did the last query finish?
+     */
     private long lastQueryFinishedTime = 0;
 
-    /** Does this connection need to be tested? */
+    /**
+     * Does this connection need to be tested?
+     */
     private boolean needsPing = false;
 
     private NativeMessageBuilder commandBuilder = null;
 
-    /** Has this session been closed? */
+    /**
+     * Has this session been closed?
+     */
     private boolean isClosed = true;
 
-    /** Why was this session implicitly closed, if known? (for diagnostics) */
+    /**
+     * Why was this session implicitly closed, if known? (for diagnostics)
+     */
     private Throwable forceClosedReason;
 
     private CopyOnWriteArrayList<WeakReference<SessionEventListener>> listeners = new CopyOnWriteArrayList<>();
@@ -225,7 +233,6 @@ public class NativeSession extends CoreSession implements Serializable {
 
     /**
      * Used by MiniAdmin to shutdown a MySQL server
-     * 
      */
     public void shutdownServer() {
         if (versionMeetsMinimum(5, 7, 9)) {
@@ -248,7 +255,7 @@ public class NativeSession extends CoreSession implements Serializable {
     /**
      * Returns the packet used for sending data (used by PreparedStatement) with position set to 0.
      * Guarded by external synchronization on a mutex.
-     * 
+     *
      * @return A packet to send data with
      */
     public NativePacketPayload getSharedSendPacket() {
@@ -357,11 +364,11 @@ public class NativeSession extends CoreSession implements Serializable {
                 }
             } catch (ClassNotFoundException e) {
                 throw ExceptionFactory.createException(Messages.getString("Connection.CantFindCacheFactory",
-                        new Object[] { getPropertySet().getStringProperty(PropertyKey.queryInfoCacheFactory).getValue(), PropertyKey.queryInfoCacheFactory }),
+                                new Object[]{getPropertySet().getStringProperty(PropertyKey.queryInfoCacheFactory).getValue(), PropertyKey.queryInfoCacheFactory}),
                         e, getExceptionInterceptor());
             } catch (InstantiationException | IllegalAccessException | CJException e) {
                 throw ExceptionFactory.createException(Messages.getString("Connection.CantLoadCacheFactory",
-                        new Object[] { getPropertySet().getStringProperty(PropertyKey.queryInfoCacheFactory).getValue(), PropertyKey.queryInfoCacheFactory }),
+                                new Object[]{getPropertySet().getStringProperty(PropertyKey.queryInfoCacheFactory).getValue(), PropertyKey.queryInfoCacheFactory}),
                         e, getExceptionInterceptor());
             }
         }
@@ -373,11 +380,9 @@ public class NativeSession extends CoreSession implements Serializable {
     /**
      * Loads the result of 'SHOW VARIABLES' into the serverVariables field so
      * that the driver can configure itself.
-     * 
-     * @param syncMutex
-     *            synchronization mutex
-     * @param version
-     *            driver version string
+     *
+     * @param syncMutex synchronization mutex
+     * @param version   driver version string
      */
     public void loadServerVariables(Object syncMutex, String version) {
 
@@ -558,11 +563,11 @@ public class NativeSession extends CoreSession implements Serializable {
 
             NativePacketPayload resultPacket = versionMeetsMinimum(5, 6, 0) // performance_schema.threads in MySQL 5.5 does not contain PROCESSLIST_HOST column
                     && ps != null && ("1".contentEquals(ps) || "ON".contentEquals(ps))
-                            ? (NativePacketPayload) this.protocol.sendCommand(this.commandBuilder.buildComQuery(null,
-                                    "select PROCESSLIST_ID, PROCESSLIST_USER, PROCESSLIST_HOST from performance_schema.threads where PROCESSLIST_ID="
-                                            + threadId),
-                                    false, 0)
-                            : (NativePacketPayload) this.protocol.sendCommand(this.commandBuilder.buildComQuery(null, "SHOW PROCESSLIST"), false, 0);
+                    ? (NativePacketPayload) this.protocol.sendCommand(this.commandBuilder.buildComQuery(null,
+                            "select PROCESSLIST_ID, PROCESSLIST_USER, PROCESSLIST_HOST from performance_schema.threads where PROCESSLIST_ID="
+                                    + threadId),
+                    false, 0)
+                    : (NativePacketPayload) this.protocol.sendCommand(this.commandBuilder.buildComQuery(null, "SHOW PROCESSLIST"), false, 0);
 
             Resultset rs = ((NativeProtocol) this.protocol).readAllResults(-1, false, resultPacket, false, null, new ResultsetFactory(Type.FORWARD_ONLY, null));
 
@@ -586,9 +591,8 @@ public class NativeSession extends CoreSession implements Serializable {
 
     /**
      * Get the variable value from server.
-     * 
-     * @param varName
-     *            server variable name
+     *
+     * @param varName server variable name
      * @return server variable value
      */
     public String queryServerVariable(String varName) {
@@ -618,30 +622,20 @@ public class NativeSession extends CoreSession implements Serializable {
      * Send a query to the server. Returns one of the ResultSet objects.
      * To ensure that Statement's queries are serialized, calls to this method
      * should be enclosed in a connection mutex synchronized block.
-     * 
-     * @param <T>
-     *            extends {@link Resultset}
-     * @param callingQuery
-     *            {@link Query} object
-     * @param query
-     *            the SQL statement to be executed
-     * @param maxRows
-     *            rows limit
-     * @param packet
-     *            {@link NativePacketPayload}
-     * @param streamResults
-     *            whether a stream result should be created
-     * @param resultSetFactory
-     *            {@link ProtocolEntityFactory}
-     * @param cachedMetadata
-     *            use this metadata instead of the one provided on wire
-     * @param isBatch
-     *            is it a batch query
-     * 
+     *
+     * @param <T>              extends {@link Resultset}
+     * @param callingQuery     {@link Query} object
+     * @param query            the SQL statement to be executed
+     * @param maxRows          rows limit
+     * @param packet           {@link NativePacketPayload}
+     * @param streamResults    whether a stream result should be created
+     * @param resultSetFactory {@link ProtocolEntityFactory}
+     * @param cachedMetadata   use this metadata instead of the one provided on wire
+     * @param isBatch          is it a batch query
      * @return a ResultSet holding the results
      */
     public <T extends Resultset> T execSQL(Query callingQuery, String query, int maxRows, NativePacketPayload packet, boolean streamResults,
-            ProtocolEntityFactory<T, NativePacketPayload> resultSetFactory, ColumnDefinition cachedMetadata, boolean isBatch) {
+                                           ProtocolEntityFactory<T, NativePacketPayload> resultSetFactory, ColumnDefinition cachedMetadata, boolean isBatch) {
 
         long queryStartTime = this.gatherPerfMetrics.getValue() ? System.currentTimeMillis() : 0;
         int endOfQueryPacketPosition = packet != null ? packet.getPosition() : 0;
@@ -661,7 +655,7 @@ public class NativeSession extends CoreSession implements Serializable {
         try {
             return packet == null
                     ? ((NativeProtocol) this.protocol).sendQueryString(callingQuery, query, this.characterEncoding.getValue(), maxRows, streamResults,
-                            cachedMetadata, resultSetFactory)
+                    cachedMetadata, resultSetFactory)
                     : ((NativeProtocol) this.protocol).sendQueryPacket(callingQuery, packet, maxRows, streamResults, cachedMetadata, resultSetFactory);
 
         } catch (CJException sqlE) {

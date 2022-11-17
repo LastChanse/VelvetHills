@@ -70,7 +70,7 @@ public class SimplePacketReaderTest {
         RuntimeProperty<Integer> maxAllowedPacket = new JdbcPropertySetImpl().getProperty(PropertyKey.maxAllowedPacket);
         maxAllowedPacket.setValue(100000);
         // mix up the bits so we know they're interpreted correctly
-        SocketConnection connection = new FixedBufferSocketConnection(new byte[] { 3, 2, 1, 42 });
+        SocketConnection connection = new FixedBufferSocketConnection(new byte[]{3, 2, 1, 42});
         MessageReader<NativePacketHeader, NativePacketPayload> reader = new SimplePacketReader(connection, maxAllowedPacket);
         assertEquals(-1, reader.getMessageSequence());
         NativePacketHeader hdr = reader.readHeader();
@@ -87,12 +87,12 @@ public class SimplePacketReaderTest {
         RuntimeProperty<Integer> maxAllowedPacket = new JdbcPropertySetImpl().getProperty(PropertyKey.maxAllowedPacket);
         maxAllowedPacket.setValue(1024);
         // read header with packet size = maxAllowedPacket => SUCCESS
-        MockSocketConnection connection = new FixedBufferSocketConnection(new byte[] { 0, 4, 0, 42 });
+        MockSocketConnection connection = new FixedBufferSocketConnection(new byte[]{0, 4, 0, 42});
         MessageReader<NativePacketHeader, NativePacketPayload> reader = new SimplePacketReader(connection, maxAllowedPacket);
         NativePacketHeader hdr = reader.readHeader();
         assertEquals(1024, hdr.getMessageSize());
         // read header with packet size = maxAllowedPacket + 1 => ERROR
-        connection = new FixedBufferSocketConnection(new byte[] { 1, 4, 0, 42 });
+        connection = new FixedBufferSocketConnection(new byte[]{1, 4, 0, 42});
         reader = new SimplePacketReader(connection, maxAllowedPacket);
         try {
             reader.readHeader();
@@ -106,7 +106,7 @@ public class SimplePacketReaderTest {
     @Test
     public void truncatedPacketHeaderRead() throws IOException {
         RuntimeProperty<Integer> maxAllowedPacket = new JdbcPropertySetImpl().getProperty(PropertyKey.maxAllowedPacket);
-        MockSocketConnection connection = new FixedBufferSocketConnection(new byte[] { 3, 2, 1 });
+        MockSocketConnection connection = new FixedBufferSocketConnection(new byte[]{3, 2, 1});
         MessageReader<NativePacketHeader, NativePacketPayload> reader = new SimplePacketReader(connection, maxAllowedPacket);
         try {
             reader.readHeader();
@@ -120,15 +120,15 @@ public class SimplePacketReaderTest {
     @Test
     public void readBasicPayload() throws IOException {
         RuntimeProperty<Integer> maxAllowedPacket = new JdbcPropertySetImpl().getProperty(PropertyKey.maxAllowedPacket);
-        SocketConnection connection = new FixedBufferSocketConnection(new byte[] { 3, 2, 1, 6, 5, 4 });
+        SocketConnection connection = new FixedBufferSocketConnection(new byte[]{3, 2, 1, 6, 5, 4});
         MessageReader<NativePacketHeader, NativePacketPayload> reader = new SimplePacketReader(connection, maxAllowedPacket);
-        NativePacketPayload b = reader.readMessage(Optional.empty(), new NativePacketHeader(new byte[] { 3, 0, 0, 0 }));
+        NativePacketPayload b = reader.readMessage(Optional.empty(), new NativePacketHeader(new byte[]{3, 0, 0, 0}));
         assertEquals(3, b.getByteBuffer()[0]);
         assertEquals(2, b.getByteBuffer()[1]);
         assertEquals(1, b.getByteBuffer()[2]);
 
         // make sure the first only consumed the requested 3 bytes
-        b = reader.readMessage(Optional.empty(), new NativePacketHeader(new byte[] { 3, 0, 0, 0 }));
+        b = reader.readMessage(Optional.empty(), new NativePacketHeader(new byte[]{3, 0, 0, 0}));
         assertEquals(6, b.getByteBuffer()[0]);
         assertEquals(5, b.getByteBuffer()[1]);
         assertEquals(4, b.getByteBuffer()[2]);
@@ -138,12 +138,12 @@ public class SimplePacketReaderTest {
     @Test
     public void readPayloadErrors() throws IOException {
         RuntimeProperty<Integer> maxAllowedPacket = new JdbcPropertySetImpl().getProperty(PropertyKey.maxAllowedPacket);
-        MockSocketConnection connection = new FixedBufferSocketConnection(new byte[] { 5, 4 });
+        MockSocketConnection connection = new FixedBufferSocketConnection(new byte[]{5, 4});
         MessageReader<NativePacketHeader, NativePacketPayload> reader = new SimplePacketReader(connection, maxAllowedPacket);
 
         // can't read 3 bytes if the buffer only has 2
         try {
-            reader.readMessage(Optional.empty(), new NativePacketHeader(new byte[] { 3, 0, 0, 0 }));
+            reader.readMessage(Optional.empty(), new NativePacketHeader(new byte[]{3, 0, 0, 0}));
             fail("Shouldn't be able to read more than 2 bytes");
         } catch (EOFException ex) {
             assertTrue(connection.forceClosed, "Connection should be force closed when payload read fails");
@@ -159,7 +159,7 @@ public class SimplePacketReaderTest {
         reader = new SimplePacketReader(connection, maxAllowedPacket);
 
         try {
-            reader.readMessage(Optional.empty(), new NativePacketHeader(new byte[] { 3, 0, 0, 0 }));
+            reader.readMessage(Optional.empty(), new NativePacketHeader(new byte[]{3, 0, 0, 0}));
             fail("IOException should be thrown");
         } catch (IOException ex) {
             assertTrue(connection.forceClosed, "Connection should be force closed when payload read fails");
@@ -264,7 +264,7 @@ public class SimplePacketReaderTest {
         }
 
         public FullReadInputStream getMysqlInput() {
-            return new FullReadInputStream(new ByteArrayInputStream(new byte[] {})) {
+            return new FullReadInputStream(new ByteArrayInputStream(new byte[]{})) {
                 @Override
                 public int readFully(byte[] b, int off, int len) throws IOException {
                     return MockSocketConnection.this.readFully(b, off, len);
@@ -274,7 +274,7 @@ public class SimplePacketReaderTest {
 
         /**
          * Mock method to override getMysqlInput().readFully().
-         * 
+         *
          * @param b
          * @param off
          * @param len

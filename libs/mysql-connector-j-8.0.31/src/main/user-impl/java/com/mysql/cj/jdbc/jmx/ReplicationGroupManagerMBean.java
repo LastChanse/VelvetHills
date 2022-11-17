@@ -37,11 +37,9 @@ public interface ReplicationGroupManagerMBean {
 
     /**
      * Use {@link #addReplicaHost(String, String)} instead.
-     * 
-     * @param groupFilter
-     *            filter
-     * @param host
-     *            host
+     *
+     * @param groupFilter filter
+     * @param host        host
      * @throws SQLException
      * @deprecated
      */
@@ -54,11 +52,9 @@ public interface ReplicationGroupManagerMBean {
 
     /**
      * Use {@link #removeReplicaHost(String, String)} instead.
-     * 
-     * @param groupFilter
-     *            filter
-     * @param host
-     *            host
+     *
+     * @param groupFilter filter
+     * @param host        host
      * @throws SQLException
      * @deprecated
      */
@@ -71,11 +67,9 @@ public interface ReplicationGroupManagerMBean {
 
     /**
      * Use {@link #promoteReplicaToSource(String, String)} instead.
-     * 
-     * @param groupFilter
-     *            filter
-     * @param host
-     *            host
+     *
+     * @param groupFilter filter
+     * @param host        host
      * @throws SQLException
      * @deprecated
      */
@@ -88,11 +82,9 @@ public interface ReplicationGroupManagerMBean {
 
     /**
      * Use {@link #removeSourceHost(String, String)} instead.
-     * 
-     * @param groupFilter
-     *            filter
-     * @param host
-     *            host
+     *
+     * @param groupFilter filter
+     * @param host        host
      * @throws SQLException
      * @deprecated
      */
@@ -105,9 +97,8 @@ public interface ReplicationGroupManagerMBean {
 
     /**
      * Use {@link #getSourceHostsList(String)} instead.
-     * 
-     * @param group
-     *            group
+     *
+     * @param group group
      * @return source hosts
      * @deprecated
      */
@@ -120,9 +111,8 @@ public interface ReplicationGroupManagerMBean {
 
     /**
      * Use {@link #getReplicaHostsList(String)} instead.
-     * 
-     * @param group
-     *            group
+     *
+     * @param group group
      * @return replica hosts
      * @deprecated
      */
@@ -137,9 +127,8 @@ public interface ReplicationGroupManagerMBean {
 
     /**
      * Use {@link #getActiveSourceHostCount(String)} instead.
-     * 
-     * @param group
-     *            group
+     *
+     * @param group group
      * @return count
      * @deprecated
      */
@@ -152,9 +141,8 @@ public interface ReplicationGroupManagerMBean {
 
     /**
      * Use {@link #getActiveReplicaHostCount(String)} instead.
-     * 
-     * @param group
-     *            group
+     *
+     * @param group group
      * @return count
      * @deprecated
      */
@@ -167,9 +155,8 @@ public interface ReplicationGroupManagerMBean {
 
     /**
      * Use {@link #getReplicaPromotionCount(String)} instead.
-     * 
-     * @param group
-     *            group
+     *
+     * @param group group
      * @return count
      * @deprecated
      */

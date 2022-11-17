@@ -123,7 +123,7 @@ public class InternalXBaseTestCase {
 
     /**
      * Create a new {@link XProtocol} instance for testing.
-     * 
+     *
      * @return an XProtocol instance
      */
     public XProtocol createTestProtocol() {
@@ -162,9 +162,8 @@ public class InternalXBaseTestCase {
 
     /**
      * Create a temporary collection for testing.
-     * 
-     * @param protocol
      *
+     * @param protocol
      * @return the temporary collection name
      */
     public String createTempTestCollection(XProtocol protocol) {
@@ -228,9 +227,8 @@ public class InternalXBaseTestCase {
 
     /**
      * Checks if the MySQL version we are connected to meets the minimum {@link ServerVersion} provided.
-     * 
-     * @param version
-     *            the minimum {@link ServerVersion} accepted
+     *
+     * @param version the minimum {@link ServerVersion} accepted
      * @return true or false according to versions comparison
      */
     protected boolean mysqlVersionMeetsMinimum(ServerVersion version) {
@@ -247,11 +245,9 @@ public class InternalXBaseTestCase {
 
     /**
      * Checks if the MySQL version we are connected to meets the minimum {@link ServerVersion} provided.
-     * 
-     * @param url
-     *            server URL
-     * @param version
-     *            the minimum {@link ServerVersion} accepted
+     *
+     * @param url     server URL
+     * @param version the minimum {@link ServerVersion} accepted
      * @return true or false according to versions comparison
      */
     protected boolean mysqlVersionMeetsMinimum(String url, ServerVersion version) {

@@ -58,9 +58,8 @@ public class StringValueFactory implements ValueFactory<String> {
 
     /**
      * Create a string from InternalDate. The fields are formatted in a YYYY-mm-dd format.
-     * 
-     * @param idate
-     *            {@link InternalDate}
+     *
+     * @param idate {@link InternalDate}
      * @return string
      */
     public String createFromDate(InternalDate idate) {
@@ -70,9 +69,8 @@ public class StringValueFactory implements ValueFactory<String> {
 
     /**
      * Create a string from InternalTime. The fields are formatted in a HH:MM:SS[.nnnnnnnnn] format.
-     * 
-     * @param it
-     *            {@link InternalTime}
+     *
+     * @param it {@link InternalTime}
      * @return string
      */
     public String createFromTime(InternalTime it) {
@@ -82,9 +80,8 @@ public class StringValueFactory implements ValueFactory<String> {
     /**
      * Create a string from time fields. The fields are formatted by concatenating the result of {@link #createFromDate(InternalDate)} and {@link
      * #createFromTime(InternalTime)}.
-     * 
-     * @param its
-     *            {@link InternalTimestamp}
+     *
+     * @param its {@link InternalTimestamp}
      * @return string
      */
     public String createFromTimestamp(InternalTimestamp its) {
@@ -95,9 +92,8 @@ public class StringValueFactory implements ValueFactory<String> {
     /**
      * Create a string from time fields. The fields are formatted by concatenating the result of {@link #createFromDate(InternalDate)} and {@link
      * #createFromTime(InternalTime)}.
-     * 
-     * @param its
-     *            {@link InternalTimestamp}
+     *
+     * @param its {@link InternalTimestamp}
      * @return string
      */
     public String createFromDatetime(InternalTimestamp its) {
@@ -124,15 +120,11 @@ public class StringValueFactory implements ValueFactory<String> {
     /**
      * Interpret the given byte array as a string. This value factory needs to know the encoding to interpret the string. The default (null) will interpret the
      * byte array using the platform encoding.
-     * 
-     * @param bytes
-     *            byte array
-     * @param offset
-     *            offset
-     * @param length
-     *            data length in bytes
-     * @param f
-     *            field
+     *
+     * @param bytes  byte array
+     * @param offset offset
+     * @param length data length in bytes
+     * @param f      field
      * @return string
      */
     public String createFromBytes(byte[] bytes, int offset, int length, Field f) {

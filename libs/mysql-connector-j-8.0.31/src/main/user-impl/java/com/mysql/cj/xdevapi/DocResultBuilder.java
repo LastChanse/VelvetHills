@@ -72,7 +72,7 @@ public class DocResultBuilder implements ResultBuilder<DocResult> {
 
         } else if (entity instanceof Row) {
             if (this.metadata == null) {
-                this.metadata = new DefaultColumnDefinition(this.fields.toArray(new Field[] {}));
+                this.metadata = new DefaultColumnDefinition(this.fields.toArray(new Field[]{}));
             }
             this.rows.add(((Row) entity).setMetadata(this.metadata));
             return false;

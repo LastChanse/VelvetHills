@@ -37,17 +37,23 @@ import com.mysql.cj.protocol.MessageSender;
 
 /**
  * A {@link MessageSender} for the compressed protocol.
- * 
+ * <p>
  * TODO: add support for pre-allocated buffer for large packets (if there's a demonstrable perf improvement)
  */
 public class CompressedPacketSender implements MessageSender<NativePacketPayload> {
     private BufferedOutputStream outputStream;
     private Deflater deflater = new Deflater();
-    /** Buffer to compress data to. Used only across one send() invocation. */
+    /**
+     * Buffer to compress data to. Used only across one send() invocation.
+     */
     private byte compressedPacket[];
-    /** Sequence id of compressed packet. Used only across one send() invocation. */
+    /**
+     * Sequence id of compressed packet. Used only across one send() invocation.
+     */
     private byte compressedSequenceId = 0;
-    /** Length of current compressed packet. */
+    /**
+     * Length of current compressed packet.
+     */
     private int compressedPayloadLen = 0;
 
     public static final int COMP_HEADER_LENGTH = 7;
@@ -72,11 +78,9 @@ public class CompressedPacketSender implements MessageSender<NativePacketPayload
 
     /**
      * Add and compress the header for the raw packet into the compressed packet.
-     * 
-     * @param packetSequence
-     *            sequence id
-     * @param uncompressedPacketLen
-     *            uncompressed packet length
+     *
+     * @param packetSequence        sequence id
+     * @param uncompressedPacketLen uncompressed packet length
      */
     private void addUncompressedHeader(byte packetSequence, int uncompressedPacketLen) {
         byte uncompressedHeader[] = new byte[NativeConstants.HEADER_LENGTH];
@@ -89,13 +93,10 @@ public class CompressedPacketSender implements MessageSender<NativePacketPayload
 
     /**
      * Add and compress the payload into the compressed packet.
-     * 
-     * @param payload
-     *            payload bytes
-     * @param payloadOffset
-     *            offset
-     * @param payloadLen
-     *            length
+     *
+     * @param payload       payload bytes
+     * @param payloadOffset offset
+     * @param payloadLen    length
      */
     private void addPayload(byte[] payload, int payloadOffset, int payloadLen) {
         this.deflater.setInput(payload, payloadOffset, payloadLen);
@@ -114,15 +115,11 @@ public class CompressedPacketSender implements MessageSender<NativePacketPayload
 
     /**
      * Write the compressed packet header.
-     * 
-     * @param compLen
-     *            compressed data length
-     * @param seq
-     *            sequence id
-     * @param uncompLen
-     *            uncompressed data length
-     * @throws IOException
-     *             if write exception occurs
+     *
+     * @param compLen   compressed data length
+     * @param seq       sequence id
+     * @param uncompLen uncompressed data length
+     * @throws IOException if write exception occurs
      */
     private void writeCompressedHeader(int compLen, byte seq, int uncompLen) throws IOException {
         this.outputStream.write(NativeUtils.encodeMysqlThreeByteInteger(compLen));
@@ -132,13 +129,10 @@ public class CompressedPacketSender implements MessageSender<NativePacketPayload
 
     /**
      * Write an uncompressed packet header.
-     * 
-     * @param packetLen
-     *            packet length
-     * @param packetSequence
-     *            sequence id
-     * @throws IOException
-     *             if write exception occurs
+     *
+     * @param packetLen      packet length
+     * @param packetSequence sequence id
+     * @throws IOException if write exception occurs
      */
     private void writeUncompressedHeader(int packetLen, byte packetSequence) throws IOException {
         this.outputStream.write(NativeUtils.encodeMysqlThreeByteInteger(packetLen));
@@ -147,11 +141,9 @@ public class CompressedPacketSender implements MessageSender<NativePacketPayload
 
     /**
      * Send a compressed packet.
-     * 
-     * @param uncompressedPayloadLen
-     *            uncompressed data length
-     * @throws IOException
-     *             if write exception occurs
+     *
+     * @param uncompressedPayloadLen uncompressed data length
+     * @throws IOException if write exception occurs
      */
     private void sendCompressedPacket(int uncompressedPayloadLen) throws IOException {
         writeCompressedHeader(this.compressedPayloadLen, this.compressedSequenceId++, uncompressedPayloadLen);
@@ -167,15 +159,11 @@ public class CompressedPacketSender implements MessageSender<NativePacketPayload
      * followed by a new header and payload. If the second split packet is also around MAX_PACKET_SIZE in length, then only MAX_PACKET_SIZE - 4 (from the
      * previous packet) - 4 (for the new header) can be sent. This means the payload will be limited by 8 bytes and this will continue to increase by 4 at every
      * iteration.
-     * 
-     * @param packet
-     *            data bytes
-     * @param packetLen
-     *            packet length
-     * @param packetSequence
-     *            sequence id
-     * @throws IOException
-     *             if i/o exception occurs
+     *
+     * @param packet         data bytes
+     * @param packetLen      packet length
+     * @param packetSequence sequence id
+     * @throws IOException if i/o exception occurs
      */
     public void send(byte[] packet, int packetLen, byte packetSequence) throws IOException {
         this.compressedSequenceId = packetSequence;

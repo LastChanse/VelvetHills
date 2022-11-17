@@ -44,11 +44,9 @@ public class LogFactory {
     /**
      * Returns a logger instance of the given class, with the given instance
      * name.
-     * 
-     * @param className
-     *            the class to instantiate
-     * @param instanceName
-     *            the instance name
+     *
+     * @param className    the class to instantiate
+     * @param instanceName the instance name
      * @return a logger instance
      */
     public static Log getLogger(String className, String instanceName) {
@@ -70,9 +68,9 @@ public class LogFactory {
                 loggerClass = Class.forName(Util.getPackageName(LogFactory.class) + "." + className);
             }
 
-            Constructor<?> constructor = loggerClass.getConstructor(new Class<?>[] { String.class });
+            Constructor<?> constructor = loggerClass.getConstructor(new Class<?>[]{String.class});
 
-            return (Log) constructor.newInstance(new Object[] { instanceName });
+            return (Log) constructor.newInstance(new Object[]{instanceName});
         } catch (ClassNotFoundException cnfe) {
             throw ExceptionFactory.createException(WrongArgumentException.class, "Unable to load class for logger '" + className + "'", cnfe);
         } catch (NoSuchMethodException nsme) {

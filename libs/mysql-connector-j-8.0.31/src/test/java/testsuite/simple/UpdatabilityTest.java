@@ -62,7 +62,7 @@ public class UpdatabilityTest extends BaseTestCase {
 
     /**
      * Tests if aliased tables work as updatable result sets.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -103,7 +103,7 @@ public class UpdatabilityTest extends BaseTestCase {
 
     /**
      * Tests that the driver does not let you update result sets that come from tables that don't have primary keys
-     * 
+     *
      * @throws SQLException
      */
     @Test
@@ -136,7 +136,7 @@ public class UpdatabilityTest extends BaseTestCase {
 
     /**
      * Tests that the driver does not let you update result sets that come from queries that haven't selected all primary keys
-     * 
+     *
      * @throws SQLException
      */
     @Test
@@ -252,30 +252,30 @@ public class UpdatabilityTest extends BaseTestCase {
 
             /*
              * FIXME: Move to regression
-             * 
+             *
              * scrollableStmt.executeUpdate("DROP TABLE IF EXISTS test");
              * scrollableStmt.executeUpdate("CREATE TABLE test (ident INTEGER
              * PRIMARY KEY, name TINYTEXT, expiry DATETIME default null)");
              * scrollableStmt.executeUpdate("INSERT INTO test SET ident=1,
              * name='original'");
-             * 
+             *
              * //Select to get a resultset to work on ResultSet this.rs =
              * this.stmt.executeQuery("SELECT ident, name, expiry FROM test");
-             * 
+             *
              * //Check that the expiry field was null before we did our update
              * this.rs.first();
-             * 
+             *
              * java.sql.Date before = this.rs.getDate("expiry");
-             * 
+             *
              * if (this.rs.wasNull()) { System.out.println("Expiry was correctly
              * SQL null before update"); }
-             * 
+             *
              * //Update a different field this.rs.updateString("name",
              * "Updated"); this.rs.updateRow();
-             * 
+             *
              * //Test to see if field has been altered java.sql.Date after =
              * this.rs.getDate(3);
-             * 
+             *
              * if (this.rs.wasNull()) System.out.println("Bug disproved - expiry
              * SQL null after update"); else System.out.println("Bug proved -
              * expiry corrupted to '" + after + "'");

@@ -162,7 +162,7 @@ public class MicroPerformanceRegressionTest extends BaseTestCase {
 
     /**
      * Tests result set accessors performance.
-     * 
+     *
      * @throws Exception
      */
     @Test

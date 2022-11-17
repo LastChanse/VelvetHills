@@ -42,7 +42,7 @@ public interface ReplicationConnection extends JdbcConnection {
 
     /**
      * Use {@link #getSourceConnection()} instead.
-     * 
+     *
      * @return {@link JdbcConnection}
      * @deprecated
      */
@@ -55,9 +55,8 @@ public interface ReplicationConnection extends JdbcConnection {
 
     /**
      * Use {@link #promoteReplicaToSource(String)} instead.
-     * 
-     * @param host
-     *            host name
+     *
+     * @param host host name
      * @throws SQLException
      * @deprecated
      */
@@ -70,9 +69,8 @@ public interface ReplicationConnection extends JdbcConnection {
 
     /**
      * Use {@link #removeSourceHost(String)} instead.
-     * 
-     * @param host
-     *            host name
+     *
+     * @param host host name
      * @throws SQLException
      * @deprecated
      */
@@ -85,11 +83,9 @@ public interface ReplicationConnection extends JdbcConnection {
 
     /**
      * Use {@link #removeSourceHost(String, boolean)} instead.
-     * 
-     * @param host
-     *            host name
-     * @param waitUntilNotInUse
-     *            remove immediately or wait for it's release
+     *
+     * @param host              host name
+     * @param waitUntilNotInUse remove immediately or wait for it's release
      * @throws SQLException
      * @deprecated
      */
@@ -102,9 +98,8 @@ public interface ReplicationConnection extends JdbcConnection {
 
     /**
      * Use {@link #isHostSource(String)} instead.
-     * 
-     * @param host
-     *            host name
+     *
+     * @param host host name
      * @return true if it's a source host
      * @deprecated
      */
@@ -117,7 +112,7 @@ public interface ReplicationConnection extends JdbcConnection {
 
     /**
      * Use {@link #getReplicaConnection()} instead.
-     * 
+     *
      * @return {@link JdbcConnection}
      * @deprecated
      */
@@ -130,9 +125,8 @@ public interface ReplicationConnection extends JdbcConnection {
 
     /**
      * Use {@link #addReplicaHost(String)} instead.
-     * 
-     * @param host
-     *            host name
+     *
+     * @param host host name
      * @throws SQLException
      * @deprecated
      */
@@ -145,9 +139,8 @@ public interface ReplicationConnection extends JdbcConnection {
 
     /**
      * Use {@link #removeReplica(String)} instead.
-     * 
-     * @param host
-     *            host name
+     *
+     * @param host host name
      * @throws SQLException
      * @deprecated
      */
@@ -160,11 +153,9 @@ public interface ReplicationConnection extends JdbcConnection {
 
     /**
      * Use {@link #removeReplica(String, boolean)} instead.
-     * 
-     * @param host
-     *            host name
-     * @param closeGently
-     *            mode
+     *
+     * @param host        host name
+     * @param closeGently mode
      * @throws SQLException
      * @deprecated
      */
@@ -177,9 +168,8 @@ public interface ReplicationConnection extends JdbcConnection {
 
     /**
      * Use {@link #isHostReplica(String)} instead.
-     * 
-     * @param host
-     *            host name
+     *
+     * @param host host name
      * @return true if it's a replica
      * @deprecated
      */

@@ -200,7 +200,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests all variants of numerical types (signed/unsigned) for correct operation when used as return values from a prepared statement.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -313,7 +313,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests stored procedure functionality
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -840,7 +840,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests multiple statement support
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -903,7 +903,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests that NULLs and '' work correctly.
-     * 
+     *
      * @throws SQLException
      */
     @Test
@@ -1101,7 +1101,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for PreparedStatement.setObject()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1127,7 +1127,7 @@ public class StatementsTest extends BaseTestCase {
 
         this.pstmt.setObject(1, "1000", Types.DECIMAL);
         this.pstmt.setObject(2, "2000", Types.VARCHAR);
-        this.pstmt.setObject(3, new byte[] { 0 }, Types.BLOB);
+        this.pstmt.setObject(3, new byte[]{0}, Types.BLOB);
         this.pstmt.setObject(4, new java.util.Date(currentTime), Types.DATE);
         this.pstmt.setObject(5, "2000-01-01 23-59-59", Types.TIMESTAMP);
         this.pstmt.setObject(6, "11:22:33", Types.TIME);
@@ -1150,7 +1150,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for PreparedStatement.setObject(...SQLType...)
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1175,7 +1175,7 @@ public class StatementsTest extends BaseTestCase {
 
         this.pstmt.setObject(1, "1000", MysqlType.DECIMAL);
         this.pstmt.setObject(2, "2000", MysqlType.VARCHAR);
-        this.pstmt.setObject(3, new byte[] { 0 }, MysqlType.BLOB);
+        this.pstmt.setObject(3, new byte[]{0}, MysqlType.BLOB);
         this.pstmt.setObject(4, new java.util.Date(currentTime), MysqlType.DATE);
         this.pstmt.setObject(5, "2000-01-01 23-59-59", MysqlType.TIMESTAMP);
         this.pstmt.setObject(6, "11:22:33", MysqlType.TIME);
@@ -1216,7 +1216,7 @@ public class StatementsTest extends BaseTestCase {
 
     @Test
     public void testStatementRewriteBatch() throws Exception {
-        for (boolean useSSPS : new boolean[] { false, true }) {
+        for (boolean useSSPS : new boolean[]{false, true}) {
             Properties props = new Properties();
             props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
             props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
@@ -1336,7 +1336,7 @@ public class StatementsTest extends BaseTestCase {
                     "(internalOrder int, f1 tinyint null, f2 smallint null, f3 int null, f4 bigint null, f5 decimal(8, 2) null, "
                             + "f6 float null, f7 double null, f8 varchar(255) null, f9 text null, f10 blob null, f11 blob null, "
                             + (versionMeetsMinimum(5, 6, 4) ? "f12 datetime(3) null, f13 time(3) null, f14 date null, f15 timestamp(3) null)"
-                                    : "f12 datetime null, f13 time null, f14 date null, f15 timestamp null)"));
+                            : "f12 datetime null, f13 time null, f14 date null, f15 timestamp null)"));
 
             for (int i = 0; i < 1000; i++) {
                 differentTypes[i][0] = Math.random() < .5 ? null : new Byte((byte) (Math.random() * 127));
@@ -1491,7 +1491,7 @@ public class StatementsTest extends BaseTestCase {
         props.setProperty(PropertyKey.rewriteBatchedStatements.getKeyName(), "true");
         Connection multiConn = null;
 
-        for (boolean continueBatchOnError : new boolean[] { false, true }) {
+        for (boolean continueBatchOnError : new boolean[]{false, true}) {
             props.setProperty(PropertyKey.continueBatchOnError.getKeyName(), Boolean.toString(continueBatchOnError));
 
             multiConn = getConnectionWithProps(props);
@@ -1575,11 +1575,11 @@ public class StatementsTest extends BaseTestCase {
             this.pstmt.setString(1, "A");
             this.pstmt.setInt(2, 1);
 
-            char[] cArray = { 'A', 'B', 'C' };
+            char[] cArray = {'A', 'B', 'C'};
             Reader r = new CharArrayReader(cArray);
             this.pstmt.setCharacterStream(3, r, cArray.length);
 
-            byte[] bArray = { 'D', 'E', 'F' };
+            byte[] bArray = {'D', 'E', 'F'};
             ByteArrayInputStream bais = new ByteArrayInputStream(bArray);
             this.pstmt.setBinaryStream(4, bais, bArray.length);
 
@@ -1590,7 +1590,7 @@ public class StatementsTest extends BaseTestCase {
             assertEquals("ABC", this.rs.getString(1));
             assertEquals("DEF", this.rs.getString(2));
 
-            char[] ucArray = { 'C', 'E', 'S', 'U' };
+            char[] ucArray = {'C', 'E', 'S', 'U'};
             this.pstmt.setString(1, "CESU");
             this.pstmt.setInt(2, 3);
             Reader ucReader = new CharArrayReader(ucArray);
@@ -1743,7 +1743,7 @@ public class StatementsTest extends BaseTestCase {
          * this.rs.getString(1);
          * } finally {
          * closeMemberJDBCResources();
-         * 
+         *
          * if (interceptedConn != null) {
          * interceptedConn.close();
          * }
@@ -1774,7 +1774,7 @@ public class StatementsTest extends BaseTestCase {
         props.setProperty(PropertyKey.treatUtilDateAsTimestamp.getKeyName(), "false");
         props.setProperty(PropertyKey.autoDeserialize.getKeyName(), "true");
 
-        for (boolean useSPS : new boolean[] { false, true }) {
+        for (boolean useSPS : new boolean[]{false, true}) {
             props.setProperty(PropertyKey.useServerPrepStmts.getKeyName(), Boolean.toString(useSPS));
 
             // Need to check character set stuff, so need a new connection
@@ -1782,7 +1782,7 @@ public class StatementsTest extends BaseTestCase {
 
             java.util.Date now = new java.util.Date();
 
-            Object[] valuesToTest = new Object[] { new Byte(Byte.MIN_VALUE), new Short(Short.MIN_VALUE), new Integer(Integer.MIN_VALUE),
+            Object[] valuesToTest = new Object[]{new Byte(Byte.MIN_VALUE), new Short(Short.MIN_VALUE), new Integer(Integer.MIN_VALUE),
                     new Long(Long.MIN_VALUE), new Double(Double.MIN_VALUE), "\u4E2D\u6587", new BigDecimal(Math.PI), null, // to test isNull
                     now // to test serialization
             };
@@ -1844,7 +1844,7 @@ public class StatementsTest extends BaseTestCase {
             ((com.mysql.cj.jdbc.JdbcStatement) testStmt).setLocalInfileInputStream(stream);
             testStmt.execute("LOAD DATA LOCAL INFILE 'bogusFileName' INTO TABLE localInfileHooked CHARACTER SET "
                     + CharsetMappingWrapper.getStaticMysqlCharsetForJavaEncoding(
-                            ((MysqlConnection) this.conn).getPropertySet().getStringProperty(PropertyKey.characterEncoding).getValue(), this.serverVersion));
+                    ((MysqlConnection) this.conn).getPropertySet().getStringProperty(PropertyKey.characterEncoding).getValue(), this.serverVersion));
             assertEquals(-1, stream.read());
             this.rs = testStmt.executeQuery("SELECT field2 FROM localInfileHooked ORDER BY field1 ASC");
             this.rs.next();
@@ -1861,7 +1861,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ResultSet.getNCharacterStream()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1881,7 +1881,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ResultSet.getNClob()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1915,7 +1915,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ResultSet.getNString()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1931,7 +1931,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for PreparedStatement.setNCharacterSteam()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1983,7 +1983,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ServerPreparedStatement.setNCharacterSteam()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2027,7 +2027,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for PreparedStatement.setNClob()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2041,7 +2041,7 @@ public class StatementsTest extends BaseTestCase {
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.useServerPrepStmts.getKeyName(), "false"); // use client-side prepared statement
 
-        for (String enc : new String[] { "latin1", "UTF-8" }) {
+        for (String enc : new String[]{"latin1", "UTF-8"}) {
             this.stmt.execute("TRUNCATE TABLE testSetNClob");
             props.setProperty(PropertyKey.characterEncoding.getKeyName(), enc); // ensure charset isn't utf8 here
             Connection conn1 = getConnectionWithProps(props);
@@ -2067,7 +2067,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ServerPreparedStatement.setNClob()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2128,7 +2128,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for PreparedStatement.setNString()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2182,7 +2182,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ServerPreparedStatement.setNString()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2226,7 +2226,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ResultSet.updateNCharacterStream()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2290,7 +2290,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ResultSet.updateNClob()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2362,7 +2362,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ResultSet.updateNString()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2438,7 +2438,7 @@ public class StatementsTest extends BaseTestCase {
             portNumber = "3306";
         }
 
-        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
         try {
             conn2.createNClob();
         } catch (SQLException e) {
@@ -2467,7 +2467,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Test shared test data validity.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2483,7 +2483,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Test for Statement.executeLargeBatch(). Validate update count returned and generated keys.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2569,7 +2569,7 @@ public class StatementsTest extends BaseTestCase {
      * Test for Statement.executeLargeUpdate(String).
      * Validate update count returned and generated keys.
      * Case: without requesting generated keys.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2583,11 +2583,11 @@ public class StatementsTest extends BaseTestCase {
         final Statement stmtTmp = this.stmt;
         assertThrows(SQLException.class, "Generated keys not requested. You need to specify Statement.RETURN_GENERATED_KEYS to Statement.executeUpdate\\(\\), "
                 + "Statement.executeLargeUpdate\\(\\) or Connection.prepareStatement\\(\\).", new Callable<Void>() {
-                    public Void call() throws Exception {
-                        stmtTmp.getGeneratedKeys();
-                        return null;
-                    }
-                });
+            public Void call() throws Exception {
+                stmtTmp.getGeneratedKeys();
+                return null;
+            }
+        });
     }
 
     /**
@@ -2596,7 +2596,7 @@ public class StatementsTest extends BaseTestCase {
      * Case 1: explicitly requesting generated keys.
      * Case 2: requesting generated keys by defining column indexes.
      * Case 3: requesting generated keys by defining column names.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2613,10 +2613,10 @@ public class StatementsTest extends BaseTestCase {
                             Statement.RETURN_GENERATED_KEYS);
                     break;
                 case 2:
-                    count = this.stmt.executeLargeUpdate("INSERT INTO testExecuteLargeUpdate (n) VALUES (1), (2), (3), (4), (5)", new int[] { 1 });
+                    count = this.stmt.executeLargeUpdate("INSERT INTO testExecuteLargeUpdate (n) VALUES (1), (2), (3), (4), (5)", new int[]{1});
                     break;
                 case 3:
-                    count = this.stmt.executeLargeUpdate("INSERT INTO testExecuteLargeUpdate (n) VALUES (1), (2), (3), (4), (5)", new String[] { "id" });
+                    count = this.stmt.executeLargeUpdate("INSERT INTO testExecuteLargeUpdate (n) VALUES (1), (2), (3), (4), (5)", new String[]{"id"});
                     break;
             }
             assertEquals(5, count, tstCase);
@@ -2641,7 +2641,7 @@ public class StatementsTest extends BaseTestCase {
     /**
      * Test for PreparedStatement.executeLargeBatch().
      * Validate update count returned and generated keys.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2739,7 +2739,7 @@ public class StatementsTest extends BaseTestCase {
      * Test for PreparedStatement.executeLargeUpdate().
      * Validate update count returned and generated keys.
      * Case: without requesting generated keys.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2760,18 +2760,18 @@ public class StatementsTest extends BaseTestCase {
         final Statement stmtTmp = this.pstmt;
         assertThrows(SQLException.class, "Generated keys not requested. You need to specify Statement.RETURN_GENERATED_KEYS to Statement.executeUpdate\\(\\), "
                 + "Statement.executeLargeUpdate\\(\\) or Connection.prepareStatement\\(\\).", new Callable<Void>() {
-                    public Void call() throws Exception {
-                        stmtTmp.getGeneratedKeys();
-                        return null;
-                    }
-                });
+            public Void call() throws Exception {
+                stmtTmp.getGeneratedKeys();
+                return null;
+            }
+        });
     }
 
     /**
      * Test for PreparedStatement.executeLargeUpdate().
      * Validate update count returned and generated keys.
      * Case: explicitly requesting generated keys.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2807,7 +2807,7 @@ public class StatementsTest extends BaseTestCase {
     /**
      * Test for CallableStatement.executeLargeBatch().
      * Validate update count returned and generated keys.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2915,7 +2915,7 @@ public class StatementsTest extends BaseTestCase {
     /**
      * Test for CallableStatement.executeLargeUpdate().
      * Validate update count returned and generated keys.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2956,7 +2956,7 @@ public class StatementsTest extends BaseTestCase {
     /**
      * Test for (Server)PreparedStatement.executeLargeBatch().
      * Validate update count returned and generated keys.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -3058,7 +3058,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Test for Statement.[get/set]LargeMaxRows().
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -3100,7 +3100,7 @@ public class StatementsTest extends BaseTestCase {
     /**
      * Test for PreparedStatement.setObject().
      * Validate new methods as well as support for the types java.time.Local[Date][Time] and java.time.Offset[Date]Time.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -3128,7 +3128,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Test for PreparedStatement.setObject(), unsupported SQL types TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -3139,7 +3139,7 @@ public class StatementsTest extends BaseTestCase {
     /**
      * Test for CallableStatement.setObject().
      * Validate new methods as well as support for the types java.time.Local[Date][Time] and java.time.Offset[Date]Time.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -3172,7 +3172,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Test for CallableStatement.setObject(), unsupported SQL types TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -3184,7 +3184,7 @@ public class StatementsTest extends BaseTestCase {
     /**
      * Test for (Server)PreparedStatement.setObject().
      * Validate new methods as well as support for the types java.time.Local[Date][Time] and java.time.Offset[Date]Time.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -3214,7 +3214,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Test for (Server)PreparedStatement.setObject(), unsupported SQL types TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -3236,7 +3236,7 @@ public class StatementsTest extends BaseTestCase {
      * 3 - `t` TIME (or any kind of *CHAR)
      * 4 - `dt` DATETIME (or any kind of *CHAR)
      * 5 - `ts` TIMESTAMP (or any kind of *CHAR)
-     * 
+     *
      * @param prepStmt
      * @return the row count of inserted records.
      * @throws Exception
@@ -3343,9 +3343,9 @@ public class StatementsTest extends BaseTestCase {
      * 3 - `t` TIME (or any kind of *CHAR)
      * 4 - `dt` DATETIME (or any kind of *CHAR)
      * 5 - `ts` TIMESTAMP (or any kind of *CHAR)
-     * 
+     * <p>
      * Additionally validate support for the types java.time.Local[Date][Time] in ResultSet.getObject().
-     * 
+     *
      * @param tableName
      * @param expectedRowCount
      * @throws Exception
@@ -3401,7 +3401,7 @@ public class StatementsTest extends BaseTestCase {
      * 3 - `ot2` BLOB
      * 4 - `odt1` VARCHAR
      * 5 - `odt2` BLOB
-     * 
+     *
      * @param prepStmt
      * @return the row count of inserted records.
      * @throws Exception
@@ -3442,9 +3442,9 @@ public class StatementsTest extends BaseTestCase {
      * 3 - `ot2` BLOB
      * 4 - `odt1` VARCHAR
      * 5 - `odt2` BLOB
-     * 
+     * <p>
      * Additionally validate support for the types java.time.Offset[Date]Time in ResultSet.getObject().
-     * 
+     *
      * @param tableName
      * @param expectedRowCount
      * @throws Exception
@@ -3490,7 +3490,7 @@ public class StatementsTest extends BaseTestCase {
      * Helper method for *SetObject* tests.
      * Check unsupported types behavior for the given PreparedStatement with a single placeholder. If this is a CallableStatement then the placeholder must
      * coincide with a parameter named `param`.
-     * 
+     *
      * @param prepStmt
      */
     private void checkUnsupportedTypesBehavior(final PreparedStatement prepStmt) {
@@ -3552,7 +3552,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Test for CallableStatement.registerOutParameter().
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -3619,7 +3619,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Test for CallableStatement.registerOutParameter(...MysqlType...).
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -3686,7 +3686,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Test for CallableStatement.registerOutParameter(), unsupported SQL types TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -3831,7 +3831,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * WL#11101 - Remove de-cache and close of SSPSs on double call to close()
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -4130,7 +4130,7 @@ public class StatementsTest extends BaseTestCase {
         assertEquals(2, this.stmt.executeUpdate("INSERT INTO rsProdQuery VALUES (1, 'test1'), (2, 'test2')"));
         assertFalse(this.stmt.execute("PREPARE rsProdQueryPS FROM \"SELECT * FROM rsProdQuery\""));
 
-        String[] okQueries = new String[] {
+        String[] okQueries = new String[]{
                 // Data Manipulation Statements:
                 "SELECT * FROM rsProdQuery", "TABLE rsProdQuery", "VALUES ROW (1, 'test1'), ROW (2, 'test2')", "CALL rsProdQueryProc()",
                 "WITH cte1 AS (TABLE rsProdQuery), cte2 AS (TABLE rsProdQuery) SELECT * FROM cte1", "WITH cte1 AS (TABLE rsProdQuery) TABLE cte1",
@@ -4144,7 +4144,7 @@ public class StatementsTest extends BaseTestCase {
                 // Database Administration Statements/SHOW Statements:
                 "SHOW CREATE TABLE rsProdQuery",
                 // Utility Statements:
-                "DESC rsProdQuery", "DESCRIBE rsProdQuery", "EXPLAIN rsProdQuery", "HELP 'SELECT'" };
+                "DESC rsProdQuery", "DESCRIBE rsProdQuery", "EXPLAIN rsProdQuery", "HELP 'SELECT'"};
         for (String query : okQueries) {
             try {
                 this.rs = this.stmt.executeQuery(query);
@@ -4157,7 +4157,7 @@ public class StatementsTest extends BaseTestCase {
             }
         }
 
-        String[] notOkQueries = new String[] {
+        String[] notOkQueries = new String[]{
                 // Data Manipulation Statements:
                 "INSERT INTO rsProdQuery VALUES (99, 'test99')", "REPLACE INTO rsProdQuery VALUES (99, 'test99')", "UPDATE rsProdQuery SET col1 = col1 + 1",
                 "DELETE FROM rsProdQuery", "TRUNCATE TABLE rsProdQuery", "DO 1 + 1", "HANDLER rsProdQuery OPEN AS hrsProdQuery",
@@ -4182,7 +4182,7 @@ public class StatementsTest extends BaseTestCase {
                 // Database Administration Statements/Other Administrative Statements:
                 "BINLOG 'rsProdQuery'", "CACHE INDEX rsProdQueryIdx IN rsProdQueryCache", "FLUSH STATUS", "KILL 0", "RESTART", "SHUTDOWN",
                 //  Utility Statements
-                "USE rsProdQueryDb" };
+                "USE rsProdQueryDb"};
         for (String query : notOkQueries) {
             assertThrows("Query: " + query, SQLException.class, "Statement\\.executeQuery\\(\\) cannot issue statements that do not produce result sets\\.",
                     () -> {
@@ -4206,7 +4206,7 @@ public class StatementsTest extends BaseTestCase {
         Statement testStmt = testConn.createStatement();
         testConn.setReadOnly(true);
 
-        String[] okQueries = new String[] {
+        String[] okQueries = new String[]{
                 // Data Manipulation Statements:
                 "SELECT * FROM roSafeTest", "TABLE roSafeTest", "VALUES ROW (1, 'test1'), ROW (2, 'test2')", "CALL roSafeTestProc()",
                 "WITH cte1 AS (TABLE roSafeTest), cte2 AS (TABLE roSafeTest) SELECT * FROM cte1", "WITH cte1 AS (TABLE roSafeTest) TABLE cte1",
@@ -4231,7 +4231,7 @@ public class StatementsTest extends BaseTestCase {
                 //  Utility Statements
                 "USE roSafeTestDb",
                 // Utility Statements:
-                "DESC roSafeTest", "DESCRIBE roSafeTest", "EXPLAIN roSafeTest", "HELP 'SELECT'" };
+                "DESC roSafeTest", "DESCRIBE roSafeTest", "EXPLAIN roSafeTest", "HELP 'SELECT'"};
         for (String query : okQueries) {
             try {
                 testStmt.execute(query);
@@ -4240,7 +4240,7 @@ public class StatementsTest extends BaseTestCase {
             }
         }
 
-        String[] notOkQueries = new String[] {
+        String[] notOkQueries = new String[]{
                 // Data Manipulation Statements:
                 "INSERT INTO roSafeTest VALUES (99, 'test99')", "REPLACE INTO roSafeTest VALUES (99, 'test99')", "UPDATE roSafeTest SET col1 = col1 + 1",
                 "DELETE FROM roSafeTest", "TRUNCATE TABLE roSafeTest", "IMPORT TABLE FROM 'roSafeTest'", "LOAD DATA INFILE 'roSafeTest' INTO TABLE roSafeTest",
@@ -4253,7 +4253,7 @@ public class StatementsTest extends BaseTestCase {
                 // Database Administration Statements/Table Maintenance Statements:
                 "OPTIMIZE TABLE roSafeTest", "REPAIR TABLE roSafeTest",
                 // Database Administration Statements/Component, Plugin, and Loadable Function Statements:
-                "INSTALL COMPONENT 'roSafeTest'", "UNINSTALL COMPONENT 'roSafeTest'", };
+                "INSTALL COMPONENT 'roSafeTest'", "UNINSTALL COMPONENT 'roSafeTest'",};
         for (String query : notOkQueries) {
             assertThrows("Query: " + query, SQLException.class, "Connection is read-only\\. Queries leading to data modification are not allowed\\.", () -> {
                 testStmt.execute(query);

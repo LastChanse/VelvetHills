@@ -106,7 +106,7 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
         MysqlType desiredMysqlType = MysqlType.UNKNOWN;
 
         CallableStatementParam(String name, int idx, boolean in, boolean out, int jdbcType, String typeName, int precision, int scale, short nullability,
-                int inOutModifier) {
+                               int inOutModifier) {
             this.paramName = name;
             this.isIn = in;
             this.isOut = out;
@@ -152,10 +152,9 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
         /**
          * Constructor that converts a full list of parameter metadata into one
          * that only represents the placeholders present in the {CALL ()}.
-         * 
-         * @param fullParamInfo
-         *            the metadata for all parameters for this stored
-         *            procedure or function.
+         *
+         * @param fullParamInfo the metadata for all parameters for this stored
+         *                      procedure or function.
          */
         CallableStatementParamInfo(CallableStatementParamInfo fullParamInfo) {
             this.nativeSql = ((PreparedQuery) CallableStatement.this.query).getOriginalSql();
@@ -271,7 +270,7 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
             int localParamIndex = paramIndex - 1;
 
             if ((paramIndex < 0) || (localParamIndex >= this.numParameters)) {
-                throw SQLError.createSQLException(Messages.getString("CallableStatement.11", new Object[] { paramIndex, this.numParameters }),
+                throw SQLError.createSQLException(Messages.getString("CallableStatement.11", new Object[]{paramIndex, this.numParameters}),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
             }
         }
@@ -395,7 +394,7 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
                 // This works for classes that aren't actually wrapping anything
                 return iface.cast(this);
             } catch (ClassCastException cce) {
-                throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[] { iface.toString() }),
+                throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[]{iface.toString()}),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
             }
         }
@@ -443,14 +442,10 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
 
     /**
      * Creates a new CallableStatement
-     * 
-     * @param conn
-     *            the connection creating this statement
-     * @param paramInfo
-     *            the SQL to prepare
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param conn      the connection creating this statement
+     * @param paramInfo the SQL to prepare
+     * @throws SQLException if an error occurs
      */
     public CallableStatement(JdbcConnection conn, CallableStatementParamInfo paramInfo) throws SQLException {
         super(conn, paramInfo.nativeSql, paramInfo.dbInUse);
@@ -469,18 +464,13 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
 
     /**
      * Creates a callable statement instance
-     * 
-     * @param conn
-     *            the connection creating this statement
-     * @param sql
-     *            the SQL to prepare
-     * @param db
-     *            the current database
-     * @param isFunctionCall
-     *            is it a function call or a procedure call?
+     *
+     * @param conn           the connection creating this statement
+     * @param sql            the SQL to prepare
+     * @param db             the current database
+     * @param isFunctionCall is it a function call or a procedure call?
      * @return CallableStatement
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
 
     protected static CallableStatement getInstance(JdbcConnection conn, String sql, String db, boolean isFunctionCall) throws SQLException {
@@ -489,14 +479,11 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
 
     /**
      * Creates a callable statement instance
-     * 
-     * @param conn
-     *            the connection creating this statement
-     * @param paramInfo
-     *            the SQL to prepare
+     *
+     * @param conn      the connection creating this statement
+     * @param paramInfo the SQL to prepare
      * @return CallableStatement
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
 
     protected static CallableStatement getInstance(JdbcConnection conn, CallableStatementParamInfo paramInfo) throws SQLException {
@@ -562,18 +549,12 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
 
     /**
      * Creates a new CallableStatement
-     * 
-     * @param conn
-     *            the connection creating this statement
-     * @param sql
-     *            the SQL to prepare
-     * @param db
-     *            the current database
-     * @param isFunctionCall
-     *            is it a function call or a procedure call?
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param conn           the connection creating this statement
+     * @param sql            the SQL to prepare
+     * @param db             the current database
+     * @param isFunctionCall is it a function call or a procedure call?
+     * @throws SQLException if an error occurs
      */
     public CallableStatement(JdbcConnection conn, String sql, String db, boolean isFunctionCall) throws SQLException {
         super(conn, sql, db);
@@ -642,7 +623,7 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
                 paramDescriptor.isIn = true;
                 paramDescriptor.inOutModifier = java.sql.DatabaseMetaData.procedureColumnInOut;
             } else if (!paramDescriptor.isOut) {
-                throw SQLError.createSQLException(Messages.getString("CallableStatement.9", new Object[] { paramIndex }),
+                throw SQLError.createSQLException(Messages.getString("CallableStatement.9", new Object[]{paramIndex}),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
             }
 
@@ -653,11 +634,8 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
     }
 
     /**
-     * @param paramIndex
-     *            parameter index
-     * 
-     * @throws SQLException
-     *             if a database access error occurs or this method is called on a closed PreparedStatement
+     * @param paramIndex parameter index
+     * @throws SQLException if a database access error occurs or this method is called on a closed PreparedStatement
      */
     private void checkParameterIndexBounds(int paramIndex) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -669,9 +647,8 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
      * Checks whether or not this statement is supposed to be providing
      * streamable result sets...If output parameters are registered, the driver
      * can not stream the results.
-     * 
-     * @throws SQLException
-     *             if a database access error occurs
+     *
+     * @throws SQLException if a database access error occurs
      */
     private void checkStreamability() throws SQLException {
         if (this.hasOutputParams && createStreamingResultSet()) {
@@ -698,12 +675,9 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
     /**
      * Used to fake up some metadata when we don't have access to
      * SHOW CREATE PROCEDURE or mysql.proc.
-     * 
-     * @param isReallyProcedure
-     *            is it a procedure or function
-     * 
-     * @throws SQLException
-     *             if we can't build the metadata.
+     *
+     * @param isReallyProcedure is it a procedure or function
+     * @throws SQLException if we can't build the metadata.
      */
     private void fakeParameterTypes(boolean isReallyProcedure) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -939,14 +913,10 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
 
     /**
      * Adds 'at' symbol to beginning of parameter names if needed.
-     * 
-     * @param paramNameIn
-     *            the parameter name to 'fix'
-     * 
+     *
+     * @param paramNameIn the parameter name to 'fix'
      * @return the parameter name with an 'a' prepended, if needed
-     * 
-     * @throws SQLException
-     *             if the parameter name is null or empty.
+     * @throws SQLException if the parameter name is null or empty.
      */
     protected String fixParameterName(String paramNameIn) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -1329,12 +1299,12 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
 
             CallableStatementParam namedParamInfo;
             if (this.paramInfo == null || (namedParamInfo = this.paramInfo.getParameter(paramName)) == null) {
-                throw SQLError.createSQLException(Messages.getString("CallableStatement.3", new Object[] { paramName }),
+                throw SQLError.createSQLException(Messages.getString("CallableStatement.3", new Object[]{paramName}),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
             }
 
             if (forOut && !namedParamInfo.isOut) {
-                throw SQLError.createSQLException(Messages.getString("CallableStatement.5", new Object[] { paramName }),
+                throw SQLError.createSQLException(Messages.getString("CallableStatement.5", new Object[]{paramName}),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
             }
 
@@ -1348,7 +1318,7 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
                 }
             }
 
-            throw SQLError.createSQLException(Messages.getString("CallableStatement.6", new Object[] { paramName }),
+            throw SQLError.createSQLException(Messages.getString("CallableStatement.6", new Object[]{paramName}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
         }
     }
@@ -1437,15 +1407,11 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
     /**
      * Returns the ResultSet that holds the output parameters, or throws an
      * appropriate exception if none exist, or they weren't returned.
-     * 
-     * @param paramIndex
-     *            parameter index
-     * 
+     *
+     * @param paramIndex parameter index
      * @return the ResultSet that holds the output parameters
-     * 
-     * @throws SQLException
-     *             if no output parameters were defined, or if no output
-     *             parameters were returned.
+     * @throws SQLException if no output parameters were defined, or if no output
+     *                      parameters were returned.
      */
     protected ResultSetInternalMethods getOutputParameters(int paramIndex) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -1705,7 +1671,7 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
             int rsIndex = this.parameterIndexToRsIndex[localParamIndex];
 
             if (rsIndex == NOT_OUTPUT_PARAMETER_INDICATOR) {
-                throw SQLError.createSQLException(Messages.getString("CallableStatement.21", new Object[] { paramIndex }),
+                throw SQLError.createSQLException(Messages.getString("CallableStatement.21", new Object[]{paramIndex}),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
             }
 
@@ -1826,9 +1792,8 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
 
     /**
      * Issues a second query to retrieve all output parameters.
-     * 
-     * @throws SQLException
-     *             if an error occurs.
+     *
+     * @throws SQLException if an error occurs.
      */
     private void retrieveOutParams() throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -1848,7 +1813,7 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
                 boolean firstParam = true;
                 boolean hadOutputParams = false;
 
-                for (Iterator<CallableStatementParam> paramIter = this.paramInfo.iterator(); paramIter.hasNext();) {
+                for (Iterator<CallableStatementParam> paramIter = this.paramInfo.iterator(); paramIter.hasNext(); ) {
                     CallableStatementParam retrParamInfo = paramIter.next();
 
                     if (retrParamInfo.isOut) {
@@ -1963,7 +1928,7 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
     private void setInOutParamsOnServer() throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
             if (this.paramInfo.numParameters > 0) {
-                for (Iterator<CallableStatementParam> paramIter = this.paramInfo.iterator(); paramIter.hasNext();) {
+                for (Iterator<CallableStatementParam> paramIter = this.paramInfo.iterator(); paramIter.hasNext(); ) {
 
                     CallableStatementParam inParamInfo = paramIter.next();
 
@@ -2047,7 +2012,7 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
     private void setOutParams() throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
             if (this.paramInfo.numParameters > 0) {
-                for (Iterator<CallableStatementParam> paramIter = this.paramInfo.iterator(); paramIter.hasNext();) {
+                for (Iterator<CallableStatementParam> paramIter = this.paramInfo.iterator(); paramIter.hasNext(); ) {
                     CallableStatementParam outParamInfo = paramIter.next();
 
                     if (!this.callingStoredFunction && outParamInfo.isOut) {
@@ -2075,7 +2040,7 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
                             }
 
                             if (!found) {
-                                throw SQLError.createSQLException(Messages.getString("CallableStatement.21", new Object[] { outParamInfo.paramName }),
+                                throw SQLError.createSQLException(Messages.getString("CallableStatement.21", new Object[]{outParamInfo.paramName}),
                                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
                             }
                         }
@@ -2230,10 +2195,9 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
 
     /**
      * Check whether the stored procedure alters any data or is safe for read-only usage.
-     * 
+     *
      * @return true if procedure does not alter data
-     * @throws SQLException
-     *             if a database access error occurs or this method is called on a closed PreparedStatement
+     * @throws SQLException if a database access error occurs or this method is called on a closed PreparedStatement
      */
     private boolean checkReadOnlyProcedure() throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -2485,8 +2449,7 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
      * Converts the given string to bytes, using the connection's character
      * encoding.
      *
-     * @param s
-     *            string
+     * @param s string
      * @return bytes
      */
     protected byte[] s2b(String s) {

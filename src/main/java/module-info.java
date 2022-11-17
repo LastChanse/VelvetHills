@@ -1,16 +1,15 @@
-module com.example.ekbcpkiomayakovskogo {
+module com.example.velvethills {
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.web;
     requires java.sql;
+    requires java.desktop;
+    requires itextpdf;
+    //requires javafx.swing;
 
-    requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
-    requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
 
     opens com.example.velvethills to javafx.fxml;
     exports com.example.velvethills;
     exports com.example.velvethills.Models;
+    exports com.example.velvethills.Utils;
+    exports com.example.velvethills.Utils.captcha;
 }

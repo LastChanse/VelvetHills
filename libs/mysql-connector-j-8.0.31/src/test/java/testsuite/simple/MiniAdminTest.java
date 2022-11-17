@@ -45,9 +45,9 @@ import testsuite.BaseTestCase;
 public class MiniAdminTest extends BaseTestCase {
     /**
      * Tests whether or not you can shutdown the server with MiniAdmin.
-     * 
+     * <p>
      * Only runs if SHUTDOWN_PROP is defined.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -59,7 +59,7 @@ public class MiniAdminTest extends BaseTestCase {
 
     /**
      * Tests whether or not you can construct a MiniAdmin with a JDBC URL.
-     * 
+     *
      * @throws Exception
      */
     @Test

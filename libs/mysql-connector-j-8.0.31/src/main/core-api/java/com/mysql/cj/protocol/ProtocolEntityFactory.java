@@ -36,9 +36,8 @@ public interface ProtocolEntityFactory<T, M extends Message> {
 
     /**
      * Create ProtocolEntity of type {@link T} from protocol message.
-     * 
-     * @param message
-     *            {@link Message} instance
+     *
+     * @param message {@link Message} instance
      * @return T
      */
     default T createFromMessage(M message) {
@@ -59,9 +58,8 @@ public interface ProtocolEntityFactory<T, M extends Message> {
 
     /**
      * Create object from protocol entity.
-     * 
-     * @param protocolEntity
-     *            the {@link ProtocolEntity} to create from
+     *
+     * @param protocolEntity the {@link ProtocolEntity} to create from
      * @return a new ProtocolEntity
      */
     default T createFromProtocolEntity(ProtocolEntity protocolEntity) {

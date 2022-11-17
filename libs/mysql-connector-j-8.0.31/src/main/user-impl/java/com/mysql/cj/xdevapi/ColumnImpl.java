@@ -38,9 +38,8 @@ public class ColumnImpl implements Column {
 
     /**
      * Constructor.
-     * 
-     * @param f
-     *            {@link Field} object
+     *
+     * @param f {@link Field} object
      */
     public ColumnImpl(Field f) {
         this.field = f;

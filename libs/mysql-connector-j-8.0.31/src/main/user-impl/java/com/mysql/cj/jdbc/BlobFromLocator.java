@@ -58,7 +58,9 @@ public class BlobFromLocator implements java.sql.Blob {
 
     private List<String> primaryKeyValues = null;
 
-    /** The ResultSet that created this BLOB */
+    /**
+     * The ResultSet that created this BLOB
+     */
     private ResultSetImpl creatorResultSet;
 
     private String blobColumnName = null;
@@ -75,15 +77,11 @@ public class BlobFromLocator implements java.sql.Blob {
 
     /**
      * Creates an updatable BLOB that can update in-place
-     * 
-     * @param creatorResultSetToSet
-     *            result set
-     * @param blobColumnIndex
-     *            column index
-     * @param exceptionInterceptor
-     *            exception interceptor
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param creatorResultSetToSet result set
+     * @param blobColumnIndex       column index
+     * @param exceptionInterceptor  exception interceptor
+     * @throws SQLException if an error occurs
      */
     public BlobFromLocator(ResultSetImpl creatorResultSetToSet, int blobColumnIndex, ExceptionInterceptor exceptionInterceptor) throws SQLException {
         this.exceptionInterceptor = exceptionInterceptor;
@@ -516,7 +514,7 @@ public class BlobFromLocator implements java.sql.Blob {
 
             if (pos + len > blobLength) {
                 throw SQLError.createSQLException(
-                        Messages.getString("Blob.invalidStreamLength", new Object[] { Long.valueOf(blobLength), Long.valueOf(pos), Long.valueOf(len) }),
+                        Messages.getString("Blob.invalidStreamLength", new Object[]{Long.valueOf(blobLength), Long.valueOf(pos), Long.valueOf(len)}),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, BlobFromLocator.this.exceptionInterceptor);
             }
 

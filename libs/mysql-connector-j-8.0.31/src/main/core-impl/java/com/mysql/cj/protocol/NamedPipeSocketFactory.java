@@ -67,7 +67,7 @@ public class NamedPipeSocketFactory implements SocketFactory {
 
             int timeoutCountdown = timeout == 0 ? DEFAULT_TIMEOUT : timeout;
             long startTime = System.currentTimeMillis();
-            for (;;) {
+            for (; ; ) {
                 try {
                     this.namedPipeFile = new RandomAccessFile(filePath, "rw");
                     break;

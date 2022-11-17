@@ -50,36 +50,26 @@ public class ProfilerEventImpl implements ProfilerEvent {
 
     /**
      * Creates a new profiler event
-     * 
-     * @param eventType
-     *            the event type (from the constants TYPE_????)
-     * @param hostName
-     *            the hostname where the event occurs
-     * @param db
-     *            the database in use
-     * @param connectionId
-     *            the connection id (-1 if N/A)
-     * @param statementId
-     *            the statement id (-1 if N/A)
-     * @param resultSetId
-     *            the result set id (-1 if N/A)
-     * @param eventDuration
-     *            how long did the event last?
-     * @param durationUnits
-     *            time units user for eventDuration
-     * @param eventCreationPoint
-     *            event creation point as a Throwable
-     * @param message
-     *            optional message
+     *
+     * @param eventType          the event type (from the constants TYPE_????)
+     * @param hostName           the hostname where the event occurs
+     * @param db                 the database in use
+     * @param connectionId       the connection id (-1 if N/A)
+     * @param statementId        the statement id (-1 if N/A)
+     * @param resultSetId        the result set id (-1 if N/A)
+     * @param eventDuration      how long did the event last?
+     * @param durationUnits      time units user for eventDuration
+     * @param eventCreationPoint event creation point as a Throwable
+     * @param message            optional message
      */
     public ProfilerEventImpl(byte eventType, String hostName, String db, long connectionId, int statementId, int resultSetId, long eventDuration,
-            String durationUnits, Throwable eventCreationPoint, String message) {
+                             String durationUnits, Throwable eventCreationPoint, String message) {
         this(eventType, hostName, db, connectionId, statementId, resultSetId, System.currentTimeMillis(), eventDuration, durationUnits,
                 LogUtils.findCallingClassAndMethod(eventCreationPoint), message);
     }
 
     private ProfilerEventImpl(byte eventType, String hostName, String db, long connectionId, int statementId, int resultSetId, long eventCreationTime,
-            long eventDuration, String durationUnits, String eventCreationPointDesc, String message) {
+                              long eventDuration, String durationUnits, String eventCreationPointDesc, String message) {
         // null-strings are stored as empty strings to get consistent results with pack/unpack
         this.eventType = eventType;
         this.hostName = hostName == null ? "" : hostName;
@@ -151,7 +141,7 @@ public class ProfilerEventImpl implements ProfilerEvent {
 
     /**
      * Returns a representation of this event as a String.
-     * 
+     *
      * @return a String representation of this event.
      */
     @Override
@@ -207,9 +197,8 @@ public class ProfilerEventImpl implements ProfilerEvent {
 
     /**
      * Unpacks a binary representation of this event.
-     * 
-     * @param buf
-     *            the binary representation of this event
+     *
+     * @param buf the binary representation of this event
      * @return the unpacked Event
      */
     public static ProfilerEvent unpack(byte[] buf) {

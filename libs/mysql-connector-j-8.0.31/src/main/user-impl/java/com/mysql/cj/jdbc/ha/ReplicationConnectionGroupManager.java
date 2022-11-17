@@ -89,11 +89,9 @@ public class ReplicationConnectionGroupManager {
 
     /**
      * Use {@link #addReplicaHost(String, String)} instead.
-     * 
-     * @param group
-     *            group name
-     * @param hostPortPair
-     *            host:port
+     *
+     * @param group        group name
+     * @param hostPortPair host:port
      * @throws SQLException
      * @deprecated
      */
@@ -108,11 +106,9 @@ public class ReplicationConnectionGroupManager {
 
     /**
      * Use {@link #removeReplicaHost(String, String)} instead.
-     * 
-     * @param group
-     *            group name
-     * @param hostPortPair
-     *            host:port
+     *
+     * @param group        group name
+     * @param hostPortPair host:port
      * @throws SQLException
      * @deprecated
      */
@@ -130,13 +126,10 @@ public class ReplicationConnectionGroupManager {
 
     /**
      * Use {@link #removeReplicaHost(String, String, boolean)} instead.
-     * 
-     * @param group
-     *            group name
-     * @param hostPortPair
-     *            host:port
-     * @param closeGently
-     *            option
+     *
+     * @param group        group name
+     * @param hostPortPair host:port
+     * @param closeGently  option
      * @throws SQLException
      * @deprecated
      */
@@ -154,11 +147,9 @@ public class ReplicationConnectionGroupManager {
 
     /**
      * Use {@link #promoteReplicaToSource(String, String)} instead.
-     * 
-     * @param group
-     *            group name
-     * @param hostPortPair
-     *            host:port
+     *
+     * @param group        group name
+     * @param hostPortPair host:port
      * @throws SQLException
      * @deprecated
      */
@@ -181,9 +172,8 @@ public class ReplicationConnectionGroupManager {
 
     /**
      * Use {@link #getReplicaPromotionCount(String)} instead.
-     * 
-     * @param group
-     *            group name
+     *
+     * @param group group name
      * @return count
      * @throws SQLException
      * @deprecated
@@ -199,11 +189,9 @@ public class ReplicationConnectionGroupManager {
 
     /**
      * Use {@link #removeSourceHost(String, String)} instead.
-     * 
-     * @param group
-     *            group name
-     * @param hostPortPair
-     *            host:port
+     *
+     * @param group        group name
+     * @param hostPortPair host:port
      * @throws SQLException
      * @deprecated
      */
@@ -221,13 +209,10 @@ public class ReplicationConnectionGroupManager {
 
     /**
      * Use {@link #removeSourceHost(String, String, boolean)} instead.
-     * 
-     * @param group
-     *            group name
-     * @param hostPortPair
-     *            host:port
-     * @param closeGently
-     *            option
+     *
+     * @param group        group name
+     * @param hostPortPair host:port
+     * @param closeGently  option
      * @throws SQLException
      * @deprecated
      */
@@ -260,9 +245,8 @@ public class ReplicationConnectionGroupManager {
 
     /**
      * Use {@link #getNumberOfSourcePromotion(String)} instead.
-     * 
-     * @param groupFilter
-     *            filter
+     *
+     * @param groupFilter filter
      * @return count
      * @deprecated
      */
@@ -282,11 +266,9 @@ public class ReplicationConnectionGroupManager {
 
     /**
      * Use {@link #getConnectionCountWithHostAsReplica(String, String)} instead.
-     * 
-     * @param groupFilter
-     *            filter
-     * @param hostPortPair
-     *            host:port
+     *
+     * @param groupFilter  filter
+     * @param hostPortPair host:port
      * @return count
      * @deprecated
      */
@@ -306,11 +288,9 @@ public class ReplicationConnectionGroupManager {
 
     /**
      * Use {@link #getConnectionCountWithHostAsSource(String, String)} instead.
-     * 
-     * @param groupFilter
-     *            filter
-     * @param hostPortPair
-     *            host:port
+     *
+     * @param groupFilter  filter
+     * @param hostPortPair host:port
      * @return count
      * @deprecated
      */
@@ -330,9 +310,8 @@ public class ReplicationConnectionGroupManager {
 
     /**
      * Use {@link #getReplicaHosts(String)} instead.
-     * 
-     * @param groupFilter
-     *            filter
+     *
+     * @param groupFilter filter
      * @return hosts
      * @deprecated
      */
@@ -352,9 +331,8 @@ public class ReplicationConnectionGroupManager {
 
     /**
      * Use {@link #getSourceHosts(String)} instead.
-     * 
-     * @param groupFilter
-     *            filter
+     *
+     * @param groupFilter filter
      * @return hosts
      * @deprecated
      */

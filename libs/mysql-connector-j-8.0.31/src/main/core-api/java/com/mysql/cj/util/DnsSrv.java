@@ -102,7 +102,7 @@ public class DnsSrv {
         Properties environment = new Properties();
         environment.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.dns.DnsContextFactory");
         DirContext context = new InitialDirContext(environment);
-        Attributes dnsEntries = context.getAttributes(serviceName, new String[] { "SRV" });
+        Attributes dnsEntries = context.getAttributes(serviceName, new String[]{"SRV"});
         if (dnsEntries != null) {
             Attribute hosts = dnsEntries.get("SRV");
             if (hosts != null) {
@@ -117,11 +117,9 @@ public class DnsSrv {
 
     /**
      * Sort a list of DNS SRV records according to the sorting rules described in rfc2782.
-     * 
-     * @param srvRecords
-     *            the list of {@link SrvRecord}s to sort.
-     * @return
-     *         a new list of sorted {@link SrvRecord}s.
+     *
+     * @param srvRecords the list of {@link SrvRecord}s to sort.
+     * @return a new list of sorted {@link SrvRecord}s.
      */
     public static List<SrvRecord> sortSrvRecords(List<SrvRecord> srvRecords) {
         // Sort srv records by their natural order, i.e., first by priority then by weight.

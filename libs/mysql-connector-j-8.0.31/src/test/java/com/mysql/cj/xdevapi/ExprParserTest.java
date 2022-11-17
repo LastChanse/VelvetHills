@@ -58,7 +58,7 @@ public class ExprParserTest {
 
     /**
      * Check that a string doesn't parse.
-     * 
+     *
      * @param s
      */
     private void checkBadParse(String s) {
@@ -108,7 +108,7 @@ public class ExprParserTest {
 
     /**
      * Check that a string parses and is reconstituted as a string that we expect. Further we parse the canonical version to make sure it doesn't change.
-     * 
+     *
      * @param input
      * @param expected
      */
@@ -443,12 +443,12 @@ public class ExprParserTest {
 
         Iterator<ObjectField> fields = proj.getSource().getObject().getFldList().iterator();
 
-        Arrays.stream(new String[][] { new String[] { "a", "\"value for a\"" }, new String[] { "b", "(1 + 1)" }, new String[] { "c", ":0" },
-                new String[] { "d", "$.member[22]" }, new String[] { "e", "{'nested':\"doc\"}" } }).forEach(pair -> {
-                    ObjectField f = fields.next();
-                    assertEquals(pair[0], f.getKey());
-                    assertEquals(pair[1], ExprUnparser.exprToString(f.getValue()));
-                });
+        Arrays.stream(new String[][]{new String[]{"a", "\"value for a\""}, new String[]{"b", "(1 + 1)"}, new String[]{"c", ":0"},
+                new String[]{"d", "$.member[22]"}, new String[]{"e", "{'nested':\"doc\"}"}}).forEach(pair -> {
+            ObjectField f = fields.next();
+            assertEquals(pair[0], f.getKey());
+            assertEquals(pair[1], ExprUnparser.exprToString(f.getValue()));
+        });
         assertFalse(fields.hasNext());
     }
 

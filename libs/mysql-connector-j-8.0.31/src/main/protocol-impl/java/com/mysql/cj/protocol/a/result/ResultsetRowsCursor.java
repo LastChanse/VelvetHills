@@ -80,11 +80,9 @@ public class ResultsetRowsCursor extends AbstractResultsetRows implements Result
 
     /**
      * Creates a new cursor-backed row provider.
-     * 
-     * @param ioChannel
-     *            connection to the server.
-     * @param columnDefinition
-     *            field-level metadata for the results that this cursor covers.
+     *
+     * @param ioChannel        connection to the server.
+     * @param columnDefinition field-level metadata for the results that this cursor covers.
      */
     public ResultsetRowsCursor(NativeProtocol ioChannel, ColumnDefinition columnDefinition) {
         this.currentPositionInEntireResult = BEFORE_START_OF_ROWS;

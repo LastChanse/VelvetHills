@@ -62,9 +62,8 @@ public class SessionImpl implements Session {
 
     /**
      * Constructor.
-     * 
-     * @param hostInfo
-     *            {@link HostInfo} instance
+     *
+     * @param hostInfo {@link HostInfo} instance
      */
     public SessionImpl(HostInfo hostInfo) {
         PropertySet pset = new DefaultPropertySet();
@@ -149,7 +148,7 @@ public class SessionImpl implements Session {
     @Override
     public String setSavepoint(String name) {
         if (name == null || name.trim().length() == 0) {
-            throw new XDevAPIError(Messages.getString("XSession.0", new String[] { "name" }));
+            throw new XDevAPIError(Messages.getString("XSession.0", new String[]{"name"}));
         }
 
         this.session.query(this.xbuilder.buildSqlStatement("SAVEPOINT " + StringUtils.quoteIdentifier(name, true)), new UpdateResultBuilder<>());
@@ -159,7 +158,7 @@ public class SessionImpl implements Session {
     @Override
     public void rollbackTo(String name) {
         if (name == null || name.trim().length() == 0) {
-            throw new XDevAPIError(Messages.getString("XSession.0", new String[] { "name" }));
+            throw new XDevAPIError(Messages.getString("XSession.0", new String[]{"name"}));
         }
 
         this.session.query(this.xbuilder.buildSqlStatement("ROLLBACK TO " + StringUtils.quoteIdentifier(name, true)), new UpdateResultBuilder<>());
@@ -168,7 +167,7 @@ public class SessionImpl implements Session {
     @Override
     public void releaseSavepoint(String name) {
         if (name == null || name.trim().length() == 0) {
-            throw new XDevAPIError(Messages.getString("XSession.0", new String[] { "name" }));
+            throw new XDevAPIError(Messages.getString("XSession.0", new String[]{"name"}));
         }
 
         this.session.query(this.xbuilder.buildSqlStatement("RELEASE SAVEPOINT " + StringUtils.quoteIdentifier(name, true)), new UpdateResultBuilder<>());

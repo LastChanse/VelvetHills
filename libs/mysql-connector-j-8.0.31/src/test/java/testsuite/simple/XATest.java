@@ -73,7 +73,7 @@ public class XATest extends BaseTestCase {
 
     /**
      * Tests that simple distributed transaction processing works as expected.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -176,7 +176,7 @@ public class XATest extends BaseTestCase {
 
     /**
      * Tests that XA RECOVER works as expected.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -266,7 +266,7 @@ public class XATest extends BaseTestCase {
 
     /**
      * Tests operation of local transactions on XAConnections when global transactions are in or not in progress (follows from BUG#17401).
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -412,7 +412,7 @@ public class XATest extends BaseTestCase {
             xaConn1.close();
 
             /*
-             * 
+             *
              * -- fails using JOIN
              * xa start 0x123,0x456;
              * select * from foo;

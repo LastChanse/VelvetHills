@@ -127,23 +127,23 @@ public class ConnectionUrlTest {
             }
         }
 
-        private static final String[] PROTOCOL = new String[] { "jdbc:mysql:", "mysqlx:" };
-        private static final String[] USER = new String[] { "", "@", "johndoe@", "johndoe:@", "johndoe:secret@", ":secret@", ":@" };
-        private static final String[] STD_HOST = new String[] { "", "myhost", "192.168.0.1", "[1000:abcd::1]",
-                "verylonghostname01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789" };
-        private static final String[] STD_PORT = new String[] { "", ":", ":1234" };
-        private static final String[] KEY_VALUE_HOST = new String[] { "", "()", "(host=[::1],port=1234,prio=1)",
+        private static final String[] PROTOCOL = new String[]{"jdbc:mysql:", "mysqlx:"};
+        private static final String[] USER = new String[]{"", "@", "johndoe@", "johndoe:@", "johndoe:secret@", ":secret@", ":@"};
+        private static final String[] STD_HOST = new String[]{"", "myhost", "192.168.0.1", "[1000:abcd::1]",
+                "verylonghostname01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"};
+        private static final String[] STD_PORT = new String[]{"", ":", ":1234"};
+        private static final String[] KEY_VALUE_HOST = new String[]{"", "()", "(host=[::1],port=1234,prio=1)",
                 "(protocol=tcp,host=myhost,port=1234,key=value%28%29)", "(address=myhost:1234,prio=2)",
                 "(protocol=tcp,host=verylonghostname01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789,port=1234,key=value%28%29)",
-                "(address=verylonghostname01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789:1234,prio=2)" };
-        private static final String[] ADDRESS_EQUALS_HOST = new String[] { "address=", "address=()", "address=(flag)",
+                "(address=verylonghostname01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789:1234,prio=2)"};
+        private static final String[] ADDRESS_EQUALS_HOST = new String[]{"address=", "address=()", "address=(flag)",
                 "address=(protocol=tcp)(host=myhost)(port=1234)", "address=(protocol=tcp)(host=myhost)(port=1234)(key=value%28%29)",
                 "address=(protocol=tcp)(host=verylonghostname01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789)(port=1234)",
-                "address=(protocol=tcp)(host=verylonghostname01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789)(port=1234)(key=value%28%29)" };
+                "address=(protocol=tcp)(host=verylonghostname01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789)(port=1234)(key=value%28%29)"};
         private static final String[] HOST; // Initialized below.
-        private static final String[] DB = new String[] { "", "/", "/mysql" };
-        private static final String[] PARAMS = new String[] { "", "?", "?key=value&flag", "?key=value%26&flag&26", "?file=%2Fpath%2Fto%2Ffile&flag&key=value",
-                "?file=(/path/to/file)&flag&key=value" };
+        private static final String[] DB = new String[]{"", "/", "/mysql"};
+        private static final String[] PARAMS = new String[]{"", "?", "?key=value&flag", "?key=value%26&flag&26", "?file=%2Fpath%2Fto%2Ffile&flag&key=value",
+                "?file=(/path/to/file)&flag&key=value"};
 
         static {
             int i = 0;
@@ -171,7 +171,7 @@ public class ConnectionUrlTest {
 
         /**
          * Create an instance of {@link ConnectionStringGenerator} and initializes internal data for the iterator.
-         * 
+         *
          * @param urlMode
          */
         public ConnectionStringGenerator(UrlMode urlMode) {
@@ -220,9 +220,8 @@ public class ConnectionUrlTest {
 
         /**
          * Increments the counter recursively for each connection string part.
-         * 
-         * @param i
-         *            the part where to increment the counter
+         *
+         * @param i the part where to increment the counter
          * @return false if the counter reaches the end, true otherwise
          */
         private boolean incrementCounter(int i) {
@@ -239,7 +238,7 @@ public class ConnectionUrlTest {
 
         /**
          * Builds a connection string with the parts corresponding to the current counter position.
-         * 
+         *
          * @return the connection string built from the current counter position
          */
         private String buildConnectionString() {
@@ -286,7 +285,7 @@ public class ConnectionUrlTest {
 
         /**
          * Returns the protocol part (scheme) for the current position.
-         * 
+         *
          * @return the protocol part
          */
         public String getProtocol() {
@@ -296,9 +295,8 @@ public class ConnectionUrlTest {
 
         /**
          * Returns the user info part for the current position and the given host.
-         * 
-         * @param fromHostIndex
-         *            the host from where to get user info
+         *
+         * @param fromHostIndex the host from where to get user info
          * @return the user info part
          */
         public String getUserInfo(int fromHostIndex) {
@@ -316,9 +314,8 @@ public class ConnectionUrlTest {
 
         /**
          * Returns the host info part for the current position and the given host.
-         * 
-         * @param fromHostIndex
-         *            the host from where to get host info
+         *
+         * @param fromHostIndex the host from where to get host info
          * @return the host info part
          */
         public String getHostInfo(int fromHostIndex) {
@@ -338,7 +335,7 @@ public class ConnectionUrlTest {
 
         /**
          * Returns the database part for the current position.
-         * 
+         *
          * @return the database part
          */
         public String getDatabase() {
@@ -353,7 +350,7 @@ public class ConnectionUrlTest {
 
         /**
          * Returns the connection parameters part for the current position.
-         * 
+         *
          * @return the connection parameter part
          */
         public String getParams() {
@@ -368,13 +365,10 @@ public class ConnectionUrlTest {
 
         /**
          * Checks if current host info contains the given key & value parameter.
-         * 
-         * @param hostIndex
-         *            the host from where the given information will be checked against
-         * @param key
-         *            the key to check
-         * @param value
-         *            the value to check
+         *
+         * @param hostIndex the host from where the given information will be checked against
+         * @param key       the key to check
+         * @param value     the value to check
          * @return true if the key/value pair exists, false otherwise
          */
         public boolean hasHostParam(int hostIndex, String key, String value) {
@@ -387,9 +381,8 @@ public class ConnectionUrlTest {
 
         /**
          * Returns the number of host specific parameters existing in the current position and the given host.
-         * 
-         * @param hostIndex
-         *            the host from where to get the count
+         *
+         * @param hostIndex the host from where to get the count
          * @return the number of host specific parameters
          */
         public int getHostParamsCount(int hostIndex) {
@@ -404,11 +397,9 @@ public class ConnectionUrlTest {
 
         /**
          * Checks if the current connection properties contain the given key & value.
-         * 
-         * @param key
-         *            the key to check
-         * @param value
-         *            the value to check
+         *
+         * @param key   the key to check
+         * @param value the value to check
          * @return true if the key/value pair exists, false otherwise
          */
         public boolean hasParam(String key, String value) {
@@ -421,7 +412,7 @@ public class ConnectionUrlTest {
 
         /**
          * Returns the number of connection parameters existing the the current position.
-         * 
+         *
          * @return the number of connection parameters
          */
         public int getParamsCount() {
@@ -434,9 +425,8 @@ public class ConnectionUrlTest {
 
         /**
          * Utility method to URL decode the given string.
-         * 
-         * @param text
-         *            the text to decode
+         *
+         * @param text the text to decode
          * @return the decoded text
          */
         private String decode(String text) {
@@ -666,7 +656,7 @@ public class ConnectionUrlTest {
 
     /**
      * Tests the {@link ConnectionUrlParser} and {@link ConnectionUrl} with non standard, but accepted, connection strings.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1010,9 +1000,9 @@ public class ConnectionUrlTest {
         ConnectionUrl connUrl;
         int hostIdx;
 
-        String[] hostNames = new String[] { "host",
+        String[] hostNames = new String[]{"host",
                 "verylonghostname0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"
-                        + "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789" };
+                        + "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"};
 
         for (String hostName : hostNames) {
             // Hosts sub list with "address" splitting (host3:3333) and priority value.
@@ -1103,7 +1093,7 @@ public class ConnectionUrlTest {
                 } catch (Exception e) {
                     assertTrue(WrongArgumentException.class.isAssignableFrom(e.getClass()),
                             cs + ": expected to throw a " + WrongArgumentException.class.getName());
-                    assertEquals(Messages.getString("ConnectionString.14", new Object[] { ConnectionUrl.Type.XDEVAPI_SESSION.getScheme() }), e.getMessage(),
+                    assertEquals(Messages.getString("ConnectionString.14", new Object[]{ConnectionUrl.Type.XDEVAPI_SESSION.getScheme()}), e.getMessage(),
                             cs);
                 }
             }
@@ -1124,7 +1114,7 @@ public class ConnectionUrlTest {
                 } catch (Exception e) {
                     assertTrue(WrongArgumentException.class.isAssignableFrom(e.getClass()),
                             cs + ": expected to throw a " + WrongArgumentException.class.getName());
-                    assertEquals(Messages.getString("ConnectionString.15", new Object[] { ConnectionUrl.Type.XDEVAPI_SESSION.getScheme() }), e.getMessage(),
+                    assertEquals(Messages.getString("ConnectionString.15", new Object[]{ConnectionUrl.Type.XDEVAPI_SESSION.getScheme()}), e.getMessage(),
                             cs);
                 }
             }
@@ -1141,7 +1131,7 @@ public class ConnectionUrlTest {
                 } catch (Exception e) {
                     assertTrue(WrongArgumentException.class.isAssignableFrom(e.getClass()),
                             cs + ": expected to throw a " + WrongArgumentException.class.getName());
-                    assertEquals(Messages.getString("ConnectionString.16", new Object[] { ConnectionUrl.Type.XDEVAPI_SESSION.getScheme() }), e.getMessage(),
+                    assertEquals(Messages.getString("ConnectionString.16", new Object[]{ConnectionUrl.Type.XDEVAPI_SESSION.getScheme()}), e.getMessage(),
                             cs);
                 }
             }

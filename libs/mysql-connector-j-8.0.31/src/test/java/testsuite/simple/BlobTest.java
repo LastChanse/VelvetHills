@@ -71,7 +71,7 @@ public class BlobTest extends BaseTestCase {
 
     /**
      * Setup the test case
-     * 
+     *
      * @throws Exception
      */
     @BeforeEach
@@ -110,9 +110,8 @@ public class BlobTest extends BaseTestCase {
 
     /**
      * Tests inserting blob data as a stream
-     * 
+     *
      * @param c
-     * 
      * @throws Exception
      */
     private void testByteStreamInsert(Connection c) throws Exception {
@@ -167,7 +166,7 @@ public class BlobTest extends BaseTestCase {
 
     /**
      * Mark this as deprecated to avoid warnings from compiler...
-     * 
+     *
      * @throws Exception
      */
     @SuppressWarnings("deprecation")

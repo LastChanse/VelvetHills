@@ -61,9 +61,8 @@ public class SessionFailoverTest extends DevApiBaseTestCase {
 
     /**
      * Builds a connection string with the given hosts while setting priorities according to their positions.
-     * 
-     * @param hosts
-     *            the hosts list, 1st has priority=100, 2nd has priority=99, and so on
+     *
+     * @param hosts the hosts list, 1st has priority=100, 2nd has priority=99, and so on
      * @return a single host or a multi-host connection string
      */
     private String buildConnectionString(String... hosts) {
@@ -102,7 +101,7 @@ public class SessionFailoverTest extends DevApiBaseTestCase {
 
     /**
      * Assures that failover support doesn't affect single host connections.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -121,7 +120,7 @@ public class SessionFailoverTest extends DevApiBaseTestCase {
 
     /**
      * Tests basic failover while getting a {@link Session} instance.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -185,7 +184,7 @@ public class SessionFailoverTest extends DevApiBaseTestCase {
         @Override
         public Void call() {
             try {
-                for (;;) {
+                for (; ; ) {
                     Socket clientSocket = this.serverSocket.accept();
                     this.connectionsCounter++;
                     InputStream is = clientSocket.getInputStream();
@@ -201,14 +200,14 @@ public class SessionFailoverTest extends DevApiBaseTestCase {
 
     /**
      * Tests xdevapi.connect-timeout and connectTimeout functionality.
-     * 
+     * <p>
      * The real socket connect timeout can be revealed only when trying to connect to the unavailable remote host
      * pointed by IP address. Neither localhost IP nor domain names are working, they fail much faster then the timeout
      * is reached.
      * If default 10.77.77.77:37070 doesn't work in a particular testing setup (if the ip address is available)
      * please add this variable to ant call:
      * -Dcom.mysql.cj.testsuite.unavailable.host=unavailable_ip:port
-     * 
+     *
      * @throws Exception
      */
     @Test

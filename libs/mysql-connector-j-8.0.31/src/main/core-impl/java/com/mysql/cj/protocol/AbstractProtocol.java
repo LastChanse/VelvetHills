@@ -54,7 +54,9 @@ public abstract class AbstractProtocol<M extends Message> implements Protocol<M>
 
     protected TransactionEventHandler transactionManager;
 
-    /** The logger we're going to use */
+    /**
+     * The logger we're going to use
+     */
     protected transient Log log;
 
     protected ExceptionInterceptor exceptionInterceptor;

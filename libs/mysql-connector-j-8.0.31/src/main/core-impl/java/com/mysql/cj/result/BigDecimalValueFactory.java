@@ -54,9 +54,8 @@ public class BigDecimalValueFactory extends AbstractNumericValueFactory<BigDecim
 
     /**
      * Adjust the result value by apply the scale, if appropriate.
-     * 
-     * @param d
-     *            value
+     *
+     * @param d value
      * @return result
      */
     private BigDecimal adjustResult(BigDecimal d) {

@@ -41,7 +41,7 @@ public class ExceptionInterceptorChain implements ExceptionInterceptor {
     List<ExceptionInterceptor> interceptors;
 
     public ExceptionInterceptorChain(String interceptorClasses, Properties props, Log log) {
-        this.interceptors = Util.<ExceptionInterceptor> loadClasses(interceptorClasses, "Connection.BadExceptionInterceptor", this).stream()
+        this.interceptors = Util.<ExceptionInterceptor>loadClasses(interceptorClasses, "Connection.BadExceptionInterceptor", this).stream()
                 .map(o -> o.init(props, log)).collect(Collectors.toList());
     }
 

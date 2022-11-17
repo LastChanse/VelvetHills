@@ -178,7 +178,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests catalog functionality
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -196,7 +196,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests a cluster connection for failover, requires a two-node cluster URL specified in com.mysql.jdbc.testsuite.ClusterUrl system property.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -267,7 +267,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Old test was passing due to http://bugs.mysql.com/bug.php?id=989 which is fixed for 5.5+
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -331,7 +331,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests isolation level functionality
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -346,11 +346,11 @@ public class ConnectionTest extends BaseTestCase {
         assertEquals(actualTransactionIsolation, initialTransactionIsolation, "Inital transaction isolation level doesn't match the server's");
 
         // Check setting all allowed transaction isolation levels
-        String[] isoLevelNames = new String[] { "Connection.TRANSACTION_NONE", "Connection.TRANSACTION_READ_COMMITTED",
-                "Connection.TRANSACTION_READ_UNCOMMITTED", "Connection.TRANSACTION_REPEATABLE_READ", "Connection.TRANSACTION_SERIALIZABLE" };
+        String[] isoLevelNames = new String[]{"Connection.TRANSACTION_NONE", "Connection.TRANSACTION_READ_COMMITTED",
+                "Connection.TRANSACTION_READ_UNCOMMITTED", "Connection.TRANSACTION_REPEATABLE_READ", "Connection.TRANSACTION_SERIALIZABLE"};
 
-        int[] isolationLevels = new int[] { Connection.TRANSACTION_NONE, Connection.TRANSACTION_READ_COMMITTED, Connection.TRANSACTION_READ_UNCOMMITTED,
-                Connection.TRANSACTION_REPEATABLE_READ, Connection.TRANSACTION_SERIALIZABLE };
+        int[] isolationLevels = new int[]{Connection.TRANSACTION_NONE, Connection.TRANSACTION_READ_COMMITTED, Connection.TRANSACTION_READ_UNCOMMITTED,
+                Connection.TRANSACTION_REPEATABLE_READ, Connection.TRANSACTION_SERIALIZABLE};
 
         DatabaseMetaData dbmd = this.conn.getMetaData();
         for (int i = 0; i < isolationLevels.length; i++) {
@@ -366,7 +366,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests the savepoint functionality in MySQL.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -467,7 +467,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests functionality of the ConnectionPropertiesTransform interface.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -485,7 +485,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests functionality of using URLs in 'LOAD DATA LOCAL INFILE' statements.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -641,7 +641,7 @@ public class ConnectionTest extends BaseTestCase {
     /**
      * Tests whether or not the configuration 'useLocalSessionState' actually prevents non-needed 'set autocommit=', 'set session transaction isolation ...'
      * and 'show variables like tx_isolation' queries.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -674,7 +674,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests whether re-connect with non-read-only connection can happen.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -751,7 +751,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Checks implementation of 'dontTrackOpenResources' property.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -840,7 +840,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests setting profileSQL on/off in the span of one connection.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -874,7 +874,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests if gatherPerfMetrics works.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -903,7 +903,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests if useCompress works.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -950,7 +950,6 @@ public class ConnectionTest extends BaseTestCase {
     /**
      * @param useCompression
      * @param maxPayloadSize
-     * 
      * @throws Exception
      */
     private void testCompressionWith(String useCompression, int maxPayloadSize) throws Exception {
@@ -1015,9 +1014,8 @@ public class ConnectionTest extends BaseTestCase {
      * Tests feature of "localSocketAddress", by enumerating local IF's and trying each one in turn. This test might take a long time to run, since we can't set
      * timeouts if we're using localSocketAddress. We try and keep the time down on the testcase by spawning the checking of each interface off into separate
      * threads.
-     * 
-     * @throws Exception
-     *             if the test can't use at least one of the local machine's interfaces to make an outgoing connection to the server.
+     *
+     * @throws Exception if the test can't use at least one of the local machine's interfaces to make an outgoing connection to the server.
      */
     @Test
     public void testLocalSocketAddress() throws Exception {
@@ -1226,7 +1224,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Checks if setting useCursorFetch to "true" automatically enables server-side prepared statements.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1562,7 +1560,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * IPv6 Connection test.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1633,7 +1631,7 @@ public class ConnectionTest extends BaseTestCase {
     /**
      * Test for Driver.connect() behavior clarifications:
      * - connect() throws SQLException if URL is null.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1659,7 +1657,7 @@ public class ConnectionTest extends BaseTestCase {
     /**
      * Test for Driver.connect() behavior clarifications:
      * - connect() properties precedence is implementation-defined.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1718,7 +1716,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Test for REF_CURSOR support checking.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1729,11 +1727,11 @@ public class ConnectionTest extends BaseTestCase {
     /**
      * Test the new connection property 'enableEscapeProcessing', as well as the old connection property 'processEscapeCodesForPrepStmts' and interrelation
      * between them.
-     * 
+     * <p>
      * This test uses a QueryInterceptor to capture the query sent to the server and assert whether escape processing has been done in the client side or if
      * the query is sent untouched and escape processing will be done at server side, according to provided connection properties and type of Statement objects
      * in use.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1778,7 +1776,7 @@ public class ConnectionTest extends BaseTestCase {
             assertEquals(1d, this.rs.getDouble(1), testCase);
 
             Timestamp ts = !enableEscapeProcessing && this.rs.getMetaData().getColumnType(2) == Types.VARCHAR ?
-            // MySQL 5.5 returns {ts '2015-08-16 11:22:33'} as a VARCHAR column, while newer servers return it as a DATETIME
+                    // MySQL 5.5 returns {ts '2015-08-16 11:22:33'} as a VARCHAR column, while newer servers return it as a DATETIME
                     Timestamp.from(ZonedDateTime
                             .of(2015, 8, 16, 11, 22, 33, 0, ((MysqlConnection) testConn).getSession().getServerSession().getSessionTimeZone().toZoneId())
                             .withZoneSameInstant(ZoneId.systemDefault()).toInstant())
@@ -1792,7 +1790,7 @@ public class ConnectionTest extends BaseTestCase {
             this.rs = this.pstmt.executeQuery();
 
             ts = !processEscapeCodesForPrepStmts && this.rs.getMetaData().getColumnType(2) == Types.VARCHAR ?
-            // MySQL 5.5 returns {ts '2015-08-16 11:22:33'} as a VARCHAR column, while newer servers return it as a DATETIME
+                    // MySQL 5.5 returns {ts '2015-08-16 11:22:33'} as a VARCHAR column, while newer servers return it as a DATETIME
                     Timestamp.from(ZonedDateTime
                             .of(2015, 8, 16, 11, 22, 33, 0, ((MysqlConnection) testConn).getSession().getServerSession().getSessionTimeZone().toZoneId())
                             .withZoneSameInstant(ZoneId.systemDefault()).toInstant())
@@ -1966,10 +1964,10 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Test authentication with a user that requires an SSL connection.
-     * 
+     * <p>
      * This test requires the CA truststore and the client keystore available in src/test/config/ssl-test-certs.
      * The server needs to be configured with the CA and server certificates from src/test/config/ssl-test-certs.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2058,10 +2056,10 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Test authentication with a user that requires an SSL connection and an authorized client certificate.
-     * 
+     * <p>
      * This test requires the CA truststore and the client keystore available in src/test/config/ssl-test-certs.
      * The server needs to be configured with the CA and server certificates from src/test/config/ssl-test-certs.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2150,7 +2148,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests that given SSL/TLS related connection properties values are processed as expected.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2221,7 +2219,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests connection property 'testFallbackToSystemTrustStore' behavior.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2312,7 +2310,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests connection property 'testFallbackToSystemKeyStore' behavior.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2403,7 +2401,7 @@ public class ConnectionTest extends BaseTestCase {
     /**
      * Tests "LOAD DATA LOCAL INFILE" statements when enabled but restricted to a specific path, by specifying a path in the connection property
      * 'allowLoadLocalInfileInPath'.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2702,7 +2700,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests WL#14392, Improve timeout error messages [classic].
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2752,7 +2750,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests WL#14805, Remove support for TLS 1.0 and 1.1.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2890,7 +2888,7 @@ public class ConnectionTest extends BaseTestCase {
 
     /**
      * Tests WL#14835, Align TLS option checking across connectors
-     * 
+     *
      * @throws Exception
      */
     @Test

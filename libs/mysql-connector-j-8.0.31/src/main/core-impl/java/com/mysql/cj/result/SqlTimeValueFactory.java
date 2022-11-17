@@ -84,7 +84,7 @@ public class SqlTimeValueFactory extends AbstractDateTimeValueFactory<Time> {
     @Override
     public Time localCreateFromTime(InternalTime it) {
         if (it.getHours() < 0 || it.getHours() >= 24) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[] { it.toString() }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[]{it.toString()}));
         }
 
         synchronized (this.cal) {
@@ -104,7 +104,7 @@ public class SqlTimeValueFactory extends AbstractDateTimeValueFactory<Time> {
     public Time localCreateFromDatetime(InternalTimestamp its) {
         if (this.warningListener != null) {
             // TODO: need column context
-            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[] { "java.sql.Time" }));
+            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[]{"java.sql.Time"}));
         }
 
         // truncate date information
@@ -115,7 +115,7 @@ public class SqlTimeValueFactory extends AbstractDateTimeValueFactory<Time> {
     public Time localCreateFromTimestamp(InternalTimestamp its) {
         if (this.warningListener != null) {
             // TODO: need column context
-            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[] { "java.sql.Time" }));
+            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[]{"java.sql.Time"}));
         }
 
         // truncate date information

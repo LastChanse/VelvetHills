@@ -71,19 +71,16 @@ public interface ServerSession {
 
     /**
      * Sets new server status (from response) without saving it's old state
-     * 
-     * @param statusFlags
-     *            server status flags
+     *
+     * @param statusFlags server status flags
      */
     void setStatusFlags(int statusFlags);
 
     /**
      * Sets new server status (from response)
-     * 
-     * @param statusFlags
-     *            new server status flags
-     * @param saveOldStatusFlags
-     *            true if old server status flags should be preserved
+     *
+     * @param statusFlags        new server status flags
+     * @param saveOldStatusFlags true if old server status flags should be preserved
      */
     void setStatusFlags(int statusFlags, boolean saveOldStatusFlags);
 
@@ -92,7 +89,6 @@ public interface ServerSession {
     void setOldStatusFlags(int statusFlags);
 
     /**
-     * 
      * @return TRANSACTION_NOT_STARTED, TRANSACTION_IN_PROGRESS, TRANSACTION_STARTED or TRANSACTION_COMPLETED
      */
     int getTransactionState();
@@ -101,7 +97,7 @@ public interface ServerSession {
 
     /**
      * Server will only open a cursor and set this flag if it can, otherwise it punts and goes back to mysql_store_results() behavior.
-     * 
+     *
      * @return SERVER_STATUS_CURSOR_EXISTS <a href=http://dev.mysql.com/doc/internals/en/status-flags.html>status flag</a> value.
      */
     boolean cursorExists();
@@ -140,7 +136,7 @@ public interface ServerSession {
 
     /**
      * Get the version of the MySQL server we are talking to.
-     * 
+     *
      * @return {@link ServerVersion}
      */
     ServerVersion getServerVersion();
@@ -148,18 +144,16 @@ public interface ServerSession {
     /**
      * Is the version of the MySQL server we are connected to the given
      * version?
-     * 
-     * @param version
-     *            the version to check for
-     * 
+     *
+     * @param version the version to check for
      * @return true if the version of the MySQL server we are connected is the
-     *         given version
+     * given version
      */
     boolean isVersion(ServerVersion version);
 
     /**
      * Is the server configured to use lower-case table names only?
-     * 
+     *
      * @return true if lower_case_table_names is 'on'
      */
     boolean isLowerCaseTableNames();

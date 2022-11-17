@@ -56,14 +56,10 @@ public class SqlTimestampValueFactory extends AbstractDateTimeValueFactory<Times
     private TimeZone connectionTimeZone;
 
     /**
-     * @param pset
-     *            {@link PropertySet}
-     * @param calendar
-     *            Calendar used to interpret the fields.
-     * @param defaultTimeZone
-     *            The local JVM time zone.
-     * @param connectionTimeZone
-     *            The server session time zone as defined by connectionTimeZone property.
+     * @param pset               {@link PropertySet}
+     * @param calendar           Calendar used to interpret the fields.
+     * @param defaultTimeZone    The local JVM time zone.
+     * @param connectionTimeZone The server session time zone as defined by connectionTimeZone property.
      */
     public SqlTimestampValueFactory(PropertySet pset, Calendar calendar, TimeZone defaultTimeZone, TimeZone connectionTimeZone) {
         super(pset);
@@ -112,7 +108,7 @@ public class SqlTimestampValueFactory extends AbstractDateTimeValueFactory<Times
     @Override
     public Timestamp localCreateFromTime(InternalTime it) {
         if (it.getHours() < 0 || it.getHours() >= 24) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[] { it.toString() }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[]{it.toString()}));
         }
 
         synchronized (this.defaultTimeZone) {

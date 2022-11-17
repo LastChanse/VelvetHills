@@ -262,9 +262,8 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
 
     /**
      * Tests fix for BUG#24471057, UPDATE FAILS WHEN THE NEW VALUE IS OF TYPE DBDOC WHICH HAS ARRAY IN IT.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     @Test
     public void testBug24471057() throws Exception {
@@ -481,9 +480,8 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
 
     /**
      * Tests fix for BUG#27185332, WL#11210:ERROR IS THROWN WHEN NESTED EMPTY DOCUMENTS ARE INSERTED TO COLLECTION.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     @Test
     public void testBug27185332() throws Exception {
@@ -571,7 +569,7 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
 
         /*
          * FR5.2 The id of the document must remain immutable:
-         * 
+         *
          * Use a collection with some documents
          * Fetch a document
          * Unset _id and modify any other field of the document
@@ -1175,7 +1173,7 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
         assertEquals(maxrec, recCnt);
 
         //  /*
-        res = this.collection.modify("$.F4 = ?").set("$.F4", 1).bind(new Object[] { l2 }).sort("$.F1 asc").execute();
+        res = this.collection.modify("$.F4 = ?").set("$.F4", 1).bind(new Object[]{l2}).sort("$.F1 asc").execute();
         assertEquals(1, res.getAffectedItemsCount());
         //  */
     }
@@ -1894,7 +1892,7 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
 
     /**
      * Tests fix for Bug#107510 (Bug#34259416), Empty string given to set() from Collection.modify() replaces full document.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1983,7 +1981,7 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
 
     /**
      * Tests fix for Bug#33637993, Loss of backslashes in data after modify api is used.
-     * 
+     *
      * @throws Exception
      */
     @Test

@@ -32,11 +32,10 @@ package com.mysql.cj.protocol;
 /**
  * Represents protocol specific result set,
  * eg., for native protocol, a ProtocolText::Resultset or ProtocolBinary::Resultset entity.
- * 
+ * <p>
  * See:
  * http://dev.mysql.com/doc/internals/en/com-query-response.html#packet-ProtocolText::Resultset
  * http://dev.mysql.com/doc/internals/en/binary-protocol-resultset.html
- *
  */
 public interface Resultset extends ProtocolEntity {
 
@@ -120,9 +119,8 @@ public interface Resultset extends ProtocolEntity {
      * or need to coerce the metadata returned by queries into that required by the particular specification
      * (eg metadata returned by metadata queries into that required by the JDBC specification).
      * So it can call this to set it after the fact.
-     * 
-     * @param metadata
-     *            field-level metadata for the result set
+     *
+     * @param metadata field-level metadata for the result set
      */
     void setColumnDefinition(ColumnDefinition metadata);
 
@@ -130,7 +128,7 @@ public interface Resultset extends ProtocolEntity {
 
     /**
      * Does the result set contain rows, or is it the result of a DDL or DML statement?
-     * 
+     *
      * @return true if result set contains rows
      */
     boolean hasRows();
@@ -144,21 +142,20 @@ public interface Resultset extends ProtocolEntity {
 
     /**
      * The id (used when profiling) to identify us
-     * 
+     *
      * @return result id
      */
     int getResultId();
 
     /**
-     * @param nextResultset
-     *            Sets the next result set in the result set chain for multiple result sets.
+     * @param nextResultset Sets the next result set in the result set chain for multiple result sets.
      */
     void setNextResultset(Resultset nextResultset);
 
     /**
      * Returns the next ResultSet in a multi-resultset "chain", if any,
      * null if none exists.
-     * 
+     *
      * @return the next Resultset
      */
     Resultset getNextResultset();
@@ -172,25 +169,25 @@ public interface Resultset extends ProtocolEntity {
     /**
      * Returns the update count for this result set (if one exists), otherwise
      * -1.
-     * 
+     *
      * @return return the update count for this result set (if one exists), otherwise
-     *         -1.
+     * -1.
      */
     long getUpdateCount();
 
     /**
      * Returns the AUTO_INCREMENT value for the DDL/DML statement which created
      * this result set.
-     * 
+     *
      * @return the AUTO_INCREMENT value for the DDL/DML statement which created
-     *         this result set.
+     * this result set.
      */
     long getUpdateID();
 
     /**
      * Returns the server informational message returned from a DDL or DML
      * statement (if any), or null if none.
-     * 
+     *
      * @return the server informational message
      */
     String getServerInfo();

@@ -43,9 +43,8 @@ import com.mysql.cj.protocol.InternalTimestamp;
 /**
  * The default value factory provides a base class that can be used for value factories that do not support creation from every type. The default value factory
  * will thrown an UnsupportedOperationException for every method and individual methods must be overridden by subclasses.
- * 
- * @param <T>
- *            value type
+ *
+ * @param <T> value type
  */
 public abstract class DefaultValueFactory<T> implements ValueFactory<T> {
 
@@ -67,7 +66,7 @@ public abstract class DefaultValueFactory<T> implements ValueFactory<T> {
     }
 
     protected T unsupported(String sourceType) {
-        throw new DataConversionException(Messages.getString("ResultSet.UnsupportedConversion", new Object[] { sourceType, getTargetTypeName() }));
+        throw new DataConversionException(Messages.getString("ResultSet.UnsupportedConversion", new Object[]{sourceType, getTargetTypeName()}));
     }
 
     public T createFromDate(InternalDate idate) {

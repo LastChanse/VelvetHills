@@ -45,10 +45,8 @@ public interface ServerSessionStateController {
 
     /**
      * Set the object containing server session changes collected from the latest query execution. Used internally.
-     * 
-     * @param changes
-     *            {@link ServerSessionStateChanges} object.
-     * 
+     *
+     * @param changes {@link ServerSessionStateChanges} object.
      */
     default void setSessionStateChanges(ServerSessionStateChanges changes) {
         throw ExceptionFactory.createException(CJOperationNotSupportedException.class, "Not supported");
@@ -61,7 +59,7 @@ public interface ServerSessionStateController {
      * {@link ServerSessionStateChanges} object after the recent user's query. If this is an issue, a {@link SessionStateChangesListener} can be added via
      * {@link #addSessionStateChangesListener(SessionStateChangesListener)} to catch all session changes.
      * </p>
-     * 
+     *
      * @return {@link ServerSessionStateChanges} object.
      */
     default ServerSessionStateChanges getSessionStateChanges() {
@@ -75,9 +73,8 @@ public interface ServerSessionStateController {
 
     /**
      * Add the {@link SessionStateChangesListener} that will process {@link ServerSessionStateChanges} on it's arrival.
-     * 
-     * @param l
-     *            {@link SessionStateChangesListener} object.
+     *
+     * @param l {@link SessionStateChangesListener} object.
      */
     default void addSessionStateChangesListener(SessionStateChangesListener l) {
         throw ExceptionFactory.createException(CJOperationNotSupportedException.class, "Not supported");
@@ -85,9 +82,8 @@ public interface ServerSessionStateController {
 
     /**
      * Remove {@link SessionStateChangesListener}.
-     * 
-     * @param l
-     *            {@link SessionStateChangesListener} object.
+     *
+     * @param l {@link SessionStateChangesListener} object.
      */
     default void removeSessionStateChangesListener(SessionStateChangesListener l) {
         throw ExceptionFactory.createException(CJOperationNotSupportedException.class, "Not supported");
@@ -98,7 +94,6 @@ public interface ServerSessionStateController {
      * <p>
      * Driver is getting these changes when connection property trackSessionState=true and server supports session tracking.
      * </p>
-     * 
      */
     public static interface ServerSessionStateChanges {
         List<SessionStateChange> getSessionStateChangesList();

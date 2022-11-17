@@ -288,7 +288,7 @@ public class DatabaseMetaDataUsingInfoSchema extends DatabaseMetaData {
 
     @Override
     public java.sql.ResultSet getCrossReference(String primaryCatalog, String primarySchema, String primaryTable, String foreignCatalog, String foreignSchema,
-            String foreignTable) throws SQLException {
+                                                String foreignTable) throws SQLException {
         if (primaryTable == null) {
             throw SQLError.createSQLException(Messages.getString("DatabaseMetaData.2"), MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT,
                     getExceptionInterceptor());
@@ -1094,10 +1094,8 @@ public class DatabaseMetaDataUsingInfoSchema extends DatabaseMetaData {
 
     /**
      * Getter to DatabaseMetaData.function* constants.
-     * 
-     * @param constant
-     *            the constant id from DatabaseMetaData fields to return.
-     * 
+     *
+     * @param constant the constant id from DatabaseMetaData fields to return.
      * @return one of the java.sql.DatabaseMetaData#function* fields.
      */
     protected int getFunctionConstant(FunctionConstant constant) {

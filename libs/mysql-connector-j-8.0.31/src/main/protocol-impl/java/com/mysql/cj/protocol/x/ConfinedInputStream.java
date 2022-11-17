@@ -55,7 +55,7 @@ public class ConfinedInputStream extends FilterInputStream {
     /**
      * Returns the number of bytes not yet consumed. Note that this method doen't care about the exact number of bytes that may or may not be available in the
      * underlying {@link InputStream}
-     * 
+     *
      * @return the number of bytes available.
      * @see FilterInputStream#available()
      */
@@ -67,7 +67,7 @@ public class ConfinedInputStream extends FilterInputStream {
 
     /**
      * Closes this stream and throws away any bytes not consumed from the underlying {@link InputStream}.
-     * 
+     *
      * @see FilterInputStream#close()
      */
     @Override
@@ -95,7 +95,7 @@ public class ConfinedInputStream extends FilterInputStream {
 
     /**
      * Forwards the read to {@link #read(byte[], int, int)}.
-     * 
+     *
      * @see FilterInputStream#read(byte[])
      */
     @Override
@@ -106,7 +106,7 @@ public class ConfinedInputStream extends FilterInputStream {
 
     /**
      * Reads bytes from the underlying {@link InputStream} up to the number of bytes defined in this {@link ConfinedInputStream} limit.
-     * 
+     *
      * @see FilterInputStream#read(byte[], int, int)
      */
     @Override
@@ -125,11 +125,9 @@ public class ConfinedInputStream extends FilterInputStream {
 
     /**
      * Resets this {@link ConfinedInputStream} limit so that it can be reused over the same underlying {@link InputStream}.
-     * 
-     * @param len
-     *            the new length to set.
-     * @return
-     *         the number of bytes not consumed before reseting the limit.
+     *
+     * @param len the new length to set.
+     * @return the number of bytes not consumed before reseting the limit.
      */
     public int resetLimit(int len) {
         int remaining = 0;
@@ -145,10 +143,9 @@ public class ConfinedInputStream extends FilterInputStream {
 
     /**
      * Skips the number bytes not yet consumed from the underlying {@link InputStream}.
-     * 
+     *
      * @return the number of bytes skipped.
-     * @throws IOException
-     *             if any of the underlying I/O operations fail.
+     * @throws IOException if any of the underlying I/O operations fail.
      */
     protected long dumpLeftovers() throws IOException {
         long skipped = skip(available());
@@ -158,9 +155,8 @@ public class ConfinedInputStream extends FilterInputStream {
 
     /**
      * Ensures that this {@link InputStream} wasn't closed yet.
-     * 
-     * @throws IOException
-     *             if this {@link InputStream} was closed.
+     *
+     * @throws IOException if this {@link InputStream} was closed.
      */
     private void ensureOpen() throws IOException {
         if (this.closed) {

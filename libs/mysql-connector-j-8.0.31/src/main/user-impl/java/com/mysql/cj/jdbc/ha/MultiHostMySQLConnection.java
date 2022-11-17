@@ -64,13 +64,13 @@ import com.mysql.cj.protocol.ServerSessionStateController;
 
 /**
  * Each instance of MultiHostMySQLConnection is coupled with a MultiHostConnectionProxy instance.
- * 
+ * <p>
  * While this class implements MySQLConnection directly, MultiHostConnectionProxy does the same but via a dynamic proxy.
- * 
+ * <p>
  * Most of the methods in this class refer directly to the active connection from its MultiHostConnectionProxy pair, providing a non-proxied access to the
  * current active connection managed by this multi-host structure. The remaining methods either implement some local behavior or refer to the proxy itself
  * instead of the sub-connection.
- * 
+ * <p>
  * Referring to the higher level proxy connection is needed when some operation needs to be extended to all open sub-connections existing in this multi-host
  * structure as opposed to just refer to the active current connection, such as with close() which is most likely required to close all sub-connections as
  * well.
@@ -708,7 +708,7 @@ public class MultiHostMySQLConnection implements JdbcConnection {
             // This works for classes that aren't actually wrapping anything
             return iface.cast(this);
         } catch (ClassCastException cce) {
-            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[] { iface.toString() }),
+            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[]{iface.toString()}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
         }
     }

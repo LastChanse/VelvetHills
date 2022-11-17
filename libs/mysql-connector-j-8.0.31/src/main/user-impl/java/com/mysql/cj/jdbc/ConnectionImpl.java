@@ -98,7 +98,7 @@ import com.mysql.cj.util.Util;
 
 /**
  * A Connection represents a session with a specific database. Within the context of a Connection, SQL statements are executed and results are returned.
- * 
+ *
  * <P>
  * A Connection's database is able to provide information describing its tables, its supported SQL grammar, its stored procedures, the capabilities of this
  * connection, etc. This information is obtained with the getMetaData method.
@@ -203,7 +203,9 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
         }
     }
 
-    /** Default logger class name */
+    /**
+     * Default logger class name
+     */
     protected static final String DEFAULT_LOGGER_CLASS = StandardLogger.class.getName();
 
     /**
@@ -211,6 +213,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
      * java.sql.Connection.TRANSACTION_XXX
      */
     private static Map<String, Integer> mapTransIsolationNameToValue = null;
+
     static {
         mapTransIsolationNameToValue = new HashMap<>(8);
         mapTransIsolationNameToValue.put("READ-UNCOMMITED", TRANSACTION_READ_UNCOMMITTED);
@@ -230,12 +233,10 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
 
     /**
      * Creates a connection instance.
-     * 
-     * @param hostInfo
-     *            {@link HostInfo} instance
+     *
+     * @param hostInfo {@link HostInfo} instance
      * @return new {@link ConnectionImpl} instance
-     * @throws SQLException
-     *             if a database access error occurs
+     * @throws SQLException if a database access error occurs
      */
     public static JdbcConnection getInstance(HostInfo hostInfo) throws SQLException {
         return new ConnectionImpl(hostInfo);
@@ -244,10 +245,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     private static final Random random = new Random();
 
     /**
-     * @param url
-     *            connection URL
-     * @param hostList
-     *            hosts list
+     * @param url      connection URL
+     * @param hostList hosts list
      * @return index in a host list
      */
     protected static synchronized int getNextRoundRobinHostIndex(String url, List<?> hostList) {
@@ -272,21 +271,31 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
         return s1 != null && s1.equals(s2);
     }
 
-    /** A cache of SQL to parsed prepared statement parameters. */
+    /**
+     * A cache of SQL to parsed prepared statement parameters.
+     */
     private CacheAdapter<String, QueryInfo> queryInfoCache;
 
-    /** The database we're currently using. */
+    /**
+     * The database we're currently using.
+     */
     private String database = null;
 
-    /** Internal DBMD to use for various database-version specific features */
+    /**
+     * Internal DBMD to use for various database-version specific features
+     */
     private DatabaseMetaData dbmd = null;
 
     private NativeSession session = null;
 
-    /** Is this connection associated with a global tx? */
+    /**
+     * Is this connection associated with a global tx?
+     */
     private boolean isInGlobalTx = false;
 
-    /** isolation level */
+    /**
+     * isolation level
+     */
     private int isolationLevel = java.sql.Connection.TRANSACTION_READ_COMMITTED;
 
     /**
@@ -297,16 +306,24 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
 
     private LRUCache<CompoundCacheKey, CallableStatement.CallableStatementParamInfo> parsedCallableStatementCache;
 
-    /** The password we used */
+    /**
+     * The password we used
+     */
     private String password = null;
 
-    /** Properties for this connection specified by user */
+    /**
+     * Properties for this connection specified by user
+     */
     protected Properties props = null;
 
-    /** Are we in read-only mode? */
+    /**
+     * Are we in read-only mode?
+     */
     private boolean readOnly = false;
 
-    /** Cache of ResultSet metadata */
+    /**
+     * Cache of ResultSet metadata
+     */
     protected LRUCache<String, CachedResultSetMetaData> resultSetMetadataCache;
 
     /**
@@ -315,7 +332,9 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
      */
     private Map<String, Class<?>> typeMap;
 
-    /** The user we're connected as */
+    /**
+     * The user we're connected as
+     */
     private String user = null;
 
     private LRUCache<String, Boolean> serverSideStatementCheckCache;
@@ -365,11 +384,9 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
 
     /**
      * Creates a connection to a MySQL Server.
-     * 
-     * @param hostInfo
-     *            the {@link HostInfo} instance that contains the host, user and connections attributes for this connection
-     * @exception SQLException
-     *                if a database access error occurs
+     *
+     * @param hostInfo the {@link HostInfo} instance that contains the host, user and connections attributes for this connection
+     * @throws SQLException if a database access error occurs
      */
     public ConnectionImpl(HostInfo hostInfo) throws SQLException {
 
@@ -462,7 +479,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
                     .createSQLException(
                             this.propertySet.getBooleanProperty(PropertyKey.paranoid).getValue() ? Messages.getString("Connection.0")
                                     : Messages.getString("Connection.1",
-                                            new Object[] { this.session.getHostInfo().getHost(), this.session.getHostInfo().getPort() }),
+                                    new Object[]{this.session.getHostInfo().getHost(), this.session.getHostInfo().getPort()}),
                             MysqlErrorNumbers.SQL_STATE_COMMUNICATION_LINK_FAILURE, ex, getExceptionInterceptor());
         }
 
@@ -725,9 +742,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
 
     /**
      * Closes all currently open statements.
-     * 
-     * @throws SQLException
-     *             if a database access error occurs
+     *
+     * @throws SQLException if a database access error occurs
      */
     private void closeAllOpenStatements() throws SQLException {
         SQLException postponedException = null;
@@ -897,7 +913,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
             // We've really failed!
             SQLException chainedEx = SQLError.createSQLException(
                     Messages.getString("Connection.UnableToConnectWithRetries",
-                            new Object[] { this.propertySet.getIntegerProperty(PropertyKey.maxReconnects).getValue() }),
+                            new Object[]{this.propertySet.getIntegerProperty(PropertyKey.maxReconnects).getValue()}),
                     MysqlErrorNumbers.SQL_STATE_UNABLE_TO_CONNECT_TO_DATASOURCE, connectionException, getExceptionInterceptor());
             throw chainedEx;
         }
@@ -1031,14 +1047,14 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
 
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                 SQLException sqlEx = SQLError.createSQLException(
-                        Messages.getString("Connection.CantFindCacheFactory", new Object[] { queryInfoCacheFactory, PropertyKey.queryInfoCacheFactory }),
+                        Messages.getString("Connection.CantFindCacheFactory", new Object[]{queryInfoCacheFactory, PropertyKey.queryInfoCacheFactory}),
                         getExceptionInterceptor());
                 sqlEx.initCause(e);
 
                 throw sqlEx;
             } catch (Exception e) {
                 SQLException sqlEx = SQLError.createSQLException(
-                        Messages.getString("Connection.CantLoadCacheFactory", new Object[] { queryInfoCacheFactory, PropertyKey.queryInfoCacheFactory }),
+                        Messages.getString("Connection.CantLoadCacheFactory", new Object[]{queryInfoCacheFactory, PropertyKey.queryInfoCacheFactory}),
                         getExceptionInterceptor());
                 sqlEx.initCause(e);
 
@@ -1145,9 +1161,9 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
      * NOT JDBC-Compliant, but clients can use this method to determine how long
      * this connection has been idle. This time (reported in milliseconds) is
      * updated once a query has completed.
-     * 
+     *
      * @return number of ms that this connection has been idle, 0 if the driver
-     *         is busy retrieving results.
+     * is busy retrieving results.
      */
     @Override
     public long getIdleFor() {
@@ -1216,7 +1232,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
                         this.isolationLevel = intTI.intValue();
                         return this.isolationLevel;
                     }
-                    throw SQLError.createSQLException(Messages.getString("Connection.12", new Object[] { s }), MysqlErrorNumbers.SQL_STATE_GENERAL_ERROR,
+                    throw SQLError.createSQLException(Messages.getString("Connection.12", new Object[]{s}), MysqlErrorNumbers.SQL_STATE_GENERAL_ERROR,
                             getExceptionInterceptor());
                 }
                 throw SQLError.createSQLException(Messages.getString("Connection.13"), MysqlErrorNumbers.SQL_STATE_GENERAL_ERROR, getExceptionInterceptor());
@@ -1271,9 +1287,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     /**
      * Sets varying properties that depend on server information. Called once we
      * have connected to the server.
-     * 
-     * @throws SQLException
-     *             if a database access error occurs
+     *
+     * @throws SQLException if a database access error occurs
      */
     private void initializePropsFromServer() throws SQLException {
         String connectionInterceptorClasses = this.propertySet.getStringProperty(PropertyKey.connectionLifecycleInterceptors).getStringValue();
@@ -1324,9 +1339,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     /**
      * Resets a default auto-commit value of 0 to 1, as required by JDBC specification.
      * Takes into account that the default auto-commit value of 0 may have been changed on the server via init_connect.
-     * 
-     * @throws SQLException
-     *             if a database access error occurs
+     *
+     * @throws SQLException if a database access error occurs
      */
     private void handleAutoCommitDefaults() throws SQLException {
         boolean resetAutoCommitDefault = false;
@@ -1890,7 +1904,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
                             int indexOfError153 = msg.indexOf("153");
 
                             if (indexOfError153 != -1) {
-                                throw SQLError.createSQLException(Messages.getString("Connection.22", new Object[] { savepoint.getSavepointName() }),
+                                throw SQLError.createSQLException(Messages.getString("Connection.22", new Object[]{savepoint.getSavepointName()}),
                                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, errno, getExceptionInterceptor());
                             }
                         }
@@ -2243,7 +2257,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
                         break;
 
                     default:
-                        throw SQLError.createSQLException(Messages.getString("Connection.25", new Object[] { level }),
+                        throw SQLError.createSQLException(Messages.getString("Connection.25", new Object[]{level}),
                                 MysqlErrorNumbers.SQL_STATE_DRIVER_NOT_CAPABLE, getExceptionInterceptor());
                 }
 
@@ -2581,7 +2595,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
                         }
                     }
                 } catch (ClassCastException ex) {
-                    throw SQLError.createSQLException(Messages.getString("Connection.ClientInfoNotImplemented", new Object[] { clientInfoProvider }),
+                    throw SQLError.createSQLException(Messages.getString("Connection.ClientInfoNotImplemented", new Object[]{clientInfoProvider}),
                             MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
                 }
 

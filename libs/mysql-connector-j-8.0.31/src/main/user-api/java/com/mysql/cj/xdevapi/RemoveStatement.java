@@ -35,9 +35,8 @@ package com.mysql.cj.xdevapi;
 public interface RemoveStatement extends Statement<RemoveStatement, Result> {
     /**
      * Add/replace the order specification for the removal.
-     * 
-     * @param sortFields
-     *            sort expression
+     *
+     * @param sortFields sort expression
      * @return {@link RemoveStatement}
      */
     @Deprecated
@@ -45,18 +44,16 @@ public interface RemoveStatement extends Statement<RemoveStatement, Result> {
 
     /**
      * Add/replace the order specification for the removal.
-     * 
-     * @param sortFields
-     *            sort expression
+     *
+     * @param sortFields sort expression
      * @return {@link RemoveStatement}
      */
     RemoveStatement sort(String... sortFields);
 
     /**
      * Add/replace the document limit for the removal.
-     * 
-     * @param numberOfRows
-     *            limit
+     *
+     * @param numberOfRows limit
      * @return {@link RemoveStatement}
      */
     RemoveStatement limit(long numberOfRows);

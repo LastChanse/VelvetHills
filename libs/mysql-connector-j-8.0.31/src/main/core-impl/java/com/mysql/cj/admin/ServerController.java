@@ -91,11 +91,10 @@ public class ServerController {
 
     /**
      * Creates a ServerController with the directory for the MySQL server.
-     * 
+     * <p>
      * The 'datadir' is set to the same directory.
-     * 
-     * @param baseDir
-     *            the base directory for the MySQL server.
+     *
+     * @param baseDir the base directory for the MySQL server.
      */
     public ServerController(String baseDir) {
         setBaseDir(baseDir);
@@ -104,20 +103,17 @@ public class ServerController {
     /**
      * Creates a server controller for the MySQL server with the given basedir
      * and datadir.
-     * 
-     * @param basedir
-     *            the basedir to use when starting MySQL.
-     * @param datadir
-     *            the datadir to use when starting MySQL.
+     *
+     * @param basedir the basedir to use when starting MySQL.
+     * @param datadir the datadir to use when starting MySQL.
      */
     public ServerController(String basedir, String datadir) {
     }
 
     /**
      * Sets the basedir to use when starting MySQL.
-     * 
-     * @param baseDir
-     *            the basedir to use when starting MySQL.
+     *
+     * @param baseDir the basedir to use when starting MySQL.
      */
     public void setBaseDir(String baseDir) {
         getServerProps().setProperty(BASEDIR_KEY, baseDir);
@@ -125,9 +121,8 @@ public class ServerController {
 
     /**
      * Sets the data to use when starting MySQL.
-     * 
-     * @param dataDir
-     *            the basedir to use when starting MySQL.
+     *
+     * @param dataDir the basedir to use when starting MySQL.
      */
     public void setDataDir(String dataDir) {
         getServerProps().setProperty(DATADIR_KEY, dataDir);
@@ -136,11 +131,10 @@ public class ServerController {
     /**
      * Starts the server, returning a java.lang.Process instance that represents
      * the mysql server.
-     * 
+     *
      * @return Process a java.lang.Process instance representing the mysql
-     *         server process.
-     * @throws IOException
-     *             if an error occurs while starting the mysql server.
+     * server process.
+     * @throws IOException if an error occurs while starting the mysql server.
      */
     public Process start() throws IOException {
         if (this.serverProcess != null) {
@@ -153,12 +147,9 @@ public class ServerController {
 
     /**
      * Stops the server (if started)
-     * 
-     * @param forceIfNecessary
-     *            use forceStop if mysqladmin doesn't shut the server down
-     * 
-     * @throws IOException
-     *             if an error occurs while stopping the server
+     *
+     * @param forceIfNecessary use forceStop if mysqladmin doesn't shut the server down
+     * @throws IOException if an error occurs while stopping the server
      */
     public void stop(boolean forceIfNecessary) throws IOException {
         if (this.serverProcess != null) {
@@ -211,7 +202,7 @@ public class ServerController {
     /**
      * Returns the list of properties that will be used to start/control the
      * server.
-     * 
+     *
      * @return Properties the list of properties.
      */
     public synchronized Properties getServerProps() {
@@ -225,7 +216,7 @@ public class ServerController {
     /**
      * Returns the full commandline used to start the mysql server, including
      * and arguments to be passed to the server process.
-     * 
+     *
      * @return String the commandline used to start the mysql server.
      */
     private String getCommandLine() {
@@ -237,7 +228,7 @@ public class ServerController {
 
     /**
      * Returns the fully-qualifed path to the 'mysqld' executable
-     * 
+     *
      * @return String the path to the server executable.
      */
     private String getFullExecutablePath() {
@@ -279,7 +270,7 @@ public class ServerController {
     /**
      * Builds the list of command-line arguments that will be passed to the
      * mysql server to be started.
-     * 
+     *
      * @return String the list of command-line arguments.
      */
     private String buildOptionalCommandLine() {
@@ -287,7 +278,7 @@ public class ServerController {
 
         if (this.serverProps != null) {
 
-            for (Iterator<Object> iter = this.serverProps.keySet().iterator(); iter.hasNext();) {
+            for (Iterator<Object> iter = this.serverProps.keySet().iterator(); iter.hasNext(); ) {
                 String key = (String) iter.next();
                 String value = this.serverProps.getProperty(key);
 
@@ -312,10 +303,8 @@ public class ServerController {
 
     /**
      * Returns true if the property does not belong as a command-line argument
-     * 
-     * @param propName
-     *            property name
-     * 
+     *
+     * @param propName property name
      * @return boolean if the property should not be a command-line argument.
      */
     private boolean isNonCommandLineArgument(String propName) {
@@ -324,7 +313,7 @@ public class ServerController {
 
     /**
      * Is this ServerController running on a Windows operating system?
-     * 
+     *
      * @return boolean if this ServerController is running on Windows
      */
     private boolean runningOnWindows() {

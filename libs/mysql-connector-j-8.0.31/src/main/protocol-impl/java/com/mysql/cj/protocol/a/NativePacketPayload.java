@@ -48,7 +48,7 @@ import com.mysql.cj.util.StringUtils;
  * packet's underlying buffer when sending commands with writeInteger(),
  * writeBytes(), etc. We can check the packet type with isEOFPacket(), etc
  * predicates.
- * 
+ * <p>
  * A position is maintained for reading/writing data. A payload length is
  * maintained allowing the PacketPayload to be decoupled from the size of
  * the underlying buffer.
@@ -60,7 +60,9 @@ public class NativePacketPayload implements Message {
     /* Type ids of response packets. */
     public static final short TYPE_ID_ERROR = 0xFF;
     public static final short TYPE_ID_EOF = 0xFE;
-    /** It has the same signature as EOF, but may be issued by server only during handshake phase **/
+    /**
+     * It has the same signature as EOF, but may be issued by server only during handshake phase
+     **/
     public static final short TYPE_ID_AUTH_SWITCH = 0xFE;
     public static final short TYPE_ID_LOCAL_INFILE = 0xFB;
     public static final short TYPE_ID_OK = 0;
@@ -113,9 +115,8 @@ public class NativePacketPayload implements Message {
     /**
      * Checks that underlying buffer has enough space to store additionalData bytes starting from current position.
      * If buffer size is smaller than required then it is re-allocated with bigger size.
-     * 
-     * @param additionalData
-     *            additional data size in bytes
+     *
+     * @param additionalData additional data size in bytes
      */
     public final void ensureCapacity(int additionalData) {
         if ((this.position + additionalData) > this.byteBuffer.length) {
@@ -146,9 +147,8 @@ public class NativePacketPayload implements Message {
 
     /**
      * Sets the array of bytes to use as a buffer to read from.
-     * 
-     * @param byteBufferToSet
-     *            the array of bytes to use as a buffer
+     *
+     * @param byteBufferToSet the array of bytes to use as a buffer
      */
     public void setByteBuffer(byte[] byteBufferToSet) {
         this.byteBuffer = byteBufferToSet;
@@ -157,7 +157,7 @@ public class NativePacketPayload implements Message {
     /**
      * Get the actual length of payload the buffer contains.
      * It can be smaller than underlying buffer size because it can be reused after a big packet.
-     * 
+     *
      * @return payload length
      */
     public int getPayloadLength() {
@@ -167,9 +167,8 @@ public class NativePacketPayload implements Message {
     /**
      * Set the actual length of payload written to buffer.
      * It can be smaller or equal to underlying buffer size.
-     * 
-     * @param bufLengthToSet
-     *            length
+     *
+     * @param bufLengthToSet length
      */
     public void setPayloadLength(int bufLengthToSet) {
         if (bufLengthToSet > this.byteBuffer.length) {
@@ -195,9 +194,8 @@ public class NativePacketPayload implements Message {
 
     /**
      * Set the current position to write to/ read from
-     * 
-     * @param positionToSet
-     *            the position (0-based index)
+     *
+     * @param positionToSet the position (0-based index)
      */
     public void setPosition(int positionToSet) {
         this.position = positionToSet;
@@ -205,7 +203,7 @@ public class NativePacketPayload implements Message {
 
     /**
      * Is it a ERROR packet.
-     * 
+     *
      * @return true if it is a ERROR packet
      */
     public boolean isErrorPacket() {
@@ -215,7 +213,7 @@ public class NativePacketPayload implements Message {
     /**
      * Is it a EOF packet.
      * See https://dev.mysql.com/doc/dev/mysql-server/latest/page_protocol_basic_eof_packet.html
-     * 
+     *
      * @return true if it is a EOF packet
      */
     public final boolean isEOFPacket() {
@@ -225,7 +223,7 @@ public class NativePacketPayload implements Message {
     /**
      * Is it a Protocol::AuthSwitchRequest packet.
      * See https://dev.mysql.com/doc/dev/mysql-server/latest/page_protocol_connection_phase_packets_protocol_auth_switch_request.html
-     * 
+     *
      * @return true if it is a Protocol::AuthSwitchRequest packet
      */
     public final boolean isAuthMethodSwitchRequestPacket() {
@@ -235,7 +233,7 @@ public class NativePacketPayload implements Message {
     /**
      * Is it an OK packet.
      * See https://dev.mysql.com/doc/dev/mysql-server/latest/page_protocol_basic_ok_packet.html
-     * 
+     *
      * @return true if it is an OK packet
      */
     public final boolean isOKPacket() {
@@ -245,7 +243,7 @@ public class NativePacketPayload implements Message {
     /**
      * Is it an OK packet for ResultSet. Unlike usual 0x00 signature it has 0xfe signature.
      * See https://dev.mysql.com/doc/dev/mysql-server/latest/page_protocol_basic_ok_packet.html
-     * 
+     *
      * @return true if it is an OK packet for ResultSet
      */
     public final boolean isResultSetOKPacket() {
@@ -255,7 +253,7 @@ public class NativePacketPayload implements Message {
     /**
      * Is it a Protocol::AuthMoreData packet.
      * See https://dev.mysql.com/doc/dev/mysql-server/latest/page_protocol_connection_phase_packets_protocol_auth_more_data.html
-     * 
+     *
      * @return true if it is a Protocol::AuthMoreData packet
      */
     public final boolean isAuthMoreDataPacket() {
@@ -265,7 +263,7 @@ public class NativePacketPayload implements Message {
     /**
      * Is it a Protocol::AuthNextFactor packet.
      * See https://dev.mysql.com/doc/dev/mysql-server/latest/page_protocol_connection_phase_packets_protocol_auth_next_factor_request.html
-     * 
+     *
      * @return true if it is a Protocol::AuthNextFactor packet
      */
     public final boolean isAuthNextFactorPacket() {
@@ -274,11 +272,9 @@ public class NativePacketPayload implements Message {
 
     /**
      * Write data according to provided Integer type.
-     * 
-     * @param type
-     *            {@link IntegerDataType}
-     * @param l
-     *            value
+     *
+     * @param type {@link IntegerDataType}
+     * @param l    value
      */
     public void writeInteger(IntegerDataType type, long l) {
         byte[] b;
@@ -364,9 +360,8 @@ public class NativePacketPayload implements Message {
 
     /**
      * Read data according to provided Integer type.
-     * 
-     * @param type
-     *            {@link IntegerDataType}
+     *
+     * @param type {@link IntegerDataType}
      * @return long
      */
     public final long readInteger(IntegerDataType type) {
@@ -416,11 +411,9 @@ public class NativePacketPayload implements Message {
 
     /**
      * Write all bytes from given byte array into internal buffer starting with current buffer position.
-     * 
-     * @param type
-     *            on-wire data type
-     * @param b
-     *            from byte array
+     *
+     * @param type on-wire data type
+     * @param b    from byte array
      */
     public final void writeBytes(StringSelfDataType type, byte[] b) {
         writeBytes(type, b, 0, b.length);
@@ -428,11 +421,9 @@ public class NativePacketPayload implements Message {
 
     /**
      * Write all bytes from given byte array into internal buffer starting with current buffer position.
-     * 
-     * @param type
-     *            on-wire data type
-     * @param b
-     *            from byte array
+     *
+     * @param type on-wire data type
+     * @param b    from byte array
      */
     public final void writeBytes(StringLengthDataType type, byte[] b) {
         writeBytes(type, b, 0, b.length);
@@ -441,15 +432,11 @@ public class NativePacketPayload implements Message {
     /**
      * Write len bytes from given byte array into internal buffer.
      * Read starts from given offset, write starts with current buffer position.
-     * 
-     * @param type
-     *            on-wire data type
-     * @param b
-     *            from byte array
-     * @param offset
-     *            starting index of b
-     * @param len
-     *            number of bytes to be written
+     *
+     * @param type   on-wire data type
+     * @param b      from byte array
+     * @param offset starting index of b
+     * @param len    number of bytes to be written
      */
     public void writeBytes(StringSelfDataType type, byte[] b, int offset, int len) {
         switch (type) {
@@ -476,15 +463,11 @@ public class NativePacketPayload implements Message {
     /**
      * Write len bytes from given byte array into internal buffer.
      * Read starts from given offset, write starts with current buffer position.
-     * 
-     * @param type
-     *            on-wire data type
-     * @param b
-     *            from byte array
-     * @param offset
-     *            starting index of b
-     * @param len
-     *            number of bytes to be written
+     *
+     * @param type   on-wire data type
+     * @param b      from byte array
+     * @param offset starting index of b
+     * @param len    number of bytes to be written
      */
     public void writeBytes(StringLengthDataType type, byte[] b, int offset, int len) {
         switch (type) {
@@ -502,9 +485,8 @@ public class NativePacketPayload implements Message {
     /**
      * Read bytes from internal buffer starting from current position into the new byte array.
      * The length of data to read depends on {@link StringSelfDataType}.
-     * 
-     * @param type
-     *            {@link StringSelfDataType}
+     *
+     * @param type {@link StringSelfDataType}
      * @return bytes
      */
     public byte[] readBytes(StringSelfDataType type) {
@@ -531,9 +513,8 @@ public class NativePacketPayload implements Message {
 
     /**
      * Set position to next value in internal buffer skipping the current value according to {@link StringSelfDataType}.
-     * 
-     * @param type
-     *            {@link StringSelfDataType}
+     *
+     * @param type {@link StringSelfDataType}
      */
     public void skipBytes(StringSelfDataType type) {
         switch (type) {
@@ -559,11 +540,9 @@ public class NativePacketPayload implements Message {
 
     /**
      * Read len bytes from internal buffer starting from current position into the new byte array.
-     * 
-     * @param type
-     *            {@link StringLengthDataType}
-     * @param len
-     *            length
+     *
+     * @param type {@link StringLengthDataType}
+     * @param len  length
      * @return bytes
      */
     public byte[] readBytes(StringLengthDataType type, int len) {
@@ -582,11 +561,9 @@ public class NativePacketPayload implements Message {
     /**
      * Read bytes from internal buffer starting from current position decoding them into String using the specified character encoding.
      * The length of data to read depends on {@link StringSelfDataType}.
-     * 
-     * @param type
-     *            {@link StringSelfDataType}
-     * @param encoding
-     *            if null then platform default encoding is used
+     *
+     * @param type     {@link StringSelfDataType}
+     * @param encoding if null then platform default encoding is used
      * @return string
      */
     public String readString(StringSelfDataType type, String encoding) {
@@ -614,13 +591,10 @@ public class NativePacketPayload implements Message {
 
     /**
      * Read len bytes from internal buffer starting from current position decoding them into String using the specified character encoding.
-     * 
-     * @param type
-     *            {@link StringLengthDataType}
-     * @param encoding
-     *            if null then platform default encoding is used
-     * @param len
-     *            length
+     *
+     * @param type     {@link StringLengthDataType}
+     * @param encoding if null then platform default encoding is used
+     * @param len      length
      * @return string
      */
     public String readString(StringLengthDataType type, String encoding, int len) {
@@ -677,11 +651,9 @@ public class NativePacketPayload implements Message {
 
     /**
      * Tag current position with the given key for future reference.
-     * 
-     * @param key
-     *            the position tag key name.
-     * @return
-     *         the previous value of this tag, if there was one, or -1.
+     *
+     * @param key the position tag key name.
+     * @return the previous value of this tag, if there was one, or -1.
      */
     public int setTag(String key) {
         Integer pos = this.tags.put(key, getPosition());
@@ -690,11 +662,9 @@ public class NativePacketPayload implements Message {
 
     /**
      * Gets the value of the position tag for the given key.
-     * 
-     * @param key
-     *            the position tag key name.
-     * @return
-     *         the position value of this tag, if there was one, or -1.
+     *
+     * @param key the position tag key name.
+     * @return the position value of this tag, if there was one, or -1.
      */
     public int getTag(String key) {
         Integer pos = this.tags.get(key);

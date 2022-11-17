@@ -39,21 +39,21 @@ import com.mysql.cj.QueryResult;
 public interface Result extends QueryResult {
     /**
      * Get the count of affected items from manipulation statements. This method forces internal buffering of the result.
-     * 
+     *
      * @return count
      */
     long getAffectedItemsCount();
 
     /**
      * Get the number of warnings generated during statement execution. This method forces internal buffering of the result.
-     * 
+     *
      * @return number of warnings
      */
     int getWarningsCount();
 
     /**
      * Get warnings generated during statement execution. This method forces internal buffering of the result.
-     * 
+     *
      * @return iterator over warnings
      */
     Iterator<Warning> getWarnings();

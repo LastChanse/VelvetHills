@@ -41,9 +41,8 @@ public class SqlUpdateResult extends UpdateResult implements SqlResult {
 
     /**
      * Constructor.
-     * 
-     * @param ok
-     *            {@link StatementExecuteOk} instance.
+     *
+     * @param ok {@link StatementExecuteOk} instance.
      */
     public SqlUpdateResult(StatementExecuteOk ok) {
         super(ok);

@@ -40,13 +40,10 @@ public interface AuthenticationProvider<M extends Message> {
 
     /**
      * Re-authenticates as the given user and password
-     * 
-     * @param username
-     *            user name
-     * @param password
-     *            password
-     * @param database
-     *            db name
+     *
+     * @param username user name
+     * @param password password
+     * @param database db name
      */
     void changeUser(String username, String password, String database);
 }

@@ -112,6 +112,6 @@ public class BooleanValueFactory extends DefaultValueFactory<Boolean> {
             }
             return createFromBigInteger(MysqlTextValueDecoder.getBigInteger(newBytes, 0, newBytes.length));
         }
-        throw new DataConversionException(Messages.getString("ResultSet.UnableToInterpretString", new Object[] { s }));
+        throw new DataConversionException(Messages.getString("ResultSet.UnableToInterpretString", new Object[]{s}));
     }
 }

@@ -55,9 +55,8 @@ import com.mysql.cj.util.Util;
  * input stream only on {@link #next()} call. Consumed rows are not cached thus
  * we only stream result sets when they are forward-only, read-only, and the
  * fetch size has been set to Integer.MIN_VALUE (rows are read one by one).
- * 
- * @param <T>
- *            ProtocolEntity type
+ *
+ * @param <T> ProtocolEntity type
  */
 public class ResultsetRowsStreaming<T extends ProtocolEntity> extends AbstractResultsetRows implements ResultsetRows {
 
@@ -81,18 +80,14 @@ public class ResultsetRowsStreaming<T extends ProtocolEntity> extends AbstractRe
 
     /**
      * Creates a new RowDataDynamic object.
-     * 
-     * @param io
-     *            the connection to MySQL that this data is coming from
-     * @param columnDefinition
-     *            the metadata that describe this data
-     * @param isBinaryEncoded
-     *            is this data in native format?
-     * @param resultSetFactory
-     *            {@link ProtocolEntityFactory}
+     *
+     * @param io               the connection to MySQL that this data is coming from
+     * @param columnDefinition the metadata that describe this data
+     * @param isBinaryEncoded  is this data in native format?
+     * @param resultSetFactory {@link ProtocolEntityFactory}
      */
     public ResultsetRowsStreaming(NativeProtocol io, ColumnDefinition columnDefinition, boolean isBinaryEncoded,
-            ProtocolEntityFactory<T, NativePacketPayload> resultSetFactory) {
+                                  ProtocolEntityFactory<T, NativePacketPayload> resultSetFactory) {
         this.protocol = io;
         this.isBinaryEncoded = isBinaryEncoded;
         this.metadata = columnDefinition;
@@ -140,7 +135,7 @@ public class ResultsetRowsStreaming<T extends ProtocolEntity> extends AbstractRe
                 if (hadMore) {
                     this.owner.getSession().getProfilerEventHandler().processEvent(ProfilerEvent.TYPE_USAGE, this.owner.getSession(),
                             this.owner.getOwningQuery(), null, 0, new Throwable(),
-                            Messages.getString("RowDataDynamic.1", new String[] { String.valueOf(howMuchMore), this.owner.getPointOfOrigin() }));
+                            Messages.getString("RowDataDynamic.1", new String[]{String.valueOf(howMuchMore), this.owner.getPointOfOrigin()}));
                 }
             }
         }
@@ -237,7 +232,7 @@ public class ResultsetRowsStreaming<T extends ProtocolEntity> extends AbstractRe
             throw sqlEx;
         } catch (Exception ex) {
             CJException cjEx = ExceptionFactory.createException(
-                    Messages.getString("RowDataDynamic.2", new String[] { ex.getClass().getName(), ex.getMessage(), Util.stackTraceToString(ex) }), ex,
+                    Messages.getString("RowDataDynamic.2", new String[]{ex.getClass().getName(), ex.getMessage(), Util.stackTraceToString(ex)}), ex,
                     this.exceptionInterceptor);
 
             throw cjEx;

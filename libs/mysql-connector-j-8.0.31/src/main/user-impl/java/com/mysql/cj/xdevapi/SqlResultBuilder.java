@@ -91,7 +91,7 @@ public class SqlResultBuilder implements ResultBuilder<SqlResult> {
         }
 
         if (this.isRowResult && this.metadata == null) {
-            this.metadata = new DefaultColumnDefinition(this.fields.toArray(new Field[] {}));
+            this.metadata = new DefaultColumnDefinition(this.fields.toArray(new Field[]{}));
         }
 
         if (entity instanceof Row) {

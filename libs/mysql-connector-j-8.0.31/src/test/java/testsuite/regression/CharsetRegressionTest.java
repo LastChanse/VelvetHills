@@ -79,7 +79,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#7607 - MS932, SHIFT_JIS and Windows_31J not recog. as aliases for sjis.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -203,7 +203,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#9206, can not use 'UTF-8' for characterSetResults configuration property.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -217,7 +217,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#10496 - SQLException is thrown when using property "characterSetResults"
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -237,7 +237,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#12752 - Cp1251 incorrectly mapped to win1251 for servers newer than 4.0.x.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -251,7 +251,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#15544, no "dos" character set in MySQL > 4.1.0
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -314,7 +314,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#64205 (13702427), Connected through Connector/J 5.1 to MySQL 5.5, the error message is garbled.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -454,7 +454,7 @@ public class CharsetRegressionTest extends BaseTestCase {
                     this.connection.createStatement()
                             .executeQuery("SELECT * FROM `"
                                     + (this.connection.getPropertySet().<DatabaseTerm>getEnumProperty(PropertyKey.databaseTerm)
-                                            .getValue() == DatabaseTerm.SCHEMA ? this.connection.getSchema() : this.connection.getCatalog())
+                                    .getValue() == DatabaseTerm.SCHEMA ? this.connection.getSchema() : this.connection.getCatalog())
                                     + "`.`\u307b\u3052\u307b\u3052`");
                 } catch (Exception e) {
                     throw ExceptionFactory.createException(e.getMessage(), e);
@@ -466,7 +466,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Bug #41730 - SQL Injection when using U+00A5 and SJIS/Windows-31J
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -507,7 +507,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests character conversion bug.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -536,7 +536,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests for regression of encoding forced by user, reported by Jive Software
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -550,7 +550,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#879
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -559,11 +559,11 @@ public class CharsetRegressionTest extends BaseTestCase {
 
         //byte[] testStringAsBytes = testString.getBytes("SJIS");
 
-        byte[] origByteStream = new byte[] { (byte) 0x95, (byte) 0x5c, (byte) 0x8e, (byte) 0x96, (byte) 0x5c, (byte) 0x62, (byte) 0x5c };
+        byte[] origByteStream = new byte[]{(byte) 0x95, (byte) 0x5c, (byte) 0x8e, (byte) 0x96, (byte) 0x5c, (byte) 0x62, (byte) 0x5c};
 
         //String origString = "\u955c\u8e96\u5c62\\";
 
-        origByteStream = new byte[] { (byte) 0x8d, (byte) 0xb2, (byte) 0x93, (byte) 0x91, (byte) 0x81, (byte) 0x40, (byte) 0x8c, (byte) 0x5c };
+        origByteStream = new byte[]{(byte) 0x8d, (byte) 0xb2, (byte) 0x93, (byte) 0x91, (byte) 0x81, (byte) 0x40, (byte) 0x8c, (byte) 0x5c};
 
         testString = new String(origByteStream, "SJIS");
 
@@ -628,7 +628,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#24840 - character encoding of "US-ASCII" doesn't map correctly for 4.1 or newer
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -643,10 +643,10 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#73663 (19479242), utf8mb4 does not work for connector/j >=5.1.13
-     * 
+     * <p>
      * This test is only run when character_set_server=utf8mb4 and collation-server set to one of utf8mb4 collations (it's better to test two configurations:
      * with default utf8mb4_general_ci and one of non-default, say utf8mb4_bin)
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -691,7 +691,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#72630 (18758686), NullPointerException during handshake in some situations
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -738,7 +738,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#25504578, CONNECT FAILS WHEN CONNECTIONCOLLATION=ISO-8859-13
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -753,7 +753,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#81196 (23227334), CONNECTOR/J NOT FOLLOWING DATABASE CHARACTER SET.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -818,7 +818,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#100606 (31818423), UNECESARY CALL TO "SET NAMES 'UTF8' COLLATE 'UTF8_GENERAL_CI'".
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -847,14 +847,14 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#25554464, CONNECT FAILS WITH NPE WHEN THE SERVER STARTED WITH CUSTOM COLLATION.
-     * 
+     * <p>
      * This test requires a special server configuration with:
      * <ul>
      * <li>character-set-server = custom
      * <li>collation-server = custom_bin
      * </ul>
      * where 'custom_bin' is not a primary collation for 'custom' character set and has an index == 1024 on MySQL 8.0+ or index == 253 for older servers.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -901,14 +901,14 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#25554464, CONNECT FAILS WITH NPE WHEN THE SERVER STARTED WITH CUSTOM COLLATION.
-     * 
+     * <p>
      * This test requires a special server configuration with:
      * <ul>
      * <li>character-set-server = custom
      * <li>collation-server = custom_general_ci
      * </ul>
      * where 'custom_general_ci' is a primary collation for 'custom' character set and has an index == 1025 on MySQL 8.0+ or index == 254 for older servers.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1031,7 +1031,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#71038, Add an option for custom collations detection
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1073,7 +1073,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#91317 (28207422), Wrong defaults on collation mappings.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1153,12 +1153,12 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Test for Bug#72712 - SET NAMES issued unnecessarily.
-     * 
+     * <p>
      * Using a statement interceptor, ensure that SET NAMES is not called if the encoding requested by the client application matches that of
      * character_set_server.
-     * 
+     * <p>
      * Also test that character_set_results is not set unnecessarily.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1194,7 +1194,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#95139 (29807572), CACHESERVERCONFIGURATION APPEARS TO THWART CHARSET DETECTION.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1316,7 +1316,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#34090350, Update mappings for utf8mb3 and utf8mb4 collations.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1325,7 +1325,7 @@ public class CharsetRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
 
-        for (String coll : new String[] { "utf8_unicode_ci", "utf8mb3_unicode_ci", "utf8mb4_unicode_ci" }) {
+        for (String coll : new String[]{"utf8_unicode_ci", "utf8mb3_unicode_ci", "utf8mb4_unicode_ci"}) {
             props.setProperty(PropertyKey.connectionCollation.getKeyName(), coll);
 
             try (Connection testConn = getConnectionWithProps(props)) {

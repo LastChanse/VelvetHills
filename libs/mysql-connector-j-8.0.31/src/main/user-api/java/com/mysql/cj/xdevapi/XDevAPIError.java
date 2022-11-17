@@ -39,9 +39,8 @@ public class XDevAPIError extends CJException {
 
     /**
      * Create new {@link XDevAPIError} instance.
-     * 
-     * @param message
-     *            error message
+     *
+     * @param message error message
      */
     public XDevAPIError(String message) {
         super(message);
@@ -49,11 +48,9 @@ public class XDevAPIError extends CJException {
 
     /**
      * Create new {@link XDevAPIError} instance.
-     * 
-     * @param message
-     *            error message
-     * @param t
-     *            cause of this XDevAPIError
+     *
+     * @param message error message
+     * @param t       cause of this XDevAPIError
      */
     public XDevAPIError(String message, Throwable t) {
         super(message, t);

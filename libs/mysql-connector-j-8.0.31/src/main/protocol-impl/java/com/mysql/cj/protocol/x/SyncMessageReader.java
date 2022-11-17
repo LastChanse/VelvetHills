@@ -58,18 +58,26 @@ import com.mysql.cj.x.protobuf.MysqlxNotice.Frame;
  * Synchronous-only implementation of {@link MessageReader}. This implementation wraps a {@link java.io.InputStream}.
  */
 public class SyncMessageReader implements MessageReader<XMessageHeader, XMessage> {
-    /** Stream as a source of messages. */
+    /**
+     * Stream as a source of messages.
+     */
     private FullReadInputStream inputStream;
 
     LinkedList<XMessageHeader> headersQueue = new LinkedList<>();
     LinkedList<GeneratedMessageV3> messagesQueue = new LinkedList<>();
 
-    /** Queue of <code>MessageListener</code>s waiting to process messages. */
+    /**
+     * Queue of <code>MessageListener</code>s waiting to process messages.
+     */
     BlockingQueue<MessageListener<XMessage>> messageListenerQueue = new LinkedBlockingQueue<>();
 
-    /** Lock to protect the pending message. */
+    /**
+     * Lock to protect the pending message.
+     */
     Object dispatchingThreadMonitor = new Object();
-    /** Lock to protect async reads from sync ones. */
+    /**
+     * Lock to protect async reads from sync ones.
+     */
     Object waitingSyncOperationMonitor = new Object();
 
     Thread dispatchingThread = null;

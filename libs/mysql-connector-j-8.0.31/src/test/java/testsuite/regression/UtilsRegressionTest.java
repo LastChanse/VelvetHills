@@ -61,9 +61,8 @@ import testsuite.BaseTestCase;
 public class UtilsRegressionTest extends BaseTestCase {
     /**
      * Tests all TimeZone mappings supported.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     @Test
     public void testTimeZones() throws Exception {
@@ -71,7 +70,7 @@ public class UtilsRegressionTest extends BaseTestCase {
          * Time Zones can be identified by many different ways according to Unicode CLDR database. The following map contain the correspondence between
          * alternative Time Zone designations to Standard Time Zones ID (IANA/Olson database). This data was generated from IANA Time Zone database v. 2015f
          * (http://www.iana.org/time-zones) and Unicode CLDR v.28 (http://cldr.unicode.org/)
-         * 
+         *
          * Both the file com/mysql/cj/core/TimeZoneMapping.properties and the following data are generated from a MySQL Connector/J internal utility.
          */
         Map<String, String> tzMap = new HashMap<>();
@@ -572,7 +571,7 @@ public class UtilsRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#70436 - Incorrect mapping of windows timezone to Olson timezone.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -583,7 +582,7 @@ public class UtilsRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#82115 - Some exceptions are intercepted twice or fail to set the init cause.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -650,7 +649,7 @@ public class UtilsRegressionTest extends BaseTestCase {
 
     /**
      * Test fix for Bug#20913114, STRINGUTILS.WILDCOMPARE() FAILS WITH STACKOVERFLOWERROR ERROR.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -674,7 +673,7 @@ public class UtilsRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#104170 (33064455), CONTRIBUTION: CLIENTPREPAREDSTMT: LEAVE CALENDAR UNTOUCHED.
-     * 
+     *
      * @throws Exception
      */
     @Test

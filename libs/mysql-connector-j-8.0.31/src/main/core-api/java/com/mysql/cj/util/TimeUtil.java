@@ -142,12 +142,9 @@ public class TimeUtil {
 
     /**
      * Returns the 'official' Java timezone name for the given timezone
-     * 
-     * @param timezoneStr
-     *            the 'common' timezone name
-     * @param exceptionInterceptor
-     *            exception interceptor
-     * 
+     *
+     * @param timezoneStr          the 'common' timezone name
+     * @param exceptionInterceptor exception interceptor
      * @return the Java timezone name for the given timezone
      */
     public static String getCanonicalTimeZone(String timezoneStr, ExceptionInterceptor exceptionInterceptor) {
@@ -176,20 +173,17 @@ public class TimeUtil {
         }
 
         throw ExceptionFactory.createException(InvalidConnectionAttributeException.class,
-                Messages.getString("TimeUtil.UnrecognizedTimeZoneId", new Object[] { timezoneStr }), exceptionInterceptor);
+                Messages.getString("TimeUtil.UnrecognizedTimeZoneId", new Object[]{timezoneStr}), exceptionInterceptor);
     }
 
     /**
      * Return a new Timestamp object which value is adjusted according to known DATE, DATETIME or TIMESTAMP field precision.
-     * 
-     * @param ts
-     *            an original Timestamp object, not modified by this method
-     * @param fsp
-     *            value in the range from 0 to 6 specifying fractional seconds precision
-     * @param serverRoundFracSecs
-     *            Flag indicating whether rounding or truncation occurs on server when inserting a TIME, DATE, or TIMESTAMP value with a fractional seconds part
-     *            into a column having the same type but fewer fractional digits: true means rounding, false means truncation. The proper value should be
-     *            detected by analyzing sql_mode server variable for TIME_TRUNCATE_FRACTIONAL presence.
+     *
+     * @param ts                  an original Timestamp object, not modified by this method
+     * @param fsp                 value in the range from 0 to 6 specifying fractional seconds precision
+     * @param serverRoundFracSecs Flag indicating whether rounding or truncation occurs on server when inserting a TIME, DATE, or TIMESTAMP value with a fractional seconds part
+     *                            into a column having the same type but fewer fractional digits: true means rounding, false means truncation. The proper value should be
+     *                            detected by analyzing sql_mode server variable for TIME_TRUNCATE_FRACTIONAL presence.
      * @return A new Timestamp object cloned from the original one and then rounded or truncated according to required fsp value
      */
     public static Timestamp adjustNanosPrecision(Timestamp ts, int fsp, boolean serverRoundFracSecs) {
@@ -209,15 +203,12 @@ public class TimeUtil {
 
     /**
      * Return a new LocalDateTime object which value is adjusted according to known DATE, DATETIME or TIMESTAMP field precision.
-     * 
-     * @param x
-     *            an original LocalDateTime object, not modified by this method
-     * @param fsp
-     *            value in the range from 0 to 6 specifying fractional seconds precision
-     * @param serverRoundFracSecs
-     *            Flag indicating whether rounding or truncation occurs on server when inserting a TIME, DATE, or TIMESTAMP value with a fractional seconds part
-     *            into a column having the same type but fewer fractional digits: true means rounding, false means truncation. The proper value should be
-     *            detected by analyzing sql_mode server variable for TIME_TRUNCATE_FRACTIONAL presence.
+     *
+     * @param x                   an original LocalDateTime object, not modified by this method
+     * @param fsp                 value in the range from 0 to 6 specifying fractional seconds precision
+     * @param serverRoundFracSecs Flag indicating whether rounding or truncation occurs on server when inserting a TIME, DATE, or TIMESTAMP value with a fractional seconds part
+     *                            into a column having the same type but fewer fractional digits: true means rounding, false means truncation. The proper value should be
+     *                            detected by analyzing sql_mode server variable for TIME_TRUNCATE_FRACTIONAL presence.
      * @return A new LocalDateTime object cloned from the original one and then rounded or truncated according to required fsp value
      */
     public static LocalDateTime adjustNanosPrecision(LocalDateTime x, int fsp, boolean serverRoundFracSecs) {
@@ -268,11 +259,9 @@ public class TimeUtil {
     /**
      * Return a string representation of a fractional seconds part. This method assumes that all Timestamp adjustments are already done before,
      * thus no rounding is needed, only a proper "0" padding to be done.
-     * 
-     * @param nanos
-     *            fractional seconds value
-     * @param fsp
-     *            required fractional part length
+     *
+     * @param nanos fractional seconds value
+     * @param fsp   required fractional part length
      * @return fractional seconds part as a string
      */
     public static String formatNanos(int nanos, int fsp) {
@@ -282,13 +271,10 @@ public class TimeUtil {
     /**
      * Return a string representation of a fractional seconds part. This method assumes that all Timestamp adjustments are already done before,
      * thus no rounding is needed, only a proper "0" padding to be done.
-     * 
-     * @param nanos
-     *            fractional seconds value
-     * @param fsp
-     *            required fractional part length
-     * @param truncateTrailingZeros
-     *            whether to remove trailing zero characters in a fractional part after formatting
+     *
+     * @param nanos                 fractional seconds value
+     * @param fsp                   required fractional part length
+     * @param truncateTrailingZeros whether to remove trailing zero characters in a fractional part after formatting
      * @return fractional seconds part as a string
      */
     public static String formatNanos(int nanos, int fsp, boolean truncateTrailingZeros) {
@@ -326,9 +312,8 @@ public class TimeUtil {
 
     /**
      * Loads a properties file that contains all kinds of time zone mappings.
-     * 
-     * @param exceptionInterceptor
-     *            exception interceptor
+     *
+     * @param exceptionInterceptor exception interceptor
      */
     private static void loadTimeZoneMappings(ExceptionInterceptor exceptionInterceptor) {
         timeZoneMappings = new Properties();
@@ -365,13 +350,10 @@ public class TimeUtil {
      * <p>
      * Note: The SimpleDateFormat object returned by this method contains a default Calendar with an altered TimeZone. It's safe to cache it between this method
      * calls because the Calendar object itself is not altered.
-     * 
-     * @param cachedSimpleDateFormat
-     *            existing SimpleDateFormat to use instead of creating a new one
-     * @param pattern
-     *            format pattern
-     * @param tz
-     *            {@link TimeZone} object replacing the default one
+     *
+     * @param cachedSimpleDateFormat existing SimpleDateFormat to use instead of creating a new one
+     * @param pattern                format pattern
+     * @param tz                     {@link TimeZone} object replacing the default one
      * @return {@link SimpleDateFormat} object
      */
     public static SimpleDateFormat getSimpleDateFormat(SimpleDateFormat cachedSimpleDateFormat, String pattern, TimeZone tz) {
@@ -388,11 +370,9 @@ public class TimeUtil {
      * <p>
      * Note: Don't cache the SimpleDateFormat object returned by this method. Other methods could rely on assumption that the cached SimpleDateFormat has a
      * default Calendar and that it is safe to change only it's time zone (see {@link #getSimpleDateFormat(SimpleDateFormat, String, TimeZone)}.
-     * 
-     * @param pattern
-     *            format pattern
-     * @param cal
-     *            {@link Calendar} object which clone is replacing the default Calendar
+     *
+     * @param pattern format pattern
+     * @param cal     {@link Calendar} object which clone is replacing the default Calendar
      * @return {@link SimpleDateFormat} object
      */
     public static SimpleDateFormat getSimpleDateFormat(String pattern, Calendar cal) {
@@ -442,7 +422,7 @@ public class TimeUtil {
         } else if (DURATION_LITERAL_WITH_DAYS.matcher(s).matches() || DURATION_LITERAL_NO_DAYS.matcher(s).matches()) {
             s = s.startsWith("-") ? s.replace("-", "-P") : "P" + s;
             s = s.contains(" ") ? s.replace(" ", "DT") : s.replace("P", "PT");
-            String[] ch = new String[] { "H", "M", "S" };
+            String[] ch = new String[]{"H", "M", "S"};
             int pos = 0;
             while (s.contains(":")) {
                 s = s.replaceFirst(":", ch[pos++]);

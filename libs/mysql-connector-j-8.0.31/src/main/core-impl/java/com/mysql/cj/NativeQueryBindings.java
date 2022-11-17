@@ -69,17 +69,23 @@ public class NativeQueryBindings implements QueryBindings {
 
     private Session session;
 
-    /** Bind values for individual fields */
+    /**
+     * Bind values for individual fields
+     */
     private BindValue[] bindValues;
 
     private int numberOfExecutions = 0;
 
-    /** Is this query a LOAD DATA query? */
+    /**
+     * Is this query a LOAD DATA query?
+     */
     private boolean isLoadDataQuery = false;
 
     private ColumnDefinition columnDefinition;
 
-    /** Do we need to send/resend types to the server? */
+    /**
+     * Do we need to send/resend types to the server?
+     */
     private AtomicBoolean sendTypesToServer = new AtomicBoolean(false); // specific to ServerPreparedQuery
 
     private Function<Session, BindValue> bindValueConstructor;
@@ -180,11 +186,9 @@ public class NativeQueryBindings implements QueryBindings {
     /**
      * Returns the structure representing the value that (can be)/(is)
      * bound at the given parameter index.
-     * 
-     * @param parameterIndex
-     *            0-based
-     * @param forLongData
-     *            is this for a stream?
+     *
+     * @param parameterIndex 0-based
+     * @param forLongData    is this for a stream?
      * @return BindValue
      */
     public BindValue getBinding(int parameterIndex, boolean forLongData) {
@@ -206,6 +210,7 @@ public class NativeQueryBindings implements QueryBindings {
     }
 
     static Map<Class<?>, MysqlType> DEFAULT_MYSQL_TYPES = new HashMap<>();
+
     static {
         DEFAULT_MYSQL_TYPES.put(BigDecimal.class, MysqlType.DECIMAL);
         DEFAULT_MYSQL_TYPES.put(BigInteger.class, MysqlType.BIGINT);
@@ -347,7 +352,7 @@ public class NativeQueryBindings implements QueryBindings {
     public void setDouble(int parameterIndex, double x) {
         if (!this.session.getPropertySet().getBooleanProperty(PropertyKey.allowNanAndInf).getValue()
                 && (x == Double.POSITIVE_INFINITY || x == Double.NEGATIVE_INFINITY || Double.isNaN(x))) {
-            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("PreparedStatement.64", new Object[] { x }),
+            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("PreparedStatement.64", new Object[]{x}),
                     this.session.getExceptionInterceptor());
         }
         getBinding(parameterIndex, false).setBinding(x, MysqlType.DOUBLE, this.numberOfExecutions, this.sendTypesToServer);
@@ -482,20 +487,16 @@ public class NativeQueryBindings implements QueryBindings {
 
     /**
      * Set the value of a parameter using an object; use the java.lang equivalent objects for integral values.
-     * 
-     * <P>
+     *
+     * <p>
      * The given Java object will be converted to the targetMysqlType before being sent to the database.
-     * 
-     * @param parameterIndex
-     *            the first parameter is 1...
-     * @param parameterObj
-     *            the object containing the input parameter value
-     * @param targetMysqlType
-     *            The MysqlType to be send to the database
-     * @param scaleOrLength
-     *            For Types.DECIMAL or Types.NUMERIC types
-     *            this is the number of digits after the decimal. For all other
-     *            types this value will be ignored.
+     *
+     * @param parameterIndex  the first parameter is 1...
+     * @param parameterObj    the object containing the input parameter value
+     * @param targetMysqlType The MysqlType to be send to the database
+     * @param scaleOrLength   For Types.DECIMAL or Types.NUMERIC types
+     *                        this is the number of digits after the decimal. For all other
+     *                        types this value will be ignored.
      */
     public void setObject(int parameterIndex, Object parameterObj, MysqlType targetMysqlType, int scaleOrLength) {
         if (parameterObj == null) {
@@ -528,11 +529,9 @@ public class NativeQueryBindings implements QueryBindings {
 
     /**
      * Sets the value for the placeholder as a serialized Java object (used by various forms of setObject()
-     * 
-     * @param parameterIndex
-     *            parameter index
-     * @param parameterObj
-     *            value
+     *
+     * @param parameterIndex parameter index
+     * @param parameterObj   value
      */
     protected final void setSerializableObject(int parameterIndex, Object parameterObj) {
         try {

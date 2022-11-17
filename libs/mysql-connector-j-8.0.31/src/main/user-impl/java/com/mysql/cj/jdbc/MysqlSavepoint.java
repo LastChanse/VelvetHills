@@ -49,12 +49,9 @@ public class MysqlSavepoint implements Savepoint {
 
     /**
      * Creates an unnamed savepoint.
-     * 
-     * @param exceptionInterceptor
-     *            exception interceptor
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param exceptionInterceptor exception interceptor
+     * @throws SQLException if an error occurs
      */
     MysqlSavepoint(ExceptionInterceptor exceptionInterceptor) throws SQLException {
         this(StringUtils.getUniqueSavepointId(), exceptionInterceptor);
@@ -62,14 +59,10 @@ public class MysqlSavepoint implements Savepoint {
 
     /**
      * Creates a named savepoint
-     * 
-     * @param name
-     *            the name of the savepoint.
-     * @param exceptionInterceptor
-     *            exception interceptor
-     * 
-     * @throws SQLException
-     *             if name == null or is empty.
+     *
+     * @param name                 the name of the savepoint.
+     * @param exceptionInterceptor exception interceptor
+     * @throws SQLException if name == null or is empty.
      */
     MysqlSavepoint(String name, ExceptionInterceptor exceptionInterceptor) throws SQLException {
         if (name == null || name.length() == 0) {

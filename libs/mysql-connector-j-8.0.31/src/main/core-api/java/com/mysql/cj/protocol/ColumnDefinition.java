@@ -36,7 +36,6 @@ import com.mysql.cj.result.Field;
 /**
  * Represents protocol specific result set metadata,
  * eg., for native protocol, Protocol::ColumnDefinition41 protocol entity.
- *
  */
 public interface ColumnDefinition extends ProtocolEntity {
 
@@ -78,7 +77,7 @@ public interface ColumnDefinition extends ProtocolEntity {
 
     /**
      * Check if fields with type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or LONGTEXT exist in this ColumnDefinition.
-     * 
+     *
      * @return true if fields with type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or LONGTEXT exist in this ColumnDefinition.
      */
     boolean hasLargeFields();

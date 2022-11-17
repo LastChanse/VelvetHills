@@ -49,7 +49,7 @@ import testsuite.BaseTestCase;
 public class StringUtilsTest extends BaseTestCase {
     /**
      * Tests StringUtil.indexOfIgnoreCase() methods
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -80,8 +80,8 @@ public class StringUtilsTest extends BaseTestCase {
 
         // exhaustive test set
         searchIn = "A strange STRONG SsStRiNg to be searched in";
-        searchForMulti = new String[] { "STR", "sstr", "Z", "a str", " in", "b" };
-        expectedIdx = new int[] { 2, 18, -1, 0, 40, 29 };
+        searchForMulti = new String[]{"STR", "sstr", "Z", "a str", " in", "b"};
+        expectedIdx = new int[]{2, 18, -1, 0, 40, 29};
         for (int i = 0; i < searchForMulti.length; i++) {
             assertEquals(expectedIdx[i], StringUtils.indexOfIgnoreCase(searchIn, searchForMulti[i]), "Test A." + i);
         }
@@ -100,8 +100,8 @@ public class StringUtilsTest extends BaseTestCase {
 
         // exhaustive test set
         searchIn = "A strange STRONG SsStRiNg to be searched in";
-        searchForMulti = new String[] { "STR", "sstr", "Z", "a str", " in", "b" };
-        expectedIdx = new int[] { 10, 18, -1, -1, 40, 29 };
+        searchForMulti = new String[]{"STR", "sstr", "Z", "a str", " in", "b"};
+        expectedIdx = new int[]{10, 18, -1, -1, 40, 29};
         for (int i = 0; i < searchForMulti.length; i++) {
             assertEquals(expectedIdx[i], StringUtils.indexOfIgnoreCase(3, searchIn, searchForMulti[i]), "Test B." + i);
         }
@@ -131,10 +131,10 @@ public class StringUtilsTest extends BaseTestCase {
         assertEquals(3, StringUtils.indexOfIgnoreCase(0, "abc d efg", " d ", markerStart, markerEnd, SearchMode.__BSE_MRK_WS));
 
         // exhaustive test set
-        searchInMulti = new String[] { "A \"strange \"STRONG SsStRiNg to be searched in", "A 'strange 'STRONG SsStRiNg to be searched in",
-                "A `strange `STRONG SsStRiNg to be searched in", "A (strange )STRONG SsStRiNg to be searched in" };
-        searchForMulti = new String[] { "STR", "sstr", "Z", "a str", " in", "b" };
-        expectedIdx = new int[] { 12, 20, -1, -1, 42, 31 };
+        searchInMulti = new String[]{"A \"strange \"STRONG SsStRiNg to be searched in", "A 'strange 'STRONG SsStRiNg to be searched in",
+                "A `strange `STRONG SsStRiNg to be searched in", "A (strange )STRONG SsStRiNg to be searched in"};
+        searchForMulti = new String[]{"STR", "sstr", "Z", "a str", " in", "b"};
+        expectedIdx = new int[]{12, 20, -1, -1, 42, 31};
         for (int i = 0; i < searchForMulti.length; i++) {
             for (int j = 0; j < searchInMulti.length; j++) {
                 // multiple markers
@@ -153,8 +153,8 @@ public class StringUtilsTest extends BaseTestCase {
         }
 
         searchIn = "A (`'\"strange \"'`)STRONG SsStRiNg to be searched in";
-        searchForMulti = new String[] { "STR", "sstr", "Z", "a str", " in", "b" };
-        expectedIdx = new int[] { 18, 26, -1, -1, 48, 37 };
+        searchForMulti = new String[]{"STR", "sstr", "Z", "a str", " in", "b"};
+        expectedIdx = new int[]{18, 26, -1, -1, 48, 37};
         for (int i = 0; i < searchForMulti.length; i++) {
             // multiple markers
             assertEquals(expectedIdx[i], StringUtils.indexOfIgnoreCase(0, searchIn, searchForMulti[i], markerStart, markerEnd, SearchMode.__BSE_MRK_WS),
@@ -164,8 +164,8 @@ public class StringUtilsTest extends BaseTestCase {
         }
 
         searchIn = "A 'strange \\''STRONG \\`SsSTRING\\\" to be searched in";
-        searchForMulti = new String[] { "STR", "sstr", "Z", "a str", " in", "b" };
-        expectedIdx = new int[] { 14, 24, -1, -1, 48, 37 };
+        searchForMulti = new String[]{"STR", "sstr", "Z", "a str", " in", "b"};
+        expectedIdx = new int[]{14, 24, -1, -1, 48, 37};
         for (int i = 0; i < searchForMulti.length; i++) {
             // multiple markers
             assertEquals(expectedIdx[i], StringUtils.indexOfIgnoreCase(0, searchIn, searchForMulti[i], markerStart, markerEnd, SearchMode.__BSE_MRK_WS),
@@ -221,7 +221,7 @@ public class StringUtilsTest extends BaseTestCase {
         // D.2a. search mode: all but SearchMode.SKIP_BETWEEN_MARKERS
         searchMode = SearchMode.__BSE_COM_MYM_HNT_WS;
         pos = 0;
-        expectedIdx = new int[] { 3, 8, 13, 18, 23, 24, 26, -1 };
+        expectedIdx = new int[]{3, 8, 13, 18, 23, 24, 26, -1};
         for (int i = 0; i < expectedIdx.length; i++, pos++) {
             pos = StringUtils.indexOfIgnoreCase(pos, searchIn, searchFor, markerStart, markerEnd, searchMode);
             assertEquals(expectedIdx[i], testIndexOfIgnoreCaseMySQLIndexMarker(searchIn, pos), "Test D.2a." + i);
@@ -229,7 +229,7 @@ public class StringUtilsTest extends BaseTestCase {
         // D.2b. search mode: only SearchMode.SKIP_BETWEEN_MARKERS
         searchMode = EnumSet.of(SearchMode.SKIP_BETWEEN_MARKERS);
         pos = 0;
-        expectedIdx = new int[] { 1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, -1 };
+        expectedIdx = new int[]{1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, -1};
         for (int i = 0; i < expectedIdx.length; i++, pos++) {
             pos = StringUtils.indexOfIgnoreCase(pos, searchIn, searchFor, markerStart, markerEnd, searchMode);
             assertEquals(expectedIdx[i], testIndexOfIgnoreCaseMySQLIndexMarker(searchIn, pos), "Test D.2b." + i);
@@ -239,7 +239,7 @@ public class StringUtilsTest extends BaseTestCase {
         searchMode = EnumSet.of(SearchMode.ALLOW_BACKSLASH_ESCAPE, SearchMode.SKIP_BETWEEN_MARKERS, SearchMode.SKIP_LINE_COMMENTS,
                 SearchMode.SKIP_MYSQL_MARKERS, SearchMode.SKIP_HINT_BLOCKS, SearchMode.SKIP_WHITE_SPACE);
         pos = 0;
-        expectedIdx = new int[] { 1, 2, 4, 6, 7, 9, 11, 12, 14, 16, 17, 19, 21, 22, 23, 24, 26, -1 };
+        expectedIdx = new int[]{1, 2, 4, 6, 7, 9, 11, 12, 14, 16, 17, 19, 21, 22, 23, 24, 26, -1};
         for (int i = 0; i < expectedIdx.length; i++, pos++) {
             pos = StringUtils.indexOfIgnoreCase(pos, searchIn, searchFor, markerStart, markerEnd, searchMode);
             assertEquals(expectedIdx[i], testIndexOfIgnoreCaseMySQLIndexMarker(searchIn, pos), "Test D.3a." + i);
@@ -247,7 +247,7 @@ public class StringUtilsTest extends BaseTestCase {
         // D.3b. search mode: only SearchMode.SKIP_BLOCK_COMMENTS
         searchMode = EnumSet.of(SearchMode.SKIP_BLOCK_COMMENTS);
         pos = 0;
-        expectedIdx = new int[] { 3, 5, 8, 10, 13, 15, 18, 20, 23, 24, 25, 26, -1 };
+        expectedIdx = new int[]{3, 5, 8, 10, 13, 15, 18, 20, 23, 24, 25, 26, -1};
         for (int i = 0; i < expectedIdx.length; i++, pos++) {
             pos = StringUtils.indexOfIgnoreCase(pos, searchIn, searchFor, markerStart, markerEnd, searchMode);
             assertEquals(expectedIdx[i], testIndexOfIgnoreCaseMySQLIndexMarker(searchIn, pos), "Test D.3b." + i);
@@ -257,7 +257,7 @@ public class StringUtilsTest extends BaseTestCase {
         searchMode = EnumSet.of(SearchMode.ALLOW_BACKSLASH_ESCAPE, SearchMode.SKIP_BETWEEN_MARKERS, SearchMode.SKIP_BLOCK_COMMENTS,
                 SearchMode.SKIP_MYSQL_MARKERS, SearchMode.SKIP_HINT_BLOCKS, SearchMode.SKIP_WHITE_SPACE);
         pos = 0;
-        expectedIdx = new int[] { 5, 10, 15, 20, 23, 24, 26, -1 };
+        expectedIdx = new int[]{5, 10, 15, 20, 23, 24, 26, -1};
         for (int i = 0; i < expectedIdx.length; i++, pos++) {
             pos = StringUtils.indexOfIgnoreCase(pos, searchIn, searchFor, markerStart, markerEnd, searchMode);
             assertEquals(expectedIdx[i], testIndexOfIgnoreCaseMySQLIndexMarker(searchIn, pos), "Test D.4a." + i);
@@ -265,7 +265,7 @@ public class StringUtilsTest extends BaseTestCase {
         // D.4b. search mode: only SearchMode.SKIP_LINE_COMMENTS
         searchMode = EnumSet.of(SearchMode.SKIP_LINE_COMMENTS);
         pos = 0;
-        expectedIdx = new int[] { 1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, -1 };
+        expectedIdx = new int[]{1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, -1};
         for (int i = 0; i < expectedIdx.length; i++, pos++) {
             pos = StringUtils.indexOfIgnoreCase(pos, searchIn, searchFor, markerStart, markerEnd, searchMode);
             assertEquals(expectedIdx[i], testIndexOfIgnoreCaseMySQLIndexMarker(searchIn, pos), "Test D.4b." + i);
@@ -275,7 +275,7 @@ public class StringUtilsTest extends BaseTestCase {
         searchMode = EnumSet.of(SearchMode.ALLOW_BACKSLASH_ESCAPE, SearchMode.SKIP_BETWEEN_MARKERS, SearchMode.SKIP_BLOCK_COMMENTS,
                 SearchMode.SKIP_LINE_COMMENTS, SearchMode.SKIP_HINT_BLOCKS, SearchMode.SKIP_WHITE_SPACE);
         pos = 0;
-        expectedIdx = new int[] { 23, 24, 26, -1 };
+        expectedIdx = new int[]{23, 24, 26, -1};
         for (int i = 0; i < expectedIdx.length; i++, pos++) {
             pos = StringUtils.indexOfIgnoreCase(pos, searchIn, searchFor, markerStart, markerEnd, searchMode);
             assertEquals(expectedIdx[i], testIndexOfIgnoreCaseMySQLIndexMarker(searchIn, pos), "Test D.5a." + i);
@@ -283,7 +283,7 @@ public class StringUtilsTest extends BaseTestCase {
         // D.5b. search mode: only SearchMode.SKIP_MYSQL_MARKERS
         searchMode = EnumSet.of(SearchMode.SKIP_MYSQL_MARKERS);
         pos = 0;
-        expectedIdx = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, -1 };
+        expectedIdx = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, -1};
         for (int i = 0; i < expectedIdx.length; i++, pos++) {
             pos = StringUtils.indexOfIgnoreCase(pos, searchIn, searchFor, markerStart, markerEnd, searchMode);
             assertEquals(expectedIdx[i], testIndexOfIgnoreCaseMySQLIndexMarker(searchIn, pos), "Test D.5b." + i);
@@ -293,7 +293,7 @@ public class StringUtilsTest extends BaseTestCase {
         searchMode = EnumSet.of(SearchMode.ALLOW_BACKSLASH_ESCAPE, SearchMode.SKIP_BETWEEN_MARKERS, SearchMode.SKIP_BLOCK_COMMENTS,
                 SearchMode.SKIP_LINE_COMMENTS, SearchMode.SKIP_MYSQL_MARKERS, SearchMode.SKIP_WHITE_SPACE);
         pos = 0;
-        expectedIdx = new int[] { 23, 24, 25, 26, -1 };
+        expectedIdx = new int[]{23, 24, 25, 26, -1};
         for (int i = 0; i < expectedIdx.length; i++, pos++) {
             pos = StringUtils.indexOfIgnoreCase(pos, searchIn, searchFor, markerStart, markerEnd, searchMode);
             assertEquals(expectedIdx[i], testIndexOfIgnoreCaseMySQLIndexMarker(searchIn, pos), "Test D.6a." + i);
@@ -301,7 +301,7 @@ public class StringUtilsTest extends BaseTestCase {
         // D.6b. search mode: only SearchMode.SKIP_HINT_BLOCKS
         searchMode = EnumSet.of(SearchMode.SKIP_HINT_BLOCKS);
         pos = 0;
-        expectedIdx = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, -1 };
+        expectedIdx = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, -1};
         for (int i = 0; i < expectedIdx.length; i++, pos++) {
             pos = StringUtils.indexOfIgnoreCase(pos, searchIn, searchFor, markerStart, markerEnd, searchMode);
             assertEquals(expectedIdx[i], testIndexOfIgnoreCaseMySQLIndexMarker(searchIn, pos), "Test D.6b." + i);
@@ -313,7 +313,7 @@ public class StringUtilsTest extends BaseTestCase {
         // D.7b. search mode: only allow backslash escape
         searchMode = EnumSet.of(SearchMode.ALLOW_BACKSLASH_ESCAPE);
         pos = 0;
-        expectedIdx = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, -1 };
+        expectedIdx = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, -1};
         for (int i = 0; i < expectedIdx.length; i++, pos++) {
             pos = StringUtils.indexOfIgnoreCase(pos, searchIn, searchFor, markerStart, markerEnd, searchMode);
             assertEquals(expectedIdx[i], testIndexOfIgnoreCaseMySQLIndexMarker(searchIn, pos), "Test D.7b." + i);
@@ -321,7 +321,7 @@ public class StringUtilsTest extends BaseTestCase {
 
         // D.8. all together
         pos = 0;
-        expectedIdx = new int[] { 23, 24, 26, -1 };
+        expectedIdx = new int[]{23, 24, 26, -1};
         for (int i = 0; i < expectedIdx.length; i++, pos++) {
             pos = StringUtils.indexOfIgnoreCase(pos, searchIn, searchFor, markerStart, markerEnd, SearchMode.__FULL);
             assertEquals(expectedIdx[i], testIndexOfIgnoreCaseMySQLIndexMarker(searchIn, pos), "Test D.8." + i);
@@ -398,13 +398,13 @@ public class StringUtilsTest extends BaseTestCase {
         // unclosed, unopened or nested block comments
         searchMode = EnumSet.of(SearchMode.SKIP_BLOCK_COMMENTS);
         searchIn = "one * /* two /* * / three /*/*/ four * /";
-        searchForMulti = new String[] { "one", "two", "three", "four" };
-        expectedIdx = new int[] { 0, -1, -1, 32 };
+        searchForMulti = new String[]{"one", "two", "three", "four"};
+        expectedIdx = new int[]{0, -1, -1, 32};
         for (int i = 0; i < searchForMulti.length; i++) {
             assertEquals(expectedIdx[i], StringUtils.indexOfIgnoreCase(0, searchIn, searchForMulti[i], markerStart, markerEnd, searchMode), "Test F.1." + i);
         }
         searchMode = EnumSet.of(SearchMode.ALLOW_BACKSLASH_ESCAPE, SearchMode.SKIP_BETWEEN_MARKERS, SearchMode.SKIP_LINE_COMMENTS, SearchMode.SKIP_WHITE_SPACE);
-        expectedIdx = new int[] { 0, 9, 20, 32 };
+        expectedIdx = new int[]{0, 9, 20, 32};
         for (int i = 0; i < searchForMulti.length; i++) {
             assertEquals(expectedIdx[i], StringUtils.indexOfIgnoreCase(0, searchIn, searchForMulti[i], markerStart, markerEnd, searchMode), "Test F.2." + i);
         }
@@ -412,13 +412,13 @@ public class StringUtilsTest extends BaseTestCase {
         // double quoted escapes, including some "noise" chars
         searchMode = EnumSet.of(SearchMode.SKIP_BETWEEN_MARKERS);
         searchIn = "one 'two\" ''three''' four\"";
-        searchForMulti = new String[] { "one", "two", "three", "four" };
-        expectedIdx = new int[] { 0, -1, -1, 21 };
+        searchForMulti = new String[]{"one", "two", "three", "four"};
+        expectedIdx = new int[]{0, -1, -1, 21};
         for (int i = 0; i < searchForMulti.length; i++) {
             assertEquals(expectedIdx[i], StringUtils.indexOfIgnoreCase(0, searchIn, searchForMulti[i], markerStart, markerEnd, searchMode), "Test F.3." + i);
         }
         searchMode = SearchMode.__BSE_COM_MYM_HNT_WS;
-        expectedIdx = new int[] { 0, 5, 12, 21 };
+        expectedIdx = new int[]{0, 5, 12, 21};
         for (int i = 0; i < searchForMulti.length; i++) {
             assertEquals(expectedIdx[i], StringUtils.indexOfIgnoreCase(0, searchIn, searchForMulti[i], markerStart, markerEnd, searchMode), "Test F.4." + i);
         }
@@ -426,13 +426,13 @@ public class StringUtilsTest extends BaseTestCase {
         // nested different opening/closing marker, including some "noise" chars
         searchMode = EnumSet.of(SearchMode.SKIP_BETWEEN_MARKERS);
         searchIn = "one (two\"( (three''')) )four)";
-        searchForMulti = new String[] { "one", "two", "three", "four" };
-        expectedIdx = new int[] { 0, -1, -1, 24 };
+        searchForMulti = new String[]{"one", "two", "three", "four"};
+        expectedIdx = new int[]{0, -1, -1, 24};
         for (int i = 0; i < searchForMulti.length; i++) {
             assertEquals(expectedIdx[i], StringUtils.indexOfIgnoreCase(0, searchIn, searchForMulti[i], markerStart, markerEnd, searchMode), "Test F.5." + i);
         }
         searchMode = SearchMode.__BSE_COM_MYM_HNT_WS;
-        expectedIdx = new int[] { 0, 5, 12, 24 };
+        expectedIdx = new int[]{0, 5, 12, 24};
         for (int i = 0; i < searchForMulti.length; i++) {
             assertEquals(expectedIdx[i], StringUtils.indexOfIgnoreCase(0, searchIn, searchForMulti[i], markerStart, markerEnd, searchMode), "Test F.6." + i);
         }
@@ -447,19 +447,19 @@ public class StringUtilsTest extends BaseTestCase {
             return null;
         });
         assertThrows(IllegalArgumentException.class, "The source string must not be null.", () -> {
-            StringUtils.indexOfIgnoreCase(0, null, new String[] { "abc" }, markerStart, markerEnd, SearchMode.__FULL);
+            StringUtils.indexOfIgnoreCase(0, null, new String[]{"abc"}, markerStart, markerEnd, SearchMode.__FULL);
             return null;
         });
         assertEquals(-1, StringUtils.indexOfIgnoreCase(0, "abc", (String[]) null, markerStart, markerEnd, SearchMode.__FULL));
-        assertEquals(-1, StringUtils.indexOfIgnoreCase(0, "abc", new String[] {}, markerStart, markerEnd, SearchMode.__FULL));
-        assertEquals(-1, StringUtils.indexOfIgnoreCase(0, "abc", new String[] { "", "" }, markerStart, markerEnd, SearchMode.__FULL));
-        assertEquals(-1, StringUtils.indexOfIgnoreCase(0, "abc -- d", new String[] { "c", "d" }, markerStart, markerEnd, SearchMode.__FULL));
-        assertEquals(0, StringUtils.indexOfIgnoreCase(0, "abc", new String[] { "abc" }, markerStart, markerEnd, SearchMode.__FULL));
-        assertEquals(-1, StringUtils.indexOfIgnoreCase(0, "abc d   efg h", new String[] { " d ", " efg" }, markerStart, markerEnd, SearchMode.__FULL));
-        assertEquals(3, StringUtils.indexOfIgnoreCase(0, "abc d   efg h", new String[] { " d ", "efg" }, markerStart, markerEnd, SearchMode.__FULL));
+        assertEquals(-1, StringUtils.indexOfIgnoreCase(0, "abc", new String[]{}, markerStart, markerEnd, SearchMode.__FULL));
+        assertEquals(-1, StringUtils.indexOfIgnoreCase(0, "abc", new String[]{"", ""}, markerStart, markerEnd, SearchMode.__FULL));
+        assertEquals(-1, StringUtils.indexOfIgnoreCase(0, "abc -- d", new String[]{"c", "d"}, markerStart, markerEnd, SearchMode.__FULL));
+        assertEquals(0, StringUtils.indexOfIgnoreCase(0, "abc", new String[]{"abc"}, markerStart, markerEnd, SearchMode.__FULL));
+        assertEquals(-1, StringUtils.indexOfIgnoreCase(0, "abc d   efg h", new String[]{" d ", " efg"}, markerStart, markerEnd, SearchMode.__FULL));
+        assertEquals(3, StringUtils.indexOfIgnoreCase(0, "abc d   efg h", new String[]{" d ", "efg"}, markerStart, markerEnd, SearchMode.__FULL));
 
         // exhaustive test set
-        searchForMulti = new String[] { "ONE", "two", "ThrEE" };
+        searchForMulti = new String[]{"ONE", "two", "ThrEE"};
 
         // 1. simple strings
         assertEquals(-1, StringUtils.indexOfIgnoreCase(0, "onetwothee", searchForMulti, markerStart, markerEnd, SearchMode.__FULL));
@@ -513,7 +513,7 @@ public class StringUtilsTest extends BaseTestCase {
                 "Illegal argument value null for openingMarkers and/or - for closingMarkers. These cannot be null and must have the same length.",
                 new Callable<Void>() {
                     public Void call() throws Exception {
-                        StringUtils.indexOfIgnoreCase(0, "abc", new String[] { "abc" }, null, "-", EnumSet.of(SearchMode.SKIP_BETWEEN_MARKERS));
+                        StringUtils.indexOfIgnoreCase(0, "abc", new String[]{"abc"}, null, "-", EnumSet.of(SearchMode.SKIP_BETWEEN_MARKERS));
                         return null;
                     }
                 });
@@ -521,7 +521,7 @@ public class StringUtilsTest extends BaseTestCase {
                 "Illegal argument value - for openingMarkers and/or null for closingMarkers. These cannot be null and must have the same length.",
                 new Callable<Void>() {
                     public Void call() throws Exception {
-                        StringUtils.indexOfIgnoreCase(0, "abc", new String[] { "abc" }, "-", null, EnumSet.of(SearchMode.SKIP_BETWEEN_MARKERS));
+                        StringUtils.indexOfIgnoreCase(0, "abc", new String[]{"abc"}, "-", null, EnumSet.of(SearchMode.SKIP_BETWEEN_MARKERS));
                         return null;
                     }
                 });
@@ -529,7 +529,7 @@ public class StringUtilsTest extends BaseTestCase {
                 "Illegal argument value null for openingMarkers and/or null for closingMarkers. These cannot be null and must have the same length.",
                 new Callable<Void>() {
                     public Void call() throws Exception {
-                        StringUtils.indexOfIgnoreCase(0, "abc", new String[] { "abc" }, null, null, EnumSet.of(SearchMode.SKIP_BETWEEN_MARKERS));
+                        StringUtils.indexOfIgnoreCase(0, "abc", new String[]{"abc"}, null, null, EnumSet.of(SearchMode.SKIP_BETWEEN_MARKERS));
                         return null;
                     }
                 });
@@ -537,7 +537,7 @@ public class StringUtilsTest extends BaseTestCase {
                 "Illegal argument value - for openingMarkers and/or -! for closingMarkers. These cannot be null and must have the same length.",
                 new Callable<Void>() {
                     public Void call() throws Exception {
-                        StringUtils.indexOfIgnoreCase(0, "abc", new String[] { "abc" }, "-", "-!", EnumSet.of(SearchMode.SKIP_BETWEEN_MARKERS));
+                        StringUtils.indexOfIgnoreCase(0, "abc", new String[]{"abc"}, "-", "-!", EnumSet.of(SearchMode.SKIP_BETWEEN_MARKERS));
                         return null;
                     }
                 });
@@ -560,13 +560,13 @@ public class StringUtilsTest extends BaseTestCase {
 
     /**
      * Tests StringUtil.indexOfQuoteDoubleAware() method
-     * 
+     *
      * @throws Exception
      */
     @Test
     public void testIndexOfQuoteDoubleAware() throws Exception {
-        final String[] searchInDoubledQt = new String[] { "A 'strange' \"STRONG\" `SsStRiNg` to be searched in",
-                "A ''strange'' \"\"STRONG\"\" ``SsStRiNg`` to be searched in" };
+        final String[] searchInDoubledQt = new String[]{"A 'strange' \"STRONG\" `SsStRiNg` to be searched in",
+                "A ''strange'' \"\"STRONG\"\" ``SsStRiNg`` to be searched in"};
 
         assertEquals(-1, StringUtils.indexOfQuoteDoubleAware(null, null, 0));
         assertEquals(-1, StringUtils.indexOfQuoteDoubleAware(null, "'", 0));
@@ -593,13 +593,13 @@ public class StringUtilsTest extends BaseTestCase {
 
     /**
      * Tests StringUtil.appendAsHex() methods.
-     * 
+     *
      * @throws Exception
      */
     @Test
     public void testAppendAsHex() throws Exception {
         final byte[] testBytes = new byte[256];
-        final int[] testInts = new int[] { Integer.MIN_VALUE, -1023, 0, 511, 512, 0x100FF, 0x10000FF, Integer.MAX_VALUE };
+        final int[] testInts = new int[]{Integer.MIN_VALUE, -1023, 0, 511, 512, 0x100FF, 0x10000FF, Integer.MAX_VALUE};
         StringBuilder builder;
 
         for (int i = 0; i < 256; i++) {
@@ -629,7 +629,7 @@ public class StringUtilsTest extends BaseTestCase {
 
     /**
      * Tests StringUtil.getBytes() methods.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -689,13 +689,13 @@ public class StringUtilsTest extends BaseTestCase {
 
     /**
      * Tests StringUtil.quoteIdentifier() and StringUtil.unQuoteIdentifier() methods using back quote marks.
-     * 
+     *
      * @throws Exception
      */
     @Test
     public void testQuoteUnQuoteIdentifierWithBackQuote() throws Exception {
         // Base set of identifiers
-        String[] identifiers = new String[] { "abcxyz", "abc`xyz", "abc``xyz", "abc```xyz", // 1..4
+        String[] identifiers = new String[]{"abcxyz", "abc`xyz", "abc``xyz", "abc```xyz", // 1..4
                 "`abcxyz`", "`abc`xyz`", "`abc``xyz`", "`abc```xyz`",                       // 5..8
                 "``abcxyz``", "``abc`xyz``", "``abc``xyz``", "``abc```xyz``",               // 9..12
                 "```abcxyz```", "```abc`xyz```", "```abc``xyz```", "```abc```xyz```",       // 13..16
@@ -707,7 +707,7 @@ public class StringUtilsTest extends BaseTestCase {
         };
 
         // Identifiers unquoted
-        String[] identifiersUnQuoted = new String[] { "abcxyz", "abc`xyz", "abc``xyz", "abc```xyz", // 1..4
+        String[] identifiersUnQuoted = new String[]{"abcxyz", "abc`xyz", "abc``xyz", "abc```xyz", // 1..4
                 "abcxyz", "`abc`xyz`", "abc`xyz", "`abc```xyz`",                                    // 5..8
                 "``abcxyz``", "``abc`xyz``", "``abc``xyz``", "``abc```xyz``",                       // 9..12
                 "`abcxyz`", "```abc`xyz```", "`abc`xyz`", "```abc```xyz```",                        // 13..16
@@ -719,7 +719,7 @@ public class StringUtilsTest extends BaseTestCase {
         };
 
         // Identifiers quoted in non-pedantic mode
-        String[] identifiersQuotedNonPedantic = new String[] { "`abcxyz`", "`abc``xyz`", "`abc````xyz`", "`abc``````xyz`", // 1..4
+        String[] identifiersQuotedNonPedantic = new String[]{"`abcxyz`", "`abc``xyz`", "`abc````xyz`", "`abc``````xyz`", // 1..4
                 "`abcxyz`", "```abc``xyz```", "`abc``xyz`", "```abc``````xyz```",                                          // 5..8
                 "`````abcxyz`````", "`````abc``xyz`````", "`````abc````xyz`````", "`````abc``````xyz`````",                // 9..12
                 "```abcxyz```", "```````abc``xyz```````", "```abc``xyz```", "```````abc``````xyz```````",                  // 13..16
@@ -731,7 +731,7 @@ public class StringUtilsTest extends BaseTestCase {
         };
 
         // Identifiers quoted in pedantic mode
-        String[] identifiersQuotedPedantic = new String[] { "`abcxyz`", "`abc``xyz`", "`abc````xyz`", "`abc``````xyz`",     // 1..4
+        String[] identifiersQuotedPedantic = new String[]{"`abcxyz`", "`abc``xyz`", "`abc````xyz`", "`abc``````xyz`",     // 1..4
                 "```abcxyz```", "```abc``xyz```", "```abc````xyz```", "```abc``````xyz```",                                 // 5..8
                 "`````abcxyz`````", "`````abc``xyz`````", "`````abc````xyz`````", "`````abc``````xyz`````",                 // 9..12
                 "```````abcxyz```````", "```````abc``xyz```````", "```````abc````xyz```````", "```````abc``````xyz```````", // 13..16
@@ -780,13 +780,13 @@ public class StringUtilsTest extends BaseTestCase {
 
     /**
      * Tests StringUtil.quoteIdentifier() and StringUtil.unQuoteIdentifier() methods using double quote marks.
-     * 
+     *
      * @throws Exception
      */
     @Test
     public void testQuoteUnQuoteIdentifierWithDoubleQuote() throws Exception {
         // Base set of identifiers
-        String[] identifiers = new String[] { "abcxyz", "abc\"xyz", "abc\"\"xyz", "abc\"\"\"xyz",                   // 1..4
+        String[] identifiers = new String[]{"abcxyz", "abc\"xyz", "abc\"\"xyz", "abc\"\"\"xyz",                   // 1..4
                 "\"abcxyz\"", "\"abc\"xyz\"", "\"abc\"\"xyz\"", "\"abc\"\"\"xyz\"",                                 // 5..8
                 "\"\"abcxyz\"\"", "\"\"abc\"xyz\"\"", "\"\"abc\"\"xyz\"\"", "\"\"abc\"\"\"xyz\"\"",                 // 9..12
                 "\"\"\"abcxyz\"\"\"", "\"\"\"abc\"xyz\"\"\"", "\"\"\"abc\"\"xyz\"\"\"", "\"\"\"abc\"\"\"xyz\"\"\"", // 13..16
@@ -798,7 +798,7 @@ public class StringUtilsTest extends BaseTestCase {
         };
 
         // Identifiers unquoted
-        String[] identifiersUnQuoted = new String[] { "abcxyz", "abc\"xyz", "abc\"\"xyz", "abc\"\"\"xyz", // 1..4
+        String[] identifiersUnQuoted = new String[]{"abcxyz", "abc\"xyz", "abc\"\"xyz", "abc\"\"\"xyz", // 1..4
                 "abcxyz", "\"abc\"xyz\"", "abc\"xyz", "\"abc\"\"\"xyz\"",                                 // 5..8
                 "\"\"abcxyz\"\"", "\"\"abc\"xyz\"\"", "\"\"abc\"\"xyz\"\"", "\"\"abc\"\"\"xyz\"\"",       // 9..12
                 "\"abcxyz\"", "\"\"\"abc\"xyz\"\"\"", "\"abc\"xyz\"", "\"\"\"abc\"\"\"xyz\"\"\"",         // 13..16
@@ -810,7 +810,7 @@ public class StringUtilsTest extends BaseTestCase {
         };
 
         // Identifiers quoted in non-pedantic mode
-        String[] identifiersQuotedNonPedantic = new String[] { "\"abcxyz\"", "\"abc\"\"xyz\"", "\"abc\"\"\"\"xyz\"", "\"abc\"\"\"\"\"\"xyz\"",      // 1..4
+        String[] identifiersQuotedNonPedantic = new String[]{"\"abcxyz\"", "\"abc\"\"xyz\"", "\"abc\"\"\"\"xyz\"", "\"abc\"\"\"\"\"\"xyz\"",      // 1..4
                 "\"abcxyz\"", "\"\"\"abc\"\"xyz\"\"\"", "\"abc\"\"xyz\"", "\"\"\"abc\"\"\"\"\"\"xyz\"\"\"",                                         // 5..8
                 "\"\"\"\"\"abcxyz\"\"\"\"\"", "\"\"\"\"\"abc\"\"xyz\"\"\"\"\"",                                                                     // 9..
                 "\"\"\"\"\"abc\"\"\"\"xyz\"\"\"\"\"", "\"\"\"\"\"abc\"\"\"\"\"\"xyz\"\"\"\"\"",                                                     //  ..12
@@ -824,7 +824,7 @@ public class StringUtilsTest extends BaseTestCase {
         };
 
         // Identifiers quoted in pedantic mode
-        String[] identifiersQuotedPedantic = new String[] { "\"abcxyz\"", "\"abc\"\"xyz\"", "\"abc\"\"\"\"xyz\"", "\"abc\"\"\"\"\"\"xyz\"",         // 1..4
+        String[] identifiersQuotedPedantic = new String[]{"\"abcxyz\"", "\"abc\"\"xyz\"", "\"abc\"\"\"\"xyz\"", "\"abc\"\"\"\"\"\"xyz\"",         // 1..4
                 "\"\"\"abcxyz\"\"\"", "\"\"\"abc\"\"xyz\"\"\"", "\"\"\"abc\"\"\"\"xyz\"\"\"", "\"\"\"abc\"\"\"\"\"\"xyz\"\"\"",                     // 5..8
                 "\"\"\"\"\"abcxyz\"\"\"\"\"", "\"\"\"\"\"abc\"\"xyz\"\"\"\"\"",                                                                     // 9..
                 "\"\"\"\"\"abc\"\"\"\"xyz\"\"\"\"\"", "\"\"\"\"\"abc\"\"\"\"\"\"xyz\"\"\"\"\"",                                                     //  ..12
@@ -872,7 +872,7 @@ public class StringUtilsTest extends BaseTestCase {
 
     /**
      * Tests StringUtils.wildCompare() method.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1134,7 +1134,7 @@ public class StringUtilsTest extends BaseTestCase {
 
     /**
      * Tests StringUtils.split() methods.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1208,7 +1208,7 @@ public class StringUtilsTest extends BaseTestCase {
 
     /**
      * Tests StringUtils.split() methods for corner cases.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1216,7 +1216,7 @@ public class StringUtilsTest extends BaseTestCase {
         List<String> stringParts;
 
         int c = 0;
-        for (String s : new String[] { ",", "  ,", ",  ", "  ,  " }) {
+        for (String s : new String[]{",", "  ,", ",  ", "  ,  "}) {
             String testCase = "Case: >" + s + "<";
 
             // single delimiter, trim
@@ -1243,7 +1243,7 @@ public class StringUtilsTest extends BaseTestCase {
 
         // multiple delimiter (condensed)
         c = 0;
-        for (String s : new String[] { ",,,", "  ,,,", ",,,  ", "  ,,,  " }) { // [empty|2sp], empty, empty, [empty|2sp]
+        for (String s : new String[]{",,,", "  ,,,", ",,,  ", "  ,,,  "}) { // [empty|2sp], empty, empty, [empty|2sp]
             String testCase = "Case: >" + s + "<";
 
             // trim
@@ -1278,7 +1278,7 @@ public class StringUtilsTest extends BaseTestCase {
 
         // multiple delimiter (mixed)
         c = 0;
-        for (String s : new String[] { ",, ,", "  ,, ,", ",, ,  ", "  ,, ,  " }) { // [empty|2sp], empty, 1sp, [empty|2sp]
+        for (String s : new String[]{",, ,", "  ,, ,", ",, ,  ", "  ,, ,  "}) { // [empty|2sp], empty, 1sp, [empty|2sp]
             String testCase = "Case: >" + s + "<";
 
             // trim
@@ -1313,7 +1313,7 @@ public class StringUtilsTest extends BaseTestCase {
 
         // multiple delimiter (scattered)
         c = 0;
-        for (String s : new String[] { ",   , ,", "  ,   , ,", ",   , ,  ", "  ,   , ,  " }) { // [empty|2sp], 3sp, 1sp, [empty|2sp]
+        for (String s : new String[]{",   , ,", "  ,   , ,", ",   , ,  ", "  ,   , ,  "}) { // [empty|2sp], 3sp, 1sp, [empty|2sp]
             String testCase = "Case: >" + s + "<";
 
             // trim
@@ -1349,7 +1349,7 @@ public class StringUtilsTest extends BaseTestCase {
 
     /**
      * Tests StringUtils.joinWithSerialComma().
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1370,7 +1370,7 @@ public class StringUtilsTest extends BaseTestCase {
 
     /**
      * Tests StringUtils.quoteBytes()
-     * 
+     *
      * @throws Exception
      */
     @Test

@@ -77,9 +77,8 @@ public class MysqlPooledConnection implements PooledConnection {
 
     /**
      * Construct a new MysqlPooledConnection and set instance variables
-     * 
-     * @param connection
-     *            physical connection to db
+     *
+     * @param connection physical connection to db
      */
     public MysqlPooledConnection(com.mysql.cj.jdbc.JdbcConnection connection) {
         this.logicalHandle = null;
@@ -166,12 +165,10 @@ public class MysqlPooledConnection implements PooledConnection {
      * Instantiates a new ConnectionEvent which wraps sqlException and invokes
      * either connectionClose or connectionErrorOccurred on listener as
      * appropriate.
-     * 
-     * @param eventType
-     *            value indicating whether connectionClosed or
-     *            connectionErrorOccurred called
-     * @param sqlException
-     *            the exception being thrown
+     *
+     * @param eventType    value indicating whether connectionClosed or
+     *                     connectionErrorOccurred called
+     * @param sqlException the exception being thrown
      */
     protected synchronized void callConnectionEventListeners(int eventType, SQLException sqlException) {
 

@@ -36,9 +36,8 @@ public class NullLogger implements Log {
 
     /**
      * Creates a new NullLogger with the given name
-     * 
-     * @param instanceName
-     *            (ignored)
+     *
+     * @param instanceName (ignored)
      */
     public NullLogger(String instanceName) {
     }

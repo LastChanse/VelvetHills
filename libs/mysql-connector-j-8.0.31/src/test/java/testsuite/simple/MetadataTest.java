@@ -80,8 +80,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -121,8 +121,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -233,8 +233,8 @@ public class MetadataTest extends BaseTestCase {
             props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
             Connection conn1 = null;
 
-            for (boolean useIS : new boolean[] { false, true }) {
-                for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+            for (boolean useIS : new boolean[]{false, true}) {
+                for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                     props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                     props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -426,8 +426,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -481,9 +481,9 @@ public class MetadataTest extends BaseTestCase {
 
     /**
      * Tests the implementation of metadata for views.
-     * 
+     * <p>
      * This test automatically detects whether or not the server it is running against supports the creation of views.
-     * 
+     *
      * @throws SQLException
      */
     @Test
@@ -501,7 +501,7 @@ public class MetadataTest extends BaseTestCase {
                     ResultSet tablesRs = null;
 
                     try {
-                        tablesRs = this.conn.getMetaData().getTables(this.conn.getCatalog(), null, "%ViewMetaData", new String[] { "TABLE", "VIEW" });
+                        tablesRs = this.conn.getMetaData().getTables(this.conn.getCatalog(), null, "%ViewMetaData", new String[]{"TABLE", "VIEW"});
                         assertTrue(tablesRs.next());
                         assertTrue("testViewMetaData".equalsIgnoreCase(tablesRs.getString(3)));
                         assertTrue(tablesRs.next());
@@ -514,7 +514,7 @@ public class MetadataTest extends BaseTestCase {
                     }
 
                     try {
-                        tablesRs = this.conn.getMetaData().getTables(this.conn.getCatalog(), null, "%ViewMetaData", new String[] { "TABLE" });
+                        tablesRs = this.conn.getMetaData().getTables(this.conn.getCatalog(), null, "%ViewMetaData", new String[]{"TABLE"});
                         assertTrue(tablesRs.next());
                         assertTrue("testViewMetaData".equalsIgnoreCase(tablesRs.getString(3)));
                         assertTrue(!tablesRs.next());
@@ -537,7 +537,7 @@ public class MetadataTest extends BaseTestCase {
 
     /**
      * Tests detection of read-only fields.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -619,9 +619,9 @@ public class MetadataTest extends BaseTestCase {
         this.stmt.executeUpdate("INSERT INTO " + tableName + " VALUES (1)");
 
         Properties props = new Properties();
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean tinyInt1isBit : new boolean[] { true, true }) {
-                for (boolean transformedBitIsBoolean : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean tinyInt1isBit : new boolean[]{true, true}) {
+                for (boolean transformedBitIsBoolean : new boolean[]{false, true}) {
                     props.clear();
                     props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
                     props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
@@ -710,7 +710,7 @@ public class MetadataTest extends BaseTestCase {
 
     /**
      * Tests the implementation of Information Schema for primary keys.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -743,8 +743,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -798,7 +798,7 @@ public class MetadataTest extends BaseTestCase {
 
     /**
      * Tests the implementation of getColumns.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -809,8 +809,8 @@ public class MetadataTest extends BaseTestCase {
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.nullDatabaseMeansCurrent.getKeyName(), "true");
 
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
                 Connection conn1 = null;
@@ -854,7 +854,7 @@ public class MetadataTest extends BaseTestCase {
 
     /**
      * Tests the implementation of Information Schema for tables.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -895,8 +895,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -977,7 +977,7 @@ public class MetadataTest extends BaseTestCase {
 
     /**
      * Tests the implementation of column privileges metadata.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -995,8 +995,8 @@ public class MetadataTest extends BaseTestCase {
         Statement stmt1 = null;
         String userHostQuoted = null;
 
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -1072,8 +1072,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -1138,8 +1138,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -1201,8 +1201,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -1279,8 +1279,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -1374,7 +1374,7 @@ public class MetadataTest extends BaseTestCase {
 
     /**
      * Tests the implementation of Information Schema for foreign key.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1418,8 +1418,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -1484,8 +1484,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -1542,12 +1542,12 @@ public class MetadataTest extends BaseTestCase {
 
     /**
      * WL#411 - Generated columns.
-     * 
+     * <p>
      * Test for new syntax and support in DatabaseMetaData.getColumns().
-     * 
+     * <p>
      * New syntax for CREATE TABLE, introduced in MySQL 5.7.6:
      * - col_name data_type [GENERATED ALWAYS] AS (expression) [VIRTUAL | STORED] [UNIQUE [KEY]] [COMMENT comment] [[NOT] NULL] [[PRIMARY] KEY]
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1577,7 +1577,7 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.nullDatabaseMeansCurrent.getKeyName(), "true");
 
-        for (String useIS : new String[] { "false", "true" }) {
+        for (String useIS : new String[]{"false", "true"}) {
             Connection testConn = null;
             props.setProperty(PropertyKey.useInformationSchema.getKeyName(), useIS);
 
@@ -1637,9 +1637,9 @@ public class MetadataTest extends BaseTestCase {
     /**
      * Tests DatabaseMetaData.getSQLKeywords().
      * (Related to BUG#70701 - DatabaseMetaData.getSQLKeywords() doesn't match MySQL 5.6 reserved words)
-     * 
+     * <p>
      * This test checks the statically maintained keywords list.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1669,9 +1669,9 @@ public class MetadataTest extends BaseTestCase {
     /**
      * Tests DatabaseMetaData.getSQLKeywords().
      * WL#10544, Update MySQL 8.0 keywords list.
-     * 
+     * <p>
      * This test checks the dynamically maintained keywords lists.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1764,8 +1764,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 
@@ -1836,8 +1836,8 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean useIS : new boolean[] { false, true }) {
-            for (boolean dbMapsToSchema : new boolean[] { false, true }) {
+        for (boolean useIS : new boolean[]{false, true}) {
+            for (boolean dbMapsToSchema : new boolean[]{false, true}) {
                 props.setProperty(PropertyKey.useInformationSchema.getKeyName(), "" + useIS);
                 props.setProperty(PropertyKey.databaseTerm.getKeyName(), dbMapsToSchema ? DatabaseTerm.SCHEMA.name() : DatabaseTerm.CATALOG.name());
 

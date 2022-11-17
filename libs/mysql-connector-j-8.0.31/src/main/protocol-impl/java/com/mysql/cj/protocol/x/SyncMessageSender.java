@@ -57,7 +57,9 @@ public class SyncMessageSender implements MessageSender<XMessage>, PacketSentTim
     private long previousPacketSentTime = 0;
     private int maxAllowedPacket = -1;
 
-    /** Lock to protect async writes from sync ones. */
+    /**
+     * Lock to protect async writes from sync ones.
+     */
     Object waitingAsyncOperationMonitor = new Object();
 
     public SyncMessageSender(OutputStream os) {
@@ -71,7 +73,7 @@ public class SyncMessageSender implements MessageSender<XMessage>, PacketSentTim
                 int type = MessageConstants.getTypeForMessageClass(msg.getClass());
                 int size = 1 + msg.getSerializedSize();
                 if (this.maxAllowedPacket > 0 && size > this.maxAllowedPacket) {
-                    throw new CJPacketTooBigException(Messages.getString("PacketTooBigException.1", new Object[] { size, this.maxAllowedPacket }));
+                    throw new CJPacketTooBigException(Messages.getString("PacketTooBigException.1", new Object[]{size, this.maxAllowedPacket}));
                 }
                 // for debugging
                 // System.err.println("Initiating write of message (size=" + size + ", tag=" + ClientMessages.Type.valueOf(type) + ")");

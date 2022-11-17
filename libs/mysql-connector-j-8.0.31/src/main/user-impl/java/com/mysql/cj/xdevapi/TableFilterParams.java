@@ -38,11 +38,9 @@ import java.util.stream.Collectors;
 public class TableFilterParams extends AbstractFilterParams {
     /**
      * Constructor.
-     * 
-     * @param schemaName
-     *            Schema name
-     * @param collectionName
-     *            Collection name
+     *
+     * @param schemaName     Schema name
+     * @param collectionName Collection name
      */
     public TableFilterParams(String schemaName, String collectionName) {
         this(schemaName, collectionName, true);
@@ -50,13 +48,10 @@ public class TableFilterParams extends AbstractFilterParams {
 
     /**
      * Constructor.
-     * 
-     * @param schemaName
-     *            Schema name
-     * @param collectionName
-     *            Collection name
-     * @param supportsOffset
-     *            Whether <i>offset</i> is supported or not
+     *
+     * @param schemaName     Schema name
+     * @param collectionName Collection name
+     * @param supportsOffset Whether <i>offset</i> is supported or not
      */
     public TableFilterParams(String schemaName, String collectionName, boolean supportsOffset) {
         super(schemaName, collectionName, supportsOffset, true);

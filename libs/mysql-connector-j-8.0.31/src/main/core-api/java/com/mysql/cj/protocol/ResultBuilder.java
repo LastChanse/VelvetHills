@@ -32,24 +32,22 @@ package com.mysql.cj.protocol;
 /**
  * Classes implementing this interface are responsible for building result of specific type from incoming ProtocolEntity objects.
  *
- * @param <T>
- *            result type
+ * @param <T> result type
  */
 public interface ResultBuilder<T> {
 
     /**
      * Add ProtocolEntity.
-     * 
-     * @param entity
-     *            {@link ProtocolEntity} object
+     *
+     * @param entity {@link ProtocolEntity} object
      * @return true - if this builder is ready for building the result;
-     *         false - if another ProtocolEntity is required
+     * false - if another ProtocolEntity is required
      */
     boolean addProtocolEntity(ProtocolEntity entity);
 
     /**
      * Build the result using already added protocol instances.
-     * 
+     *
      * @return {@link T} instance
      */
     T build();

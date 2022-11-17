@@ -121,18 +121,18 @@ public class MysqlXAConnection extends MysqlPooledConnection implements XAConnec
         /*
          * The XA RECOVER statement returns information for those XA transactions on the MySQL server that are in the PREPARED state. (See Section 13.4.7.2, "XA
          * Transaction States".) The output includes a row for each such XA transaction on the server, regardless of which client started it.
-         * 
+         *
          * XA RECOVER output rows look like this (for an example xid value consisting of the parts 'abc', 'def', and 7):
-         * 
+         *
          * mysql> XA RECOVER;
          * +----------+--------------+--------------+--------+
          * | formatID | gtrid_length | bqual_length | data |
          * +----------+--------------+--------------+--------+
          * | 7 | 3 | 3 | abcdef |
          * +----------+--------------+--------------+--------+
-         * 
+         *
          * The output columns have the following meanings:
-         * 
+         *
          * formatID is the formatID part of the transaction xid
          * gtrid_length is the length in bytes of the gtrid part of the xid
          * bqual_length is the length in bytes of the bqual part of the xid

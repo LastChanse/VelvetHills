@@ -69,15 +69,11 @@ public abstract class AbstractFilterParams implements FilterParams {
 
     /**
      * Constructor.
-     * 
-     * @param schemaName
-     *            Schema name
-     * @param collectionName
-     *            Collection name
-     * @param supportsOffset
-     *            Whether <i>offset</i> is supported or not
-     * @param isRelational
-     *            Are relational columns identifiers allowed?
+     *
+     * @param schemaName     Schema name
+     * @param collectionName Collection name
+     * @param supportsOffset Whether <i>offset</i> is supported or not
+     * @param isRelational   Are relational columns identifiers allowed?
      */
     public AbstractFilterParams(String schemaName, String collectionName, boolean supportsOffset, boolean isRelational) {
         this.collection = ExprUtil.buildCollection(schemaName, collectionName);

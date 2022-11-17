@@ -92,7 +92,7 @@ public class SqlDateValueFactory extends AbstractDateTimeValueFactory<Date> {
     public Date localCreateFromTime(InternalTime it) {
         if (this.warningListener != null) {
             // TODO: need column context
-            this.warningListener.warningEncountered(Messages.getString("ResultSet.ImplicitDatePartWarning", new Object[] { "java.sql.Date" }));
+            this.warningListener.warningEncountered(Messages.getString("ResultSet.ImplicitDatePartWarning", new Object[]{"java.sql.Date"}));
         }
         return Date.valueOf(TimeUtil.DEFAULT_DATE);
     }
@@ -101,7 +101,7 @@ public class SqlDateValueFactory extends AbstractDateTimeValueFactory<Date> {
     public Date localCreateFromTimestamp(InternalTimestamp its) {
         if (this.warningListener != null) {
             // TODO: need column context
-            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[] { "java.sql.Date" }));
+            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[]{"java.sql.Date"}));
         }
 
         // truncate any time information
@@ -112,7 +112,7 @@ public class SqlDateValueFactory extends AbstractDateTimeValueFactory<Date> {
     public Date localCreateFromDatetime(InternalTimestamp its) {
         if (this.warningListener != null) {
             // TODO: need column context
-            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[] { "java.sql.Date" }));
+            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[]{"java.sql.Date"}));
         }
 
         // truncate any time information

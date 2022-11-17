@@ -53,24 +53,40 @@ import com.mysql.cj.util.StringUtils;
  * Numeric values are returned as ASCII (encoding=63/binary).
  */
 public class MysqlTextValueDecoder implements ValueDecoder {
-    /** Buffer length of MySQL date string: 'YYYY-MM-DD'. */
+    /**
+     * Buffer length of MySQL date string: 'YYYY-MM-DD'.
+     */
     public static final int DATE_BUF_LEN = 10;
-    /** Min string length of MySQL time string: 'HH:MM:SS'. */
+    /**
+     * Min string length of MySQL time string: 'HH:MM:SS'.
+     */
     public static final int TIME_STR_LEN_MIN = 8;
-    /** Max string length of MySQL time string (with microseconds): '-HHH:MM:SS'. */
+    /**
+     * Max string length of MySQL time string (with microseconds): '-HHH:MM:SS'.
+     */
     public static final int TIME_STR_LEN_MAX_NO_FRAC = 10;
-    /** Max string length of MySQL time string (with microseconds): '-HHH:MM:SS.mmmmmm'. */
+    /**
+     * Max string length of MySQL time string (with microseconds): '-HHH:MM:SS.mmmmmm'.
+     */
     public static final int TIME_STR_LEN_MAX_WITH_MICROS = TIME_STR_LEN_MAX_NO_FRAC + 7;
-    /** String length of MySQL timestamp string (no microseconds): 'YYYY-MM-DD HH:MM:SS'. */
+    /**
+     * String length of MySQL timestamp string (no microseconds): 'YYYY-MM-DD HH:MM:SS'.
+     */
     public static final int TIMESTAMP_STR_LEN_NO_FRAC = 19;
-    /** Max string length of MySQL timestamp (with microsecs): 'YYYY-MM-DD HH:MM:SS.mmmmmm'. */
+    /**
+     * Max string length of MySQL timestamp (with microsecs): 'YYYY-MM-DD HH:MM:SS.mmmmmm'.
+     */
     public static final int TIMESTAMP_STR_LEN_WITH_MICROS = TIMESTAMP_STR_LEN_NO_FRAC + 7;
-    /** String length of String timestamp with nanos. This does not come from MySQL server but we support it via string conversion. */
+    /**
+     * String length of String timestamp with nanos. This does not come from MySQL server but we support it via string conversion.
+     */
     public static final int TIMESTAMP_STR_LEN_WITH_NANOS = TIMESTAMP_STR_LEN_NO_FRAC + 10;
 
     public static final Pattern TIME_PTRN = Pattern.compile("[-]{0,1}\\d{2,3}:\\d{2}:\\d{2}(\\.\\d{1,9})?");
 
-    /** Max string length of a signed long = 9223372036854775807 (19+1 for minus sign) */
+    /**
+     * Max string length of a signed long = 9223372036854775807 (19+1 for minus sign)
+     */
     public static final int MAX_SIGNED_LONG_LEN = 20;
 
     public <T> T decodeDate(byte[] bytes, int offset, int length, ValueFactory<T> vf) {
@@ -160,7 +176,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
     public static int getInt(byte[] buf, int offset, int endpos) throws NumberFormatException {
         long l = getLong(buf, offset, endpos);
         if (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {
-            throw new NumberOutOfRange(Messages.getString("StringUtils.badIntFormat", new Object[] { StringUtils.toString(buf, offset, endpos - offset) }));
+            throw new NumberOutOfRange(Messages.getString("StringUtils.badIntFormat", new Object[]{StringUtils.toString(buf, offset, endpos - offset)}));
         }
         return (int) l;
     }
@@ -229,11 +245,11 @@ public class MysqlTextValueDecoder implements ValueDecoder {
         // no digits were parsed after a possible +/-
         if (s == save) {
             throw new NumberFormatException(
-                    Messages.getString("StringUtils.badIntFormat", new Object[] { StringUtils.toString(buf, offset, endpos - offset) }));
+                    Messages.getString("StringUtils.badIntFormat", new Object[]{StringUtils.toString(buf, offset, endpos - offset)}));
         }
 
         if (overflow) {
-            throw new NumberOutOfRange(Messages.getString("StringUtils.badIntFormat", new Object[] { StringUtils.toString(buf, offset, endpos - offset) }));
+            throw new NumberOutOfRange(Messages.getString("StringUtils.badIntFormat", new Object[]{StringUtils.toString(buf, offset, endpos - offset)}));
         }
 
         /* Return the result of the appropriate sign. */
@@ -266,7 +282,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
 
     public static InternalDate getDate(byte[] bytes, int offset, int length) {
         if (length != DATE_BUF_LEN) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidLengthForType", new Object[] { length, "DATE" }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidLengthForType", new Object[]{length, "DATE"}));
         }
         int year = getInt(bytes, offset, offset + 4);
         int month = getInt(bytes, offset + 5, offset + 7);
@@ -280,7 +296,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
         int segmentLen;
 
         if (length < TIME_STR_LEN_MIN || length > TIME_STR_LEN_MAX_WITH_MICROS) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidLengthForType", new Object[] { length, "TIME" }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidLengthForType", new Object[]{length, "TIME"}));
         }
 
         boolean negative = false;
@@ -296,7 +312,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
         }
         if (segmentLen == 0 || bytes[offset + pos + segmentLen] != ':') {
             throw new DataReadException(
-                    Messages.getString("ResultSet.InvalidFormatForType", new Object[] { "TIME", StringUtils.toString(bytes, offset, length) }));
+                    Messages.getString("ResultSet.InvalidFormatForType", new Object[]{"TIME", StringUtils.toString(bytes, offset, length)}));
         }
         int hours = getInt(bytes, offset + pos, offset + pos + segmentLen);
         if (negative) {
@@ -310,7 +326,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
         }
         if (segmentLen != 2 || bytes[offset + pos + segmentLen] != ':') {
             throw new DataReadException(
-                    Messages.getString("ResultSet.InvalidFormatForType", new Object[] { "TIME", StringUtils.toString(bytes, offset, length) }));
+                    Messages.getString("ResultSet.InvalidFormatForType", new Object[]{"TIME", StringUtils.toString(bytes, offset, length)}));
         }
         int minutes = getInt(bytes, offset + pos, offset + pos + segmentLen);
         pos += segmentLen + 1;
@@ -321,7 +337,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
         }
         if (segmentLen != 2) {
             throw new DataReadException(
-                    Messages.getString("ResultSet.InvalidFormatForType", new Object[] { StringUtils.toString(bytes, offset, length), "TIME" }));
+                    Messages.getString("ResultSet.InvalidFormatForType", new Object[]{StringUtils.toString(bytes, offset, length), "TIME"}));
         }
         int seconds = getInt(bytes, offset + pos, offset + pos + segmentLen);
         pos += segmentLen;
@@ -336,7 +352,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
             }
             if (segmentLen + pos != length) {
                 throw new DataReadException(
-                        Messages.getString("ResultSet.InvalidFormatForType", new Object[] { StringUtils.toString(bytes, offset, length), "TIME" }));
+                        Messages.getString("ResultSet.InvalidFormatForType", new Object[]{StringUtils.toString(bytes, offset, length), "TIME"}));
             }
             nanos = getInt(bytes, offset + pos, offset + pos + segmentLen);
             // scale out nanos appropriately. mysql supports up to 6 digits of fractional seconds, each additional digit increasing the range by a factor of
@@ -349,12 +365,12 @@ public class MysqlTextValueDecoder implements ValueDecoder {
 
     public static InternalTimestamp getTimestamp(byte[] bytes, int offset, int length, int scale) {
         if (length < TIMESTAMP_STR_LEN_NO_FRAC || (length > TIMESTAMP_STR_LEN_WITH_MICROS && length != TIMESTAMP_STR_LEN_WITH_NANOS)) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidLengthForType", new Object[] { length, "TIMESTAMP" }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidLengthForType", new Object[]{length, "TIMESTAMP"}));
         } else if (length != TIMESTAMP_STR_LEN_NO_FRAC) {
             // need at least two extra bytes for fractional, '.' and a digit
             if (bytes[offset + TIMESTAMP_STR_LEN_NO_FRAC] != (byte) '.' || length < TIMESTAMP_STR_LEN_NO_FRAC + 2) {
                 throw new DataReadException(
-                        Messages.getString("ResultSet.InvalidFormatForType", new Object[] { StringUtils.toString(bytes, offset, length), "TIMESTAMP" }));
+                        Messages.getString("ResultSet.InvalidFormatForType", new Object[]{StringUtils.toString(bytes, offset, length), "TIMESTAMP"}));
             }
         }
 
@@ -362,7 +378,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
         if (bytes[offset + 4] != (byte) '-' || bytes[offset + 7] != (byte) '-' || bytes[offset + 10] != (byte) ' ' || bytes[offset + 13] != (byte) ':'
                 || bytes[offset + 16] != (byte) ':') {
             throw new DataReadException(
-                    Messages.getString("ResultSet.InvalidFormatForType", new Object[] { StringUtils.toString(bytes, offset, length), "TIMESTAMP" }));
+                    Messages.getString("ResultSet.InvalidFormatForType", new Object[]{StringUtils.toString(bytes, offset, length), "TIMESTAMP"}));
         }
 
         int year = getInt(bytes, offset, offset + 4);

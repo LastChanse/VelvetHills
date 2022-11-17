@@ -211,7 +211,7 @@ public class DevApiBaseTestCase extends InternalXBaseTestCase {
 
     int getPreparedStatementExecutionsCount(Session sess, int prepStmtId) {
         SqlResult res = sess.sql("SELECT psi.count_execute FROM performance_schema.prepared_statements_instances psi INNER JOIN performance_schema.threads t "
-                + "ON psi.owner_thread_id = t.thread_id WHERE t.processlist_id = connection_id() AND psi.statement_id = mysqlx_get_prepared_statement_id(?)")
+                        + "ON psi.owner_thread_id = t.thread_id WHERE t.processlist_id = connection_id() AND psi.statement_id = mysqlx_get_prepared_statement_id(?)")
                 .bind(prepStmtId).execute();
         if (res.hasNext()) {
             return res.next().getInt(0);

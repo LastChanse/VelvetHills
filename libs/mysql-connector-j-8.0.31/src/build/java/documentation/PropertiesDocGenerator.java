@@ -52,7 +52,7 @@ public class PropertiesDocGenerator {
 
     /**
      * Returns a description of the connection properties as an XML document.
-     * 
+     *
      * @return the connection properties as an XML document.
      */
     public static String exposeAsXml() {

@@ -62,7 +62,7 @@ public class RetrievalPerfTest extends BaseTestCase {
 
     /**
      * Tests retrieval from the query cache
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -111,7 +111,7 @@ public class RetrievalPerfTest extends BaseTestCase {
 
     /**
      * Tests retrieval from HEAP tables
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -155,7 +155,7 @@ public class RetrievalPerfTest extends BaseTestCase {
 
     /**
      * Tests retrieval speed from MyISAM type tables
-     * 
+     *
      * @throws Exception
      */
     @Test

@@ -50,7 +50,7 @@ public class LoginController {
     private LoginController selfRoot;
 
     public void getSelfController(LoginController selfRoot) {
-        this.selfRoot=selfRoot;
+        this.selfRoot = selfRoot;
     }
 
     @FXML
@@ -91,37 +91,38 @@ public class LoginController {
         } else {
             countTryLogin++;
             if (countTryLogin >= Config.countTryLogin) {
-                countTryLogin=0;
+                countTryLogin = 0;
                 // Запросить капчу
-                        Parent root;
-                        try {
-                            AtomicReference<Double> xOffset = new AtomicReference<>((double) 101);
-                            AtomicReference<Double> yOffset = new AtomicReference<>((double) 101);
-                            FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("captcha-view.fxml"));
-                            root = loader.load();
-                            CaptchaController cc = loader.getController();
-                            cc.getParentController(selfRoot);
+                Parent root;
+                try {
+                    AtomicReference<Double> xOffset = new AtomicReference<>((double) 101);
+                    AtomicReference<Double> yOffset = new AtomicReference<>((double) 101);
+                    FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("captcha-view.fxml"));
+                    root = loader.load();
+                    CaptchaController cc = loader.getController();
+                    cc.getParentController(selfRoot);
 
-                            Stage stage = new Stage();
+                    Stage stage = new Stage();
 
-                            stage.initStyle(StageStyle.DECORATED.UNDECORATED);
+                    stage.initStyle(StageStyle.DECORATED.UNDECORATED);
 
-                            root.setOnMouseMoved(mouseEvent -> {
-                                xOffset.set(mouseEvent.getSceneX());
-                                yOffset.set(mouseEvent.getSceneY());
-                            });
+                    root.setOnMouseMoved(mouseEvent -> {
+                        xOffset.set(mouseEvent.getSceneX());
+                        yOffset.set(mouseEvent.getSceneY());
+                    });
 
-                            root.setOnMouseDragged(mouseEvent -> {
-                                if (yOffset.get() < Config.draggedYZone) {
-                                    stage.setX(mouseEvent.getScreenX() - xOffset.get());
-                                    stage.setY(mouseEvent.getScreenY() - yOffset.get());
-                                }});stage.setTitle("Капча");
-                            stage.setScene(new Scene(root));
-                            stage.show();
+                    root.setOnMouseDragged(mouseEvent -> {
+                        if (yOffset.get() < Config.draggedYZone) {
+                            stage.setX(mouseEvent.getScreenX() - xOffset.get());
+                            stage.setY(mouseEvent.getScreenY() - yOffset.get());
                         }
-                        catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                    });
+                    stage.setTitle("Капча");
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -144,7 +145,7 @@ public class LoginController {
         double[] timeMin = {0}; //Чтобы внутри события был доступен, делаем в виде массива.
         int[] timeSec = {timeMinute};
         if (timeMinute >= 60) {
-            timeMin[0]=timeMinute/60;
+            timeMin[0] = timeMinute / 60;
             timeMin[0]--;
             timeSec[0] = timeMinute - ((int) timeMin[0]) * 60;
         }

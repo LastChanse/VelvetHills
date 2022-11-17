@@ -72,7 +72,7 @@ public class MysqlDataSourceFactory implements ObjectFactory {
             try {
                 dataSource = (MysqlDataSource) Class.forName(className).newInstance();
             } catch (Exception ex) {
-                throw new RuntimeException(Messages.getString("MysqlDataSourceFactory.0", new Object[] { className, ex.toString() }));
+                throw new RuntimeException(Messages.getString("MysqlDataSourceFactory.0", new Object[]{className, ex.toString()}));
             }
 
             int portNumber = 3306;

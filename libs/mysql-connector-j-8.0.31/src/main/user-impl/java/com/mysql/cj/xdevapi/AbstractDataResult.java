@@ -48,9 +48,8 @@ import com.mysql.cj.result.RowList;
 
 /**
  * Base class for data set results.
- * 
- * @param <T>
- *            Result entry type
+ *
+ * @param <T> Result entry type
  */
 public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<T>, Result {
 
@@ -60,18 +59,17 @@ public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<
     protected Supplier<ProtocolEntity> completer;
     protected StatementExecuteOk ok;
     protected ProtocolEntityFactory<T, XMessage> rowToData;
-    /** List of all elements. <code>null</code> until requested via {@link #fetchAll()}. */
+    /**
+     * List of all elements. <code>null</code> until requested via {@link #fetchAll()}.
+     */
     protected List<T> all;
 
     /**
      * Constructor.
-     * 
-     * @param rows
-     *            {@link RowList} object
-     * @param completer
-     *            Supplier for StatementExecuteOk object
-     * @param rowToData
-     *            {@link ProtocolEntityFactory}
+     *
+     * @param rows      {@link RowList} object
+     * @param completer Supplier for StatementExecuteOk object
+     * @param rowToData {@link ProtocolEntityFactory}
      */
     public AbstractDataResult(RowList rows, Supplier<ProtocolEntity> completer, ProtocolEntityFactory<T, XMessage> rowToData) {
         this.rows = rows;
@@ -94,7 +92,7 @@ public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<
 
     /**
      * Create a list of all elements in the result forcing internal buffering.
-     * 
+     *
      * @return list of result elements
      */
     public List<T> fetchAll() {
@@ -112,7 +110,7 @@ public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<
 
     /**
      * Return the number of items in this result. Forces internal buffering of the entire result.
-     * 
+     *
      * @return number of elements in result
      */
     public long count() {
@@ -126,7 +124,7 @@ public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<
 
     /**
      * Get StatementExecuteOk object finalizing the result transfer. Forces internal buffering of the entire result.
-     * 
+     *
      * @return StatementExecuteOk object
      */
     public StatementExecuteOk getStatementExecuteOk() {

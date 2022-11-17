@@ -49,7 +49,7 @@ import testsuite.BaseTestCase;
 public class EscapeProcessorRegressionTest extends BaseTestCase {
     /**
      * Tests fix for BUG#11797 - Escape tokenizer doesn't respect stacked single quotes for escapes.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -60,7 +60,7 @@ public class EscapeProcessorRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#11498 - Escape processor didn't honor strings demarcated with double quotes.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -73,7 +73,7 @@ public class EscapeProcessorRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#14909 - escape processor replaces quote character in quoted string with string delimiter.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -83,7 +83,7 @@ public class EscapeProcessorRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#25399 - EscapeProcessor gets confused by multiple backslashes
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -93,7 +93,7 @@ public class EscapeProcessorRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#63526 - Unhandled case of {data...}
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -103,7 +103,7 @@ public class EscapeProcessorRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#60598 - nativeSQL() truncates fractional seconds
-     * 
+     *
      * @throws Exception
      */
     @Test

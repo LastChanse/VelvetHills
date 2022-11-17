@@ -871,7 +871,7 @@ public class TableSelectTest extends BaseTableTestCase {
     /**
      * Tests fix for Bug#22038729, X DEVAPI: ANY API CALL AFTER A FAILED CALL PROC() RESULTS IN HANG
      * and for duplicate Bug#25575010, X DEVAPI: ANY API CALL AFTER A FAILED SELECT RESULTS IN HANG
-     * 
+     *
      * @throws Exception
      */
     @Test

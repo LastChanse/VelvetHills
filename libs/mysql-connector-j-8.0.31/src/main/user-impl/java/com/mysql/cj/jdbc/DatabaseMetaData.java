@@ -547,11 +547,9 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     /**
      * Helper/wrapper class to provide means of sorting objects by using a sorting key.
-     * 
-     * @param <K>
-     *            key type
-     * @param <V>
-     *            value type
+     *
+     * @param <K> key type
+     * @param <V> value type
      */
     protected class ComparableWrapper<K extends Object & Comparable<? super K>, V> implements Comparable<ComparableWrapper<K, V>> {
         K key;
@@ -608,7 +606,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
      * Enumeration for Table Types
      */
     protected enum TableType {
-        LOCAL_TEMPORARY("LOCAL TEMPORARY"), SYSTEM_TABLE("SYSTEM TABLE"), SYSTEM_VIEW("SYSTEM VIEW"), TABLE("TABLE", new String[] { "BASE TABLE" }),
+        LOCAL_TEMPORARY("LOCAL TEMPORARY"), SYSTEM_TABLE("SYSTEM TABLE"), SYSTEM_VIEW("SYSTEM VIEW"), TABLE("TABLE", new String[]{"BASE TABLE"}),
         VIEW("VIEW"), UNKNOWN("UNKNOWN");
 
         private String name;
@@ -679,7 +677,9 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     protected static final int MAX_IDENTIFIER_LENGTH = 64;
 
-    /** The table type for generic tables that support foreign keys. */
+    /**
+     * The table type for generic tables that support foreign keys.
+     */
     private static final String SUPPORTS_FK = "SUPPORTS_FK";
 
     protected static final byte[] TABLE_AS_BYTES = "TABLE".getBytes();
@@ -689,7 +689,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     protected static final byte[] VIEW_AS_BYTES = "VIEW".getBytes();
 
     // MySQL reserved words (all versions superset)
-    private static final String[] MYSQL_KEYWORDS = new String[] { "ACCESSIBLE", "ADD", "ALL", "ALTER", "ANALYZE", "AND", "AS", "ASC", "ASENSITIVE", "BEFORE",
+    private static final String[] MYSQL_KEYWORDS = new String[]{"ACCESSIBLE", "ADD", "ALL", "ALTER", "ANALYZE", "AND", "AS", "ASC", "ASENSITIVE", "BEFORE",
             "BETWEEN", "BIGINT", "BINARY", "BLOB", "BOTH", "BY", "CALL", "CASCADE", "CASE", "CHANGE", "CHAR", "CHARACTER", "CHECK", "COLLATE", "COLUMN",
             "CONDITION", "CONSTRAINT", "CONTINUE", "CONVERT", "CREATE", "CROSS", "CUBE", "CUME_DIST", "CURRENT_DATE", "CURRENT_TIME", "CURRENT_TIMESTAMP",
             "CURRENT_USER", "CURSOR", "DATABASE", "DATABASES", "DAY_HOUR", "DAY_MICROSECOND", "DAY_MINUTE", "DAY_SECOND", "DEC", "DECIMAL", "DECLARE",
@@ -709,7 +709,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
             "SQL_BIG_RESULT", "SQL_CALC_FOUND_ROWS", "SQL_SMALL_RESULT", "SSL", "STARTING", "STORED", "STRAIGHT_JOIN", "SYSTEM", "TABLE", "TERMINATED", "THEN",
             "TINYBLOB", "TINYINT", "TINYTEXT", "TO", "TRAILING", "TRIGGER", "TRUE", "UNDO", "UNION", "UNIQUE", "UNLOCK", "UNSIGNED", "UPDATE", "USAGE", "USE",
             "USING", "UTC_DATE", "UTC_TIME", "UTC_TIMESTAMP", "VALUES", "VARBINARY", "VARCHAR", "VARCHARACTER", "VARYING", "VIRTUAL", "WHEN", "WHERE", "WHILE",
-            "WINDOW", "WITH", "WRITE", "XOR", "YEAR_MONTH", "ZEROFILL" };
+            "WINDOW", "WITH", "WRITE", "XOR", "YEAR_MONTH", "ZEROFILL"};
 
     // SQL:2003 reserved words from 'ISO/IEC 9075-2:2003 (E), 2003-07-25'
     /* package private */ static final List<String> SQL2003_KEYWORDS = Arrays.asList("ABS", "ALL", "ALLOCATE", "ALTER", "AND", "ANY", "ARE", "ARRAY", "AS",
@@ -738,15 +738,21 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     private static volatile String mysqlKeywords = null;
 
-    /** The connection to the database */
+    /**
+     * The connection to the database
+     */
     protected JdbcConnection conn;
 
     protected NativeSession session;
 
-    /** The 'current' database name being used */
+    /**
+     * The 'current' database name being used
+     */
     protected String database = null;
 
-    /** What character to use when quoting identifiers */
+    /**
+     * What character to use when quoting identifiers
+     */
     protected final String quotedId;
 
     protected boolean pedantic;
@@ -774,13 +780,10 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     /**
      * Creates a new DatabaseMetaData object.
-     * 
-     * @param connToSet
-     *            Connection object
-     * @param databaseToSet
-     *            database name
-     * @param resultSetFactory
-     *            {@link ResultSetFactory}
+     *
+     * @param connToSet        Connection object
+     * @param databaseToSet    database name
+     * @param resultSetFactory {@link ResultSetFactory}
      */
     protected DatabaseMetaData(JdbcConnection connToSet, String databaseToSet, ResultSetFactory resultSetFactory) {
         this.conn = connToSet;
@@ -869,7 +872,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     private Row convertTypeDescriptorToProcedureRow(byte[] procNameAsBytes, byte[] procCatAsBytes, String paramName, boolean isOutParam, boolean isInParam,
-            boolean isReturnParam, TypeDescriptor typeDesc, boolean forGetFunctionColumns, int ordinal) throws SQLException {
+                                                    boolean isReturnParam, TypeDescriptor typeDesc, boolean forGetFunctionColumns, int ordinal) throws SQLException {
         byte[][] row = forGetFunctionColumns ? new byte[17][] : new byte[20][];
         row[0] = this.databaseTerm.getValue() == DatabaseTerm.SCHEMA ? s2b("def") : procCatAsBytes;                                // PROCEDURE_CAT
         row[1] = this.databaseTerm.getValue() == DatabaseTerm.SCHEMA ? procCatAsBytes : null;                                      // PROCEDURE_SCHEM
@@ -925,17 +928,12 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     /**
      * Determines the COLUMN_TYPE information based on parameter type (IN, OUT or INOUT) or function return parameter.
-     * 
-     * @param isOutParam
-     *            Indicates whether it's an output parameter.
-     * @param isInParam
-     *            Indicates whether it's an input parameter.
-     * @param isReturnParam
-     *            Indicates whether it's a function return parameter.
-     * @param forGetFunctionColumns
-     *            Indicates whether the column belong to a function. This argument is required for JDBC4, in which case
-     *            this method must be overridden to provide the correct functionality.
-     * 
+     *
+     * @param isOutParam            Indicates whether it's an output parameter.
+     * @param isInParam             Indicates whether it's an input parameter.
+     * @param isReturnParam         Indicates whether it's a function return parameter.
+     * @param forGetFunctionColumns Indicates whether the column belong to a function. This argument is required for JDBC4, in which case
+     *                              this method must be overridden to provide the correct functionality.
      * @return The corresponding COLUMN_TYPE as in java.sql.getProcedureColumns API.
      */
     protected int getColumnType(boolean isOutParam, boolean isInParam, boolean isReturnParam, boolean forGetFunctionColumns) {
@@ -944,16 +942,11 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     /**
      * Determines the COLUMN_TYPE information based on parameter type (IN, OUT or INOUT) or function return parameter.
-     * 
-     * @param isOutParam
-     *            Indicates whether it's an output parameter.
-     * @param isInParam
-     *            Indicates whether it's an input parameter.
-     * @param isReturnParam
-     *            Indicates whether it's a function return parameter.
-     * @param forGetFunctionColumns
-     *            Indicates whether the column belong to a function.
-     * 
+     *
+     * @param isOutParam            Indicates whether it's an output parameter.
+     * @param isInParam             Indicates whether it's an input parameter.
+     * @param isReturnParam         Indicates whether it's a function return parameter.
+     * @param forGetFunctionColumns Indicates whether the column belong to a function.
      * @return The corresponding COLUMN_TYPE as in java.sql.getProcedureColumns API.
      */
     protected static int getProcedureOrFunctionColumnType(boolean isOutParam, boolean isInParam, boolean isReturnParam, boolean forGetFunctionColumns) {
@@ -999,16 +992,12 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     /**
      * Extracts foreign key info for one table.
-     * 
-     * @param rows
-     *            the list of rows to add to
-     * @param rs
-     *            the result set from 'SHOW CREATE TABLE'
-     * @param dbName
-     *            the database name
+     *
+     * @param rows   the list of rows to add to
+     * @param rs     the result set from 'SHOW CREATE TABLE'
+     * @param dbName the database name
      * @return the list of rows with new rows added
-     * @throws SQLException
-     *             if a database access error occurs
+     * @throws SQLException if a database access error occurs
      */
     public List<Row> extractForeignKeyForTable(ArrayList<Row> rows, java.sql.ResultSet rs, String dbName) throws SQLException {
         byte[][] row = new byte[3][];
@@ -1147,14 +1136,11 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     /**
      * Creates a result set similar enough to 'SHOW TABLE STATUS' to allow the
      * same code to work on extracting the foreign key data
-     * 
-     * @param dbName
-     *            the database name to extract foreign key info for
-     * @param tableName
-     *            the table to extract foreign key info for
+     *
+     * @param dbName    the database name to extract foreign key info for
+     * @param tableName the table to extract foreign key info for
      * @return A result set that has the structure of 'show table status'
-     * @throws SQLException
-     *             if a database access error occurs.
+     * @throws SQLException if a database access error occurs.
      */
     public ResultSet extractForeignKeyFromCreateTable(String dbName, String tableName) throws SQLException {
         ArrayList<String> tableList = new ArrayList<>();
@@ -1165,8 +1151,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
             tableList.add(tableName);
         } else {
             try {
-                rs = this.databaseTerm.getValue() == DatabaseTerm.SCHEMA ? getTables(null, dbName, null, new String[] { "TABLE" })
-                        : getTables(dbName, null, null, new String[] { "TABLE" });
+                rs = this.databaseTerm.getValue() == DatabaseTerm.SCHEMA ? getTables(null, dbName, null, new String[]{"TABLE"})
+                        : getTables(dbName, null, null, new String[]{"TABLE"});
 
                 while (rs.next()) {
                     tableList.add(rs.getString("TABLE_NAME"));
@@ -1394,11 +1380,11 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     /*
      * Extract parameter details for Procedures and Functions by parsing the DDL query obtained from SHOW CREATE [PROCEDURE|FUNCTION] ... statements.
      * The result rows returned follow the required structure for getProcedureColumns() and getFunctionColumns() methods.
-     * 
+     *
      * Internal use only.
      */
     private void getCallStmtParameterTypes(String db, String quotedProcName, ProcedureType procType, String parameterNamePattern, List<Row> resultRows,
-            boolean forGetFunctionColumns) throws SQLException {
+                                           boolean forGetFunctionColumns) throws SQLException {
         java.sql.Statement paramRetrievalStmt = null;
         java.sql.ResultSet paramRetrievalRs = null;
 
@@ -1442,7 +1428,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
             int dotIndex = " ".equals(this.quotedId) ? quotedProcName.indexOf(".")
                     : StringUtils.indexOfIgnoreCase(0, quotedProcName, ".", this.quotedId, this.quotedId,
-                            this.session.getServerSession().isNoBackslashEscapesSet() ? SearchMode.__MRK_COM_MYM_HNT_WS : SearchMode.__BSE_MRK_COM_MYM_HNT_WS);
+                    this.session.getServerSession().isNoBackslashEscapesSet() ? SearchMode.__MRK_COM_MYM_HNT_WS : SearchMode.__BSE_MRK_COM_MYM_HNT_WS);
 
             String dbName = null;
 
@@ -1680,18 +1666,14 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     /**
      * Finds the end of the parameter declaration from the output of "SHOW
      * CREATE PROCEDURE".
-     * 
-     * @param beginIndex
-     *            should be the index of the procedure body that contains the
-     *            first "(".
-     * @param procedureDef
-     *            the procedure body
-     * @param quoteChar
-     *            the identifier quote character in use
+     *
+     * @param beginIndex   should be the index of the procedure body that contains the
+     *                     first "(".
+     * @param procedureDef the procedure body
+     * @param quoteChar    the identifier quote character in use
      * @return the ending index of the parameter declaration, not including the
-     *         closing ")"
-     * @throws SQLException
-     *             if a parse error occurs.
+     * closing ")"
+     * @throws SQLException if a parse error occurs.
      */
     private int endPositionOfParameterDeclaration(int beginIndex, String procedureDef, String quoteChar) throws SQLException {
         int currentPos = beginIndex + 1;
@@ -1725,14 +1707,11 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     /**
      * Finds the end of the RETURNS clause for SQL Functions by using any of the
      * keywords allowed after the RETURNS clause, or a label.
-     * 
-     * @param procedureDefn
-     *            the function body containing the definition of the function
-     * @param positionOfReturnKeyword
-     *            the position of "RETURNS" in the definition
+     *
+     * @param procedureDefn           the function body containing the definition of the function
+     * @param positionOfReturnKeyword the position of "RETURNS" in the definition
      * @return the end of the returns clause
-     * @throws SQLException
-     *             if a parse error occurs
+     * @throws SQLException if a parse error occurs
      */
     private int findEndOfReturnsClause(String procedureDefn, int positionOfReturnKeyword) throws SQLException {
         /*
@@ -1743,7 +1722,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
         String openingMarkers = this.quotedId + "(";
         String closingMarkers = this.quotedId + ")";
 
-        String[] tokens = new String[] { "LANGUAGE", "NOT", "DETERMINISTIC", "CONTAINS", "NO", "READ", "MODIFIES", "SQL", "COMMENT", "BEGIN", "RETURN" };
+        String[] tokens = new String[]{"LANGUAGE", "NOT", "DETERMINISTIC", "CONTAINS", "NO", "READ", "MODIFIES", "SQL", "COMMENT", "BEGIN", "RETURN"};
 
         int startLookingAt = positionOfReturnKeyword + "RETURNS".length() + 1;
 
@@ -1785,11 +1764,10 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     /**
      * Parses the cascade option string and returns the DBMD constant that
      * represents it (for deletes)
-     * 
+     * <p>
      * Please note that in MySQL, NO ACTION is the equivalent to RESTRICT.
-     * 
-     * @param cascadeOptions
-     *            the comment from 'SHOW TABLE STATUS'
+     *
+     * @param cascadeOptions the comment from 'SHOW TABLE STATUS'
      * @return the DBMD constant that represents the cascade option
      */
     private int getCascadeDeleteOption(String cascadeOptions) {
@@ -1811,11 +1789,10 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     /**
      * Parses the cascade option string and returns the DBMD constant that
      * represents it (for Updates).
-     * 
+     * <p>
      * Please note that in MySQL, NO ACTION is the equivalent to RESTRICT.
-     * 
-     * @param cascadeOptions
-     *            the comment from 'SHOW TABLE STATUS'
+     *
+     * @param cascadeOptions the comment from 'SHOW TABLE STATUS'
      * @return the DBMD constant that represents the cascade option
      */
     private int getCascadeUpdateOption(String cascadeOptions) {
@@ -1850,10 +1827,9 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     /**
      * Retrieves the database names available on this server. The results are ordered by database name.
-     * 
+     *
      * @return list of database names
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
     protected List<String> getDatabases() throws SQLException {
         return getDatabases(null);
@@ -1861,12 +1837,10 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     /**
      * Retrieves the database names matching the dbPattern available on this server. The results are ordered by database name.
-     * 
-     * @param dbPattern
-     *            database name pattern
+     *
+     * @param dbPattern database name pattern
      * @return list of database names
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
     protected List<String> getDatabases(String dbPattern) throws SQLException {
         PreparedStatement pStmt = null;
@@ -2210,8 +2184,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
                                 }
 
                                 rowVal[12] = results.getBytes("Default");       // COLUMN_DEF
-                                rowVal[13] = new byte[] { (byte) '0' };         // SQL_DATA_TYPE
-                                rowVal[14] = new byte[] { (byte) '0' };         // SQL_DATE_TIME_SUB
+                                rowVal[13] = new byte[]{(byte) '0'};         // SQL_DATA_TYPE
+                                rowVal[14] = new byte[]{(byte) '0'};         // SQL_DATE_TIME_SUB
 
                                 if (StringUtils.indexOfIgnoreCase(typeDesc.mysqlType.getName(), "CHAR") != -1
                                         || StringUtils.indexOfIgnoreCase(typeDesc.mysqlType.getName(), "BLOB") != -1
@@ -2321,7 +2295,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     @Override
     public java.sql.ResultSet getCrossReference(final String primaryCatalog, final String primarySchema, final String primaryTable, final String foreignCatalog,
-            final String foreignSchema, final String foreignTable) throws SQLException {
+                                                final String foreignSchema, final String foreignTable) throws SQLException {
         if (primaryTable == null) {
             throw SQLError.createSQLException(Messages.getString("DatabaseMetaData.2"), MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT,
                     getExceptionInterceptor());
@@ -2607,13 +2581,12 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
      * Returns the DELETE and UPDATE foreign key actions from the given 'SHOW
      * TABLE STATUS' string, with the DELETE action being the first item in the
      * array, and the UPDATE action being the second.
-     * 
-     * @param commentString
-     *            the comment from 'SHOW TABLE STATUS'
+     *
+     * @param commentString the comment from 'SHOW TABLE STATUS'
      * @return int[] [0] = delete action, [1] = update action
      */
     protected int[] getForeignKeyActions(String commentString) {
-        int[] actions = new int[] { java.sql.DatabaseMetaData.importedKeyRestrict, java.sql.DatabaseMetaData.importedKeyRestrict };
+        int[] actions = new int[]{java.sql.DatabaseMetaData.importedKeyRestrict, java.sql.DatabaseMetaData.importedKeyRestrict};
 
         int lastParenIndex = commentString.lastIndexOf(")");
 
@@ -3087,7 +3060,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     protected java.sql.ResultSet getProcedureOrFunctionColumns(Field[] fields, String catalog, String schemaPattern, String procedureOrFunctionNamePattern,
-            String columnNamePattern, boolean returnProcedures, boolean returnFunctions) throws SQLException {
+                                                               String columnNamePattern, boolean returnProcedures, boolean returnFunctions) throws SQLException {
 
         String db = getDatabase(catalog, schemaPattern);
         final boolean dbMapsToSchema = DatabaseMetaData.this.databaseTerm.getValue() == DatabaseTerm.SCHEMA;
@@ -3217,24 +3190,17 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * @param fields
-     *            fields
-     * @param catalog
-     *            catalog
-     * @param schemaPattern
-     *            schema pattern
-     * @param procedureNamePattern
-     *            procedure name pattern
-     * @param returnProcedures
-     *            true if procedures should be included into result
-     * @param returnFunctions
-     *            true if functions should be included into result
+     * @param fields               fields
+     * @param catalog              catalog
+     * @param schemaPattern        schema pattern
+     * @param procedureNamePattern procedure name pattern
+     * @param returnProcedures     true if procedures should be included into result
+     * @param returnFunctions      true if functions should be included into result
      * @return result set
-     * @throws SQLException
-     *             if a database access error occurs
+     * @throws SQLException if a database access error occurs
      */
     protected java.sql.ResultSet getProceduresAndOrFunctions(final Field[] fields, String catalog, String schemaPattern, final String procedureNamePattern,
-            final boolean returnProcedures, final boolean returnFunctions) throws SQLException {
+                                                             final boolean returnProcedures, final boolean returnFunctions) throws SQLException {
         final ArrayList<Row> procedureRows = new ArrayList<>();
 
         String db = getDatabase(catalog, schemaPattern);
@@ -3380,21 +3346,14 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
      * Populates the resultRows list with the imported or exported keys of given table
      * based on the keysComment from the 'show table status' sql command.
      * KeysComment is that part of the comment field that follows the "InnoDB free ...;" prefix.
-     * 
-     * @param db
-     *            the database to use
-     * @param table
-     *            the table keys are being exported from or imported to
-     * @param keysComment
-     *            the comment from 'show table status'
-     * @param resultRows
-     *            the rows to add results to
-     * @param fkTableName
-     *            the foreign key table name
-     * @param isExport
-     *            export or import keys
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param db          the database to use
+     * @param table       the table keys are being exported from or imported to
+     * @param keysComment the comment from 'show table status'
+     * @param resultRows  the rows to add results to
+     * @param fkTableName the foreign key table name
+     * @param isExport    export or import keys
+     * @throws SQLException if an error occurs
      */
     void populateKeyResults(String db, String table, String keysComment, List<Row> resultRows, String fkTableName, boolean isExport) throws SQLException {
 
@@ -3478,10 +3437,9 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     /**
      * Get a comma separated list of all a database's SQL keywords that are NOT also SQL92/SQL2003 keywords.
-     * 
+     *
      * @return the list
-     * @throws SQLException
-     *             if a database access error occurs
+     * @throws SQLException if a database access error occurs
      */
     @Override
     public String getSQLKeywords() throws SQLException {
@@ -3916,13 +3874,13 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     @Override
     public java.sql.ResultSet getTableTypes() throws SQLException {
         ArrayList<Row> tuples = new ArrayList<>();
-        Field[] fields = new Field[] { new Field("", "TABLE_TYPE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 256) };
+        Field[] fields = new Field[]{new Field("", "TABLE_TYPE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 256)};
 
-        tuples.add(new ByteArrayRow(new byte[][] { TableType.LOCAL_TEMPORARY.asBytes() }, getExceptionInterceptor()));
-        tuples.add(new ByteArrayRow(new byte[][] { TableType.SYSTEM_TABLE.asBytes() }, getExceptionInterceptor()));
-        tuples.add(new ByteArrayRow(new byte[][] { TableType.SYSTEM_VIEW.asBytes() }, getExceptionInterceptor()));
-        tuples.add(new ByteArrayRow(new byte[][] { TableType.TABLE.asBytes() }, getExceptionInterceptor()));
-        tuples.add(new ByteArrayRow(new byte[][] { TableType.VIEW.asBytes() }, getExceptionInterceptor()));
+        tuples.add(new ByteArrayRow(new byte[][]{TableType.LOCAL_TEMPORARY.asBytes()}, getExceptionInterceptor()));
+        tuples.add(new ByteArrayRow(new byte[][]{TableType.SYSTEM_TABLE.asBytes()}, getExceptionInterceptor()));
+        tuples.add(new ByteArrayRow(new byte[][]{TableType.SYSTEM_VIEW.asBytes()}, getExceptionInterceptor()));
+        tuples.add(new ByteArrayRow(new byte[][]{TableType.TABLE.asBytes()}, getExceptionInterceptor()));
+        tuples.add(new ByteArrayRow(new byte[][]{TableType.VIEW.asBytes()}, getExceptionInterceptor()));
 
         return this.resultSetFactory.createFromResultsetRows(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE,
                 new ResultsetRowsStatic(tuples, new DefaultColumnDefinition(fields)));
@@ -3936,12 +3894,9 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * 
-     * @param mysqlTypeName
-     *            we use a string name here to allow aliases for the same MysqlType to be listed too
+     * @param mysqlTypeName we use a string name here to allow aliases for the same MysqlType to be listed too
      * @return bytes
-     * @throws SQLException
-     *             if a conversion error occurs
+     * @throws SQLException if a conversion error occurs
      */
     private byte[][] getTypeInfo(String mysqlTypeName) throws SQLException {
 
@@ -4425,12 +4380,10 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     /**
      * Converts the given string to bytes, using the connection's character
      * encoding, or if not available, the JVM default encoding.
-     * 
-     * @param s
-     *            string
+     *
+     * @param s string
      * @return bytes
-     * @throws SQLException
-     *             if a conversion error occurs
+     * @throws SQLException if a conversion error occurs
      */
     protected byte[] s2b(String s) throws SQLException {
         if (s == null) {
@@ -4877,7 +4830,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     protected Field[] createFunctionColumnsFields() {
-        Field[] fields = { new Field("", "FUNCTION_CAT", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512),
+        Field[] fields = {new Field("", "FUNCTION_CAT", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512),
                 new Field("", "FUNCTION_SCHEM", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512),
                 new Field("", "FUNCTION_NAME", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512),
                 new Field("", "COLUMN_NAME", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512),
@@ -4893,7 +4846,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
                 new Field("", "CHAR_OCTET_LENGTH", this.metadataCollationIndex, this.metadataEncoding, MysqlType.INT, 32),
                 new Field("", "ORDINAL_POSITION", this.metadataCollationIndex, this.metadataEncoding, MysqlType.INT, 32),
                 new Field("", "IS_NULLABLE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 12),
-                new Field("", "SPECIFIC_NAME", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 64) };
+                new Field("", "SPECIFIC_NAME", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 64)};
         return fields;
     }
 
@@ -4924,12 +4877,10 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     /**
      * Get a prepared statement to query information_schema tables.
-     * 
-     * @param sql
-     *            query
+     *
+     * @param sql query
      * @return PreparedStatement
-     * @throws SQLException
-     *             if a database access error occurs
+     * @throws SQLException if a database access error occurs
      */
     protected java.sql.PreparedStatement prepareMetaDataSafeStatement(String sql) throws SQLException {
         // Can't use server-side here as we coerce a lot of types to match the spec.
@@ -4946,7 +4897,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     @Override
     public java.sql.ResultSet getPseudoColumns(String catalog, String schemaPattern, String tableNamePattern, String columnNamePattern) throws SQLException {
-        Field[] fields = { new Field("", "TABLE_CAT", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512),
+        Field[] fields = {new Field("", "TABLE_CAT", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512),
                 new Field("", "TABLE_SCHEM", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512),
                 new Field("", "TABLE_NAME", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512),
                 new Field("", "COLUMN_NAME", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512),
@@ -4957,7 +4908,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
                 new Field("", "COLUMN_USAGE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512),
                 new Field("", "REMARKS", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512),
                 new Field("", "CHAR_OCTET_LENGTH", this.metadataCollationIndex, this.metadataEncoding, MysqlType.INT, 12),
-                new Field("", "IS_NULLABLE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512) };
+                new Field("", "IS_NULLABLE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.VARCHAR, 512)};
 
         return this.resultSetFactory.createFromResultsetRows(ResultSet.CONCUR_READ_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE,
                 new ResultsetRowsStatic(new ArrayList<Row>(), new DefaultColumnDefinition(fields)));
@@ -4975,7 +4926,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
             // anything
             return iface.cast(this);
         } catch (ClassCastException cce) {
-            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[] { iface.toString() }),
+            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[]{iface.toString()}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, this.conn.getExceptionInterceptor());
         }
     }

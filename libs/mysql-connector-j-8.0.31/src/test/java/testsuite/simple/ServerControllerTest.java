@@ -42,9 +42,9 @@ import testsuite.BaseTestCase;
 public class ServerControllerTest extends BaseTestCase {
     /**
      * Demonstrates usage of the ServerController class.
-     * 
+     * <p>
      * This test is only run if the property 'com.mysql.jdbc.test.ServerController.basedir' is set.
-     * 
+     *
      * @throws Exception
      */
     @Test

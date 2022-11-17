@@ -61,7 +61,7 @@ public class DateTimeRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#3620 -- Timezone not respected correctly.
-     * 
+     *
      * @throws SQLException
      */
     @Test
@@ -168,7 +168,7 @@ public class DateTimeRegressionTest extends BaseTestCase {
     /**
      * Tests fix for Bug#5874, Timezone conversion goes in the wrong direction
      * (when useTimezone=true and server timezone differs from client timezone).
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -239,7 +239,7 @@ public class DateTimeRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#15604 (11745460), TIMEZONE DISCARDED STORING JAVA.UTIL.CALENDAR INTO DATETIME.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -279,7 +279,7 @@ public class DateTimeRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#20391832, SETOBJECT() FOR TYPES.TIME RESULTS IN EXCEPTION WHEN VALUE HAS FRACTIONAL PART.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -292,8 +292,8 @@ public class DateTimeRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.connectionTimeZone.getKeyName(), "LOCAL");
-        for (boolean useSSPS : new boolean[] { false, true }) {
-            for (boolean sendFr : new boolean[] { false, true }) {
+        for (boolean useSSPS : new boolean[]{false, true}) {
+            for (boolean sendFr : new boolean[]{false, true}) {
 
                 System.out.println("useServerPrepStmts=" + useSSPS + "; sendFractSeconds=" + sendFr);
 
@@ -303,7 +303,7 @@ public class DateTimeRegressionTest extends BaseTestCase {
 
                 this.pstmt = testConn.prepareStatement("insert into testBug20391832 values(?)");
 
-                for (MysqlType type : new MysqlType[] { MysqlType.DATETIME, MysqlType.TIMESTAMP }) {
+                for (MysqlType type : new MysqlType[]{MysqlType.DATETIME, MysqlType.TIMESTAMP}) {
                     subTestBug20391832(props, type, "2038-01-19", "2038-01-19 00:00:00");
                     subTestBug20391832(props, type, "38-01-19", "2038-01-19 00:00:00");
                     subTestBug20391832(props, type, "2038#01$19", "2038-01-19 00:00:00");
@@ -977,7 +977,7 @@ public class DateTimeRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#20316640, GETTIMESTAMP() CALL WITH CALANDER VALUE NULL RESULTS IN NULLPOINTEREXCEPTION.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -993,7 +993,7 @@ public class DateTimeRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#20818678, GETFLOAT() AND GETDOUBLE() CALL ON YEAR COLUMN RESULTS IN EXCEPTION
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1009,8 +1009,8 @@ public class DateTimeRegressionTest extends BaseTestCase {
             Properties props = new Properties();
             props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
             props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-            for (boolean yearIsDateType : new boolean[] { true, false }) {
-                for (boolean useSSPS : new boolean[] { false, true }) {
+            for (boolean yearIsDateType : new boolean[]{true, false}) {
+                for (boolean useSSPS : new boolean[]{false, true}) {
                     props.setProperty(PropertyKey.yearIsDateType.getKeyName(), "" + yearIsDateType);
                     props.setProperty(PropertyKey.useServerPrepStmts.getKeyName(), "" + useSSPS);
 
@@ -1041,7 +1041,7 @@ public class DateTimeRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#21308907, NO WAY TO GET THE FRACTIONAL PART OF A TIME FIELD WHEN USESERVERPREPSTMTS=TRUE.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1086,7 +1086,7 @@ public class DateTimeRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#22305930, GETTIMESTAMP() CALL ON CLOSED RESULT SET PRODUCES NPE.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1103,7 +1103,7 @@ public class DateTimeRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#101413 (32099505), JAVA.TIME.LOCALDATETIME CANNOT BE CAST TO JAVA.SQL.TIMESTAMP.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1115,9 +1115,9 @@ public class DateTimeRegressionTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (boolean forceConnectionTimeZoneToSession : new boolean[] { false, true }) {
-            for (boolean preserveInstants : new boolean[] { false, true }) {
-                for (boolean useSSPS : new boolean[] { false, true }) {
+        for (boolean forceConnectionTimeZoneToSession : new boolean[]{false, true}) {
+            for (boolean preserveInstants : new boolean[]{false, true}) {
+                for (boolean useSSPS : new boolean[]{false, true}) {
                     props.setProperty(PropertyKey.forceConnectionTimeZoneToSession.getKeyName(), "" + forceConnectionTimeZoneToSession);
                     props.setProperty(PropertyKey.preserveInstants.getKeyName(), "" + preserveInstants);
                     props.setProperty(PropertyKey.useServerPrepStmts.getKeyName(), "" + useSSPS);
@@ -1144,7 +1144,7 @@ public class DateTimeRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#104559 (33232419), ResultSet.getObject(i, java.util.Date.class) throws NPE when the value is null.
-     * 
+     *
      * @throws Exception
      */
     @Test

@@ -111,8 +111,8 @@ public class ExportControlled {
     private static final String TLSv1_1 = "TLSv1.1";
     private static final String TLSv1_2 = "TLSv1.2";
     private static final String TLSv1_3 = "TLSv1.3";
-    private static final String[] KNOWN_TLS_PROTOCOLS = new String[] { TLSv1_3, TLSv1_2, TLSv1_1, TLSv1 };
-    private static final String[] VALID_TLS_PROTOCOLS = new String[] { TLSv1_3, TLSv1_2 };
+    private static final String[] KNOWN_TLS_PROTOCOLS = new String[]{TLSv1_3, TLSv1_2, TLSv1_1, TLSv1};
+    private static final String[] VALID_TLS_PROTOCOLS = new String[]{TLSv1_3, TLSv1_2};
 
     private static final String TLS_SETTINGS_RESOURCE = "/com/mysql/cj/TlsSettings.properties";
     private static final List<String> ALLOWED_CIPHERS = new ArrayList<>();
@@ -162,7 +162,7 @@ public class ExportControlled {
                 //
                 .collect(Collectors.toList());
 
-        return allowedCiphers.toArray(new String[] {});
+        return allowedCiphers.toArray(new String[]{});
     }
 
     private static String[] getAllowedProtocols(PropertySet pset, @SuppressWarnings("unused") ServerVersion serverVersion, String[] socketProtocols) {
@@ -300,22 +300,15 @@ public class ExportControlled {
 
     /**
      * Converts the socket being used in the given SocketConnection to an SSLSocket by performing the SSL/TLS handshake.
-     * 
-     * @param rawSocket
-     *            original non-SSL socket
-     * @param socketConnection
-     *            the Protocol instance containing the socket to convert to an SSLSocket.
-     * @param serverVersion
-     *            ServerVersion object
-     * @param log
-     *            Logger
+     *
+     * @param rawSocket        original non-SSL socket
+     * @param socketConnection the Protocol instance containing the socket to convert to an SSLSocket.
+     * @param serverVersion    ServerVersion object
+     * @param log              Logger
      * @return SSL socket
-     * @throws IOException
-     *             if i/o exception occurs
-     * @throws SSLParamsException
-     *             if the handshake fails, or if this distribution of Connector/J doesn't contain the SSL crypto hooks needed to perform the handshake.
-     * @throws FeatureNotAvailableException
-     *             if TLS is not supported
+     * @throws IOException                  if i/o exception occurs
+     * @throws SSLParamsException           if the handshake fails, or if this distribution of Connector/J doesn't contain the SSL crypto hooks needed to perform the handshake.
+     * @throws FeatureNotAvailableException if TLS is not supported
      */
     public static Socket performTlsHandshake(Socket rawSocket, SocketConnection socketConnection, ServerVersion serverVersion, Log log)
             throws IOException, SSLParamsException, FeatureNotAvailableException {
@@ -332,7 +325,7 @@ public class ExportControlled {
 
         SSLSocketFactory socketFactory = getSSLContext(keyStore, trustStore, fallbackToSystemTrustStore, verifyServerCert,
                 sslMode == PropertyDefinitions.SslMode.VERIFY_IDENTITY ? socketConnection.getHost() : null, socketConnection.getExceptionInterceptor())
-                        .getSocketFactory();
+                .getSocketFactory();
 
         SSLSocket sslSocket = (SSLSocket) socketFactory.createSocket(rawSocket, socketConnection.getHost(), socketConnection.getPort(), true);
 
@@ -486,11 +479,9 @@ public class ExportControlled {
         /**
          * Verify the host name against the given pattern, using the rules specified in <a href="https://tools.ietf.org/html/rfc6125#section-6.4.3">RFC 6125,
          * Section 6.4.3</a>. Support wildcard character as defined in the RFC.
-         * 
-         * @param ptn
-         *            the pattern to match with the host name.
-         * @return
-         *         <code>true</code> if the host name matches the pattern, <code>false</code> otherwise.
+         *
+         * @param ptn the pattern to match with the host name.
+         * @return <code>true</code> if the host name matches the pattern, <code>false</code> otherwise.
          */
         private boolean verifyHostName(String ptn) {
             final int indexOfStar = ptn.indexOf('*');
@@ -507,25 +498,18 @@ public class ExportControlled {
 
     /**
      * Configure the {@link SSLContext} based on the supplier property set.
-     * 
-     * @param clientCertificateKeyStore
-     *            clientCertificateKeyStore
-     * @param trustCertificateKeyStore
-     *            trustCertificateKeyStore
-     * @param fallbackToDefaultTrustStore
-     *            fallbackToDefaultTrustStore
-     * @param verifyServerCert
-     *            verifyServerCert
-     * @param hostName
-     *            host name
-     * @param exceptionInterceptor
-     *            exception interceptor
+     *
+     * @param clientCertificateKeyStore   clientCertificateKeyStore
+     * @param trustCertificateKeyStore    trustCertificateKeyStore
+     * @param fallbackToDefaultTrustStore fallbackToDefaultTrustStore
+     * @param verifyServerCert            verifyServerCert
+     * @param hostName                    host name
+     * @param exceptionInterceptor        exception interceptor
      * @return SSLContext
-     * @throws SSLParamsException
-     *             if an error occurs
+     * @throws SSLParamsException if an error occurs
      */
     public static SSLContext getSSLContext(KeyStoreConf clientCertificateKeyStore, KeyStoreConf trustCertificateKeyStore, boolean fallbackToDefaultTrustStore,
-            boolean verifyServerCert, String hostName, ExceptionInterceptor exceptionInterceptor) throws SSLParamsException {
+                                           boolean verifyServerCert, String hostName, ExceptionInterceptor exceptionInterceptor) throws SSLParamsException {
         String clientCertificateKeyStoreUrl = clientCertificateKeyStore.keyStoreUrl;
         String clientCertificateKeyStoreType = clientCertificateKeyStore.keyStoreType;
         String clientCertificateKeyStorePassword = clientCertificateKeyStore.keyStorePassword;
@@ -687,7 +671,8 @@ public class ExportControlled {
             Cipher cipher = Cipher.getInstance(transformation);
             cipher.init(Cipher.ENCRYPT_MODE, key);
             return cipher.doFinal(source);
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException |
+                 BadPaddingException e) {
             throw ExceptionFactory.createException(RSAException.class, e.getMessage(), e);
         }
     }

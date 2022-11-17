@@ -42,10 +42,8 @@ import com.mysql.cj.protocol.InternalTimestamp;
  * <p>
  * A <code>ValueFactory</code> implementation is responsible for creating instance of a single type, supplying a value for the type parameter <tt>T</tt>. If an
  * instance cannot be created from the intermediate form, an {@link java.lang.UnsupportedOperationException} can be thrown.
- * 
- * @param <T>
- *            value type
  *
+ * @param <T> value type
  * @since 6.0
  */
 public interface ValueFactory<T> {
@@ -76,14 +74,14 @@ public interface ValueFactory<T> {
 
     /**
      * Create result value from intermediate null value.
-     * 
+     *
      * @return T object
      */
     T createFromNull();
 
     /**
      * Get the actual class name of T parameter.
-     * 
+     *
      * @return class name
      */
     String getTargetTypeName();

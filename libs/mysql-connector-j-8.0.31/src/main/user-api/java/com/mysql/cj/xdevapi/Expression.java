@@ -41,7 +41,7 @@ public class Expression {
 
     /**
      * Get the string form of this expression
-     * 
+     *
      * @return expression string
      */
     public String getExpressionString() {
@@ -50,9 +50,8 @@ public class Expression {
 
     /**
      * Static method for static import to allow: <code>set("b", expr("a + 1"))</code>
-     * 
-     * @param expressionString
-     *            expression string
+     *
+     * @param expressionString expression string
      * @return {@link Expression}
      */
     public static Expression expr(String expressionString) {

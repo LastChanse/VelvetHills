@@ -136,7 +136,7 @@ public class SimplePacketReader implements MessageReader<NativePacketHeader, Nat
             // Read the data from the server
             int numBytesRead = this.socketConnection.getMysqlInput().readFully(message.getByteBuffer(), 0, packetLength);
             if (numBytesRead != packetLength) {
-                throw new IOException(Messages.getString("PacketReader.1", new Object[] { packetLength, numBytesRead }));
+                throw new IOException(Messages.getString("PacketReader.1", new Object[]{packetLength, numBytesRead}));
             }
             return message;
 

@@ -213,7 +213,7 @@ public class LocalDateTimeValueFactoryTest extends CommonAsserts {
         assertThrows(DataConversionException.class, "Cannot convert string '1' to java.time.LocalDateTime value", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                LocalDateTimeValueFactoryTest.this.vf.createFromBytes(new byte[] { '1' }, 0, 1, f);
+                LocalDateTimeValueFactoryTest.this.vf.createFromBytes(new byte[]{'1'}, 0, 1, f);
                 return null;
             }
         });
@@ -240,7 +240,7 @@ public class LocalDateTimeValueFactoryTest extends CommonAsserts {
         assertThrows(DataConversionException.class, "Unsupported conversion from BIT to java.time.LocalDateTime", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                LocalDateTimeValueFactoryTest.this.vf.createFromBit(new byte[] { 1 }, 0, 2);
+                LocalDateTimeValueFactoryTest.this.vf.createFromBit(new byte[]{1}, 0, 2);
                 return null;
             }
         });

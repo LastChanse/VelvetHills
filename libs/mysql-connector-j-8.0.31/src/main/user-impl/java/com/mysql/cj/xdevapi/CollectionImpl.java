@@ -183,10 +183,10 @@ public class CollectionImpl implements Collection {
     @Override
     public Result replaceOne(String id, DbDoc doc) {
         if (id == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "id" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"id"}));
         }
         if (doc == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "doc" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"doc"}));
         }
         JsonValue docId = doc.get("_id");
         if (docId != null && (!JsonString.class.isInstance(docId) || !id.equals(((JsonString) docId).getString()))) {
@@ -198,10 +198,10 @@ public class CollectionImpl implements Collection {
     @Override
     public Result replaceOne(String id, String jsonString) {
         if (id == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "id" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"id"}));
         }
         if (jsonString == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "jsonString" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"jsonString"}));
         }
         try {
             return replaceOne(id, JsonParser.parseDoc(new StringReader(jsonString)));
@@ -213,10 +213,10 @@ public class CollectionImpl implements Collection {
     @Override
     public Result addOrReplaceOne(String id, DbDoc doc) {
         if (id == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "id" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"id"}));
         }
         if (doc == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "doc" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"doc"}));
         }
         JsonValue docId = doc.get("_id");
         if (docId == null) {
@@ -230,10 +230,10 @@ public class CollectionImpl implements Collection {
     @Override
     public Result addOrReplaceOne(String id, String jsonString) {
         if (id == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "id" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"id"}));
         }
         if (jsonString == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "jsonString" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"jsonString"}));
         }
         try {
             return addOrReplaceOne(id, JsonParser.parseDoc(new StringReader(jsonString)));

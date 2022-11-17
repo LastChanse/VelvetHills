@@ -125,7 +125,7 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
 
     /**
      * Test the situation where a single packet is split into two and the second part doesn't exceed the capacity of the second compressed packet.
-     * 
+     *
      * @throws IOException
      */
     @Test
@@ -173,7 +173,7 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
     /**
      * Test the situation where a single packet is split into two and the second part exceeds the capacity of the second compressed packet requiring a third
      * compressed packet.
-     * 
+     *
      * @throws IOException
      */
     @Test
@@ -202,7 +202,7 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
 
     /**
      * This tests that the splitting of MySQL packets includes an additional empty packet to signal the end of the multi-packet sequence.
-     * 
+     *
      * @throws IOException
      */
     @Test

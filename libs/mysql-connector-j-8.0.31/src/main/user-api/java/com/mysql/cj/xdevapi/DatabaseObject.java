@@ -39,39 +39,43 @@ public interface DatabaseObject {
      */
     enum DbObjectType {
         COLLECTION, TABLE, VIEW, COLLECTION_VIEW
-    };
+    }
+
+    ;
 
     /**
      * Existence states of database objects.
      */
     enum DbObjectStatus {
         EXISTS, NOT_EXISTS, UNKNOWN
-    };
+    }
+
+    ;
 
     /**
      * Retrieve the session owning the given schema object.
-     * 
+     *
      * @return {@link Session}
      */
     Session getSession();
 
     /**
      * Retrieve the schema owning this database object.
-     * 
+     *
      * @return {@link Schema}
      */
     Schema getSchema();
 
     /**
      * Retrieve the name of the database object represented by the Java object.
-     * 
+     *
      * @return name
      */
     String getName();
 
     /**
      * Query the existence of this database object.
-     * 
+     *
      * @return {@link DbObjectStatus}
      */
     DbObjectStatus existsInDatabase();

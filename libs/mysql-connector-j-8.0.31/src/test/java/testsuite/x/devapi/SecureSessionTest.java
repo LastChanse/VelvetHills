@@ -382,7 +382,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
     /**
      * Tests that PLAIN, MYSQL41, SHA256_MEMORY, and EXTERNAL authentication mechanisms.
-     * 
+     *
      * @throws Throwable
      */
     @Test
@@ -710,7 +710,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
     /**
      * Tests TLSv1.2
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -789,7 +789,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
         List<String> serverSupportedProtocols = Arrays.asList(value.trim().split("\\s*,\\s*"));
         String highestCommonTlsVersion = "";
-        for (String p : new String[] { "TLSv1.3", "TLSv1.2", "TLSv1.1", "TLSv1" }) {
+        for (String p : new String[]{"TLSv1.3", "TLSv1.2", "TLSv1.1", "TLSv1"}) {
             if (jvmSupportedProtocols.contains(p) && serverSupportedProtocols.contains(p)) {
                 highestCommonTlsVersion = p;
                 break;
@@ -879,7 +879,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
     /**
      * Tests fix for Bug#26227653, WL#10528 DIFF BEHAVIOUR WHEN SYSTEM PROP JAVAX.NET.SSL.TRUSTSTORETYPE IS SET
-     * 
+     * <p>
      * The actual bug is: if wrong system-wide SSL settings are provided, the session should not fail if 'xdevapi.ssl-mode=REQUIRED'.
      */
     @Test
@@ -1326,7 +1326,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
     /**
      * Tests that given SSL/TLS related session properties values are processed as expected.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1509,7 +1509,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
     /**
      * Tests connection property 'xdevapi.fallback-to-system-truststore' behavior.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1606,7 +1606,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
     /**
      * Tests connection property 'xdevapi.fallback-to-system-keystore' behavior.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1709,7 +1709,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
     /**
      * Tests WL#14805, Remove support for TLS 1.0 and 1.1.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1934,7 +1934,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
     /**
      * Tests WL#14835, Align TLS option checking across connectors
-     * 
+     *
      * @throws Exception
      */
     @Test

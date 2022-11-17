@@ -38,11 +38,9 @@ public class DatabaseObjectDescription {
 
     /**
      * Constructor.
-     * 
-     * @param name
-     *            database object name
-     * @param type
-     *            database object type, one of COLLECTION, TABLE, VIEW or COLLECTION_VIEW
+     *
+     * @param name database object name
+     * @param type database object type, one of COLLECTION, TABLE, VIEW or COLLECTION_VIEW
      */
     public DatabaseObjectDescription(String name, String type) {
         this.objectName = name;
@@ -51,7 +49,7 @@ public class DatabaseObjectDescription {
 
     /**
      * Get database object name.
-     * 
+     *
      * @return database object name
      */
     public String getObjectName() {
@@ -60,7 +58,7 @@ public class DatabaseObjectDescription {
 
     /**
      * Get database object type
-     * 
+     *
      * @return {@link DatabaseObject.DbObjectType}
      */
     public DatabaseObject.DbObjectType getObjectType() {

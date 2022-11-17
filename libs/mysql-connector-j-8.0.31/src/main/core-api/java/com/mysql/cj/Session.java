@@ -52,7 +52,6 @@ import com.mysql.cj.result.Row;
  * {@link Session} exposes logical level which user API uses internally to call {@link Protocol} methods.
  * It's a higher-level abstraction than MySQL server session ({@link ServerSession}). {@link Protocol} and {@link ServerSession} methods
  * should never be used directly from user API.
- * 
  */
 public interface Session {
 
@@ -62,14 +61,10 @@ public interface Session {
 
     /**
      * Re-authenticates as the given user and password
-     * 
-     * @param userName
-     *            DB user name
-     * @param password
-     *            DB user password
-     * @param database
-     *            database name
-     * 
+     *
+     * @param userName DB user name
+     * @param password DB user password
+     * @param database database name
      */
     void changeUser(String userName, String password, String database);
 
@@ -79,7 +74,6 @@ public interface Session {
 
     /**
      * Log-off of the MySQL server and close the socket.
-     * 
      */
     void quit();
 
@@ -91,13 +85,10 @@ public interface Session {
     /**
      * Does the version of the MySQL server we are connected to meet the given
      * minimums?
-     * 
-     * @param major
-     *            major version number
-     * @param minor
-     *            minor version number
-     * @param subminor
-     *            sub-minor version number
+     *
+     * @param major    major version number
+     * @param minor    minor version number
+     * @param subminor sub-minor version number
      * @return true if current server version equal or higher than provided one
      */
     boolean versionMeetsMinimum(int major, int minor, int subminor);
@@ -108,14 +99,14 @@ public interface Session {
 
     /**
      * Returns the log mechanism that should be used to log information from/for this Session.
-     * 
+     *
      * @return the Log instance to use for logging messages.
      */
     Log getLog();
 
     /**
      * Returns the current ProfilerEventHandler or initializes a new one if none exists.
-     * 
+     *
      * @return the {@link ProfilerEventHandler} object.
      */
     ProfilerEventHandler getProfilerEventHandler();
@@ -134,17 +125,15 @@ public interface Session {
 
     /**
      * Add listener for this session status changes.
-     * 
-     * @param l
-     *            {@link SessionEventListener} instance.
+     *
+     * @param l {@link SessionEventListener} instance.
      */
     void addListener(SessionEventListener l);
 
     /**
      * Remove session listener.
-     * 
-     * @param l
-     *            {@link SessionEventListener} instance.
+     *
+     * @param l {@link SessionEventListener} instance.
      */
     void removeListener(SessionEventListener l);
 
@@ -164,21 +153,14 @@ public interface Session {
 
     /**
      * Synchronously query database with applying rows filtering and mapping.
-     * 
-     * @param message
-     *            query message
-     * @param rowFilter
-     *            row filter function
-     * @param rowMapper
-     *            row map function
-     * @param collector
-     *            result collector
-     * @param <M>
-     *            Message type
-     * @param <R>
-     *            Row type
-     * @param <RES>
-     *            Result type
+     *
+     * @param message   query message
+     * @param rowFilter row filter function
+     * @param rowMapper row map function
+     * @param collector result collector
+     * @param <M>       Message type
+     * @param <R>       Row type
+     * @param <RES>     Result type
      * @return List of rows
      */
     default <M extends Message, R, RES> RES query(M message, Predicate<Row> rowFilter, Function<Row, R> rowMapper, Collector<R, ?, RES> collector) {
@@ -187,15 +169,11 @@ public interface Session {
 
     /**
      * Synchronously query database.
-     * 
-     * @param message
-     *            query message
-     * @param resultBuilder
-     *            ResultBuilder instance
-     * @param <M>
-     *            Message type
-     * @param <R>
-     *            Result type
+     *
+     * @param message       query message
+     * @param resultBuilder ResultBuilder instance
+     * @param <M>           Message type
+     * @param <R>           Result type
      * @return {@link QueryResult} object
      */
     default <M extends Message, R extends QueryResult> R query(M message, ResultBuilder<R> resultBuilder) {
@@ -204,15 +182,11 @@ public interface Session {
 
     /**
      * Asynchronously query database.
-     * 
-     * @param message
-     *            query message
-     * @param resultBuilder
-     *            ResultBuilder instance
-     * @param <M>
-     *            Message type
-     * @param <R>
-     *            Result type
+     *
+     * @param message       query message
+     * @param resultBuilder ResultBuilder instance
+     * @param <M>           Message type
+     * @param <R>           Result type
      * @return CompletableFuture providing a {@link QueryResult} object
      */
     default <M extends Message, R extends QueryResult> CompletableFuture<R> queryAsync(M message, ResultBuilder<R> resultBuilder) {

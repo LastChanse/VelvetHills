@@ -76,7 +76,7 @@ public class StreamingRowResultBuilder implements ResultBuilder<RowResult> {
         }
 
         if (this.metadata == null) {
-            this.metadata = new DefaultColumnDefinition(this.fields.toArray(new Field[] {}));
+            this.metadata = new DefaultColumnDefinition(this.fields.toArray(new Field[]{}));
         }
 
         this.rowList = entity instanceof Row ? new XProtocolRowInputStream(this.metadata, (Row) entity, this.protocol, (n) -> {

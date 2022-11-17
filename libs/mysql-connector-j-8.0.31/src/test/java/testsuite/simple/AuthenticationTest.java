@@ -64,11 +64,9 @@ public class AuthenticationTest extends BaseTestCase {
      * Overrides the random parts of the SCRAM-SHA-1 or SCRAM-SHA-256 authentication elements (<code>cnonce</code> and <code>clientFirstMessageBare</code>) with
      * the given values from the official test vector specified in <a href="https://tools.ietf.org/html/rfc5802#section-5">RFC 5802, Section 5</a> and <a
      * href="https://tools.ietf.org/html/rfc7677#section-3">RFC 7677, Section 3</a>.
-     * 
-     * @param authPlugin
-     *            the {@link AuthenticationPlugin} where to override the internal randomly generated values.
-     * @param nonce
-     *            the nonce to inject into the authentication plugin object.
+     *
+     * @param authPlugin the {@link AuthenticationPlugin} where to override the internal randomly generated values.
+     * @param nonce      the nonce to inject into the authentication plugin object.
      */
     private void overrideSaslClientData(AuthenticationPlugin<NativePacketPayload> authPlugin, String nonce) {
         try {
@@ -101,14 +99,14 @@ public class AuthenticationTest extends BaseTestCase {
     /**
      * As per <a href="https://tools.ietf.org/html/rfc5802#section-5">RFC 5802, Section 5</a>.
      * Test vector of a SCRAM-SHA-1 authentication exchange when the client doesn't support channel bindings (username 'user' and password 'pencil' are used):
-     * 
+     *
      * <pre>
      * C: n,,n=user,r=fyko+d2lbbFgONRv9qkxdawL
      * S: r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,s=QSXCR+Q6sek8bf92,i=4096
      * C: c=biws,r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,p=v0X8v3Bz2T0CJGbJQyF0X+HI4Ts=
      * S: v=rmF9pqV8S7suAoZWja4dJRkFsKQ=
      * </pre>
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -175,14 +173,14 @@ public class AuthenticationTest extends BaseTestCase {
      * As per <a href="https://tools.ietf.org/html/rfc7677#section-3">RFC 7677, Section 3</a>.
      * Test vector of a SCRAM-SHA-256 authentication exchange when the client doesn't support channel bindings. The username 'user' and password 'pencil' are
      * being used.:
-     * 
+     *
      * <pre>
      * C: n,,n=user,r=rOprNGfwEbeRWgbNEkqO
      * S: r=rOprNGfwEbeRWgbNEkqO%hvYDpWUa2RaTCAfuxFIlj)hNlF$k0,s=W22ZaJ0SNY7soEsUEjb6gQ==,i=4096
      * C: c=biws,r=rOprNGfwEbeRWgbNEkqO%hvYDpWUa2RaTCAfuxFIlj)hNlF$k0,p=dHzbZapWIk4jUhN+Ute9ytag9zjfMHgsqmmiz7AndVQ=
      * S: v=6rriTRBi23WpRR/wtup+mMhUZUn/dB5nLTJRsjl95G4=
      * </pre>
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -248,7 +246,7 @@ public class AuthenticationTest extends BaseTestCase {
     /**
      * Test wrong 'server-first-message' due to missing attributes.
      * Data based on test vector from <a href="https://tools.ietf.org/html/rfc5802#section-5">RFC 5802, Section 5</a>.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -313,7 +311,7 @@ public class AuthenticationTest extends BaseTestCase {
     /**
      * Test wrong 'server-first-message' due to bad server nonce.
      * Data based on test vector from <a href="https://tools.ietf.org/html/rfc5802#section-5">RFC 5802, Section 5</a>.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -362,7 +360,7 @@ public class AuthenticationTest extends BaseTestCase {
     /**
      * Test wrong 'server-first-message' due to insufficient iterations.
      * Data based on test vector from <a href="https://tools.ietf.org/html/rfc5802#section-5">RFC 5802, Section 5</a>.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -411,7 +409,7 @@ public class AuthenticationTest extends BaseTestCase {
     /**
      * Test wrong 'server-final-message' due to missing proof.
      * Data based on test vector from <a href="https://tools.ietf.org/html/rfc5802#section-5">RFC 5802, Section 5</a>.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -471,7 +469,7 @@ public class AuthenticationTest extends BaseTestCase {
     /**
      * Test wrong 'server-final-message' due to bad proof.
      * Data based on test vector from <a href="https://tools.ietf.org/html/rfc5802#section-5">RFC 5802, Section 5</a>.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -530,7 +528,7 @@ public class AuthenticationTest extends BaseTestCase {
 
     /**
      * Test unsupported SASL mechanism.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -547,7 +545,7 @@ public class AuthenticationTest extends BaseTestCase {
 
     /**
      * Test for WL#14650 - Support for MFA (multi factor authentication) authentication
-     * 
+     *
      * @throws Exception
      */
     @Test

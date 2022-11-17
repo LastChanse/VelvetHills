@@ -244,7 +244,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#3554 - Not specifying database in URL causes MalformedURL exception.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -318,7 +318,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests setReadOnly() being reset during failover
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -386,7 +386,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#4334, port #'s not being picked up for failover/autoreconnect.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -542,9 +542,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#6966, connections starting up failed-over (due to down source) never retry source.
-     * 
-     * @throws Exception
-     *             Note, test is timing-dependent, but should work in most cases.
+     *
+     * @throws Exception Note, test is timing-dependent, but should work in most cases.
      */
     @Test
     public void testBug6966() throws Exception {
@@ -599,7 +598,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test fix for BUG#7952 -- Infinite recursion when 'falling back' to source in failover configuration.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -657,14 +656,14 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
             /*
              * long begin = System.currentTimeMillis();
-             * 
+             *
              * failoverConnection.setAutoCommit(true);
-             * 
+             *
              * long end = System.currentTimeMillis();
-             * 
+             *
              * assertTrue("Probably didn't try failing back to the
              * source....check test", (end - begin) > 500);
-             * 
+             *
              * failoverConnection.createStatement().executeQuery("SELECT 1");
              */
         } finally {
@@ -676,7 +675,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#10144 - Memory leak in ServerPreparedStatement if serverPrepare() fails.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -703,7 +702,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#11259, autoReconnect ping causes exception on connection startup.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -724,7 +723,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#11879 -- ReplicationConnection won't switch to replica, throws "Catalog can't be null" exception.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -746,7 +745,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#11976 - maxPerformance.properties mis-spells "elideSetAutoCommits".
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -762,7 +761,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#12218, properties shared between source and replica with replication connection.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -792,7 +791,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#12229 - explainSlowQueries hangs with server-side prepared statements.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -826,7 +825,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#12753, sessionVariables=....=...., doesn't work as it's tokenized incorrectly.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -853,7 +852,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#13048 - maxQuerySizeToLog is not respected.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -912,7 +911,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#13453 - can't use & or = in URL configuration values (we now allow you to use www-form-encoding).
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -952,7 +951,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#15065 - Usage advisor complains about unreferenced columns, even though they've been referenced.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1021,7 +1020,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
                                 try {
 
-                                    getMethods[i].invoke(this.rs, new Object[] { new Integer(1) });
+                                    getMethods[i].invoke(this.rs, new Object[]{new Integer(1)});
                                 } catch (InvocationTargetException invokeEx) {
                                     // we don't care about bad values, just that the column gets "touched"
                                     if (!invokeEx.getCause().getClass().isAssignableFrom(java.sql.SQLException.class)
@@ -1058,9 +1057,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
     /**
      * Tests fix for BUG#15570 - ReplicationConnection incorrectly copies state, doesn't transfer connection context correctly when transitioning between the
      * same read-only states.
-     * 
+     * <p>
      * (note, this test will fail if the test user doesn't have permission to "USE 'mysql'".
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1125,9 +1124,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests bug where downed replica caused round robin load balance not to cycle back to first host in the list.
-     * 
-     * @throws Exception
-     *             Note, test is timing-dependent, but should work in most cases.
+     *
+     * @throws Exception Note, test is timing-dependent, but should work in most cases.
      */
     @Test
     public void testBug23281() throws Exception {
@@ -1175,7 +1173,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests to insure proper behavior for BUG#24706.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1223,7 +1221,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#25514 - Timer instance used for Statement.setQueryTimeout() created per-connection, rather than per-VM, causing memory leak.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1279,7 +1277,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
     /**
      * Ensures that we don't miss getters/setters for driver properties defined in PropertyDefinitions so that names given in documentation work with
      * DataSources which will use JavaBean-style names and reflection to set the values (and often fail silently! when the method isn't available).
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1336,8 +1334,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
         StringBuilder missingSettersBuf = new StringBuilder();
         StringBuilder missingGettersBuf = new StringBuilder();
 
-        Class<?>[][] argTypes = { new Class<?>[] { String.class }, new Class<?>[] { Integer.TYPE }, new Class<?>[] { Long.TYPE },
-                new Class<?>[] { Boolean.TYPE } };
+        Class<?>[][] argTypes = {new Class<?>[]{String.class}, new Class<?>[]{Integer.TYPE}, new Class<?>[]{Long.TYPE},
+                new Class<?>[]{Boolean.TYPE}};
 
         for (String propertyName : propertyNames) {
             StringBuilder mutatorName = new StringBuilder("set");
@@ -1379,9 +1377,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#25545 - Client flags not sent correctly during handshake when using SSL.
-     * 
+     * <p>
      * Requires test certificates from testsuite/ssl-test-certs to be installed on the server being tested.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1419,9 +1417,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#36948 - Trying to use trustCertificateKeyStoreUrl causes an IllegalStateException.
-     * 
+     * <p>
      * Requires test certificates from testsuite/ssl-test-certs to be installed on the server being tested.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1461,7 +1459,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#27655 - getTransactionIsolation() uses "SHOW VARIABLES LIKE" which is very inefficient on MySQL-5.0+
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1492,7 +1490,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
     /**
      * Tests fix for issue where a failed-over connection would let a application call setReadOnly(false), when that call should be ignored until the connection
      * is reconnected to a writable Source.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1591,7 +1589,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * Test of a new feature to fix BUG 22643, specifying a "validation query" in your connection pool that starts with "slash-star ping slash-star" _exactly_
      * will cause the driver to " + instead send a ping to the server (much lighter weight), and when using a ReplicationConnection or a LoadBalancedConnection,
      * will send the ping across all active connections.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1692,7 +1690,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
     /**
      * Tests fix for BUG#33734 - NullPointerException when using client-side prepared statements and enabling caching of prepared statements
      * (only present in nightly builds of 5.1).
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1712,20 +1710,20 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * 34703 [NEW]: isValild() aborts Connection on timeout
-     * 
+     *
      * @throws Exception
      */
     @Test
     public void testBug34703() throws Exception {
-        Method isValid = java.sql.Connection.class.getMethod("isValid", new Class<?>[] { Integer.TYPE });
+        Method isValid = java.sql.Connection.class.getMethod("isValid", new Class<?>[]{Integer.TYPE});
 
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         Connection newConn = getConnectionWithProps(props);
-        isValid.invoke(newConn, new Object[] { new Integer(1) });
+        isValid.invoke(newConn, new Object[]{new Integer(1)});
         Thread.sleep(2000);
-        assertTrue(((Boolean) isValid.invoke(newConn, new Object[] { new Integer(0) })).booleanValue());
+        assertTrue(((Boolean) isValid.invoke(newConn, new Object[]{new Integer(0)})).booleanValue());
     }
 
     @Test
@@ -1818,7 +1816,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.ha_loadBalanceStrategy.getKeyName(), "bestResponseTime");
-        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
         assertNotNull(this.conn, "Connection should not be null");
 
         conn2.createStatement().execute("SELECT 1");
@@ -1844,7 +1842,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.replicationConnectionGroup.getKeyName(), replicationGroup1);
         props.setProperty(PropertyKey.retriesAllDown.getKeyName(), "3");
         props.setProperty(PropertyKey.loadBalanceHostRemovalGracePeriod.getKeyName(), "1");
-        ReplicationConnection conn2 = this.getUnreliableReplicationConnection(new String[] { "first", "second", "third" }, props);
+        ReplicationConnection conn2 = this.getUnreliableReplicationConnection(new String[]{"first", "second", "third"}, props);
         assertNotNull(this.conn, "Connection should not be null");
         conn2.setAutoCommit(false);
         String port = getPort(props);
@@ -1912,7 +1910,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.retriesAllDown.getKeyName(), "3");
         props.setProperty(PropertyKey.loadBalanceHostRemovalGracePeriod.getKeyName(), "1");
 
-        ReplicationConnection conn2 = this.getUnreliableReplicationConnection(new String[] { "first", "second", "third" }, props);
+        ReplicationConnection conn2 = this.getUnreliableReplicationConnection(new String[]{"first", "second", "third"}, props);
         conn2.setAutoCommit(false);
         String port = getPort(props);
         String firstHost = "first:" + port;
@@ -2008,7 +2006,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         Set<String> downedHosts = new HashSet<>();
         downedHosts.add("first");
 
-        ReplicationConnection conn2 = this.getUnreliableReplicationConnection(new String[] { "first", "second", "third" }, props, downedHosts);
+        ReplicationConnection conn2 = this.getUnreliableReplicationConnection(new String[]{"first", "second", "third"}, props, downedHosts);
         assertTrue(conn2.isReadOnly());
         assertFalse(conn2.isSourceConnection());
         try {
@@ -2184,7 +2182,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.ha_loadBalanceStrategy.getKeyName(), "bestResponseTime");
 
-        final Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        final Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
 
         conn2.createStatement().execute("SELECT 1");
         conn2.createStatement().execute("SELECT 1");
@@ -2206,7 +2204,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.loadBalanceBlocklistTimeout.getKeyName(), "200");
         props.setProperty(PropertyKey.ha_loadBalanceStrategy.getKeyName(), "bestResponseTime");
 
-        Connection conn3 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        Connection conn3 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
 
         assertNotNull(this.conn, "Connection should not be null");
 
@@ -2227,7 +2225,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.ha_loadBalanceStrategy.getKeyName(), "random");
-        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
 
         assertNotNull(conn2, "Connection should not be null");
         conn2.setAutoCommit(false);
@@ -2270,7 +2268,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#44587, provide last packet sent/received timing in all connection failure errors.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2298,7 +2296,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#45419, ensure that time is not converted to seconds before being reported as milliseconds.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2404,7 +2402,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         MysqlXADataSource xads1 = new MysqlXADataSource();
         MysqlXADataSource xads2 = new MysqlXADataSource();
 
-        Xid txid = new MysqlXid(new byte[] { 0x1 }, new byte[] { 0xf }, 3306);
+        Xid txid = new MysqlXid(new byte[]{0x1}, new byte[]{0xf}, 3306);
 
         xads1.getStringProperty(PropertyKey.sslMode.getKeyName()).setValue("DISABLED");
         xads1.getBooleanProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName()).setValue(true);
@@ -2504,7 +2502,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.ha_loadBalanceStrategy.getKeyName(), "random");
         props.setProperty(PropertyKey.selfDestructOnPingMaxOperations.getKeyName(), "5");
-        final Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        final Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
 
         assertNotNull(conn2, "Connection should not be null");
         conn2.setAutoCommit(false);
@@ -2561,13 +2559,13 @@ public class ConnectionRegressionTest extends BaseTestCase {
         // this loop will hang on the first unreliable host if the bug isn't
         // fixed.
         for (int i = 0; i < 20; i++) {
-            getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props, downedHosts).close();
+            getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props, downedHosts).close();
         }
     }
 
     /**
      * Tests fix for Bug#51643 - connection chosen by load balancer "sticks" to statements that live past commit()/rollback().
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -2577,7 +2575,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.ha_loadBalanceStrategy.getKeyName(), SequentialBalanceStrategy.class.getName());
 
-        Connection lbConn = getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        Connection lbConn = getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
         try {
             PreparedStatement cPstmt = lbConn.prepareStatement("SELECT connection_id()");
             PreparedStatement serverPstmt = lbConn.prepareStatement("SELECT connection_id()");
@@ -2630,7 +2628,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         String portNumber = String.valueOf(getPortFromTestsuiteUrl());
 
         ForcedLoadBalanceStrategy.forceFutureServer("first:" + portNumber, -1);
-        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
         conn2.setAutoCommit(false);
         conn2.createStatement().execute("SELECT 1");
         ForcedLoadBalanceStrategy.forceFutureServer("second:" + portNumber, -1);
@@ -2651,7 +2649,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.loadBalancePingTimeout.getKeyName(), "100");
         props.setProperty(PropertyKey.loadBalanceValidateConnectionOnSwapServer.getKeyName(), "false");
         ForcedLoadBalanceStrategy.forceFutureServer("first:" + portNumber, -1);
-        conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
         conn2.setAutoCommit(false);
         conn2.createStatement().execute("SELECT 1");
         ForcedLoadBalanceStrategy.forceFutureServer("second:" + portNumber, 1);
@@ -2680,7 +2678,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
         @Override
         public com.mysql.cj.jdbc.ConnectionImpl pickConnection(InvocationHandler proxy, List<String> configuredHosts,
-                Map<String, JdbcConnection> liveConnections, long[] responseTimes, int numRetries) throws SQLException {
+                                                               Map<String, JdbcConnection> liveConnections, long[] responseTimes, int numRetries) throws SQLException {
             if (forcedFutureServer == null || forceFutureServerTimes == 0 || !configuredHosts.contains(forcedFutureServer)) {
                 return super.pickConnection(proxy, configuredHosts, liveConnections, responseTimes, numRetries);
             }
@@ -2705,7 +2703,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.ha_loadBalanceStrategy.getKeyName(), CountingReBalanceStrategy.class.getName());
         props.setProperty(PropertyKey.loadBalanceAutoCommitStatementThreshold.getKeyName(), "3");
 
-        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
         conn2.setAutoCommit(true);
         CountingReBalanceStrategy.resetTimesRebalanced();
         conn2.createStatement().execute("SELECT 1");
@@ -2723,7 +2721,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         conn2.close();
 
         props.remove(PropertyKey.loadBalanceAutoCommitStatementThreshold.getKeyName());
-        conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
         conn2.setAutoCommit(true);
         CountingReBalanceStrategy.resetTimesRebalanced();
         conn2.createStatement().execute("SELECT 1");
@@ -2741,7 +2739,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
         props.setProperty(PropertyKey.loadBalanceAutoCommitStatementThreshold.getKeyName(), "3");
         props.setProperty(PropertyKey.loadBalanceAutoCommitStatementRegex.getKeyName(), ".*2.*");
-        conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
         conn2.setAutoCommit(true);
         CountingReBalanceStrategy.resetTimesRebalanced();
         conn2.createStatement().execute("SELECT 1");
@@ -2768,7 +2766,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
         @Override
         public com.mysql.cj.jdbc.ConnectionImpl pickConnection(InvocationHandler proxy, List<String> configuredHosts,
-                Map<String, JdbcConnection> liveConnections, long[] responseTimes, int numRetries) throws SQLException {
+                                                               Map<String, JdbcConnection> liveConnections, long[] responseTimes, int numRetries) throws SQLException {
             rebalancedTimes++;
             return super.pickConnection(proxy, configuredHosts, liveConnections, responseTimes, numRetries);
         }
@@ -3688,7 +3686,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test for sha256_password authentication.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -3991,7 +3989,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#57662, Incorrect Query Duration When useNanosForElapsedTime Enabled
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -4050,7 +4048,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         }
 
         ForcedLoadBalanceStrategy.forceFutureServer("first:" + portNumber, -1);
-        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
         conn2.setAutoCommit(false);
         conn2.createStatement().execute("SELECT 1");
 
@@ -4079,7 +4077,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#11237 useCompression=true and LOAD DATA LOCAL INFILE SQL Command
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -4159,8 +4157,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
             int updateCount = stmt1.executeUpdate("LOAD DATA LOCAL INFILE '" + fileNameBuf.toString() + "' INTO TABLE testBug11237 CHARACTER SET "
                     + CharsetMappingWrapper.getStaticMysqlCharsetForJavaEncoding(
-                            ((MysqlConnection) this.conn).getPropertySet().getStringProperty(PropertyKey.characterEncoding).getValue(),
-                            ((JdbcConnection) conn1).getServerVersion()));
+                    ((MysqlConnection) this.conn).getPropertySet().getStringProperty(PropertyKey.characterEncoding).getValue(),
+                    ((JdbcConnection) conn1).getServerVersion()));
 
             assertTrue(updateCount == loops);
         } finally {
@@ -4283,7 +4281,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
                         } catch (PasswordExpiredException | ClosedOnExpiredPasswordException | SQLException e4) {
                             if (e4 instanceof SQLException
                                     && (((SQLException) e4).getErrorCode() == MysqlErrorNumbers.ER_MUST_CHANGE_PASSWORD
-                                            || ((SQLException) e4).getErrorCode() == MysqlErrorNumbers.ER_MUST_CHANGE_PASSWORD_LOGIN)
+                                    || ((SQLException) e4).getErrorCode() == MysqlErrorNumbers.ER_MUST_CHANGE_PASSWORD_LOGIN)
                                     || e4 instanceof PasswordExpiredException || e4 instanceof ClosedOnExpiredPasswordException) {
                                 props.setProperty(PropertyKey.disconnectOnExpiredPasswords.getKeyName(), "false");
                                 testConn = getConnectionWithProps(props);
@@ -4294,7 +4292,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
                                     testRs = testSt.executeQuery("SHOW VARIABLES LIKE 'disconnect_on_expired_password'");
                                     fail("SQLException expected due to password expired");
 
-                                } catch (PasswordExpiredException | ClosedOnExpiredPasswordException | SQLException e5) {
+                                } catch (PasswordExpiredException | ClosedOnExpiredPasswordException |
+                                         SQLException e5) {
                                     if (e5 instanceof SQLException && ((SQLException) e5).getErrorCode() == MysqlErrorNumbers.ER_MUST_CHANGE_PASSWORD_LOGIN
                                             || e5 instanceof ClosedOnExpiredPasswordException) {
                                         testConn = getConnectionWithProps(props);
@@ -4342,7 +4341,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#79612 (22362474), CONNECTION ATTRIBUTES LOST WHEN CONNECTING WITHOUT DEFAULT DATABASE.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -4423,7 +4422,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#16224249 - Deadlock on concurrently used LoadBalancedMySQLConnection
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -4450,11 +4449,11 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props2.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
         props2.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
 
-        Connection[] loadbalancedconnection = new Connection[] { new NonRegisteringDriver().connect(loadbalanceUrl, props2),
-                new NonRegisteringDriver().connect(loadbalanceUrl, props2), new NonRegisteringDriver().connect(loadbalanceUrl, props2) };
+        Connection[] loadbalancedconnection = new Connection[]{new NonRegisteringDriver().connect(loadbalanceUrl, props2),
+                new NonRegisteringDriver().connect(loadbalanceUrl, props2), new NonRegisteringDriver().connect(loadbalanceUrl, props2)};
 
-        Connection[] failoverconnection = new Connection[] { new NonRegisteringDriver().connect(failoverUrl, props2),
-                new NonRegisteringDriver().connect(failoverUrl, props2), new NonRegisteringDriver().connect(failoverUrl, props2) };
+        Connection[] failoverconnection = new Connection[]{new NonRegisteringDriver().connect(failoverUrl, props2),
+                new NonRegisteringDriver().connect(failoverUrl, props2), new NonRegisteringDriver().connect(failoverUrl, props2)};
 
         // WebLogic-style test
         Class<?> mysqlCls = null;
@@ -4467,7 +4466,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         }
 
         if ((mysqlCls != null) && (mysqlCls.isAssignableFrom(jcls))) {
-            Method abort = mysqlCls.getMethod("abortInternal", new Class<?>[] {});
+            Method abort = mysqlCls.getMethod("abortInternal", new Class<?>[]{});
             boolean hasAbortMethod = abort != null;
             assertTrue(hasAbortMethod, "abortInternal() method should be found for connection class " + jcls);
         } else {
@@ -4541,9 +4540,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#68763, ReplicationConnection.isSourceConnection() returns false always
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     @Test
     public void testBug68763() throws Exception {
@@ -4561,7 +4559,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#68733, ReplicationConnection does not ping all underlying active physical connections to replicas.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -4584,7 +4582,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         // throw Exception if replica2 gets ping
         UnreliableSocketFactory.downHost("replica2");
 
-        ReplicationConnection conn2 = this.getUnreliableReplicationConnection(new String[] { "source", "replica1", "replica2" }, props);
+        ReplicationConnection conn2 = this.getUnreliableReplicationConnection(new String[]{"source", "replica1", "replica2"}, props);
         assertTrue(conn2.isSourceConnection(), "Is not actually on source!");
 
         conn2.setAutoCommit(false);
@@ -4647,7 +4645,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
         ForcedLoadBalanceStrategy.forceFutureServer("replica1:" + portNumber, -1);
         UnreliableSocketFactory.flushAllStaticData();
-        ReplicationConnection conn3 = this.getUnreliableReplicationConnection(new String[] { "source", "replica1", "replica2" }, props);
+        ReplicationConnection conn3 = this.getUnreliableReplicationConnection(new String[]{"source", "replica1", "replica2"}, props);
         conn3.setAutoCommit(false);
         // go to replicas:
         conn3.setReadOnly(true);
@@ -4768,12 +4766,12 @@ public class ConnectionRegressionTest extends BaseTestCase {
             if (Proxy.isProxyClass(this.c.getClass())) {
                 try {
                     if (this.num == 7 || this.num == 10) {
-                        Proxy.getInvocationHandler(this.c).invoke(this.c, Connection.class.getMethod("close", new Class<?>[] {}), null);
+                        Proxy.getInvocationHandler(this.c).invoke(this.c, Connection.class.getMethod("close", new Class<?>[]{}), null);
                     } else if (this.num == 8 || this.num == 11) {
-                        Proxy.getInvocationHandler(this.c).invoke(this.c, JdbcConnection.class.getMethod("abortInternal", new Class<?>[] {}), null);
+                        Proxy.getInvocationHandler(this.c).invoke(this.c, JdbcConnection.class.getMethod("abortInternal", new Class<?>[]{}), null);
                     } else if (this.num == 9 || this.num == 12) {
-                        Proxy.getInvocationHandler(this.c).invoke(this.c, JdbcConnection.class.getMethod("abort", new Class<?>[] { Executor.class }),
-                                new Object[] { new ThreadPerTaskExecutor() });
+                        Proxy.getInvocationHandler(this.c).invoke(this.c, JdbcConnection.class.getMethod("abort", new Class<?>[]{Executor.class}),
+                                new Object[]{new ThreadPerTaskExecutor()});
                     }
 
                     ConnectionRegressionTest.this.testServerPrepStmtDeadlockCounter++;
@@ -4793,7 +4791,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#68400 useCompression=true and connect to server, zip native method cause out of memory
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -4828,22 +4826,20 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * @param props
      * @param connectionTrackingSet
      * @param referentField
-     * @param connectionType
-     *            0-ConnectionImpl, 1-LoadBalancedConnection, 2-FailoverConnection, 3-ReplicationConnection
-     * @param finType
-     *            0 - none, 1 - close(), 2 - abortInternal()
+     * @param connectionType        0-ConnectionImpl, 1-LoadBalancedConnection, 2-FailoverConnection, 3-ReplicationConnection
+     * @param finType               0 - none, 1 - close(), 2 - abortInternal()
      * @param s1
      * @param attributeValue
      * @throws Exception
      */
     private void testMemLeakBatch(Properties props, Set<?> connectionTrackingSet, Field referentField, int connectionType, int finType, String s1,
-            String attributeValue) throws Exception {
+                                  String attributeValue) throws Exception {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
         int connectionNumber = 0;
 
-        String[] typeNames = new String[] { "ConnectionImpl", "LoadBalancedConnection", "FailoverConnection", "ReplicationConnection" };
+        String[] typeNames = new String[]{"ConnectionImpl", "LoadBalancedConnection", "FailoverConnection", "ReplicationConnection"};
 
         System.out.println("\n" + typeNames[connectionType] + ", " + (finType == 0 ? "nullification" : (finType == 1 ? "close()" : "abortInternal()")));
 
@@ -4883,7 +4879,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
                     replProps.setProperty(PropertyKey.loadBalancePingTimeout.getKeyName(), "100");
                     replProps.setProperty(PropertyKey.autoReconnect.getKeyName(), "true");
 
-                    connection = this.getUnreliableReplicationConnection(new String[] { "source", "replica1", "replica2" }, replProps);
+                    connection = this.getUnreliableReplicationConnection(new String[]{"source", "replica1", "replica2"}, replProps);
 
                     break;
                 default:
@@ -4955,7 +4951,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#17251955, ARRAYINDEXOUTOFBOUNDSEXCEPTION ON LONG MULTI-BYTE DB/USER NAMES
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -5011,7 +5007,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#69506 - XAER_DUPID error code is not returned when a duplicate XID is offered in Java.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -5040,7 +5036,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
     /**
      * Tests fix for BUG#69746, ResultSet closed after Statement.close() when dontTrackOpenResources=true
      * active physical connections to replicas.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -5162,7 +5158,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test for sha256_password long data exchange.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -5182,10 +5178,10 @@ public class ConnectionRegressionTest extends BaseTestCase {
             // create user with long password and sha256_password auth
             String pwd = testSess.versionMeetsMinimum(8, 0, 4) || testSess.versionMeetsMinimum(5, 7, 21) && !testSess.versionMeetsMinimum(8, 0, 0)
                     || testSess.versionMeetsMinimum(5, 6, 39) && !testSess.versionMeetsMinimum(5, 7, 0)
-                            ? "aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccdddddddddd"
-                            : "aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee"
-                                    + "aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee"
-                                    + "aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee";
+                    ? "aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccdddddddddd"
+                    : "aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee"
+                    + "aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee"
+                    + "aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee";
 
             if (!testSess.versionMeetsMinimum(8, 0, 5)) {
                 this.stmt.executeUpdate("SET @current_old_passwords = @@global.old_passwords");
@@ -5248,15 +5244,15 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#69452 - Memory size connection property doesn't support large values well
-     * 
+     *
      * @throws Exception
      */
     @Test
     public void testBug69452() throws Exception {
-        String[][] testMemUnits = new String[][] { { "k", "kb", "kB", "K", "Kb", "KB" }, { "m", "mb", "mB", "M", "Mb", "MB" },
-                { "g", "gb", "gB", "G", "Gb", "GB" } };
+        String[][] testMemUnits = new String[][]{{"k", "kb", "kB", "K", "Kb", "KB"}, {"m", "mb", "mB", "M", "Mb", "MB"},
+                {"g", "gb", "gB", "G", "Gb", "GB"}};
         JdbcConnection connWithMemProps;
-        long[] memMultiplier = new long[] { 1024, 1024 * 1024, 1024 * 1024 * 1024 };
+        long[] memMultiplier = new long[]{1024, 1024 * 1024, 1024 * 1024 * 1024};
 
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
@@ -5295,7 +5291,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#69777 - Setting maxAllowedPacket below 8203 makes blobSendChunkSize negative.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -5346,7 +5342,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#69579 - DriverManager.setLoginTimeout not honored.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -5454,7 +5450,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
     /**
      * Internal method for tests to get a replication connection with a
      * single source host to the test URL.
-     * 
+     *
      * @param sourceHost
      * @param props
      * @return a replication connection
@@ -5475,7 +5471,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * - the connection is not in read-only mode
      * - no replicas are configured
      * - a new replica is added
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -5591,7 +5587,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#71850 - init() is called twice on exception interceptors
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -5628,7 +5624,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#67803 - XA commands sent twice to MySQL server
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -5670,7 +5666,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test for Bug#62577 - XA connection fails with ClassCastException
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -5717,7 +5713,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test fix for Bug#18869381 - CHANGEUSER() FOR SHA USER RESULTS IN NULLPOINTEREXCEPTION
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -5832,7 +5828,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#73053 - Endless loop in MysqlIO.clearInputStream due to Linux kernel bug.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -6264,7 +6260,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#19354014 - CHANGEUSER() CALL RESULTS IN "PACKETS OUT OF ORDER" ERROR
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -6297,7 +6293,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#75168 - loadBalanceExceptionChecker interface cannot work using JDBC4/JDK7
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -6397,7 +6393,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#71084 - Wrong java.sql.Date stored if client and server time zones differ
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -6410,7 +6406,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     private void testBug71084AssertCase(Properties connProps, String clientTZ, String serverTZ, String targetTZ, String insertDate, String expectedStoredDate,
-            String expectedRetrievedDate) throws Exception {
+                                        String expectedRetrievedDate) throws Exception {
         final TimeZone defaultTZ = TimeZone.getDefault();
         final boolean useTargetCal = targetTZ != null;
         final Properties testExtraProperties = new Properties();
@@ -6436,7 +6432,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
             String expectedDateInDB = expectedStoredDate;
             Date expectedDateInRS = longDateFrmt.parse(expectedRetrievedDate);
             String expectedDateInDBNoConv = shortDateFrmt.format(dateIn);
-            /* Date expectedDateInRSNoConv = */ shortDateFrmt.parse(expectedDateInDBNoConv);
+            /* Date expectedDateInRSNoConv = */
+            shortDateFrmt.parse(expectedDateInDBNoConv);
 
             int id = 0;
             for (Entry<Object, Object> prop : testExtraProperties.entrySet()) {
@@ -6491,7 +6488,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#20685022 - SSL CONNECTION TO MYSQL 5.7.6 COMMUNITY SERVER FAILS
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -6542,7 +6539,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#75592 - "SHOW VARIABLES WHERE" is expensive.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -6629,7 +6626,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#62452 - NPE thrown in JDBC4MySQLPooledException when statement is closed.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -6672,7 +6669,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#20825727 - CONNECT FAILURE WHEN TRY TO CONNECT SHA USER WITH DIFFERENT CHARSET.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -6731,9 +6728,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
             if (testConn.getSession().versionMeetsMinimum(5, 7, 5)) {
                 // mysql_old_password plugin not supported
-                plugins = new String[] { "cleartext_plugin_server,-1", "mysql_native_password,0", "sha256_password,2" };
+                plugins = new String[]{"cleartext_plugin_server,-1", "mysql_native_password,0", "sha256_password,2"};
             } else if (testConn.getSession().versionMeetsMinimum(5, 6, 6)) {
-                plugins = new String[] { "cleartext_plugin_server,-1", "mysql_native_password,0", "mysql_old_password,1", "sha256_password,2" };
+                plugins = new String[]{"cleartext_plugin_server,-1", "mysql_native_password,0", "mysql_old_password,1", "sha256_password,2"};
 
                 // temporarily disable --secure-auth mode to allow old format passwords
                 testStmt.executeUpdate("SET @current_secure_auth = @@global.secure_auth");
@@ -6741,13 +6738,13 @@ public class ConnectionRegressionTest extends BaseTestCase {
                 secureAuthChanged = true;
             } else {
                 // sha256_password plugin not supported
-                plugins = new String[] { "cleartext_plugin_server,-1", "mysql_native_password,0", "mysql_old_password,1" };
+                plugins = new String[]{"cleartext_plugin_server,-1", "mysql_native_password,0", "mysql_old_password,1"};
             }
 
             final String simplePwd = "my\tpass word";
             final String complexPwd = "my\tp\u00e4ss w\u263ard";
 
-            for (String encoding : new String[] { "", "UTF-8", "ISO-8859-1", "US-ASCII" }) {
+            for (String encoding : new String[]{"", "UTF-8", "ISO-8859-1", "US-ASCII"}) {
                 for (String plugin : plugins) {
 
                     String pluginName = plugin.split(",")[0];
@@ -6860,14 +6857,14 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     private void testBug20825727TestLogin(final String testDbUrl, String defaultServerEncoding, boolean sslEnabled, boolean rsaEnabled, String user,
-            String password, String encoding, String pluginName) throws SQLException {
+                                          String password, String encoding, String pluginName) throws SQLException {
         final Properties props = new Properties();
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         final JdbcConnection testBaseConn = (JdbcConnection) getConnectionWithProps(testDbUrl, props);
         final boolean pwdIsComplex = !Charset.forName("US-ASCII").newEncoder().canEncode(password);
 
-        for (String encProp : encoding.length() == 0 ? new String[] { "*none*" }
-                : new String[] { PropertyKey.characterEncoding.getKeyName(), PropertyKey.passwordCharacterEncoding.getKeyName() }) {
+        for (String encProp : encoding.length() == 0 ? new String[]{"*none*"}
+                : new String[]{PropertyKey.characterEncoding.getKeyName(), PropertyKey.passwordCharacterEncoding.getKeyName()}) {
             for (int testCase = 1; testCase <= 4; testCase++) {
 
                 props.setProperty(PropertyKey.USER.getKeyName(), user);
@@ -6975,9 +6972,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#75670 - Connection fails with "Public Key Retrieval is not allowed" for native auth.
-     * 
+     * <p>
      * Requires the server to be configured with default-authentication-plugin=sha256_password and RSA encryption enabled.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -7022,10 +7019,10 @@ public class ConnectionRegressionTest extends BaseTestCase {
             System.out.println(
                     "----------------------------------------------------------------------------------------------------" + "------------------------------");
 
-            for (Class<?> defAuthPlugin : new Class<?>[] { MysqlNativePasswordPlugin.class, Sha256PasswordPlugin.class }) {
-                for (String user : new String[] { "bug75670user_mnp", "bug75670user_sha" }) {
-                    for (String pwd : new String[] { user, "wrong*pwd", "" }) {
-                        for (boolean allowPubKeyRetrieval : new boolean[] { true, false }) {
+            for (Class<?> defAuthPlugin : new Class<?>[]{MysqlNativePasswordPlugin.class, Sha256PasswordPlugin.class}) {
+                for (String user : new String[]{"bug75670user_mnp", "bug75670user_sha"}) {
+                    for (String pwd : new String[]{user, "wrong*pwd", ""}) {
+                        for (boolean allowPubKeyRetrieval : new boolean[]{true, false}) {
                             final Connection testConn;
                             Statement testStmt;
 
@@ -7126,7 +7123,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#16634180 - LOCK WAIT TIMEOUT EXCEEDED CAUSES SQLEXCEPTION, SHOULD CAUSE SQLTRANSIENTEXCEPTION
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -7171,11 +7168,11 @@ public class ConnectionRegressionTest extends BaseTestCase {
     /**
      * Tests fix for Bug#21934573 - FABRIC CODE INVOLVED IN THREAD DEADLOCK.
      * (Duplicate Bug#78710 (21966391) - Deadlock on ReplicationConnection and ReplicationConnectionGroup when failover)
-     * 
+     * <p>
      * Two threads with different Fabric connections using the same server group (and consequently the same {@link ReplicationConnectionGroup}) may hit a
      * deadlock when one executes a failover procedure and the other, simultaneously, calls a method that acquires a lock on the {@link ReplicationConnection}
      * instance monitor.
-     * 
+     * <p>
      * This happens when, in one thread, a Fabric connection (performing the failover) and while owning a lock on {@link ReplicationConnectionGroup},
      * sequentially tries to lock the object monitor from each {@link ReplicationConnection} belonging to the same {@link ReplicationConnectionGroup}, in the
      * attempt of updating their servers lists by calling the synchronized methods {@link ReplicationConnection#removeSourceHost(String)},
@@ -7187,18 +7184,18 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * the first thread. The first thread, at the same time, requires that the lock on {@link ReplicationConnection} is released by the second thread to be able
      * to complete the failover procedure is has initiated before.
      * (*) Executing a query may trigger this too via locking on {@link LoadBalancedConnectionProxy}.
-     * 
+     * <p>
      * This test simulates the way Fabric connections operate when they need to synchronize the list of servers from a {@link ReplicationConnection} with the
      * Fabric's server group. In that operation we, like Fabric connections, use an {@link ExceptionInterceptor} that ends up changing the
      * {@link ReplicationConnection}s from a given {@link ReplicationConnectionGroup}.
-     * 
+     * <p>
      * This test is unable to cover the failing scenario since the fix in the main code was also reproduced here, with the addition of the {@link ReentrantLock}
      * {@code singleSynchWorkerMonitor} in the {@link TestBug21934573ExceptionInterceptor} the same way as in {@code ErrorReportingExceptionInterceptor}. The
      * way to reproduce it and observe the deadlock happening is by setting the connection property {@code __useReplConnGroupLocks__} to {@code False}.
-     * 
+     * <p>
      * WARNING! If this test fails there is no guarantee that the JVM will remain stable and won't affect any other tests. It is imperative that this test
      * passes to ensure other tests results.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -7214,7 +7211,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         final Connection connA = getSourceReplicaReplicationConnection(props);
         final Connection connB = getSourceReplicaReplicationConnection(props);
 
-        for (final Connection testConn : new Connection[] { connA, connB }) {
+        for (final Connection testConn : new Connection[]{connA, connB}) {
             new Thread(new Runnable() {
                 public void run() {
                     try {
@@ -7330,9 +7327,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#21947042, PREFER TLS WHERE SUPPORTED BY MYSQL SERVER.
-     * 
+     * <p>
      * Requires test certificates from testsuite/ssl-test-certs to be installed on the server being tested.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -7514,7 +7511,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#56100 - Replication driver routes DML statements to read-only replicas.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -7528,7 +7525,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.queryInterceptors.getKeyName(), Bug56100QueryInterceptor.class.getName());
 
-        final ReplicationConnection testConn = getUnreliableReplicationConnection(new String[] { "source", "replica" }, props);
+        final ReplicationConnection testConn = getUnreliableReplicationConnection(new String[]{"source", "replica"}, props);
 
         assertTrue(testConn.isHostSource(hostSource));
         assertTrue(testConn.isHostReplica(hostReplica));
@@ -7622,7 +7619,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for WL#8196, Support for TLSv1.2 Protocol.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -7662,7 +7659,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
             assertTrue(this.rs.next());
             List<String> serverSupportedProtocols = Arrays.asList(this.rs.getString(2).trim().split("\\s*,\\s*"));
             String highestCommonTlsVersion = "";
-            for (String p : new String[] { "TLSv1.3", "TLSv1.2" }) {
+            for (String p : new String[]{"TLSv1.3", "TLSv1.2"}) {
                 if (jvmSupportedProtocols.contains(p) && serverSupportedProtocols.contains(p)) {
                     highestCommonTlsVersion = p;
                     break;
@@ -7684,7 +7681,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * Tests fix for Bug#87379. This allows TLS version to be overridden through a new configuration option - tlsVersions. When set to some combination
      * of TLSv1.2 or TLSv1.3 (comma-separated, no spaces), the default behavior restricting the TLS version based on JRE and MySQL Server version is
      * bypassed to enable or restrict specific TLS versions.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -7728,7 +7725,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
             commonSupportedProtocols.retainAll(jvmSupportedProtocols);
         }
 
-        String[] testingProtocols = { "TLSv1.2", "TLSv1.3" };
+        String[] testingProtocols = {"TLSv1.2", "TLSv1.3"};
         for (String protocol : testingProtocols) {
             Properties testProps = new Properties();
             testProps.putAll(props);
@@ -7756,7 +7753,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#56122 - JDBC4 functionality failure when using replication connections.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -7764,8 +7761,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (final Connection testConn : new Connection[] { this.conn, getFailoverConnection(props), getLoadBalancedConnection(props),
-                getSourceReplicaReplicationConnection(props) }) {
+        for (final Connection testConn : new Connection[]{this.conn, getFailoverConnection(props), getLoadBalancedConnection(props),
+                getSourceReplicaReplicationConnection(props)}) {
             testConn.createClob();
             testConn.createBlob();
             testConn.createNClob();
@@ -7792,7 +7789,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#21286268 - CONNECTOR/J REPLICATION USE SOURCE IF REPLICA IS UNAVAILABLE.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -7805,7 +7802,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         final String REPLICA_OK = UnreliableSocketFactory.getHostConnectedStatus(REPLICA);
         final String REPLICA_FAIL = UnreliableSocketFactory.getHostFailedStatus(REPLICA);
 
-        final String[] hosts = new String[] { SOURCE, REPLICA };
+        final String[] hosts = new String[]{SOURCE, REPLICA};
         final Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
@@ -8117,10 +8114,10 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#77171 - On every connect getting sql_mode from server creates unnecessary exception.
-     * 
+     * <p>
      * This fix is a refactoring on ConnectorImpl.initializePropsFromServer() to improve performance when processing the SQL_MODE value. No behavior was
      * changed. This test guarantees that nothing was broken in these matters, for the relevant MySQL versions, after this fix.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -8175,10 +8172,10 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#22730682 - ARRAYINDEXOUTOFBOUNDSEXCEPTION FROM CONNECTIONGROUPMANAGER.REMOVEHOST().
-     * 
+     * <p>
      * This bug was caused by an incorrect array handling when removing an host from a load balanced connection group, with the option to affect existing
      * connections.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -8216,9 +8213,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#22848249 - LOADBALANCECONNECTIONGROUPMANAGER.REMOVEHOST() NOT WORKING AS EXPECTED.
-     * 
+     * <p>
      * Tests a sequence of additions and removals of hosts from a load-balanced connection group.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -8270,7 +8267,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.loadBalanceHostRemovalGracePeriod.getKeyName(), "0");
         props.setProperty(PropertyKey.loadBalanceConnectionGroup.getKeyName(), lbConnGroup);
-        Connection testConn = getUnreliableLoadBalancedConnection(new String[] { host1, host2, host3 }, props);
+        Connection testConn = getUnreliableLoadBalancedConnection(new String[]{host1, host2, host3}, props);
         testConn.setAutoCommit(false);
 
         String connectedHost = ((JdbcConnection) testConn).getHost();
@@ -8435,7 +8432,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.loadBalanceHostRemovalGracePeriod.getKeyName(), "0");
         props.setProperty(PropertyKey.loadBalanceConnectionGroup.getKeyName(), lbConnGroup);
-        Connection testConn = getUnreliableLoadBalancedConnection(new String[] { host1, host2, host3 }, props);
+        Connection testConn = getUnreliableLoadBalancedConnection(new String[]{host1, host2, host3}, props);
         testConn.setAutoCommit(false);
 
         String connectedHost = ((JdbcConnection) testConn).getHost();
@@ -8605,7 +8602,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.loadBalanceHostRemovalGracePeriod.getKeyName(), "0");
         props.setProperty(PropertyKey.loadBalanceConnectionGroup.getKeyName(), lbConnGroup);
-        Connection testConn = getUnreliableLoadBalancedConnection(new String[] { host1, host2, host3, host4 }, props);
+        Connection testConn = getUnreliableLoadBalancedConnection(new String[]{host1, host2, host3, host4}, props);
         testConn.setAutoCommit(false);
 
         String connectedHost = ((JdbcConnection) testConn).getHost();
@@ -8656,7 +8653,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         /*
          * New connection wont be able to use the previously removed hosts.
          */
-        testConn = getUnreliableLoadBalancedConnection(new String[] { host1, host2, host3, host4 }, props);
+        testConn = getUnreliableLoadBalancedConnection(new String[]{host1, host2, host3, host4}, props);
         testConn.setAutoCommit(false);
 
         connectedHost = ((JdbcConnection) testConn).getHost();
@@ -8719,7 +8716,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.loadBalanceHostRemovalGracePeriod.getKeyName(), "0");
         props.setProperty(PropertyKey.loadBalanceConnectionGroup.getKeyName(), lbConnGroup);
-        Connection testConn = getUnreliableLoadBalancedConnection(new String[] { host1, host2 }, props);
+        Connection testConn = getUnreliableLoadBalancedConnection(new String[]{host1, host2}, props);
         testConn.setAutoCommit(false);
 
         String connectedHost = ((JdbcConnection) testConn).getHost();
@@ -8764,7 +8761,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         /*
          * New connection will be able to use all hosts.
          */
-        testConn = getUnreliableLoadBalancedConnection(new String[] { host1, host2, host3, host4 }, props);
+        testConn = getUnreliableLoadBalancedConnection(new String[]{host1, host2, host3, host4}, props);
         testConn.setAutoCommit(false);
 
         connectedHost = ((JdbcConnection) testConn).getHost();
@@ -8801,7 +8798,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#22678872 - NPE DURING UPDATE WITH FABRIC.
-     * 
+     * <p>
      * Although the bug was reported against a Fabric connection, it can't be systematically reproduced there. A deep analysis revealed that the bug occurs due
      * to a defect in the dynamic hosts management of replication connections, specifically when one or both of the internal hosts lists (sources and/or
      * replicas)
@@ -8811,7 +8808,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * - The replication connections are initialized with the same properties as in a Fabric connection.
      * - Hosts are removed using the same options as in a Fabric connection.
      * - The method tested after any host change is Connection.setAutoCommit(), which is the method that triggered the original NPE.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -9113,11 +9110,11 @@ public class ConnectionRegressionTest extends BaseTestCase {
         assertFalse(testConnG.isSourceConnection()); // Actually not connected, but the promotion to source succeeded. 
         assertThrows(SQLException.class, "The connection is unusable at the current state\\. There may be no hosts to connect to or all hosts this "
                 + "connection knows may be down at the moment\\.", new Callable<Void>() {
-                    public Void call() throws Exception {
-                        testConnG.setAutoCommit(false);
-                        return null;
-                    }
-                });
+            public Void call() throws Exception {
+                testConnG.setAutoCommit(false);
+                return null;
+            }
+        });
 
         testBug22678872CheckConnectionsHistory(hostNotConnected); // Another failed connection attempt.
 
@@ -9150,7 +9147,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#77649 - URL start with word "address",JDBC can't parse the "host:port" Correctly.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -9158,7 +9155,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         String host = getHostFromTestsuiteUrl();
         int port = getPortFromTestsuiteUrl();
 
-        String[] hosts = new String[] { getEncodedHostFromTestsuiteUrl(), "address", "address.somewhere", "addressing", "addressing.somewhere" };
+        String[] hosts = new String[]{getEncodedHostFromTestsuiteUrl(), "address", "address.somewhere", "addressing", "addressing.somewhere"};
 
         UnreliableSocketFactory.flushAllStaticData();
         for (int i = 1; i < hosts.length; i++) { // Don't map the first host.
@@ -9177,9 +9174,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#74711 - FORGOTTEN WORKAROUND FOR BUG#36326.
-     * 
+     * <p>
      * This test requires a server started with the options '--query_cache_type=1' and '--query_cache_size=N', (N > 0).
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -9212,7 +9209,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#75209 - Set useLocalTransactionState may result in partially committed transaction.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -9258,10 +9255,10 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#75615 - Incorrect implementation of Connection.setNetworkTimeout().
-     * 
+     * <p>
      * Note: this test exploits a non deterministic race condition. Usually the failure was observed under 10 consecutive executions, as such the siginficant
      * part of the test is run up to 25 times.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -9309,7 +9306,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#70785 - MySQL Connector/J inconsistent init state for autocommit.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -9379,7 +9376,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test for caching_sha2_password authentication.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -9752,10 +9749,10 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#88242 - autoReconnect and socketTimeout JDBC option makes wrong order of client packet.
-     * 
+     * <p>
      * The wrong behavior may not be observed in all systems or configurations. It seems to be easier to reproduce when SSL is enabled. Without it, the data
      * packets flow faster and desynchronization occurs rarely, which is the root cause for this problem.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -9806,9 +9803,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#88232 - c/J does not rollback transaction when autoReconnect=true.
-     * 
+     * <p>
      * This is essentially a duplicate of Bug#88242, but observed in a different use case.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -9862,7 +9859,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#27131768 - NULL POINTER EXCEPTION IN CONNECTION.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -9882,7 +9879,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#88227 (27029657), Connector/J 5.1.44 cannot be used against MySQL 5.7.20 without warnings.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -9930,23 +9927,23 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#26819691, SETTING PACKETDEBUGBUFFERSIZE=0 RESULTS IN CONNECTION FAILURE.
-     * 
+     *
      * @throws Exception
      */
     @Test
     public void testBug26819691() throws Exception {
         assertThrows(SQLException.class, "The connection property 'packetDebugBufferSize' only accepts integer values in the range of 1 - 2147483647, "
                 + "the value '0' exceeds this range\\.", new Callable<Void>() {
-                    public Void call() throws Exception {
-                        Properties props = new Properties();
-                        props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
-                        props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-                        props.setProperty(PropertyKey.packetDebugBufferSize.getKeyName(), "0");
-                        props.setProperty(PropertyKey.enablePacketDebug.getKeyName(), "true");
-                        getConnectionWithProps(props);
-                        return null;
-                    }
-                });
+            public Void call() throws Exception {
+                Properties props = new Properties();
+                props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
+                props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
+                props.setProperty(PropertyKey.packetDebugBufferSize.getKeyName(), "0");
+                props.setProperty(PropertyKey.enablePacketDebug.getKeyName(), "true");
+                getConnectionWithProps(props);
+                return null;
+            }
+        });
 
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), SslMode.DISABLED.name());
@@ -9958,7 +9955,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#86741 (26314325), Multi-Host connection with autocommit=0 getAutoCommit maybe wrong.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10011,7 +10008,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#90753 (27977617), WAIT_TIMEOUT EXCEEDED MESSAGE NOT TRIGGERED.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10052,7 +10049,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#26089880, GETCONNECTION("MYSQLX://..") RETURNS NON-X PROTOCOL CONNECTION.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10067,7 +10064,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#87600 (26724154), CONNECTOR THROWS 'MALFORMED DATABASE URL' ON NON MYSQL CONNECTION-URLS.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10082,7 +10079,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#91421 (28246270), ALLOWED VALUES FOR ZERODATETIMEBEHAVIOR ARE INCOMPATIBLE WITH NETBEANS.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10117,7 +10114,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#28150662, CONNECTOR/J 8 MALFORMED DATABASE URL EXCEPTION WHIT CORRECT URL STRING.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10154,7 +10151,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#27102307, CHANGE USESSL AND VERIFYSERVERCERTIFICATE TO SSLMODE OPTION.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10308,7 +10305,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test fix for Bug#89948 (27658489), Batched statements are not committed for useLocalTransactionState=true.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10400,7 +10397,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#25642226, CHANGEUSER() NOT SETTING THE DATABASE PROPERLY WITH SHA USER.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10489,7 +10486,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#92625 (28731795), CONTRIBUTION: FIX OBSERVED NPE IN CLEARINPUTSTREAM.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10511,7 +10508,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#25642021, CHANGEUSER() FAILS WHEN ENABLEPACKETDEBUG=TRUE.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10544,7 +10541,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#93007 (28860051), LoadBalancedConnectionProxy.getGlobalBlocklist bug.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10564,7 +10561,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         }
 
         ForcedLoadBalanceStrategy.forceFutureServer("first:" + portNumber, -1);
-        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
         conn2.setAutoCommit(false);
         conn2.createStatement().execute("SELECT 1");
 
@@ -10603,7 +10600,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#29329326, PLEASE AVOID SHOW PROCESSLIST IF POSSIBLE.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10646,7 +10643,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test fix for Bug#41172 (11750577), PROFILEREVENT.PACK() THROWS ARRAYINDEXOUTOFBOUNDSEXCEPTION.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10681,7 +10678,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test fix for Bug#74690 (20010454), PROFILEREVENT HOSTNAME HAS NO GETTER().
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10719,7 +10716,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test fix for Bug#70677 (17640628), CONNECTOR J WITH PROFILESQL - LOG CONTAINS LOTS OF STACKTRACE DATA.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10749,10 +10746,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * @SuppressWarnings("javadoc")
-     * Test fix for Bug#98445 (30832513), Connection option clientInfoProvider=ClientInfoProviderSP causes NPE.
-     * 
      * @throws Exception
+     * @SuppressWarnings("javadoc") Test fix for Bug#98445 (30832513), Connection option clientInfoProvider=ClientInfoProviderSP causes NPE.
      */
     @Test
     public void testBug98445() throws Exception {
@@ -10890,7 +10885,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test fix for Bug#97714 (30570249), Contribution: Expose elapsed time for query interceptor to avoid hacky thread local implementations.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10925,9 +10920,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#99767 (31443178), Contribution: Check SubjectAlternativeName for TLS instead of commonName.
-     * 
+     * <p>
      * This test requires a server X509 certificate that contains the following X509v3 extension:
-     * 
+     *
      * <pre>
      * X509v3 Subject Alternative Name:
      *     DNS:bug99767.mysql.san1.tst,
@@ -10940,7 +10935,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
      *     IP Address:9.9.7.67,
      *     IP Address:99.7.6.7
      * </pre>
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -10965,10 +10960,10 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
             props.remove(PropertyKey.HOST.getKeyName());
 
-            String[] okHosts = { "bug99767.mysql.san1.tst", "bug99767.mysql.san2.tst", "bug99767.mysql.san3.tst", "bug99767.mysql.san4.tst", "9.9.7.67",
-                    "99.7.6.7" };
-            String[] notOkHosts = { "bug31443178.mysql.san1.tst", "bug99767.cj.mysql.san2.tst", "bug99767.cj.mysql.san3.tst", "cj.bug99767.mysql.san4.tst",
-                    "bug99767.mysql.san5.tst", "bug99767.cj.mysql.san5.tst", "bug99767.tst", "bug99767", "31.44.31.78" };
+            String[] okHosts = {"bug99767.mysql.san1.tst", "bug99767.mysql.san2.tst", "bug99767.mysql.san3.tst", "bug99767.mysql.san4.tst", "9.9.7.67",
+                    "99.7.6.7"};
+            String[] notOkHosts = {"bug31443178.mysql.san1.tst", "bug99767.cj.mysql.san2.tst", "bug99767.cj.mysql.san3.tst", "cj.bug99767.mysql.san4.tst",
+                    "bug99767.mysql.san5.tst", "bug99767.cj.mysql.san5.tst", "bug99767.tst", "bug99767", "31.44.31.78"};
 
             UnreliableSocketFactory.flushAllStaticData();
             Arrays.stream(okHosts).forEach(h -> UnreliableSocketFactory.mapHost(h, host));
@@ -11013,7 +11008,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#99076 (31083755), Unclear exception/error when connecting with jdbc:mysql to a mysqlx port.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -11034,9 +11029,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#98667 (31711961), "All pipe instances are busy" exception on multiple connections to named Pipe.
-     * 
+     * <p>
      * This test only runs on Windows with a MySQL instance started with named pipes enabled (--named-pipe=on).
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -11093,7 +11088,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#21789378, FORCED TO SET SERVER TIMEZONE IN CONNECT STRING (ALPHA).
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -11121,7 +11116,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test for WL#14453 - Pluggable authentication new defaults behavior & user-less authentications.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -11134,7 +11129,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         this.rs = this.stmt.executeQuery("SELECT user FROM mysql.user WHERE user = '" + systemUsername + "'");
         assumeFalse(this.rs.next(), "Probably user 'root' and there is one already. This test can't proceed with it.");
 
-        String[] authenticationPlugins = new String[] { "caching_sha2_password", "sha256_password", "mysql_native_password" };
+        String[] authenticationPlugins = new String[]{"caching_sha2_password", "sha256_password", "mysql_native_password"};
         List<String> authenticationPluginsTested = new ArrayList<>();
         for (String authPlugin : authenticationPlugins) {
             if (pluginIsActive(this.stmt, authPlugin)) {
@@ -11162,7 +11157,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Test for WL#14453 - Pluggable authentication new defaults behavior & user-less authentications.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -11175,7 +11170,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         this.rs = this.stmt.executeQuery("SELECT user FROM mysql.user WHERE user = '" + systemUsername + "'");
         assumeFalse(this.rs.next(), "Probably user 'root' and there is one already. This test can't proceed with it.");
 
-        String[] authenticationPlugins = new String[] { "caching_sha2_password", "sha256_password", "mysql_native_password" };
+        String[] authenticationPlugins = new String[]{"caching_sha2_password", "sha256_password", "mysql_native_password"};
         List<String> authenticationPluginsTested = new ArrayList<>();
         for (String authPlugin : authenticationPlugins) {
             if (pluginIsActive(this.stmt, authPlugin)) {
@@ -11203,7 +11198,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#101596 (32151143), GET THE 'HOST' PROPERTY ERROR AFTER CALLING TRANSFORMPROPERTIES() METHOD.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -11231,7 +11226,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#22508715, SETSESSIONMAXROWS() CALL ON CLOSED CONNECTION RESULTS IN NPE.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -11250,7 +11245,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#102188 (32526663), AccessControlException with AuthenticationLdapSaslClientPlugin.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -11294,7 +11289,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#102404 (32435618), CONTRIBUTION: ADD TRACK SESSION STATE CHANGE.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -11563,7 +11558,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
     /**
      * Tests fix for Bug#104067 (33054827), No reset autoCommit after unknown issue occurs.
      * Tests fix for Bug#106435 (33850099), 8.0.28 Connector/J has regressive in setAutoCommit after Bug#104067 (33054827).
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -11673,7 +11668,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#25701740, STMT EXECUTION FAILS FOR REPLICATION CONNECTION WHEN USECURSORFETCH=TRUE.
-     * 
+     *
      * @throws Exception
      */
     @Test

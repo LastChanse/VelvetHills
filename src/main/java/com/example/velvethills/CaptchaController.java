@@ -20,7 +20,7 @@ public class CaptchaController {
     String captchaText = "";
 
     public void getParentController(LoginController root) {
-        this.root=root;
+        this.root = root;
     }
 
     @FXML

@@ -45,7 +45,7 @@ import com.mysql.cj.util.Util;
 
 /**
  * MySQL 'authentication_fido_client' authentication plugin.
- * 
+ * <p>
  * This authentication plugin requires a callback handler implemented in the client application that performs all the interactions with the authenticator
  * device. This callback handler is injected into the driver via the connection property 'authenticationFidoCallbackHandler'.
  */
@@ -68,7 +68,7 @@ public class AuthenticationFidoClient implements AuthenticationPlugin<NativePack
 
         this.fidoAuthenticationCallbackHandler = (MysqlCallbackHandler) Util.getInstance(fidoCallbackHandlerClassName, null, null,
                 protocol.getExceptionInterceptor(),
-                Messages.getString("AuthenticationFidoClientPlugin.FailedInstantiatingCallbackHandler", new Object[] { fidoCallbackHandlerClassName }));
+                Messages.getString("AuthenticationFidoClientPlugin.FailedInstantiatingCallbackHandler", new Object[]{fidoCallbackHandlerClassName}));
     }
 
     @Override

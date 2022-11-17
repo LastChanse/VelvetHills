@@ -122,7 +122,7 @@ public class SimplePacketSenderTest extends PacketSenderTestBase {
 
     /**
      * Test the case where the packet size is a multiple of the max packet size. We need to send an extra empty packet to signal that the payload is complete.
-     * 
+     *
      * @throws IOException
      */
     @Test

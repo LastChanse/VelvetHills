@@ -37,21 +37,21 @@ import java.util.List;
 public interface RowResult extends FetchResult<Row>, Result {
     /**
      * Count of columns.
-     * 
+     *
      * @return count
      */
     int getColumnCount();
 
     /**
      * Metadata.
-     * 
+     *
      * @return list of result {@link Column} objects
      */
     List<Column> getColumns();
 
     /**
      * Names of columns.
-     * 
+     *
      * @return list of result column names
      */
     List<String> getColumnNames();

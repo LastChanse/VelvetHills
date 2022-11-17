@@ -37,7 +37,7 @@ public interface JsonValue {
 
     /**
      * Get a human readable "pretty" JSON string.
-     * 
+     *
      * @return human readable "pretty" JSON string
      */
     default String toFormattedString() {

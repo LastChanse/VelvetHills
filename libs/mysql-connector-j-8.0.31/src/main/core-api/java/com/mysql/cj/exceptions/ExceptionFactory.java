@@ -70,15 +70,10 @@ public class ExceptionFactory {
     }
 
     /**
-     * 
-     * @param clazz
-     *            exception class
-     * @param message
-     *            message
-     * @param interceptor
-     *            exception interceptor
-     * @param <T>
-     *            {@link CJException}
+     * @param clazz       exception class
+     * @param message     message
+     * @param interceptor exception interceptor
+     * @param <T>         {@link CJException}
      * @return {@link CJException} instance
      */
     public static <T extends CJException> T createException(Class<T> clazz, String message, ExceptionInterceptor interceptor) {
@@ -125,7 +120,7 @@ public class ExceptionFactory {
     }
 
     public static CJException createException(String message, String sqlState, int vendorErrorCode, boolean isTransient, Throwable cause,
-            ExceptionInterceptor interceptor) {
+                                              ExceptionInterceptor interceptor) {
         CJException ex = createException(CJException.class, message, cause, interceptor);
         ex.setSQLState(sqlState);
         ex.setVendorCode(vendorErrorCode);
@@ -134,17 +129,11 @@ public class ExceptionFactory {
     }
 
     /**
-     * 
-     * @param clazz
-     *            exception class
-     * @param message
-     *            message
-     * @param cause
-     *            exception caused this one
-     * @param interceptor
-     *            exception interceptor
-     * @param <T>
-     *            {@link CJException}
+     * @param clazz       exception class
+     * @param message     message
+     * @param cause       exception caused this one
+     * @param interceptor exception interceptor
+     * @param <T>         {@link CJException}
      * @return {@link CJException} instance
      */
     public static <T extends CJException> T createException(Class<T> clazz, String message, Throwable cause, ExceptionInterceptor interceptor) {
@@ -163,7 +152,7 @@ public class ExceptionFactory {
     }
 
     public static CJCommunicationsException createCommunicationsException(PropertySet propertySet, ServerSession serverSession,
-            PacketSentTimeHolder packetSentTimeHolder, PacketReceivedTimeHolder packetReceivedTimeHolder, Throwable cause, ExceptionInterceptor interceptor) {
+                                                                          PacketSentTimeHolder packetSentTimeHolder, PacketReceivedTimeHolder packetReceivedTimeHolder, Throwable cause, ExceptionInterceptor interceptor) {
         CJCommunicationsException sqlEx = createException(CJCommunicationsException.class, null, cause, interceptor);
         sqlEx.init(propertySet, serverSession, packetSentTimeHolder, packetReceivedTimeHolder);
 
@@ -182,21 +171,16 @@ public class ExceptionFactory {
     /**
      * Creates a communications link failure message to be used in CommunicationsException
      * that (hopefully) has some better information and suggestions based on heuristics.
-     * 
-     * @param propertySet
-     *            property set
-     * @param serverSession
-     *            server session
-     * @param packetSentTimeHolder
-     *            packetSentTimeHolder
-     * @param packetReceivedTimeHolder
-     *            packetReceivedTimeHolder
-     * @param underlyingException
-     *            underlyingException
+     *
+     * @param propertySet              property set
+     * @param serverSession            server session
+     * @param packetSentTimeHolder     packetSentTimeHolder
+     * @param packetReceivedTimeHolder packetReceivedTimeHolder
+     * @param underlyingException      underlyingException
      * @return message
      */
     public static String createLinkFailureMessageBasedOnHeuristics(PropertySet propertySet, ServerSession serverSession,
-            PacketSentTimeHolder packetSentTimeHolder, PacketReceivedTimeHolder packetReceivedTimeHolder, Throwable underlyingException) {
+                                                                   PacketSentTimeHolder packetSentTimeHolder, PacketReceivedTimeHolder packetReceivedTimeHolder, Throwable underlyingException) {
         long serverTimeoutSeconds = 0;
         boolean isInteractiveClient = false;
 
@@ -265,8 +249,8 @@ public class ExceptionFactory {
 
             exceptionMessageBuf.append(lastPacketReceivedTimeMs != 0
                     ? Messages.getString("CommunicationsException.ServerPacketTimingInfo",
-                            new Object[] { Long.valueOf(timeSinceLastPacketReceivedMs), Long.valueOf(timeSinceLastPacketSentMs) })
-                    : Messages.getString("CommunicationsException.ServerPacketTimingInfoNoRecv", new Object[] { Long.valueOf(timeSinceLastPacketSentMs) }));
+                    new Object[]{Long.valueOf(timeSinceLastPacketReceivedMs), Long.valueOf(timeSinceLastPacketSentMs)})
+                    : Messages.getString("CommunicationsException.ServerPacketTimingInfoNoRecv", new Object[]{Long.valueOf(timeSinceLastPacketSentMs)}));
 
             if (timeoutMessageBuf != null) {
                 exceptionMessageBuf.append(timeoutMessageBuf);
@@ -296,8 +280,8 @@ public class ExceptionFactory {
                 exceptionMessageBuf.append("\n\n");
                 exceptionMessageBuf.append(lastPacketReceivedTimeMs != 0
                         ? Messages.getString("CommunicationsException.ServerPacketTimingInfo",
-                                new Object[] { Long.valueOf(timeSinceLastPacketReceivedMs), Long.valueOf(timeSinceLastPacketSentMs) })
-                        : Messages.getString("CommunicationsException.ServerPacketTimingInfoNoRecv", new Object[] { Long.valueOf(timeSinceLastPacketSentMs) }));
+                        new Object[]{Long.valueOf(timeSinceLastPacketReceivedMs), Long.valueOf(timeSinceLastPacketSentMs)})
+                        : Messages.getString("CommunicationsException.ServerPacketTimingInfoNoRecv", new Object[]{Long.valueOf(timeSinceLastPacketSentMs)}));
             }
         }
 

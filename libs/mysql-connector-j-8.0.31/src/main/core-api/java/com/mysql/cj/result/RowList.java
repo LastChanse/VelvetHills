@@ -48,7 +48,7 @@ public interface RowList extends Iterator<Row> {
 
     /**
      * Optionally iterate backwards on the list.
-     * 
+     *
      * @return {@link Row}
      */
     default Row previous() {
@@ -57,11 +57,10 @@ public interface RowList extends Iterator<Row> {
 
     /**
      * Optionally retrieve Row at index <i>n</i>.
-     * 
+     * <p>
      * Only works on non dynamic row lists.
-     * 
-     * @param n
-     *            row number
+     *
+     * @param n row number
      * @return {@link Row}
      */
     default Row get(int n) {
@@ -70,7 +69,7 @@ public interface RowList extends Iterator<Row> {
 
     /**
      * Returns the current position.
-     * 
+     *
      * @return the current row number
      */
     default int getPosition() {
@@ -79,7 +78,7 @@ public interface RowList extends Iterator<Row> {
 
     /**
      * Only works on non dynamic row lists.
-     * 
+     *
      * @return the size of this row list
      */
     default int size() {

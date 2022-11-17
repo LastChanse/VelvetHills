@@ -51,12 +51,9 @@ public class UtilCalendarValueFactory extends AbstractDateTimeValueFactory<Calen
     private TimeZone connectionTimeZone;
 
     /**
-     * @param pset
-     *            {@link PropertySet}
-     * @param defaultTimeZone
-     *            The local JVM time zone.
-     * @param connectionTimeZone
-     *            The server session time zone as defined by connectionTimeZone property.
+     * @param pset               {@link PropertySet}
+     * @param defaultTimeZone    The local JVM time zone.
+     * @param connectionTimeZone The server session time zone as defined by connectionTimeZone property.
      */
     public UtilCalendarValueFactory(PropertySet pset, TimeZone defaultTimeZone, TimeZone connectionTimeZone) {
         super(pset);
@@ -94,7 +91,7 @@ public class UtilCalendarValueFactory extends AbstractDateTimeValueFactory<Calen
     @Override
     public Calendar localCreateFromTime(InternalTime it) {
         if (it.getHours() < 0 || it.getHours() >= 24) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[] { it.toString() }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[]{it.toString()}));
         }
 
         try {

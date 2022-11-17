@@ -39,7 +39,7 @@ import com.mysql.cj.jdbc.JdbcConnection;
 
 /**
  * A balancing strategy that starts at a random point, and then advances in the list (wrapping around) for each new pickConnection() call.
- * 
+ * <p>
  * The initial point selection, and subsequent point selections are blocklist-aware.
  */
 public class SequentialBalanceStrategy implements BalanceStrategy {
@@ -50,7 +50,7 @@ public class SequentialBalanceStrategy implements BalanceStrategy {
 
     @Override
     public ConnectionImpl pickConnection(InvocationHandler proxy, List<String> configuredHosts, Map<String, JdbcConnection> liveConnections,
-            long[] responseTimes, int numRetries) throws SQLException {
+                                         long[] responseTimes, int numRetries) throws SQLException {
         int numHosts = configuredHosts.size();
 
         SQLException ex = null;

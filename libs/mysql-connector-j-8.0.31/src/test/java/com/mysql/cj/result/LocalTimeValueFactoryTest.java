@@ -152,7 +152,7 @@ public class LocalTimeValueFactoryTest extends CommonAsserts {
             @Override
             public Void call() throws Exception {
                 Field f = new Field("test", "test", 33, "UTF-8", MysqlType.VARCHAR, 2);
-                LocalTimeValueFactoryTest.this.vf.createFromBytes(new byte[] { '1' }, 0, 1, f);
+                LocalTimeValueFactoryTest.this.vf.createFromBytes(new byte[]{'1'}, 0, 1, f);
                 return null;
             }
         });
@@ -184,7 +184,7 @@ public class LocalTimeValueFactoryTest extends CommonAsserts {
         assertThrows(DataConversionException.class, "Cannot convert string '1' to java.time.LocalTime value", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                LocalTimeValueFactoryTest.this.vf.createFromBytes(new byte[] { '1' }, 0, 1, f);
+                LocalTimeValueFactoryTest.this.vf.createFromBytes(new byte[]{'1'}, 0, 1, f);
                 return null;
             }
         });
@@ -211,7 +211,7 @@ public class LocalTimeValueFactoryTest extends CommonAsserts {
         assertThrows(DataConversionException.class, "Unsupported conversion from BIT to java.time.LocalTime", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                LocalTimeValueFactoryTest.this.vf.createFromBit(new byte[] { 1 }, 0, 2);
+                LocalTimeValueFactoryTest.this.vf.createFromBit(new byte[]{1}, 0, 2);
                 return null;
             }
         });

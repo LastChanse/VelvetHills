@@ -40,13 +40,10 @@ public interface ConnectionPropertiesTransform {
      * The driver will call this method if the user has loaded your
      * implementation of this interface by specifying the 'propertiesTransform'
      * property in their URL.
-     * 
-     * @param props
-     *            the properties as passed by the driver (never null)
-     * 
+     *
+     * @param props the properties as passed by the driver (never null)
      * @return the same properties with any transformations that your
-     *         implementation has made
-     * 
+     * implementation has made
      */
     Properties transformProperties(Properties props);
 }

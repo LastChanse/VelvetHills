@@ -27,18 +27,20 @@ public class SceneUtils {
         });
 
         scene.setOnMouseDragged(mouseEvent -> {
-        if (yOffset < Config.draggedYZone) {
-            stage.setX(mouseEvent.getScreenX() - xOffset);
-            stage.setY(mouseEvent.getScreenY() - yOffset);
-        }});
+            if (yOffset < Config.draggedYZone) {
+                stage.setX(mouseEvent.getScreenX() - xOffset);
+                stage.setY(mouseEvent.getScreenY() - yOffset);
+            }
+        });
     }
 
     public void changeScene(Scene scene, String fxmlFile, User user) {
-        Parent root = new Parent() {};
+        Parent root = new Parent() {
+        };
 
         if (user != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(new URL(Config.resourcesPath+fxmlFile));
+                FXMLLoader loader = new FXMLLoader(new URL(Config.resourcesPath + fxmlFile));
                 root = loader.load();
                 MainController mc = loader.getController();
                 mc.setUser(user);
@@ -47,7 +49,7 @@ public class SceneUtils {
             }
         } else {
             try {
-                FXMLLoader loader = new FXMLLoader(new URL(Config.resourcesPath+fxmlFile));
+                FXMLLoader loader = new FXMLLoader(new URL(Config.resourcesPath + fxmlFile));
                 root = loader.load();
                 LoginController lc = loader.getController();
                 lc.getSelfController(lc);

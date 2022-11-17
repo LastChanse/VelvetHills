@@ -51,7 +51,7 @@ public abstract class AbstractPropertyDefinition<T> implements PropertyDefinitio
     private int upperBound;
 
     public AbstractPropertyDefinition(String name, String camelCaseAlias, T defaultValue, boolean isRuntimeModifiable, String description, String sinceVersion,
-            String category, int orderInCategory) {
+                                      String category, int orderInCategory) {
 
         this.name = name;
         this.ccAlias = camelCaseAlias;
@@ -64,7 +64,7 @@ public abstract class AbstractPropertyDefinition<T> implements PropertyDefinitio
     }
 
     public AbstractPropertyDefinition(PropertyKey key, T defaultValue, boolean isRuntimeModifiable, String description, String sinceVersion, String category,
-            int orderInCategory) {
+                                      int orderInCategory) {
 
         this.key = key;
         this.name = key.getKeyName();
@@ -78,7 +78,7 @@ public abstract class AbstractPropertyDefinition<T> implements PropertyDefinitio
     }
 
     public AbstractPropertyDefinition(PropertyKey key, T defaultValue, boolean isRuntimeModifiable, String description, String sinceVersion, String category,
-            int orderInCategory, int lowerBound, int upperBound) {
+                                      int orderInCategory, int lowerBound, int upperBound) {
         this(key, defaultValue, isRuntimeModifiable, description, sinceVersion, category, orderInCategory);
         this.setLowerBound(lowerBound);
         this.setUpperBound(upperBound);

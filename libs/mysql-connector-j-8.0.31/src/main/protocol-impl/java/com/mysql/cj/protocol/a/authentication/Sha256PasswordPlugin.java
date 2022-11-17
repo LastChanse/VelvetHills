@@ -115,7 +115,7 @@ public class Sha256PasswordPlugin implements AuthenticationPlugin<NativePacketPa
 
         if (this.password == null || this.password.length() == 0 || fromServer == null) {
             // no password
-            NativePacketPayload packet = new NativePacketPayload(new byte[] { 0 });
+            NativePacketPayload packet = new NativePacketPayload(new byte[]{0});
             toServer.add(packet);
 
         } else {
@@ -155,7 +155,7 @@ public class Sha256PasswordPlugin implements AuthenticationPlugin<NativePacketPa
                     } else {
                         // build and send Public Key Retrieval packet
                         this.seed = fromServer.readString(StringSelfDataType.STRING_TERM, null);
-                        NativePacketPayload packet = new NativePacketPayload(new byte[] { 1 });
+                        NativePacketPayload packet = new NativePacketPayload(new byte[]{1});
                         toServer.add(packet);
                         this.publicKeyRequested = true;
                     }
@@ -175,7 +175,7 @@ public class Sha256PasswordPlugin implements AuthenticationPlugin<NativePacketPa
         byte[] input = null;
         input = this.password != null
                 ? StringUtils.getBytesNullTerminated(this.password, this.protocol.getServerSession().getCharsetSettings().getPasswordCharacterEncoding())
-                : new byte[] { 0 };
+                : new byte[]{0};
         byte[] mysqlScrambleBuff = new byte[input.length];
         Security.xorString(input, mysqlScrambleBuff, this.seed.getBytes(), input.length);
         return ExportControlled.encryptWithRSAPublicKey(mysqlScrambleBuff, ExportControlled.decodeRSAPublicKey(this.publicKeyString), transformation);
@@ -204,7 +204,7 @@ public class Sha256PasswordPlugin implements AuthenticationPlugin<NativePacketPa
 
             throw ExceptionFactory.createException(WrongArgumentException.class,
                     Messages.getString("Sha256PasswordPlugin.0",
-                            propertySet.getBooleanProperty(PropertyKey.paranoid).getValue() ? new Object[] { "" } : new Object[] { "'" + pkPath + "'" }),
+                            propertySet.getBooleanProperty(PropertyKey.paranoid).getValue() ? new Object[]{""} : new Object[]{"'" + pkPath + "'"}),
                     exceptionInterceptor);
 
         } finally {

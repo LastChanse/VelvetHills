@@ -49,7 +49,9 @@ public class JsonParser {
         private Whitespace(char character) {
             this.CHAR = character;
         }
-    };
+    }
+
+    ;
 
     enum StructuralToken {
         /**
@@ -83,7 +85,9 @@ public class JsonParser {
             this.CHAR = character;
         }
 
-    };
+    }
+
+    ;
 
     enum EscapeChar {
         /**
@@ -128,7 +132,9 @@ public class JsonParser {
             this.ESCAPED = escaped;
             this.NEEDS_ESCAPING = needsEscaping;
         }
-    };
+    }
+
+    ;
 
     static Set<Character> whitespaceChars = new HashSet<>();
     static HashMap<Character, Character> escapeChars = new HashMap<>();
@@ -148,9 +154,8 @@ public class JsonParser {
 
     /**
      * Create {@link DbDoc} object from JSON string.
-     * 
-     * @param jsonString
-     *            JSON string representing a document
+     *
+     * @param jsonString JSON string representing a document
      * @return New {@link DbDoc} object initialized by parsed JSON string.
      */
     public static DbDoc parseDoc(String jsonString) {
@@ -163,13 +168,10 @@ public class JsonParser {
 
     /**
      * Create {@link DbDoc} object from JSON string provided by reader.
-     * 
-     * @param reader
-     *            JSON string reader.
-     * @return
-     *         New {@link DbDoc} object initialized by parsed JSON string.
-     * @throws IOException
-     *             if can't read
+     *
+     * @param reader JSON string reader.
+     * @return New {@link DbDoc} object initialized by parsed JSON string.
+     * @throws IOException if can't read
      */
     public static DbDoc parseDoc(StringReader reader) throws IOException {
 
@@ -195,7 +197,7 @@ public class JsonParser {
                             reader.reset();
                         }
                     } catch (WrongArgumentException ex) {
-                        throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.0", new String[] { key }), ex);
+                        throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.0", new String[]{key}), ex);
                     }
                 } else {
                     reader.reset();
@@ -205,7 +207,7 @@ public class JsonParser {
                 break;
             } else {
                 if (!whitespaceChars.contains(ch)) {
-                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[] { ch }));
+                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[]{ch}));
                 }
             }
         }
@@ -214,7 +216,7 @@ public class JsonParser {
             throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.2"));
         } else if (leftBrackets > rightBrackets) {
             throw ExceptionFactory.createException(WrongArgumentException.class,
-                    Messages.getString("JsonParser.3", new Character[] { StructuralToken.RCRBRACKET.CHAR }));
+                    Messages.getString("JsonParser.3", new Character[]{StructuralToken.RCRBRACKET.CHAR}));
         }
 
         return doc;
@@ -222,13 +224,10 @@ public class JsonParser {
 
     /**
      * Create {@link JsonArray} object from JSON string provided by reader.
-     * 
-     * @param reader
-     *            JSON string reader.
-     * @return
-     *         New {@link JsonArray} object initialized by parsed JSON string.
-     * @throws IOException
-     *             if can't read
+     *
+     * @param reader JSON string reader.
+     * @return New {@link JsonArray} object initialized by parsed JSON string.
+     * @throws IOException if can't read
      */
     public static JsonArray parseArray(StringReader reader) throws IOException {
 
@@ -254,14 +253,14 @@ public class JsonParser {
                 break;
 
             } else if (!whitespaceChars.contains(ch)) {
-                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[] { ch }));
+                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[]{ch}));
 
             }
         }
 
         if (openings > 0) {
             throw ExceptionFactory.createException(WrongArgumentException.class,
-                    Messages.getString("JsonParser.3", new Character[] { StructuralToken.RSQBRACKET.CHAR }));
+                    Messages.getString("JsonParser.3", new Character[]{StructuralToken.RSQBRACKET.CHAR}));
         }
 
         return arr;
@@ -287,12 +286,12 @@ public class JsonParser {
                 // end of document
                 break;
             } else if (!whitespaceChars.contains(ch)) {
-                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[] { ch }));
+                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[]{ch}));
             }
         }
 
         if (ch != StructuralToken.COLON.CHAR && val != null && val.getString().length() > 0) {
-            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.4", new String[] { val.getString() }));
+            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.4", new String[]{val.getString()}));
         }
         return val != null ? val.getString() : null;
     }
@@ -342,7 +341,7 @@ public class JsonParser {
                 return null;
 
             } else if (!whitespaceChars.contains(ch)) {
-                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[] { ch }));
+                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[]{ch}));
             }
             reader.mark(1);
         }
@@ -353,7 +352,7 @@ public class JsonParser {
     private static void appendChar(StringBuilder sb, char ch) {
         if (sb == null) {
             if (!whitespaceChars.contains(ch)) {
-                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.6", new Character[] { ch }));
+                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.6", new Character[]{ch}));
             }
         } else {
             sb.append(ch);
@@ -362,13 +361,10 @@ public class JsonParser {
 
     /**
      * Create {@link JsonString} object from JSON string provided by reader.
-     * 
-     * @param reader
-     *            JSON string reader.
-     * @return
-     *         New {@link JsonString} object initialized by parsed JSON string or <code>null</code> if no JSON string was found.
-     * @throws IOException
-     *             if can't read
+     *
+     * @param reader JSON string reader.
+     * @return New {@link JsonString} object initialized by parsed JSON string or <code>null</code> if no JSON string was found.
+     * @throws IOException if can't read
      */
     static JsonString parseString(StringReader reader) throws IOException {
         int quotes = 0;
@@ -389,16 +385,16 @@ public class JsonParser {
                     String hexCodePoint = countRead == -1 ? "" : String.valueOf(buf, 0, countRead);
                     if (countRead != 4) {
                         throw ExceptionFactory.createException(WrongArgumentException.class,
-                                Messages.getString("JsonParser.13", new String[] { hexCodePoint }));
+                                Messages.getString("JsonParser.13", new String[]{hexCodePoint}));
                     }
                     try {
                         appendChar(sb, (char) Integer.parseInt(hexCodePoint, 16));
                     } catch (NumberFormatException e) {
                         throw ExceptionFactory.createException(WrongArgumentException.class,
-                                Messages.getString("JsonParser.13", new String[] { hexCodePoint }));
+                                Messages.getString("JsonParser.13", new String[]{hexCodePoint}));
                     }
                 } else {
-                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.7", new Character[] { ch }));
+                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.7", new Character[]{ch}));
                 }
                 escapeNextChar = false;
 
@@ -426,7 +422,7 @@ public class JsonParser {
         }
 
         if (quotes > 0) {
-            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.3", new Character[] { EscapeChar.QUOTE.CHAR }));
+            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.3", new Character[]{EscapeChar.QUOTE.CHAR}));
         }
 
         return sb == null ? null : new JsonString().setValue(sb.toString());
@@ -434,13 +430,10 @@ public class JsonParser {
 
     /**
      * Create {@link JsonNumber} object from JSON string provided by reader.
-     * 
-     * @param reader
-     *            JSON string reader.
-     * @return
-     *         New {@link JsonNumber} object initialized by parsed JSON string.
-     * @throws IOException
-     *             if can't read
+     *
+     * @param reader JSON string reader.
+     * @return New {@link JsonNumber} object initialized by parsed JSON string.
+     * @throws IOException if can't read
      */
     static JsonNumber parseNumber(StringReader reader) throws IOException {
 
@@ -465,7 +458,7 @@ public class JsonParser {
                     sb.append(ch);
                 } else if (!whitespaceChars.contains(ch)) {
                     // only white spaces are allowed before value
-                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[] { ch }));
+                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[]{ch}));
                 }
             } else if (ch == '\u002D') {
                 // '-' is allowed only on first position and after exponent character
@@ -473,7 +466,7 @@ public class JsonParser {
                     sb.append(ch);
                 } else {
                     throw ExceptionFactory.createException(WrongArgumentException.class,
-                            Messages.getString("JsonParser.8", new Object[] { ch, sb.toString() }));
+                            Messages.getString("JsonParser.8", new Object[]{ch, sb.toString()}));
                 }
 
             } else if (ch >= '\u0030' && ch <= '\u0039') { // 0-9
@@ -486,14 +479,14 @@ public class JsonParser {
                     sb.append(ch);
                 } else {
                     throw ExceptionFactory.createException(WrongArgumentException.class,
-                            Messages.getString("JsonParser.8", new Object[] { ch, sb.toString() }));
+                            Messages.getString("JsonParser.8", new Object[]{ch, sb.toString()}));
                 }
 
             } else if (ch == '\u002E') {
                 // '.' is allowed only once, after a digit and not in exponent part
                 if (hasFractionalPart) {
                     throw ExceptionFactory.createException(WrongArgumentException.class,
-                            Messages.getString("JsonParser.10", new Object[] { ch, sb.toString() }));
+                            Messages.getString("JsonParser.10", new Object[]{ch, sb.toString()}));
                 }
                 if (hasExponent) {
                     throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.11"));
@@ -503,7 +496,7 @@ public class JsonParser {
                     sb.append(ch);
                 } else {
                     throw ExceptionFactory.createException(WrongArgumentException.class,
-                            Messages.getString("JsonParser.8", new Object[] { ch, sb.toString() }));
+                            Messages.getString("JsonParser.8", new Object[]{ch, sb.toString()}));
                 }
 
             } else if (ch == '\u002B') {
@@ -512,7 +505,7 @@ public class JsonParser {
                     sb.append(ch);
                 } else {
                     throw ExceptionFactory.createException(WrongArgumentException.class,
-                            Messages.getString("JsonParser.8", new Object[] { ch, sb.toString() }));
+                            Messages.getString("JsonParser.8", new Object[]{ch, sb.toString()}));
                 }
 
             } else if (whitespaceChars.contains(ch) || isValidEndOfValue(ch)) {
@@ -522,7 +515,7 @@ public class JsonParser {
 
             } else {
                 // no other characters are allowed after value
-                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[] { ch }));
+                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[]{ch}));
             }
             lastChar = ch;
             // it's safe to mark() here because the "higher" level marks won't be reset() once we start reading a number
@@ -538,13 +531,10 @@ public class JsonParser {
 
     /**
      * Create {@link JsonLiteral} object from JSON string provided by reader.
-     * 
-     * @param reader
-     *            JSON string reader.
-     * @return
-     *         New {@link JsonLiteral} object initialized by parsed JSON string.
-     * @throws IOException
-     *             if can't read
+     *
+     * @param reader JSON string reader.
+     * @return New {@link JsonLiteral} object initialized by parsed JSON string.
+     * @throws IOException if can't read
      */
     static JsonLiteral parseLiteral(StringReader reader) throws IOException {
         StringBuilder sb = null;
@@ -576,7 +566,7 @@ public class JsonParser {
                     literalIndex++;
                 } else if (!whitespaceChars.contains(ch)) {
                     // only whitespace chars are allowed before value
-                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[] { ch }));
+                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[]{ch}));
                 }
             } else if (literalIndex < res.value.length() && ch == res.value.charAt(literalIndex)) {
                 sb.append(ch);
@@ -589,7 +579,7 @@ public class JsonParser {
 
             } else {
                 // no other characters are allowed after value
-                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[] { ch }));
+                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.1", new Character[]{ch}));
             }
             // it's safe to mark() here because the "higher" level marks won't be reset() once we start reading a number
             reader.mark(1);
@@ -603,6 +593,6 @@ public class JsonParser {
             return res;
         }
 
-        throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.12", new String[] { sb.toString() }));
+        throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("JsonParser.12", new String[]{sb.toString()}));
     }
 }

@@ -45,17 +45,13 @@ public class Security {
 
     /**
      * Encrypt/Decrypt function used for password encryption in authentication
-     * 
+     * <p>
      * Simple XOR is used here but it is OK as we encrypt random strings
-     * 
-     * @param from
-     *            IN Data for encryption
-     * @param to
-     *            OUT Encrypt data to the buffer (may be the same)
-     * @param scramble
-     *            IN Scramble used for encryption
-     * @param length
-     *            IN Length of data to encrypt
+     *
+     * @param from     IN Data for encryption
+     * @param to       OUT Encrypt data to the buffer (may be the same)
+     * @param scramble IN Scramble used for encryption
+     * @param length   IN Length of data to encrypt
      */
     public static void xorString(byte[] from, byte[] to, byte[] scramble, int length) {
         int pos = 0;
@@ -86,11 +82,9 @@ public class Security {
      * reply=xor(hash_stage1, sha1(public_seed,hash_stage2))
      * send(reply)
      * </pre>
-     * 
-     * @param password
-     *            password
-     * @param seed
-     *            seed
+     *
+     * @param password password
+     * @param seed     seed
      * @return bytes
      */
     public static byte[] scramble411(byte[] password, byte[] seed) {
@@ -123,24 +117,20 @@ public class Security {
 
     /**
      * Scrambling for caching_sha2_password plugin.
-     * 
+     *
      * <pre>
      * Scramble = XOR(SHA2(password), SHA2(SHA2(SHA2(password)), Nonce))
      * </pre>
-     * 
-     * @param password
-     *            password
-     * @param seed
-     *            seed
+     *
+     * @param password password
+     * @param seed     seed
      * @return bytes
-     * 
-     * @throws DigestException
-     *             if an error occurs
+     * @throws DigestException if an error occurs
      */
     public static byte[] scrambleCachingSha2(byte[] password, byte[] seed) throws DigestException {
         /*
          * Server does it in 4 steps (see sql/auth/sha2_password_common.cc Generate_scramble::scramble method):
-         * 
+         *
          * SHA2(src) => digest_stage1
          * SHA2(digest_stage1) => digest_stage2
          * SHA2(digest_stage2, m_rnd) => scramble_stage1

@@ -35,14 +35,13 @@ import java.util.List;
 /**
  * A set of elements from a query command.
  *
- * @param <T>
- *            the type of element returned from the query (doc or row)
+ * @param <T> the type of element returned from the query (doc or row)
  */
 public interface FetchResult<T> extends Iterator<T>, Iterable<T> {
     /**
      * Does this result have data? This indicates that the result was produced from a data-returning query. It does not indicate whether there are more than 0
      * rows in the result.
-     * 
+     *
      * @return true if has data
      */
     default boolean hasData() {
@@ -51,7 +50,7 @@ public interface FetchResult<T> extends Iterator<T>, Iterable<T> {
 
     /**
      * Fetch the next element.
-     * 
+     *
      * @return element of type T
      */
     default T fetchOne() {
@@ -63,7 +62,7 @@ public interface FetchResult<T> extends Iterator<T>, Iterable<T> {
 
     /**
      * Create an iterator over all elements of the result.
-     * 
+     *
      * @return iterator over result items
      */
     default Iterator<T> iterator() {
@@ -72,14 +71,14 @@ public interface FetchResult<T> extends Iterator<T>, Iterable<T> {
 
     /**
      * How many items are in this result? This method forces internal buffering of the entire result.
-     * 
+     *
      * @return number of elements in result
      */
     long count();
 
     /**
      * Create a list of all elements in the result forcing internal buffering.
-     * 
+     *
      * @return list of result elements
      */
     List<T> fetchAll();

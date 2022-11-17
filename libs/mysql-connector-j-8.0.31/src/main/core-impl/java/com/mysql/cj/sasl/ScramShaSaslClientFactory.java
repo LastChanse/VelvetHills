@@ -47,11 +47,11 @@ import com.mysql.cj.util.StringUtils;
  * A {@link SaslClientFactory} for {@link ScramSha1SaslClient} and {@link ScramSha256SaslClient} instances.
  */
 public class ScramShaSaslClientFactory implements SaslClientFactory {
-    private static final String[] SUPPORTED_MECHANISMS = { ScramSha1SaslClient.MECHANISM_NAME, ScramSha256SaslClient.MECHANISM_NAME };
+    private static final String[] SUPPORTED_MECHANISMS = {ScramSha1SaslClient.MECHANISM_NAME, ScramSha256SaslClient.MECHANISM_NAME};
 
     @Override
     public SaslClient createSaslClient(String[] mechanisms, String authorizationId, String protocol, String serverName, Map<String, ?> props,
-            CallbackHandler cbh) throws SaslException {
+                                       CallbackHandler cbh) throws SaslException {
         for (String mech : mechanisms) {
             if (mech.equals(ScramSha1SaslClient.MECHANISM_NAME)) {
                 return new ScramSha1SaslClient(authorizationId, getUsername(mech, authorizationId, cbh), getPassword(mech, cbh));
@@ -70,17 +70,12 @@ public class ScramShaSaslClientFactory implements SaslClientFactory {
 
     /**
      * Gets the authentication id, which is provided by a {@link CallbackHandler} to be implemented by the requester of this service.
-     * 
-     * @param prefix
-     *            the prefix to use in the prompt.
-     * @param authorizationId
-     *            the authorization id that can be used as default authentication id if none is provided.
-     * @param cbh
-     *            the callback handler to use.
-     * @return
-     *         an authentication id
-     * @throws SaslException
-     *             if the callback handler is null or not supported by the callback handler implementer.
+     *
+     * @param prefix          the prefix to use in the prompt.
+     * @param authorizationId the authorization id that can be used as default authentication id if none is provided.
+     * @param cbh             the callback handler to use.
+     * @return an authentication id
+     * @throws SaslException if the callback handler is null or not supported by the callback handler implementer.
      */
     private String getUsername(String prefix, String authorizationId, CallbackHandler cbh) throws SaslException {
         if (cbh == null) {
@@ -90,7 +85,7 @@ public class ScramShaSaslClientFactory implements SaslClientFactory {
         try {
             String prompt = prefix + " authentication id:";
             NameCallback ncb = StringUtils.isNullOrEmpty(authorizationId) ? new NameCallback(prompt) : new NameCallback(prompt, authorizationId);
-            cbh.handle(new Callback[] { ncb });
+            cbh.handle(new Callback[]{ncb});
 
             String userName = ncb.getName();
             return userName;
@@ -101,15 +96,11 @@ public class ScramShaSaslClientFactory implements SaslClientFactory {
 
     /**
      * Gets the password, which is provided by a {@link CallbackHandler} to be implemented by the requester of this service.
-     * 
-     * @param prefix
-     *            the prefix to use in the prompt.
-     * @param cbh
-     *            the callback handler to use.
-     * @return
-     *         a password
-     * @throws SaslException
-     *             if the callback handler is null or not supported by the callback handler implementer.
+     *
+     * @param prefix the prefix to use in the prompt.
+     * @param cbh    the callback handler to use.
+     * @return a password
+     * @throws SaslException if the callback handler is null or not supported by the callback handler implementer.
      */
     private String getPassword(String prefix, CallbackHandler cbh) throws SaslException {
         if (cbh == null) {
@@ -119,7 +110,7 @@ public class ScramShaSaslClientFactory implements SaslClientFactory {
         try {
             String prompt = prefix + " password:";
             PasswordCallback pcb = new PasswordCallback(prompt, false);
-            cbh.handle(new Callback[] { pcb });
+            cbh.handle(new Callback[]{pcb});
 
             String password = new String(pcb.getPassword());
             pcb.clearPassword();

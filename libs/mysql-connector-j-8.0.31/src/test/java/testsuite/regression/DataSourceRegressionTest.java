@@ -94,7 +94,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Sets up this test, calling registerDataSource() to bind a DataSource into JNDI, using the FSContext JNDI provider from Sun
-     * 
+     *
      * @throws Exception
      */
     @BeforeEach
@@ -116,7 +116,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Un-binds the DataSource and closes the context
-     * 
+     *
      * @throws Exception
      */
     @AfterEach
@@ -127,7 +127,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#4808- Calling .close() twice on a PooledConnection causes NPE.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -143,7 +143,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#3848, port # alone parsed incorrectly
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -203,7 +203,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Tests that we can get a connection from the DataSource bound in JNDI during test setup
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -280,7 +280,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#19169 - ConnectionProperties (and thus some subclasses) are not serializable, even though some J2EE containers expect them to be.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -385,7 +385,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#16791 - NullPointerException in MysqlDataSourceFactory due to Reference containing RefAddrs with null content.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -420,7 +420,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
     /**
      * Tests fix for BUG#32101 - When using a connection from our ConnectionPoolDataSource, some Connection.prepareStatement() methods would return null instead
      * of a prepared statement.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -481,7 +481,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#72890 - Java jdbc driver returns incorrect return code when it's part of XA transaction
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -558,7 +558,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#72632 - NullPointerException for invalid JDBC URL.
-     * 
+     *
      * @throws Exception
      */
     @Test

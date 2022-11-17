@@ -91,7 +91,7 @@ public class ReplicationConnectionGroup {
 
     /**
      * Use {@link #getSourceHosts()} instead.
-     * 
+     *
      * @return source hosts
      * @deprecated
      */
@@ -106,7 +106,7 @@ public class ReplicationConnectionGroup {
 
     /**
      * Use {@link #getReplicaHosts()} instead.
-     * 
+     *
      * @return replica hosts
      * @deprecated
      */
@@ -117,18 +117,16 @@ public class ReplicationConnectionGroup {
 
     /**
      * Adds a host to the replicas hosts list.
-     * 
+     * <p>
      * We can safely assume that if this host was added to the replicas list, then it must be added to each one of the replication connections from this group
      * as well.
      * Unnecessary calls to {@link ReplicationConnection#addReplicaHost(String)} could result in undesirable locking issues, assuming that this method is
      * synchronized by nature.
-     * 
+     * <p>
      * This is a no-op if the group already has this host in a replica role.
-     * 
-     * @param hostPortPair
-     *            "host:port"
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param hostPortPair "host:port"
+     * @throws SQLException if an error occurs
      */
     public void addReplicaHost(String hostPortPair) throws SQLException {
         // only add if it's not already a replica host
@@ -144,9 +142,8 @@ public class ReplicationConnectionGroup {
 
     /**
      * Use {@link #addReplicaHost(String)} instead.
-     * 
-     * @param hostPortPair
-     *            host:port
+     *
+     * @param hostPortPair host:port
      * @throws SQLException
      * @deprecated
      */
@@ -162,21 +159,18 @@ public class ReplicationConnectionGroup {
 
     /**
      * Removes a host from the replicas hosts list.
-     * 
+     * <p>
      * We can safely assume that if this host was removed from the replicas list, then it must be removed from each one of the replication connections from this
      * group as well.
      * Unnecessary calls to {@link ReplicationConnection#removeReplica(String, boolean)} could result in undesirable locking issues, assuming that this method
      * is
      * synchronized by nature.
-     * 
+     * <p>
      * This is a no-op if the group doesn't have this host in a replica role.
-     * 
-     * @param hostPortPair
-     *            "host:port"
-     * @param closeGently
-     *            remove host when it's not in use
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param hostPortPair "host:port"
+     * @param closeGently  remove host when it's not in use
+     * @throws SQLException if an error occurs
      */
     public void removeReplicaHost(String hostPortPair, boolean closeGently) throws SQLException {
         if (this.replicaHostList.remove(hostPortPair)) {
@@ -191,11 +185,9 @@ public class ReplicationConnectionGroup {
 
     /**
      * Use {@link #removeReplicaHost(String, boolean)} instead.
-     * 
-     * @param hostPortPair
-     *            host:port
-     * @param closeGently
-     *            option
+     *
+     * @param hostPortPair host:port
+     * @param closeGently  option
      * @throws SQLException
      * @deprecated
      */
@@ -206,19 +198,17 @@ public class ReplicationConnectionGroup {
 
     /**
      * Promotes a replica host to source.
-     * 
+     * <p>
      * We can safely assume that if this host was removed from the replicas list or added to the sources list, then the same host promotion must happen in each
      * one of the replication connections from this group as well.
      * Unnecessary calls to {@link ReplicationConnection#promoteReplicaToSource(String)} could result in undesirable locking issues, assuming that this method
      * is
      * synchronized by nature.
-     * 
+     * <p>
      * This is a no-op if the group already has this host in a source role and not in replica role.
-     * 
-     * @param hostPortPair
-     *            "host:port"
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param hostPortPair "host:port"
+     * @throws SQLException if an error occurs
      */
     public void promoteReplicaToSource(String hostPortPair) throws SQLException {
         // remove host from replicas AND add host to sources, note that both operands need to be evaluated.
@@ -233,9 +223,8 @@ public class ReplicationConnectionGroup {
 
     /**
      * Use {@link #promoteReplicaToSource(String)} instead.
-     * 
-     * @param hostPortPair
-     *            host:port
+     *
+     * @param hostPortPair host:port
      * @throws SQLException
      * @deprecated
      */
@@ -246,11 +235,9 @@ public class ReplicationConnectionGroup {
 
     /**
      * Removes a host from the sources hosts list.
-     * 
-     * @param hostPortPair
-     *            host:port
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param hostPortPair host:port
+     * @throws SQLException if an error occurs
      */
     public void removeSourceHost(String hostPortPair) throws SQLException {
         this.removeSourceHost(hostPortPair, true);
@@ -258,9 +245,8 @@ public class ReplicationConnectionGroup {
 
     /**
      * Use {@link #removeSourceHost(String)} instead.
-     * 
-     * @param hostPortPair
-     *            host:port
+     *
+     * @param hostPortPair host:port
      * @throws SQLException
      * @deprecated
      */
@@ -271,20 +257,17 @@ public class ReplicationConnectionGroup {
 
     /**
      * Removes a host from the sources hosts list.
-     * 
+     * <p>
      * We can safely assume that if this host was removed from the sources list, then it must be removed from each one of the replication connections from this
      * group as well.
      * Unnecessary calls to {@link ReplicationConnection#removeSourceHost(String, boolean)} could result in undesirable locking issues, assuming that this
      * method is synchronized by nature.
-     * 
+     * <p>
      * This is a no-op if the group doesn't have this host in a source role.
-     * 
-     * @param hostPortPair
-     *            "host:port"
-     * @param closeGently
-     *            remove host when it's not in use
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param hostPortPair "host:port"
+     * @param closeGently  remove host when it's not in use
+     * @throws SQLException if an error occurs
      */
     public void removeSourceHost(String hostPortPair, boolean closeGently) throws SQLException {
         if (this.sourceHostList.remove(hostPortPair)) {
@@ -297,11 +280,9 @@ public class ReplicationConnectionGroup {
 
     /**
      * Use {@link #removeSourceHost(String, boolean)} instead.
-     * 
-     * @param hostPortPair
-     *            host:port
-     * @param closeGently
-     *            option
+     *
+     * @param hostPortPair host:port
+     * @param closeGently  option
      * @throws SQLException
      * @deprecated
      */
@@ -323,9 +304,8 @@ public class ReplicationConnectionGroup {
 
     /**
      * Use {@link #getConnectionCountWithHostAsReplica(String)} instead.
-     * 
-     * @param hostPortPair
-     *            host:port
+     *
+     * @param hostPortPair host:port
      * @return count
      * @deprecated
      */
@@ -347,9 +327,8 @@ public class ReplicationConnectionGroup {
 
     /**
      * Use {@link #getConnectionCountWithHostAsSource(String)} instead.
-     * 
-     * @param hostPortPair
-     *            host:port
+     *
+     * @param hostPortPair host:port
      * @return count
      * @deprecated
      */
@@ -364,7 +343,7 @@ public class ReplicationConnectionGroup {
 
     /**
      * Use {@link #getNumberOfReplicasAdded()} instead.
-     * 
+     *
      * @return count
      * @deprecated
      */
@@ -379,7 +358,7 @@ public class ReplicationConnectionGroup {
 
     /**
      * Use {@link #getNumberOfReplicasRemoved()} instead.
-     * 
+     *
      * @return count
      * @deprecated
      */
@@ -394,7 +373,7 @@ public class ReplicationConnectionGroup {
 
     /**
      * Use {@link #getNumberOfReplicaPromotions()} instead.
-     * 
+     *
      * @return count
      * @deprecated
      */

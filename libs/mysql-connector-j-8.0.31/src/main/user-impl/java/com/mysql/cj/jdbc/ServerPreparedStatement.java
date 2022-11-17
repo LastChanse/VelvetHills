@@ -67,10 +67,14 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
 
     private boolean hasOnDuplicateKeyUpdate = false;
 
-    /** Has this prepared statement been marked invalid? */
+    /**
+     * Has this prepared statement been marked invalid?
+     */
     private boolean invalid = false;
 
-    /** If this statement has been marked invalid, what was the reason? */
+    /**
+     * If this statement has been marked invalid, what was the reason?
+     */
     private CJException invalidationException;
 
     protected boolean isCacheable = false;
@@ -78,20 +82,14 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
 
     /**
      * Creates a prepared statement instance
-     * 
-     * @param conn
-     *            the connection creating us.
-     * @param sql
-     *            the SQL containing the statement to prepare.
-     * @param db
-     *            the database in use when we were created.
-     * @param resultSetType
-     *            ResultSet type
-     * @param resultSetConcurrency
-     *            ResultSet concurrency
+     *
+     * @param conn                 the connection creating us.
+     * @param sql                  the SQL containing the statement to prepare.
+     * @param db                   the database in use when we were created.
+     * @param resultSetType        ResultSet type
+     * @param resultSetConcurrency ResultSet concurrency
      * @return new ServerPreparedStatement
-     * @throws SQLException
-     *             If an error occurs
+     * @throws SQLException If an error occurs
      */
     protected static ServerPreparedStatement getInstance(JdbcConnection conn, String sql, String db, int resultSetType, int resultSetConcurrency)
             throws SQLException {
@@ -100,20 +98,13 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
 
     /**
      * Creates a new ServerPreparedStatement object.
-     * 
-     * @param conn
-     *            the connection creating us.
-     * @param sql
-     *            the SQL containing the statement to prepare.
-     * @param db
-     *            the database in use when we were created.
-     * @param resultSetType
-     *            ResultSet type
-     * @param resultSetConcurrency
-     *            ResultSet concurrency
-     * 
-     * @throws SQLException
-     *             If an error occurs
+     *
+     * @param conn                 the connection creating us.
+     * @param sql                  the SQL containing the statement to prepare.
+     * @param db                   the database in use when we were created.
+     * @param resultSetType        ResultSet type
+     * @param resultSetConcurrency ResultSet concurrency
+     * @throws SQLException If an error occurs
      */
     protected ServerPreparedStatement(JdbcConnection conn, String sql, String db, int resultSetType, int resultSetConcurrency) throws SQLException {
         super(conn, db);
@@ -330,7 +321,7 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
 
     @Override
     protected <M extends Message> com.mysql.cj.jdbc.result.ResultSetInternalMethods executeInternal(int maxRowsToRetrieve, M sendPacket,
-            boolean createStreamingResultSet, boolean queryIsSelectOnly, ColumnDefinition metadata, boolean isBatch) throws SQLException {
+                                                                                                    boolean createStreamingResultSet, boolean queryIsSelectOnly, ColumnDefinition metadata, boolean isBatch) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
             ((PreparedQuery) this.query).getQueryBindings().setNumberOfExecutions(((PreparedQuery) this.query).getQueryBindings().getNumberOfExecutions() + 1);
 
@@ -379,14 +370,11 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
     /**
      * Returns the structure representing the value that (can be)/(is)
      * bound at the given parameter index.
-     * 
-     * @param parameterIndex
-     *            1-based
-     * @param forLongData
-     *            is this for a stream?
+     *
+     * @param parameterIndex 1-based
+     * @param forLongData    is this for a stream?
      * @return {@link BindValue}
-     * @throws SQLException
-     *             if a database access error occurs or this method is called on a closed PreparedStatement
+     * @throws SQLException if a database access error occurs or this method is called on a closed PreparedStatement
      */
     protected BindValue getBinding(int parameterIndex, boolean forLongData) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -402,8 +390,8 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
 
             return resultFields == null || resultFields.getFields() == null ? null
                     : new ResultSetMetaData(this.session, resultFields.getFields(),
-                            this.session.getPropertySet().getBooleanProperty(PropertyKey.useOldAliasMetadataBehavior).getValue(),
-                            this.session.getPropertySet().getBooleanProperty(PropertyKey.yearIsDateType).getValue(), this.exceptionInterceptor);
+                    this.session.getPropertySet().getBooleanProperty(PropertyKey.useOldAliasMetadataBehavior).getValue(),
+                    this.session.getPropertySet().getBooleanProperty(PropertyKey.yearIsDateType).getValue(), this.exceptionInterceptor);
         }
     }
 
@@ -473,9 +461,8 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
     /**
      * Used by Connection when auto-reconnecting to retrieve 'lost' prepared
      * statements.
-     * 
-     * @throws CJException
-     *             if an error occurs.
+     *
+     * @throws CJException if an error occurs.
      */
     protected void rePrepare() {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -521,32 +508,28 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
     /**
      * Tells the server to execute this prepared statement with the current
      * parameter bindings.
-     * 
+     *
      * <pre>
      *    -   Server gets the command 'COM_EXECUTE' to execute the
      *        previously         prepared query. If there is any param markers;
      *  then client will send the data in the following format:
-     * 
+     *
      *  [COM_EXECUTE:1]
      *  [STMT_ID:4]
      *  [NULL_BITS:(param_count+7)/8)]
      *  [TYPES_SUPPLIED_BY_CLIENT(0/1):1]
      *  [[length]data]
      *  [[length]data] .. [[length]data].
-     * 
+     *
      *  (Note: Except for string/binary types; all other types will not be
      *  supplied with length field)
      * </pre>
-     * 
-     * @param maxRowsToRetrieve
-     *            rows limit
-     * @param createStreamingResultSet
-     *            should c/J create a streaming result?
-     * @param metadata
-     *            use this metadata instead of the one provided on wire
+     *
+     * @param maxRowsToRetrieve        rows limit
+     * @param createStreamingResultSet should c/J create a streaming result?
+     * @param metadata                 use this metadata instead of the one provided on wire
      * @return result set
-     * @throws SQLException
-     *             if a database access error occurs or this method is called on a closed PreparedStatement
+     * @throws SQLException if a database access error occurs or this method is called on a closed PreparedStatement
      */
     protected ResultSetInternalMethods serverExecute(int maxRowsToRetrieve, boolean createStreamingResultSet, ColumnDefinition metadata) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {

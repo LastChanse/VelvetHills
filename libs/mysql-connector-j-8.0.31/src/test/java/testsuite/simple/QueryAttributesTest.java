@@ -92,7 +92,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests all supported query attributes types when used in plain statements.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -180,7 +180,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests all supported query attributes types when used in client prepared statements.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -278,7 +278,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests all supported query attributes types when used in server prepared statements.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -376,7 +376,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests all supported query attributes types when used in callable statements.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -470,7 +470,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests if query attributes are preserved between plain statement executions and cleared after calling the 'clearAttributes' method.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -501,7 +501,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests if query attributes are preserved between client prepared statement executions and cleared after calling the 'clearAttributes' method.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -541,7 +541,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests if query attributes are preserved between server prepared statement executions and cleared after calling the 'clearAttributes' method.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -581,7 +581,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests if query attributes are preserved between callable statement executions and cleared after calling the 'clearAttributes' method.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -615,7 +615,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests if query attributes hold in plain statements with multi-queries.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -649,7 +649,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests if query attributes hold in prepared statements with multi-queries.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -685,7 +685,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests whether the query attributes are propagated to the internally created statement on query rewrites in plain statements.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -734,7 +734,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests whether the query attributes are propagated to the internally created statement on query rewrites in client prepared statements.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -789,7 +789,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests whether the query attributes are propagated to the internally created statement on query rewrites in server prepared statements.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -844,7 +844,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests if server prepared statements get their query attributes cleared automatically when cached.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -909,7 +909,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests whether proxied plain statement objects created in multi-host connections handle query attributes correctly.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -965,7 +965,7 @@ public class QueryAttributesTest extends BaseTestCase {
 
     /**
      * Tests whether proxied server prepared statement objects created in multi-host connections handle query attributes correctly.
-     * 
+     *
      * @throws Exception
      */
     @Test

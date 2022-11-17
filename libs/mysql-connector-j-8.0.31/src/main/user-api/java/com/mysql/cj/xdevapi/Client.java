@@ -38,7 +38,7 @@ public interface Client {
 
     /**
      * Get <code>Session</code> from pool or the new one.
-     * 
+     *
      * @return {@link Session}
      */
     public Session getSession();

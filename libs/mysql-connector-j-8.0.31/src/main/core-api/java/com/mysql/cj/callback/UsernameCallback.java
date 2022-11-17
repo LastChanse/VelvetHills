@@ -41,9 +41,8 @@ public class UsernameCallback implements MysqlCallback {
 
     /**
      * Get the username provided by the caller of {@link MysqlCallbackHandler#handle(MysqlCallback)}.
-     * 
-     * @return
-     *         the username to pass over to the callback handler.
+     *
+     * @return the username to pass over to the callback handler.
      */
     public String getUsername() {
         return this.username;

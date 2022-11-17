@@ -46,12 +46,9 @@ public class MiniAdmin {
 
     /**
      * Create a new MiniAdmin using the given connection
-     * 
-     * @param conn
-     *            the existing connection to use.
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param conn the existing connection to use.
+     * @throws SQLException if an error occurs
      */
     public MiniAdmin(java.sql.Connection conn) throws SQLException {
         if (conn == null) {
@@ -68,12 +65,9 @@ public class MiniAdmin {
 
     /**
      * Create a new MiniAdmin, connecting using the given JDBC URL.
-     * 
-     * @param jdbcUrl
-     *            the JDBC URL to use
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param jdbcUrl the JDBC URL to use
+     * @throws SQLException if an error occurs
      */
     public MiniAdmin(String jdbcUrl) throws SQLException {
         this(jdbcUrl, new Properties());
@@ -82,14 +76,10 @@ public class MiniAdmin {
     /**
      * Create a new MiniAdmin, connecting using the given JDBC URL and
      * properties
-     * 
-     * @param jdbcUrl
-     *            the JDBC URL to use
-     * @param props
-     *            the properties to use when connecting
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param jdbcUrl the JDBC URL to use
+     * @param props   the properties to use when connecting
+     * @throws SQLException if an error occurs
      */
     public MiniAdmin(String jdbcUrl, Properties props) throws SQLException {
         this.conn = (JdbcConnection) (new Driver().connect(jdbcUrl, props));
@@ -98,9 +88,8 @@ public class MiniAdmin {
     /**
      * Shuts down the MySQL server at the other end of the connection that this
      * MiniAdmin was created from/for.
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @throws SQLException if an error occurs
      */
     public void shutdown() throws SQLException {
         this.conn.shutdownServer();

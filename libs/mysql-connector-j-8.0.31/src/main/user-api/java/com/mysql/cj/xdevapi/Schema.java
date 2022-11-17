@@ -40,32 +40,30 @@ public interface Schema extends DatabaseObject {
 
     /**
      * Retrieve the set of collections existing in this schema.
-     * 
+     *
      * @return list of {@link Collection} objects
      */
     List<Collection> getCollections();
 
     /**
      * Retrieve the set of collections existing in this schema and matching the given pattern.
-     * 
-     * @param pattern
-     *            match pattern
+     *
+     * @param pattern match pattern
      * @return list of {@link Collection} objects
      */
     List<Collection> getCollections(String pattern);
 
     /**
      * Retrieve the set of tables existing in this schema.
-     * 
+     *
      * @return list of {@link Table} objects
      */
     List<Table> getTables();
 
     /**
      * Retrieve the set of tables existing in this schema and matching the given pattern.
-     * 
-     * @param pattern
-     *            match pattern
+     *
+     * @param pattern match pattern
      * @return list of {@link Table} objects
      */
     List<Table> getTables(String pattern);
@@ -74,49 +72,42 @@ public interface Schema extends DatabaseObject {
 
     /**
      * Retrieve a reference to the named collection.
-     * 
-     * @param name
-     *            collection name
+     *
+     * @param name collection name
      * @return {@link Collection}
      */
     Collection getCollection(String name);
 
     /**
      * Retrieve a reference to the named collection hinting that an exception should be thrown if the collection is not known to the server.
-     * 
-     * @param name
-     *            collection name
-     * @param requireExists
-     *            true if required to exist
+     *
+     * @param name          collection name
+     * @param requireExists true if required to exist
      * @return {@link Collection}
      */
     Collection getCollection(String name, boolean requireExists);
 
     /**
      * Retrieve a reference to the named collection using the table API.
-     * 
-     * @param name
-     *            collection name
+     *
+     * @param name collection name
      * @return {@link Table}
      */
     Table getCollectionAsTable(String name);
 
     /**
      * Retrieve a reference to the named table.
-     * 
-     * @param name
-     *            table name
+     *
+     * @param name table name
      * @return {@link Table}
      */
     Table getTable(String name);
 
     /**
      * Retrieve a reference to the named table hinting that an exception should be thrown if the collection is not known to the server.
-     * 
-     * @param tableName
-     *            table name
-     * @param requireExists
-     *            true if required to exist
+     *
+     * @param tableName     table name
+     * @param requireExists true if required to exist
      * @return {@link Table}
      */
     Table getTable(String tableName, boolean requireExists);
@@ -125,50 +116,42 @@ public interface Schema extends DatabaseObject {
 
     /**
      * Create a new collection.
-     * 
-     * @param name
-     *            collection name
+     *
+     * @param name collection name
      * @return {@link Collection}
      */
     Collection createCollection(String name);
 
     /**
      * Create a new collection if it does not already exist on the server.
-     * 
-     * @param name
-     *            collection name
-     * @param reuseExisting
-     *            true if allowed to reuse
+     *
+     * @param name          collection name
+     * @param reuseExisting true if allowed to reuse
      * @return {@link Collection}
      */
     Collection createCollection(String name, boolean reuseExisting);
 
     /**
      * Create a new collection.
-     * 
-     * @param collectionName
-     *            collection name
-     * @param options
-     *            reuseExisting, validation level and JSON schema options
+     *
+     * @param collectionName collection name
+     * @param options        reuseExisting, validation level and JSON schema options
      * @return {@link Collection}
      */
     Collection createCollection(String collectionName, CreateCollectionOptions options);
 
     /**
      * Modify the schema validation of a collection.
-     * 
-     * @param collectionName
-     *            collection name
-     * @param options
-     *            validation level and JSON schema options
+     *
+     * @param collectionName collection name
+     * @param options        validation level and JSON schema options
      */
     void modifyCollection(String collectionName, ModifyCollectionOptions options);
 
     /**
      * Drop the collection from this schema.
-     * 
-     * @param collectionName
-     *            name of collection to drop
+     *
+     * @param collectionName name of collection to drop
      */
     void dropCollection(String collectionName);
 
@@ -180,9 +163,9 @@ public interface Schema extends DatabaseObject {
      * <li>reuseExisting flag - similar to IF NOT EXISTS for CREATE TABLE
      * <li>{@link Validation} object
      * </ul>
-     * 
+     * <p>
      * Examples:
-     * 
+     *
      * <pre>
      * schema.createCollection(collName,
      *         new CreateCollectionOptions().setReuseExisting(false)
@@ -190,11 +173,11 @@ public interface Schema extends DatabaseObject {
      *                         .setSchema("{\"id\": \"http://json-schema.org/idx\", \"$schema\": \"http://json-schema.org/draft-06/schema#\","
      *                                 + "\"type\": \"object\", \"properties\": {\"index\": {\"type\": \"number\"}},\"required\": [\"index\"]}")));
      * </pre>
-     * 
+     *
      * <pre>
      * schema.createCollection(collName, new CreateCollectionOptions().setReuseExisting(false).setValidation(new Validation().setLevel(ValidationLevel.OFF)));
      * </pre>
-     * 
+     *
      * <pre>
      * schema.createCollection(collName,
      *         new CreateCollectionOptions().setReuseExisting(true);
@@ -229,7 +212,7 @@ public interface Schema extends DatabaseObject {
      * <p>
      * Example:
      * </p>
-     * 
+     *
      * <pre>
      * schema.modifyCollection(collName1, new ModifyCollectionOptions().setValidation(new Validation().setLevel(ValidationLevel.OFF)));
      * </pre>
@@ -270,7 +253,9 @@ public interface Schema extends DatabaseObject {
          */
         public static enum ValidationLevel {
             STRICT, OFF
-        };
+        }
+
+        ;
 
         private ValidationLevel level = null;
         private String schema = null;

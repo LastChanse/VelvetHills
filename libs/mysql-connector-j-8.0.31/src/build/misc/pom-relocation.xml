@@ -28,18 +28,18 @@
   51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>mysql</groupId>
-  <artifactId>@MYSQL_CJ_EXTENDED_PROD_NAME_RELOCATION@</artifactId>
-  <version>@MYSQL_CJ_VERSION@</version>
+    <groupId>mysql</groupId>
+    <artifactId>@MYSQL_CJ_EXTENDED_PROD_NAME_RELOCATION@</artifactId>
+    <version>@MYSQL_CJ_VERSION@</version>
 
-  <distributionManagement>
-    <relocation>
-      <groupId>com.mysql</groupId>
-      <artifactId>@MYSQL_CJ_EXTENDED_PROD_NAME@</artifactId>
-      <message>MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.</message>
-    </relocation>
-  </distributionManagement>
+    <distributionManagement>
+        <relocation>
+            <groupId>com.mysql</groupId>
+            <artifactId>@MYSQL_CJ_EXTENDED_PROD_NAME@</artifactId>
+            <message>MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.</message>
+        </relocation>
+    </distributionManagement>
 </project>

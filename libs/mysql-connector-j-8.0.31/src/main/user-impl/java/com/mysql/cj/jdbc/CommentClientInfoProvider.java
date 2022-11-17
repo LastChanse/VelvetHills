@@ -36,7 +36,7 @@ import java.util.Properties;
 
 /**
  * An implementation of ClientInfoProvider that exposes the client info as a comment prepended to all statements issued by the driver.
- * 
+ * <p>
  * Client information is <i>never</i> read from the server with this implementation, it is always cached locally.
  */
 

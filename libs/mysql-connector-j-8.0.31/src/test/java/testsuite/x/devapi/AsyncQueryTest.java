@@ -228,7 +228,7 @@ public class AsyncQueryTest extends BaseCollectionTestCase {
 
     /**
      * This test addresses the "correlation" of messages to their proper async listeners.
-     * 
+     *
      * @throws Exception
      */
     @Test

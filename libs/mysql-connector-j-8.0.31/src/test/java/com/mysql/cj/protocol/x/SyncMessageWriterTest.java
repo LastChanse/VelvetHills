@@ -59,7 +59,7 @@ public class SyncMessageWriterTest {
 
     /**
      * Test that we can (properly) write a complete message.
-     * 
+     *
      * @throws IOException
      */
     @Test

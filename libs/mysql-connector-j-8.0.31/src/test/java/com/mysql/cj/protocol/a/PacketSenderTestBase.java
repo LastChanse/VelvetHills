@@ -39,7 +39,7 @@ import com.mysql.cj.protocol.MessageSender;
 public class PacketSenderTestBase {
     /**
      * Get a no-op packet sender that can be used when testing decorators.
-     * 
+     *
      * @return a MessageSender
      */
     protected MessageSender<NativePacketPayload> getNoopPacketSender() {

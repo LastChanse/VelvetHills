@@ -31,13 +31,16 @@ package com.mysql.cj.protocol.a;
 
 /**
  * Constants specific to legacy MySQL protocol
- *
  */
 public class NativeConstants {
 
-    /** Maximum size of MySQL packet payload. */
+    /**
+     * Maximum size of MySQL packet payload.
+     */
     public static final int MAX_PACKET_SIZE = 256 * 256 * 256 - 1;
-    /** Size of MySQL packet header (payload size + packet sequence ID). */
+    /**
+     * Size of MySQL packet header (payload size + packet sequence ID).
+     */
     public static final int HEADER_LENGTH = 4;
     public static final int SEED_LENGTH = 20;
 
@@ -105,7 +108,6 @@ public class NativeConstants {
 
     /**
      * Basic protocol data types as they are defined in http://dev.mysql.com/doc/internals/en/integer.html
-     *
      */
     public enum IntegerDataType {
 
@@ -148,7 +150,6 @@ public class NativeConstants {
     /**
      * Basic protocol data types as they are defined in http://dev.mysql.com/doc/internals/en/string.html
      * which require explicit length specification.
-     *
      */
     public static enum StringLengthDataType {
 
@@ -167,7 +168,6 @@ public class NativeConstants {
 
     /**
      * Basic self-describing protocol data types as they are defined in http://dev.mysql.com/doc/internals/en/string.html
-     *
      */
     public static enum StringSelfDataType {
 

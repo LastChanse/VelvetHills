@@ -40,7 +40,7 @@ public class JsonNumber implements JsonValue {
 
     /**
      * Get number as Integer.
-     * 
+     *
      * @return Integer value
      */
     public Integer getInteger() {
@@ -49,7 +49,7 @@ public class JsonNumber implements JsonValue {
 
     /**
      * Get number as BigDecimal.
-     * 
+     *
      * @return BigDecimal value
      */
     public BigDecimal getBigDecimal() {
@@ -58,9 +58,8 @@ public class JsonNumber implements JsonValue {
 
     /**
      * Set number value.
-     * 
-     * @param value
-     *            string number representation
+     *
+     * @param value string number representation
      * @return this JsonNumber
      */
     public JsonNumber setValue(String value) {

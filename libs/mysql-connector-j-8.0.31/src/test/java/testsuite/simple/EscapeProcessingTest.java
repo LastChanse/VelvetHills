@@ -53,7 +53,7 @@ import testsuite.BaseTestCase;
 public class EscapeProcessingTest extends BaseTestCase {
     /**
      * Tests the escape processing functionality
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -80,7 +80,7 @@ public class EscapeProcessingTest extends BaseTestCase {
 
     /**
      * JDBC-4.0 spec will allow either SQL_ or not for type in {fn convert ...}
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -91,7 +91,7 @@ public class EscapeProcessingTest extends BaseTestCase {
     /**
      * Tests that the escape tokenizer converts timestamp values
      * wrt. timezones
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -135,7 +135,7 @@ public class EscapeProcessingTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#51313 - Escape processing is confused by multiple backslashes.
-     * 
+     *
      * @throws Exception
      */
     @Test

@@ -65,7 +65,7 @@ public class LoggingProfilerEventHandler implements ProfilerEventHandler {
 
     @Override
     public void processEvent(byte eventType, Session session, Query query, Resultset resultSet, long eventDuration, Throwable eventCreationPoint,
-            String message) {
+                             String message) {
 
         consumeEvent(new ProfilerEventImpl(eventType, //
                 session == null ? "" : session.getHostInfo().getHost(), //

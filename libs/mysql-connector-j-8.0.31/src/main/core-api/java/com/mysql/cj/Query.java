@@ -44,7 +44,7 @@ public interface Query {
 
     /**
      * Returns the query id used when profiling
-     * 
+     *
      * @return id
      */
     int getId();
@@ -70,7 +70,7 @@ public interface Query {
      * The list is unmodifiable and might contain any combination of String,
      * ClientPreparedQueryBindings, or ServerPreparedQueryBindings depending on how the parameters were
      * batched.
-     * 
+     *
      * @return an unmodifiable List of batched args
      */
     List<Object> getBatchedArgs();

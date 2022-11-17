@@ -169,12 +169,10 @@ public class NativeCharsetSettings extends CharsetMapping implements CharsetSett
 
     /**
      * Attempt to use the encoding, and bail out if it can't be used.
-     * 
-     * @param encodingProperty
-     *            connection property containing the Java encoding to try
-     * @param replaceImpermissibleEncodings
-     *            The character_set_client system variable cannot be set to ucs2, utf16, utf16le, utf32 charsets. If "true" the corresponding connection
-     *            property value will be replaced with "UTF-8"
+     *
+     * @param encodingProperty              connection property containing the Java encoding to try
+     * @param replaceImpermissibleEncodings The character_set_client system variable cannot be set to ucs2, utf16, utf16le, utf32 charsets. If "true" the corresponding connection
+     *                                      property value will be replaced with "UTF-8"
      */
     private void tryAndFixEncoding(RuntimeProperty<String> encodingProperty, boolean replaceImpermissibleEncodings) {
         String oldEncoding = encodingProperty.getValue();
@@ -189,7 +187,7 @@ public class NativeCharsetSettings extends CharsetMapping implements CharsetSett
                     // Try the MySQL character set name, then....
                     String newEncoding = getStaticJavaEncodingForMysqlCharset(oldEncoding);
                     if (newEncoding == null) {
-                        throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("StringUtils.0", new Object[] { oldEncoding }),
+                        throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("StringUtils.0", new Object[]{oldEncoding}),
                                 this.session.getExceptionInterceptor());
                     }
                     StringUtils.getBytes("abc", newEncoding);
@@ -228,7 +226,7 @@ public class NativeCharsetSettings extends CharsetMapping implements CharsetSett
 
         if (this.sessionCollationIndex == null) {
             if ((this.sessionCollationIndex = getStaticCollationIndexForJavaEncoding(encoding, capabilities.getServerVersion())) == 0) {
-                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("StringUtils.0", new Object[] { encoding }));
+                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("StringUtils.0", new Object[]{encoding}));
             }
         }
 
@@ -311,7 +309,7 @@ public class NativeCharsetSettings extends CharsetMapping implements CharsetSett
 
                 if (((requiredEncoding = getJavaEncodingForCollationIndex(this.sessionCollationIndex, requiredEncoding)) == null)) {
                     // if there is no mapping for default collation index leave characterEncoding as specified by user
-                    throw ExceptionFactory.createException(Messages.getString("Connection.5", new Object[] { this.sessionCollationIndex.toString() }),
+                    throw ExceptionFactory.createException(Messages.getString("Connection.5", new Object[]{this.sessionCollationIndex.toString()}),
                             this.session.getExceptionInterceptor());
                 }
 
@@ -319,7 +317,7 @@ public class NativeCharsetSettings extends CharsetMapping implements CharsetSett
             }
 
         } catch (ArrayIndexOutOfBoundsException outOfBoundsEx) {
-            throw ExceptionFactory.createException(Messages.getString("Connection.6", new Object[] { this.sessionCollationIndex }),
+            throw ExceptionFactory.createException(Messages.getString("Connection.6", new Object[]{this.sessionCollationIndex}),
                     this.session.getExceptionInterceptor());
         }
 
@@ -350,7 +348,7 @@ public class NativeCharsetSettings extends CharsetMapping implements CharsetSett
 
         /*
          * Configuring characterSetResults.
-         * 
+         *
          * We know how to deal with any charset coming back from the database, so tell the server not to do conversion
          * if the user hasn't 'forced' a result-set character set.
          */
@@ -373,7 +371,7 @@ public class NativeCharsetSettings extends CharsetMapping implements CharsetSett
 
             if (resultsCharsetName == null) {
                 throw ExceptionFactory.createException(WrongArgumentException.class,
-                        Messages.getString("Connection.7", new Object[] { characterSetResultsValue }), this.session.getExceptionInterceptor());
+                        Messages.getString("Connection.7", new Object[]{characterSetResultsValue}), this.session.getExceptionInterceptor());
             }
 
             if (!resultsCharsetName.equalsIgnoreCase(sessionResultsCharset)) {
@@ -452,7 +450,7 @@ public class NativeCharsetSettings extends CharsetMapping implements CharsetSett
     /**
      * Get the server's default character set name according to collation index from server greeting,
      * or value of 'character_set_server' variable if there is no mapping for that index
-     * 
+     *
      * @return MySQL charset name
      */
     public String getServerDefaultCharset() {
@@ -543,8 +541,8 @@ public class NativeCharsetSettings extends CharsetMapping implements CharsetSett
 
             try {
                 NativePacketPayload resultPacket = this.session.getProtocol().sendCommand(getCommandBuilder().buildComQuery(null,
-                        "SELECT c.COLLATION_NAME, c.CHARACTER_SET_NAME, c.ID, cs.MAXLEN, c.IS_DEFAULT='Yes' from INFORMATION_SCHEMA.COLLATIONS AS c LEFT JOIN"
-                                + " INFORMATION_SCHEMA.CHARACTER_SETS AS cs ON cs.CHARACTER_SET_NAME=c.CHARACTER_SET_NAME"),
+                                "SELECT c.COLLATION_NAME, c.CHARACTER_SET_NAME, c.ID, cs.MAXLEN, c.IS_DEFAULT='Yes' from INFORMATION_SCHEMA.COLLATIONS AS c LEFT JOIN"
+                                        + " INFORMATION_SCHEMA.CHARACTER_SETS AS cs ON cs.CHARACTER_SET_NAME=c.CHARACTER_SET_NAME"),
                         false, 0);
                 Resultset rs = this.session.getProtocol().readAllResults(-1, false, resultPacket, false, null, new ResultsetFactory(Type.FORWARD_ONLY, null));
                 ValueFactory<String> svf = new StringValueFactory(this.session.getPropertySet());

@@ -46,12 +46,11 @@ import com.mysql.cj.result.Field;
 
 /**
  * Handle binary-encoded data for server-side PreparedStatements
- *
  */
 public class BinaryRowFactory extends AbstractRowFactory implements ProtocolEntityFactory<ResultsetRow, NativePacketPayload> {
 
     public BinaryRowFactory(NativeProtocol protocol, ColumnDefinition columnDefinition, Resultset.Concurrency resultSetConcurrency,
-            boolean canReuseRowPacketForBufferRow) {
+                            boolean canReuseRowPacketForBufferRow) {
         this.columnDefinition = columnDefinition;
         this.resultSetConcurrency = resultSetConcurrency;
         this.canReuseRowPacketForBufferRow = canReuseRowPacketForBufferRow;
@@ -85,12 +84,9 @@ public class BinaryRowFactory extends AbstractRowFactory implements ProtocolEnti
 
     /**
      * Un-packs binary-encoded result set data for one row
-     * 
-     * @param fields
-     *            {@link Field}s array
-     * @param binaryData
-     *            data
-     * 
+     *
+     * @param fields     {@link Field}s array
+     * @param binaryData data
      * @return byte[][]
      */
     private final ResultsetRow unpackBinaryResultSetRow(Field[] fields, NativePacketPayload binaryData) {
@@ -127,15 +123,11 @@ public class BinaryRowFactory extends AbstractRowFactory implements ProtocolEnti
 
     /**
      * Copy the raw result bytes from the
-     * 
-     * @param binaryData
-     *            packet to the
-     * @param fields
-     *            {@link Field}s array
-     * @param columnIndex
-     *            column index
-     * @param unpackedRowData
-     *            byte array.
+     *
+     * @param binaryData      packet to the
+     * @param fields          {@link Field}s array
+     * @param columnIndex     column index
+     * @param unpackedRowData byte array.
      */
     private final void extractNativeEncodedColumn(NativePacketPayload binaryData, Field[] fields, int columnIndex, byte[][] unpackedRowData) {
         int type = fields[columnIndex].getMysqlTypeId();
@@ -149,7 +141,7 @@ public class BinaryRowFactory extends AbstractRowFactory implements ProtocolEnti
         } else if (len > 0) {
             unpackedRowData[columnIndex] = binaryData.readBytes(StringLengthDataType.STRING_FIXED, len);
         } else {
-            throw ExceptionFactory.createException(Messages.getString("MysqlIO.97", new Object[] { type, columnIndex, fields.length }));
+            throw ExceptionFactory.createException(Messages.getString("MysqlIO.97", new Object[]{type, columnIndex, fields.length}));
         }
     }
 }

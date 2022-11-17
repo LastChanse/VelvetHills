@@ -57,7 +57,9 @@ import com.mysql.cj.util.TimeUtil;
 
 public class StringValueEncoder extends AbstractValueEncoder {
 
-    /** Charset encoder used to escape if needed, such as Yen sign in SJIS */
+    /**
+     * Charset encoder used to escape if needed, such as Yen sign in SJIS
+     */
     private CharsetEncoder charsetEncoder;
 
     @Override
@@ -144,7 +146,7 @@ public class StringValueEncoder extends AbstractValueEncoder {
                 } else if (x.matches("-?\\d+\\.?\\d*")) {
                     b = !x.matches("-?[0]+[.]*[0]*");
                 } else {
-                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("PreparedStatement.66", new Object[] { x }),
+                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("PreparedStatement.66", new Object[]{x}),
                             this.exceptionInterceptor);
                 }
                 return String.valueOf(b ? 1 : 0);
@@ -204,7 +206,7 @@ public class StringValueEncoder extends AbstractValueEncoder {
                     return sb.toString();
                 }
                 throw ExceptionFactory.createException(WrongArgumentException.class,
-                        Messages.getString("PreparedStatement.67", new Object[] { dt.getClass().getName(), binding.getMysqlType().toString() }),
+                        Messages.getString("PreparedStatement.67", new Object[]{dt.getClass().getName(), binding.getMysqlType().toString()}),
                         this.exceptionInterceptor);
             case DATETIME:
             case TIMESTAMP:
@@ -221,7 +223,7 @@ public class StringValueEncoder extends AbstractValueEncoder {
                     return sb.toString();
                 }
                 throw ExceptionFactory.createException(WrongArgumentException.class,
-                        Messages.getString("PreparedStatement.67", new Object[] { dt.getClass().getName(), binding.getMysqlType().toString() }),
+                        Messages.getString("PreparedStatement.67", new Object[]{dt.getClass().getName(), binding.getMysqlType().toString()}),
                         this.exceptionInterceptor);
             case TIME:
                 dt = TimeUtil.parseToDateTimeObject(x, binding.getMysqlType());
@@ -242,7 +244,7 @@ public class StringValueEncoder extends AbstractValueEncoder {
                     return sb.toString();
                 }
                 throw ExceptionFactory.createException(WrongArgumentException.class,
-                        Messages.getString("PreparedStatement.67", new Object[] { dt.getClass().getName(), binding.getMysqlType().toString() }),
+                        Messages.getString("PreparedStatement.67", new Object[]{dt.getClass().getName(), binding.getMysqlType().toString()}),
                         this.exceptionInterceptor);
             case YEAR:
                 dt = TimeUtil.parseToDateTimeObject(x, binding.getMysqlType());
@@ -252,14 +254,14 @@ public class StringValueEncoder extends AbstractValueEncoder {
                     return String.valueOf(((LocalDateTime) dt).getYear());
                 }
                 throw ExceptionFactory.createException(WrongArgumentException.class,
-                        Messages.getString("PreparedStatement.67", new Object[] { dt.getClass().getName(), binding.getMysqlType().toString() }),
+                        Messages.getString("PreparedStatement.67", new Object[]{dt.getClass().getName(), binding.getMysqlType().toString()}),
                         this.exceptionInterceptor);
 
             default:
                 break;
         }
         throw ExceptionFactory.createException(WrongArgumentException.class,
-                Messages.getString("PreparedStatement.67", new Object[] { binding.getValue().getClass().getName(), binding.getMysqlType().toString() }),
+                Messages.getString("PreparedStatement.67", new Object[]{binding.getValue().getClass().getName(), binding.getMysqlType().toString()}),
                 this.exceptionInterceptor);
 
     }
@@ -287,7 +289,7 @@ public class StringValueEncoder extends AbstractValueEncoder {
                 } else if (x.matches("-?\\d+\\.?\\d*")) {
                     b = !x.matches("-?[0]+[.]*[0]*");
                 } else {
-                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("PreparedStatement.66", new Object[] { x }),
+                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("PreparedStatement.66", new Object[]{x}),
                             this.exceptionInterceptor);
                 }
                 intoPacket.writeInteger(IntegerDataType.INT1, Long.valueOf(b ? 1L : 0L));
@@ -395,7 +397,7 @@ public class StringValueEncoder extends AbstractValueEncoder {
                 break;
         }
         throw ExceptionFactory.createException(WrongArgumentException.class,
-                Messages.getString("PreparedStatement.67", new Object[] { binding.getValue().getClass().getName(), binding.getMysqlType().toString() }),
+                Messages.getString("PreparedStatement.67", new Object[]{binding.getValue().getClass().getName(), binding.getMysqlType().toString()}),
                 this.exceptionInterceptor);
     }
 

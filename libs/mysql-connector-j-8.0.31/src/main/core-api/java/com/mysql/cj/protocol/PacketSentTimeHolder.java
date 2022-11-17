@@ -37,7 +37,7 @@ public interface PacketSentTimeHolder {
     /**
      * Returns the send time of a very recent packet.
      * Should be used in exception generation when the send operation failed.
-     * 
+     *
      * @return very recent packet send time
      */
     default long getLastPacketSentTime() {
@@ -48,7 +48,7 @@ public interface PacketSentTimeHolder {
      * Returns the send time of a previous packet.
      * Should be used in exception generation when the send operation was successful
      * but the following read operation failed.
-     * 
+     *
      * @return previous packet send time
      */
     default long getPreviousPacketSentTime() {

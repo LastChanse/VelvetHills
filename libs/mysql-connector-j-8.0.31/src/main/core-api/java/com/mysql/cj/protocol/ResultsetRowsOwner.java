@@ -45,7 +45,7 @@ public interface ResultsetRowsOwner {
 
     /**
      * StackTrace generated where ResultSet was created... used when profiling
-     * 
+     *
      * @return string representation of a stack trace
      */
     String getPointOfOrigin();

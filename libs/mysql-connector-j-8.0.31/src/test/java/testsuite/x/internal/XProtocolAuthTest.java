@@ -72,7 +72,7 @@ public class XProtocolAuthTest extends InternalXBaseTestCase {
     /**
      * Test that we are disconnected with an error if we send a bad authentication message. The server responds by immediately closing the socket. The async
      * implementation may block indefinitely here and we need to prevent any regression.
-     * 
+     *
      * @throws Exception
      */
     @Test

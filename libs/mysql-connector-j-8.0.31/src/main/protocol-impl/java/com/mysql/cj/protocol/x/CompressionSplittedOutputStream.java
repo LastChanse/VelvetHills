@@ -74,7 +74,7 @@ public class CompressionSplittedOutputStream extends FilterOutputStream {
 
     /**
      * Closes this stream.
-     * 
+     *
      * @see FilterOutputStream#close()
      */
     @Override
@@ -93,7 +93,7 @@ public class CompressionSplittedOutputStream extends FilterOutputStream {
 
     /**
      * Forwards the write to {@link #write(byte[], int, int)};
-     * 
+     *
      * @see FilterOutputStream#write(int)
      */
     @Override
@@ -105,7 +105,7 @@ public class CompressionSplittedOutputStream extends FilterOutputStream {
 
     /**
      * Forwards the write to {@link #write(byte[], int, int)};
-     * 
+     *
      * @see FilterOutputStream#write(byte[])
      */
     @Override
@@ -117,7 +117,7 @@ public class CompressionSplittedOutputStream extends FilterOutputStream {
     /**
      * Analyzes the given bytes as an X Protocol frame and, depending on its size, writes it as-is in the underlying {@link OutputStream} or rebuilds it as a
      * compressed X Protocol packet.
-     * 
+     *
      * @see java.io.FilterOutputStream#write(int)
      */
     @Override
@@ -161,15 +161,11 @@ public class CompressionSplittedOutputStream extends FilterOutputStream {
 
     /**
      * Captures the first bytes of each X Protocol frame into a byte buffer.
-     * 
-     * @param b
-     *            the data.
-     * @param off
-     *            the start offset in the data.
-     * @param len
-     *            the number of bytes to write.
-     * @return
-     *         the number of bytes actually buffered.
+     *
+     * @param b   the data.
+     * @param off the start offset in the data.
+     * @param len the number of bytes to write.
+     * @return the number of bytes actually buffered.
      */
     private int peekFrameHeader(byte[] b, int off, int len) {
         if (isPayloadWriteReady()) {
@@ -187,9 +183,8 @@ public class CompressionSplittedOutputStream extends FilterOutputStream {
 
     /**
      * Checks if there is a complete frame header already buffered.
-     * 
-     * @return
-     *         <code>true</code> if the frame header buffer is full, <code>false</code> otherwise.
+     *
+     * @return <code>true</code> if the frame header buffer is full, <code>false</code> otherwise.
      */
     private boolean isFrameHeaderBuffered() {
         return this.frameHeaderBuffered == HEADER_LENGTH;
@@ -197,9 +192,8 @@ public class CompressionSplittedOutputStream extends FilterOutputStream {
 
     /**
      * Checks if the entire frame X Protocol frame header has been fully written.
-     * 
-     * @return
-     *         <code>true</code> if the frame header was written, <code>false</code> otherwise.
+     *
+     * @return <code>true</code> if the frame header was written, <code>false</code> otherwise.
      */
     private boolean isFrameHeaderWriteComplete() {
         return this.frameHeaderDumped == HEADER_LENGTH;
@@ -207,9 +201,8 @@ public class CompressionSplittedOutputStream extends FilterOutputStream {
 
     /**
      * Checks if the X Protocol frame payload is ready to be written on the underlying {@link OutputStream}.
-     * 
-     * @return
-     *         <code>true</code> the payload can be written, <code>false</code> otherwise.
+     *
+     * @return <code>true</code> the payload can be written, <code>false</code> otherwise.
      */
     private boolean isPayloadWriteReady() {
         return isFrameHeaderWriteComplete() && this.framePayloadDumped < this.framePayloadLength;
@@ -217,9 +210,8 @@ public class CompressionSplittedOutputStream extends FilterOutputStream {
 
     /**
      * Checks if current X Protocol frame has been fully written.
-     * 
-     * @return
-     *         <code>true</code> if the frame currently in progress was fully written, <code>false</code> otherwise.
+     *
+     * @return <code>true</code> if the frame currently in progress was fully written, <code>false</code> otherwise.
      */
     private boolean isWriteComplete() {
         return isFrameHeaderWriteComplete() && this.framePayloadDumped >= this.framePayloadLength;
@@ -228,9 +220,8 @@ public class CompressionSplittedOutputStream extends FilterOutputStream {
     /**
      * Finalizes the writing of the compressed {@link OutputStream}, if one is currently in use, by flushing it into a temporary buffer and reassembling the
      * original X Protocol frame into a compressed one. Finally, writes the entire compressed frame into the underlying {@link OutputStream}.
-     * 
-     * @throws IOException
-     *             if any of the underlying I/O operations fail.
+     *
+     * @throws IOException if any of the underlying I/O operations fail.
      */
     private void finalizeWrite() throws IOException {
         if (isWriteComplete()) {
@@ -265,9 +256,8 @@ public class CompressionSplittedOutputStream extends FilterOutputStream {
 
     /**
      * Ensures that this {@link OutputStream} wasn't closed yet.
-     * 
-     * @throws IOException
-     *             if this {@link OutputStream} was closed.
+     *
+     * @throws IOException if this {@link OutputStream} was closed.
      */
     private void ensureOpen() throws IOException {
         if (this.closed) {

@@ -78,8 +78,8 @@ public class OffsetDateTimeValueEncoder extends AbstractValueEncoder {
                 StringBuffer buf = new StringBuffer();
 
                 buf.append(TimeUtil.getSimpleDateFormat(null, "''yyyy-MM-dd HH:mm:ss",
-                        binding.getMysqlType() == MysqlType.TIMESTAMP && this.preserveInstants.getValue() ? this.serverSession.getSessionTimeZone()
-                                : this.serverSession.getDefaultTimeZone())
+                                binding.getMysqlType() == MysqlType.TIMESTAMP && this.preserveInstants.getValue() ? this.serverSession.getSessionTimeZone()
+                                        : this.serverSession.getDefaultTimeZone())
                         .format(x));
 
                 if (this.serverSession.getCapabilities().serverSupportsFracSecs() && x.getNanos() > 0) {
@@ -105,7 +105,7 @@ public class OffsetDateTimeValueEncoder extends AbstractValueEncoder {
                 return sb.toString();
             default:
                 throw ExceptionFactory.createException(WrongArgumentException.class,
-                        Messages.getString("PreparedStatement.67", new Object[] { binding.getValue().getClass().getName(), binding.getMysqlType().toString() }),
+                        Messages.getString("PreparedStatement.67", new Object[]{binding.getValue().getClass().getName(), binding.getMysqlType().toString()}),
                         this.exceptionInterceptor);
         }
     }
@@ -153,7 +153,7 @@ public class OffsetDateTimeValueEncoder extends AbstractValueEncoder {
                 return;
             default:
                 throw ExceptionFactory.createException(WrongArgumentException.class,
-                        Messages.getString("PreparedStatement.67", new Object[] { binding.getValue().getClass().getName(), binding.getMysqlType().toString() }),
+                        Messages.getString("PreparedStatement.67", new Object[]{binding.getValue().getClass().getName(), binding.getMysqlType().toString()}),
                         this.exceptionInterceptor);
         }
     }

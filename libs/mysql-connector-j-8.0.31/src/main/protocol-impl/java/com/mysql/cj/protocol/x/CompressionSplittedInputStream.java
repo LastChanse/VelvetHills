@@ -73,9 +73,8 @@ public class CompressionSplittedInputStream extends FilterInputStream {
     /**
      * Same as {@link InputStream#available()}, except that the exact number of bytes that can be read from the underlying {@link InputStream} may not be
      * accurate until it is known if the next bytes contain compressed data or not.
-     * 
+     *
      * @return an approximate number of available bytes to read.
-     * 
      * @see FilterInputStream#available()
      */
     @Override
@@ -89,7 +88,7 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Closes this stream.
-     * 
+     *
      * @see FilterInputStream#close()
      */
     @Override
@@ -107,7 +106,7 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Forwards the read to {@link #read(byte[], int, int)}.
-     * 
+     *
      * @see FilterInputStream#read()
      */
     @Override
@@ -122,7 +121,7 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Forwards the read to {@link #read(byte[], int, int)}.
-     * 
+     *
      * @see FilterInputStream#read(byte[])
      */
     @Override
@@ -134,7 +133,7 @@ public class CompressionSplittedInputStream extends FilterInputStream {
     /**
      * Reads bytes from the underlying {@link InputStream} either from the one that gets data directly from the original source {@link InputStream} or from
      * a compressor able {@link InputStream}, if reading of a compressed X Protocol frame is in progress.
-     * 
+     *
      * @see FilterInputStream#read(byte[], int, int)
      */
     @Override
@@ -179,9 +178,8 @@ public class CompressionSplittedInputStream extends FilterInputStream {
     /**
      * Checks the header of the next X Protocol frame and, depending on its type, sets up this class to read from an alternative compressor able underlying
      * {@link InputStream}.
-     * 
-     * @throws IOException
-     *             if any of the underlying I/O operations fail.
+     *
+     * @throws IOException if any of the underlying I/O operations fail.
      */
     private void peekNextFrame() throws IOException {
         if (isDataAvailable()) {
@@ -208,10 +206,9 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Checks if current X Protocol frame is compressed.
-     * 
-     * @return
-     *         <code>true</code> if the type of current frame is {@link com.mysql.cj.x.protobuf.Mysqlx.ServerMessages.Type#COMPRESSION}, <code>false</code>
-     *         otherwise.
+     *
+     * @return <code>true</code> if the type of current frame is {@link com.mysql.cj.x.protobuf.Mysqlx.ServerMessages.Type#COMPRESSION}, <code>false</code>
+     * otherwise.
      */
     private boolean isCompressedFrame() {
         return ServerMessages.Type.forNumber(this.xMessageHeader.getMessageType()) == ServerMessages.Type.COMPRESSION;
@@ -219,9 +216,8 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Parses the next X Protocol message as a compressed one.
-     * 
-     * @return
-     *         The Protobuf {@link Compression} message.
+     *
+     * @return The Protobuf {@link Compression} message.
      */
     @SuppressWarnings("unchecked")
     private Compression parseCompressedMessage() {
@@ -244,12 +240,9 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Checks if there is data available to be consumed.
-     * 
-     * @return
-     *         <code>true</code> if this frame's bytes weren't all consumed yet, <code>false</code> otherwise.
      *
-     * @throws IOException
-     *             if any of the underlying I/O operations fail.
+     * @return <code>true</code> if this frame's bytes weren't all consumed yet, <code>false</code> otherwise.
+     * @throws IOException if any of the underlying I/O operations fail.
      */
     private boolean isDataAvailable() throws IOException {
         return isCompressedDataAvailable() || this.frameHeaderConsumed > 0 && this.frameHeaderConsumed < HEADER_LENGTH
@@ -258,12 +251,9 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Checks if there is data available in the compressed {@link InputStream} to be consumed.
-     * 
-     * @return
-     *         <code>true</code> if there is compressed data available, <code>false</code> otherwise.
      *
-     * @throws IOException
-     *             if any of the underlying I/O operations fail.
+     * @return <code>true</code> if there is compressed data available, <code>false</code> otherwise.
+     * @throws IOException if any of the underlying I/O operations fail.
      */
     private boolean isCompressedDataAvailable() throws IOException {
         return this.compressorIn != null && this.compressorIn.available() > 0;
@@ -271,12 +261,9 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Checks if all data from the compressed {@link InputStream} was fully consumed.
-     * 
-     * @return
-     *         <code>true</code> if all compressed data was consumed, <code>false</code> otherwise.
      *
-     * @throws IOException
-     *             if any of the underlying I/O operations fail.
+     * @return <code>true</code> if all compressed data was consumed, <code>false</code> otherwise.
+     * @throws IOException if any of the underlying I/O operations fail.
      */
     private boolean isCompressedDataReadComplete() throws IOException {
         return this.compressorIn != null && this.compressorIn.available() == 0;
@@ -284,9 +271,8 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Checks if the X Protocol frame header was fully consumed.
-     * 
-     * @return
-     *         <code>true</code> if the frame header was fully consumed, <code>false</code> otherwise.
+     *
+     * @return <code>true</code> if the frame header was fully consumed, <code>false</code> otherwise.
      */
     boolean isFrameHeaderFullyConsumed() {
         return this.frameHeaderConsumed == HEADER_LENGTH;
@@ -294,12 +280,10 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Reads the number of bytes required to fill the given buffer from the underlying {@link InputStream}, blocking if needed.
-     * 
-     * @param b
-     *            the buffer into which the data is read.
+     *
+     * @param b the buffer into which the data is read.
      * @return the total number of bytes read into the buffer, or <code>-1</code> if there is no more data because the end of the stream has been reached.
-     * @exception IOException
-     *                if any of the underlying I/O operations fail.
+     * @throws IOException if any of the underlying I/O operations fail.
      */
     public int readFully(byte[] b) throws IOException {
         return readFully(b, 0, b.length);
@@ -307,16 +291,12 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Reads the exact number of requested bytes from the underlying {@link InputStream}, blocking if needed.
-     * 
-     * @param b
-     *            the buffer into which the data is read.
-     * @param off
-     *            the start offset in the destination array <code>b</code>
-     * @param len
-     *            the maximum number of bytes read.
+     *
+     * @param b   the buffer into which the data is read.
+     * @param off the start offset in the destination array <code>b</code>
+     * @param len the maximum number of bytes read.
      * @return the total number of bytes read into the buffer, or <code>-1</code> if there is no more data because the end of the stream has been reached.
-     * @exception IOException
-     *                if any of the underlying I/O operations fail.
+     * @throws IOException if any of the underlying I/O operations fail.
      */
     private final int readFully(byte[] b, int off, int len) throws IOException {
         return readFully(this.in, b, off, len);
@@ -324,19 +304,13 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Reads the exact number of requested bytes from the given {@link InputStream}, blocking if needed.
-     * 
-     * @param inStream
-     *            input stream to read from
-     * @param b
-     *            the buffer into which the data is read.
-     * @param off
-     *            the start offset in the destination array <code>b</code>
-     * @param len
-     *            the maximum number of bytes read.
-     * @return the total number of bytes read into the buffer, or <code>-1</code> if there is no more data because the end of the stream has been reached.
      *
-     * @throws IOException
-     *             if any of the underlying I/O operations fail.
+     * @param inStream input stream to read from
+     * @param b        the buffer into which the data is read.
+     * @param off      the start offset in the destination array <code>b</code>
+     * @param len      the maximum number of bytes read.
+     * @return the total number of bytes read into the buffer, or <code>-1</code> if there is no more data because the end of the stream has been reached.
+     * @throws IOException if any of the underlying I/O operations fail.
      */
     private final int readFully(InputStream inStream, byte[] b, int off, int len) throws IOException {
         if (len < 0) {
@@ -356,9 +330,8 @@ public class CompressionSplittedInputStream extends FilterInputStream {
 
     /**
      * Ensures that this {@link InputStream} wasn't closed yet.
-     * 
-     * @throws IOException
-     *             if this {@link InputStream} was closed.
+     *
+     * @throws IOException if this {@link InputStream} was closed.
      */
     private void ensureOpen() throws IOException {
         if (this.closed) {

@@ -99,7 +99,9 @@ public class MysqlXid implements Xid {
     @Override
     public int getFormatId() {
         return this.myFormatId;
-    };
+    }
+
+    ;
 
     @Override
     public byte[] getGlobalTransactionId() {

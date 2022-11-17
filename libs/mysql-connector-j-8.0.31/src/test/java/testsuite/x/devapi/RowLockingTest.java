@@ -219,19 +219,19 @@ public class RowLockingTest extends BaseCollectionTestCase {
                 switch (this.action) {
                     case 1: {
                         if (this.lock == 1) {
-                            docs = coll.find(this.condition).bind(new Object[] { this.bindVal }).fields("$.F2 as F2").orderBy("$.F1").lockExclusive().execute();
+                            docs = coll.find(this.condition).bind(new Object[]{this.bindVal}).fields("$.F2 as F2").orderBy("$.F1").lockExclusive().execute();
                         } else if (this.lock == 2) {
-                            docs = coll.find(this.condition).bind(new Object[] { this.bindVal }).fields("$.F2 as F2").orderBy("$.F1").lockShared().execute();
+                            docs = coll.find(this.condition).bind(new Object[]{this.bindVal}).fields("$.F2 as F2").orderBy("$.F1").lockShared().execute();
                         }
                         docs.next();
                         break;
                     }
                     case 2: {
-                        coll.modify(this.condition).set("$.F2", "Data_New").bind(new Object[] { this.bindVal }).sort("$.F1 asc").execute();
+                        coll.modify(this.condition).set("$.F2", "Data_New").bind(new Object[]{this.bindVal}).sort("$.F1 asc").execute();
                         break;
                     }
                     case 3: {
-                        coll.remove(this.condition).bind(new Object[] { this.bindVal }).orderBy("$.F1 asc").execute();
+                        coll.remove(this.condition).bind(new Object[]{this.bindVal}).orderBy("$.F1 asc").execute();
                         break;
                     }
                 }
@@ -457,7 +457,7 @@ public class RowLockingTest extends BaseCollectionTestCase {
 
     /**
      * START collection.find() tests
-     * 
+     *
      * @throws Exception
      */
 

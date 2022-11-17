@@ -85,7 +85,7 @@ public class BlobRegressionTest extends BaseTestCase {
         //
         // Test mid-point insertion
         //
-        blob.setBytes(4, new byte[] { 2, 2, 2, 2 });
+        blob.setBytes(4, new byte[]{2, 2, 2, 2});
 
         byte[] newBlobData = blob.getBytes(1L, (int) blob.length());
 
@@ -96,14 +96,14 @@ public class BlobRegressionTest extends BaseTestCase {
         //
         // Test end-point insertion
         //
-        blob.setBytes(32, new byte[] { 2, 2, 2, 2 });
+        blob.setBytes(32, new byte[]{2, 2, 2, 2});
 
         assertTrue(blob.length() == (blobData.length + 3), "Blob length should be 3 larger");
     }
 
     /**
      * http://bugs.mysql.com/bug.php?id=22891
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -221,7 +221,7 @@ public class BlobRegressionTest extends BaseTestCase {
 
     /**
      * Tests BUG#8096 where emulated locators corrupt binary data when using server-side prepared statements.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -290,7 +290,7 @@ public class BlobRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#9040 - PreparedStatement.addBatch() doesn't work with server-side prepared statements and streaming BINARY data.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -353,7 +353,7 @@ public class BlobRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#20453671 - CLOB.POSITION() API CALL WITH CLOB INPUT RETURNS EXCEPTION
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -386,7 +386,7 @@ public class BlobRegressionTest extends BaseTestCase {
     /**
      * Tests fix for BUG#20453712 - CLOB.SETSTRING() WITH VALID INPUT RETURNS EXCEPTION
      * server-side prepared statements and streaming BINARY data.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -429,7 +429,7 @@ public class BlobRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#23535571 - EXCESSIVE MEMORY USAGE WHEN ENABLEPACKETDEBUG=TRUE
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -495,7 +495,7 @@ public class BlobRegressionTest extends BaseTestCase {
 
     /**
      * Tests BUG#95210, ClassCastException in BlobFromLocator when connecting as jdbc:mysql:replication.
-     * 
+     *
      * @throws Exception
      */
     @Test

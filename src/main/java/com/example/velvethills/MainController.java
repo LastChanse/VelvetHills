@@ -20,6 +20,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -45,6 +47,8 @@ public class MainController {
     /**
      * Left panel
      */
+    @FXML
+    private VBox navbar;
     @FXML
     private Button logOutBtn;
     @FXML
@@ -97,6 +101,8 @@ public class MainController {
     /**
      * Content>Pages>OrdersPage
      */
+    @FXML
+    private HBox ordersActionPanel;
     @FXML
     private Button orderSearchBtn;
     @FXML
@@ -227,6 +233,11 @@ public class MainController {
         avatar.setImage(avaImage);
         userInfo.setText(user.getFio() + "\nДолжность: " + user.getStatus());
         SessionUtils.startSession(sessionInfo);
+        if (!user.getStatus().equals("Администратор")) {
+            navbar.getChildren().remove(goToVhodHistoryBtn);
+        } else {
+            ordersActionPanel.getChildren().remove(orderAddBtn);
+        }
     }
 
     @FXML
